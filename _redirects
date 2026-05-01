@@ -1,0 +1,7 @@
+/about           /about.html           200
+/case-studies    /case-studies.html    200
+/calculators     /calculators.html     200
+/about/          /about                301
+/case-studies/   /case-studies         301
+/calculators/    /calculators          301
+/*               /index.html           404

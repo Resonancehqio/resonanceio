@@ -1,0 +1,14 @@
+User-agent: *
+Allow: /
+
+# Pages to index
+Allow: /index.html
+Allow: /about
+Allow: /about.html
+Allow: /case-studies
+Allow: /case-studies.html
+Allow: /calculators
+Allow: /calculators.html
+
+# Sitemap
+Sitemap: https://resonancehq.io/sitemap.xml
