@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy Policy — Resonance</title>
+<meta name="description" content="Resonance Privacy Policy — how we collect, use, and protect your information.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://resonancehq.io/privacy-policy">
+<link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="48x48">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" as="style" crossorigin onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"></noscript>
+
+<style>
+:root {
+  --teal:         #14B8A6;
+  --teal-bright:  #5EEAD4;
+  --purple:       #5B21B6;
+  --purple-mid:   #7C3AED;
+  --purple-bright:#A78BFA;
+  --dark:         #09080F;
+  --dark-1:       #110E1E;
+  --dark-2:       #1A1630;
+  --dark-3:       #231E3E;
+  --border:       rgba(120,100,220,0.18);
+  --border-hi:    rgba(120,100,220,0.38);
+  --text-1:       #F1EEFF;
+  --text-2:       #B8AAEE;
+  --text-3:       #7E72B8;
+
+  --ff-display: 'Fraunces', Georgia, serif;
+  --ff-body:    'Instrument Sans', -apple-system, system-ui, sans-serif;
+  --ff-mono:    'JetBrains Mono', monospace;
+
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --radius-xl: 24px;
+}
+
+*,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  font-family: var(--ff-body);
+  background: var(--dark);
+  color: var(--text-1);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--dark); }
+::-webkit-scrollbar-thumb { background: var(--dark-3); border-radius: 3px; }
+
+/* ── BG ── */
+.bg-canvas { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+.orb { position: absolute; border-radius: 50%; filter: blur(120px); opacity: 0.35; }
+.orb-1 { width: 600px; height: 600px; background: radial-gradient(circle, rgba(91,33,182,0.4) 0%, transparent 70%); top: -200px; right: -150px; }
+.orb-2 { width: 400px; height: 400px; background: radial-gradient(circle, rgba(20,184,166,0.18) 0%, transparent 70%); bottom: 100px; left: -100px; }
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  height: 62px;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 40px;
+  background: rgba(9,8,15,0.85);
+  backdrop-filter: blur(24px);
+  border-bottom: 0.5px solid var(--border);
+}
+.nav-logo {
+  display: flex; align-items: center; gap: 8px;
+  text-decoration: none;
+}
+.nav-logo svg { width: 26px; height: 31px; }
+.logo-text {
+  font-family: var(--ff-display); font-size: 1.1rem; font-weight: 400;
+  color: var(--text-1); letter-spacing: -0.01em;
+}
+.nav-back {
+  font-family: var(--ff-body); font-size: 13px; font-weight: 500;
+  color: var(--text-3); text-decoration: none;
+  display: flex; align-items: center; gap: 6px;
+  transition: color 0.2s;
+}
+.nav-back:hover { color: var(--text-2); }
+.nav-back svg { width: 14px; height: 14px; }
+
+/* ── PAGE ── */
+.page {
+  position: relative; z-index: 1;
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 120px 32px 100px;
+}
+
+/* ── HEADER ── */
+.pp-header {
+  margin-bottom: 64px;
+  padding-bottom: 40px;
+  border-bottom: 0.5px solid var(--border);
+}
+.pp-eyebrow {
+  font-family: var(--ff-mono); font-size: 11px; font-weight: 500;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--teal); display: block; margin-bottom: 16px;
+}
+.pp-header h1 {
+  font-family: var(--ff-display); font-weight: 300;
+  font-size: clamp(2.4rem, 5vw, 3.6rem);
+  letter-spacing: -0.025em; line-height: 1.06;
+  color: var(--text-1); margin-bottom: 20px;
+}
+.pp-header h1 em { font-style: italic; color: var(--teal-bright); }
+.pp-meta {
+  display: flex; align-items: center; gap: 20px; flex-wrap: wrap;
+}
+.pp-date {
+  font-family: var(--ff-mono); font-size: 12px; color: var(--text-3);
+}
+.pp-badge {
+  font-family: var(--ff-mono); font-size: 10px; font-weight: 500;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--teal); background: rgba(20,184,166,0.08);
+  border: 0.5px solid rgba(20,184,166,0.25);
+  border-radius: 100px; padding: 3px 11px;
+}
+
+/* ── TOC ── */
+.pp-toc {
+  background: rgba(17,14,30,0.7);
+  border: 0.5px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 28px 32px;
+  margin-bottom: 56px;
+}
+.pp-toc-label {
+  font-family: var(--ff-mono); font-size: 10.5px; font-weight: 500;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--text-3); margin-bottom: 16px; display: block;
+}
+.pp-toc ol {
+  list-style: none; counter-reset: toc-counter;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 8px 32px;
+}
+.pp-toc ol li { counter-increment: toc-counter; }
+.pp-toc ol li a {
+  font-size: 13.5px; color: var(--text-2); text-decoration: none;
+  display: flex; align-items: center; gap: 10px;
+  transition: color 0.15s;
+}
+.pp-toc ol li a::before {
+  content: counter(toc-counter, decimal-leading-zero);
+  font-family: var(--ff-mono); font-size: 10px; color: var(--text-3);
+  flex-shrink: 0;
+}
+.pp-toc ol li a:hover { color: var(--teal-bright); }
+
+/* ── SECTIONS ── */
+.pp-section {
+  margin-bottom: 56px;
+  scroll-margin-top: 80px;
+}
+.pp-section-num {
+  font-family: var(--ff-mono); font-size: 10px; font-weight: 500;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--text-3); display: block; margin-bottom: 10px;
+}
+.pp-section h2 {
+  font-family: var(--ff-display); font-weight: 300;
+  font-size: clamp(1.3rem, 2.5vw, 1.7rem);
+  letter-spacing: -0.015em; color: var(--text-1);
+  margin-bottom: 20px;
+  padding-bottom: 14px;
+  border-bottom: 0.5px solid var(--border);
+}
+.pp-section p {
+  font-size: 15px; color: var(--text-2);
+  line-height: 1.78; margin-bottom: 16px;
+}
+.pp-section p:last-child { margin-bottom: 0; }
+.pp-section ul {
+  list-style: none; margin: 16px 0;
+}
+.pp-section ul li {
+  font-size: 15px; color: var(--text-2);
+  line-height: 1.72; padding: 6px 0 6px 20px;
+  position: relative;
+  border-bottom: 0.5px solid rgba(120,100,220,0.08);
+}
+.pp-section ul li:last-child { border-bottom: none; }
+.pp-section ul li::before {
+  content: '';
+  position: absolute; left: 0; top: 50%;
+  transform: translateY(-50%);
+  width: 5px; height: 5px; border-radius: 50%;
+  background: var(--teal); opacity: 0.6;
+}
+.pp-section a {
+  color: var(--teal-bright); text-decoration: none;
+  border-bottom: 0.5px solid rgba(94,234,212,0.3);
+  transition: border-color 0.2s;
+}
+.pp-section a:hover { border-color: var(--teal-bright); }
+
+/* Callout box */
+.pp-callout {
+  background: rgba(20,184,166,0.05);
+  border: 0.5px solid rgba(20,184,166,0.25);
+  border-radius: var(--radius-md);
+  padding: 20px 24px;
+  margin: 20px 0;
+}
+.pp-callout p {
+  font-size: 14px; color: var(--text-2); margin: 0;
+}
+.pp-callout strong { color: var(--teal-bright); }
+
+/* ── FOOTER ── */
+.pp-footer {
+  margin-top: 80px;
+  padding-top: 32px;
+  border-top: 0.5px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 16px;
+}
+.pp-footer-logo {
+  font-family: var(--ff-display); font-size: 1rem; font-weight: 400;
+  color: var(--text-3); text-decoration: none;
+}
+.pp-footer-copy { font-size: 12px; color: var(--text-3); }
+.pp-footer-link {
+  font-size: 12.5px; color: var(--text-3); text-decoration: none;
+  transition: color 0.2s;
+}
+.pp-footer-link:hover { color: var(--text-2); }
+
+@media (max-width: 600px) {
+  nav { padding: 0 20px; }
+  .page { padding: 100px 20px 80px; }
+  .pp-toc ol { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div class="bg-canvas" aria-hidden="true">
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a href="/" class="nav-logo">
+    <svg width="28" height="33" viewBox="0 0 154 182" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M153.032 120.267C151.562 120.775 150.1 121.263 148.595 121.797C122.192 131.345 96.6636 144.643 77.0527 163.76C76.1612 164.641 75.2855 165.535 74.4268 166.442C74.8954 167.697 75.1533 169.054 75.1533 170.473C75.1533 176.839 69.9929 181.999 63.627 181.999C57.2609 181.999 52.0996 176.839 52.0996 170.473C52.0997 164.107 57.261 158.947 63.627 158.947C65.3899 158.947 67.0597 159.343 68.5537 160.051C69.5224 159.205 70.5035 158.377 71.4951 157.565C94.2724 139.231 121.208 128.493 148.469 121.378C150.02 120.983 151.523 120.635 153.032 120.267Z" fill="#9BE2E4"/>
+      <path d="M11.9873 59.3557C18.6078 59.3557 23.9754 64.6194 23.9756 71.1125C23.9756 73.5466 23.2204 75.8077 21.9287 77.6838C22.5991 78.8025 23.2939 79.8907 24.0283 80.967C42.696 108.284 79.6038 118.04 113.279 118.468C115.159 118.48 117.145 118.446 118.953 118.372C117.157 118.591 115.174 118.771 113.293 118.905C79.6598 120.871 41.0566 114.918 17.3516 85.9348C16.4642 84.8277 15.6152 83.7036 14.7891 82.5432C13.8901 82.7543 12.9523 82.8703 11.9873 82.8703C5.36686 82.8701 0 77.6057 0 71.1125C0.000202317 64.6195 5.36698 59.3559 11.9873 59.3557Z" fill="url(#pp_g0)"/>
+      <path d="M133.939 120.678C132.369 120.919 130.647 121.204 129.029 121.485C99.5499 126.902 69.8404 134.143 43.9873 147.876C43.4006 148.2 42.8073 148.535 42.2168 148.874C42.3447 149.562 42.415 150.27 42.415 150.995C42.415 157.361 37.2545 162.521 30.8887 162.522C24.5227 162.522 19.3614 157.361 19.3613 150.995C19.3613 144.629 24.5227 139.469 30.8887 139.469C33.4021 139.469 35.726 140.275 37.6201 141.641C38.5159 141.218 39.4179 140.804 40.3027 140.414C68.9294 128.335 99.008 123.935 128.973 121.052C130.611 120.915 132.353 120.774 133.939 120.678Z" fill="url(#pp_g1)"/>
+      <path d="M42.417 51.5175C47.7642 51.5178 52.0986 55.7692 52.0986 61.0136C52.0986 63.9272 50.7594 66.5324 48.6533 68.2744C49.2172 69.1005 49.7957 69.9154 50.3936 70.7236C71.577 98.807 108.849 112.23 144.412 114.014C146.432 113.955 148.534 114.174 150.306 113.301C149.859 113.553 149.387 113.733 148.898 113.866C149.14 113.837 149.381 113.803 149.617 113.762C149.178 113.865 148.728 113.945 148.27 114.011C147.03 114.248 145.706 114.248 144.42 114.358C144.137 114.36 143.854 114.358 143.57 114.357C143.561 114.358 143.551 114.359 143.542 114.359C107.681 115.104 65.8779 107.282 43.7041 74.0498C42.9458 72.8727 42.2307 71.6873 41.5449 70.4697C36.606 70.0374 32.7344 65.97 32.7344 61.0136C32.7344 55.7691 37.0696 51.5175 42.417 51.5175Z" fill="url(#pp_g2)"/>
+      <path d="M90.7822 0.66696C92.6862 -0.538979 95.339 -0.0645439 96.707 1.72653C97.4008 2.63492 97.6295 3.70723 97.4395 4.70114C97.4522 4.82516 97.4598 4.9512 97.458 5.07907C97.3457 13.2627 97.0693 35.4671 97.0693 55.7363C97.0693 57.032 97.0492 58.2767 97.0127 59.4716C96.9525 70.6974 96.8631 79.7189 96.833 82.5644C96.8269 83.1338 96.4721 83.6365 95.9395 83.8379L91.54 85.5009C90.8536 85.7605 90.1321 85.4542 89.8232 84.8691C89.7229 84.7836 89.667 84.631 89.667 84.416V10.997L60.6465 29.3769C60.641 41.5872 60.6289 69.1824 60.6289 70.4882C60.6289 72.1676 53.0219 65.8699 52.7832 53.9043V26.8779C52.7832 26.486 52.8525 26.1102 52.9805 25.7627C53.2129 24.897 53.7706 24.1095 54.625 23.5683L90.7822 0.66696Z" fill="url(#pp_g3)"/>
+      <path d="M100.09 30.9179C100.075 30.534 100.509 30.3007 100.821 30.5254L114.154 40.1318C114.274 40.2184 114.346 40.3576 114.346 40.5058V47.0859C114.364 61.7596 114.695 92.4466 114.783 100.316C114.793 101.25 113.895 101.915 113.001 101.646L107.491 99.9922C106.906 99.8166 106.505 99.3019 106.505 98.6914V49.3906C106.505 49.3746 106.507 49.3571 106.508 49.3379V44.0117L100.671 40.3984C100.541 40.3178 100.459 40.1783 100.453 40.0254L100.09 30.9179Z" fill="url(#pp_g4)"/>
+      <defs>
+        <linearGradient id="pp_g0" x1="14.0623" y1="71.5739" x2="40.5735" y2="94.3963" gradientUnits="userSpaceOnUse"><stop stop-color="#9CE4E5"/><stop offset="1" stop-color="#936DD7"/></linearGradient>
+        <linearGradient id="pp_g1" x1="27.1997" y1="148.111" x2="123.334" y2="125.056" gradientUnits="userSpaceOnUse"><stop stop-color="#9CE4E5"/><stop offset="0.778846" stop-color="#5B4790"/><stop offset="1" stop-color="#98D8EB"/></linearGradient>
+        <linearGradient id="pp_g2" x1="91.52" y1="51.5175" x2="91.52" y2="114.407" gradientUnits="userSpaceOnUse"><stop stop-color="#96D0F0"/><stop offset="1" stop-color="#90B6EF"/></linearGradient>
+        <linearGradient id="pp_g3" x1="75.1434" y1="0" x2="75.1434" y2="85.594" gradientUnits="userSpaceOnUse"><stop stop-color="#A37CEC"/><stop offset="1" stop-color="#5B4790"/></linearGradient>
+        <linearGradient id="pp_g4" x1="107.436" y1="30.4375" x2="107.436" y2="101.706" gradientUnits="userSpaceOnUse"><stop stop-color="#A37CEC"/><stop offset="1" stop-color="#5B4790"/></linearGradient>
+      </defs>
+    </svg>
+    <span class="logo-text">Resonance</span>
+  </a>
+  <a href="/" class="nav-back">
+    <svg viewBox="0 0 14 14" fill="none"><path d="M9 2L4 7l5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    Back to Home
+  </a>
+</nav>
+
+<!-- PAGE -->
+<main class="page">
+
+  <!-- HEADER -->
+  <div class="pp-header">
+    <span class="pp-eyebrow">Legal</span>
+    <h1>Privacy <em>Policy</em></h1>
+    <div class="pp-meta">
+      <span class="pp-date">Effective Date: April 2026 &nbsp;&middot;&nbsp; Version 1.0</span>
+      <span class="pp-badge">Last Updated: April 2026</span>
+    </div>
+  </div>
+
+  <!-- TOC -->
+  <div class="pp-toc">
+    <span class="pp-toc-label">Contents</span>
+    <ol>
+      <li><a href="#s1">Introduction</a></li>
+      <li><a href="#s2">Websites Covered</a></li>
+      <li><a href="#s3">Websites Not Covered</a></li>
+      <li><a href="#s4">Important: Client Data</a></li>
+      <li><a href="#s5">Public Procurement Compliance</a></li>
+      <li><a href="#s6">GDPR</a></li>
+      <li><a href="#s7">CCPA / CPRA</a></li>
+      <li><a href="#s8">Other U.S. State Laws</a></li>
+      <li><a href="#s9">Children&#39;s Privacy (COPPA)</a></li>
+      <li><a href="#s10">Information We Collect</a></li>
+      <li><a href="#s11">Cookies &amp; Tracking</a></li>
+      <li><a href="#s12">How We Use Information</a></li>
+      <li><a href="#s13">Legal Bases for Processing</a></li>
+      <li><a href="#s14">How We Share Information</a></li>
+      <li><a href="#s15">We Do Not Sell Personal Information</a></li>
+      <li><a href="#s16">Marketing Communications</a></li>
+      <li><a href="#s17">Data Retention</a></li>
+      <li><a href="#s18">Security</a></li>
+      <li><a href="#s19">Your Rights &amp; How to Exercise Them</a></li>
+      <li><a href="#s20">Copyright Policy (DMCA)</a></li>
+      <li><a href="#s21">Accessibility</a></li>
+      <li><a href="#s22">Changes to This Policy</a></li>
+      <li><a href="#s23">Contact Us</a></li>
+    </ol>
+  </div>
+
+  <div class="pp-section" id="s1">
+    <span class="pp-section-num">01 &mdash; Introduction</span>
+    <h2>Introduction</h2>
+    <p>Resonance Network Company (&ldquo;Resonance,&rdquo; &ldquo;we,&rdquo; &ldquo;us,&rdquo; or &ldquo;our&rdquo;) is committed to protecting the privacy of individuals and to maintaining the trust of our clients, partners, and visitors. This Privacy Policy describes how we collect, use, disclose, and protect personal information in connection with our website at <a href="https://resonancehq.io">resonancehq.io</a> and our software platform purpose-built for affordable housing relocation and redevelopment programs (collectively, the &ldquo;Resonance Services&rdquo; or &ldquo;Services&rdquo;).</p>
+    <p>Central to this commitment is a security and privacy program designed to meet the data protection expectations of public housing authorities, federal program administrators, and the residents they serve &mdash; including compliance with applicable U.S. federal and state privacy laws and the European General Data Protection Regulation (&ldquo;GDPR&rdquo;).</p>
+    <p>This Privacy Policy applies to &ldquo;personal information&rdquo; as defined under the California Consumer Privacy Act of 2018, as amended by the California Privacy Rights Act of 2020 (&ldquo;CCPA/CPRA&rdquo;), and &ldquo;personal data&rdquo; as defined under the GDPR, and equivalent terms under applicable state and international law (collectively, &ldquo;personal information&rdquo;).</p>
+  </div>
+
+  <div class="pp-section" id="s2">
+    <span class="pp-section-num">02 &mdash; Websites Covered</span>
+    <h2>Websites Covered</h2>
+    <p>This Privacy Policy applies to individuals who:</p>
+    <ul>
+      <li>Visit resonancehq.io and any associated Resonance microsites or subdomains (collectively, the &ldquo;Resonance Site&rdquo;); and</li>
+      <li>Attend Resonance-hosted conferences, webinars, or events, or interact with us offline, including by contacting our team directly (&ldquo;Resonance Events&rdquo;).</li>
+    </ul>
+    <p>When we collect personal information in specific contexts &mdash; such as event registration pages or request forms &mdash; we may provide additional context-specific disclosures at the point of collection. Those additional disclosures are incorporated into this Privacy Policy by reference.</p>
+  </div>
+
+  <div class="pp-section" id="s3">
+    <span class="pp-section-num">03 &mdash; Websites Not Covered</span>
+    <h2>Websites Not Covered</h2>
+    <p>This Privacy Policy does not apply to personal information collected by Resonance Clients using the Resonance platform. Some Resonance Services enable Clients to operate their own resident portals, case management workflows, and program-specific applications that run on the Resonance platform. The terms of service and privacy notice of the applicable Resonance Client govern those properties.</p>
+    <p>If you submitted personal information to a Client-controlled portal or application and wish to exercise rights to access, correct, amend, port, delete, or restrict the processing of that data, please contact the Resonance Client (typically your housing authority or relocation service provider) directly.</p>
+    <p>The Resonance Site may contain links to third-party websites. Resonance is not responsible for the privacy practices or content of those sites and encourages you to review their privacy statements independently.</p>
+  </div>
+
+  <div class="pp-section" id="s4">
+    <span class="pp-section-num">04 &mdash; Important: Client Data</span>
+    <h2>Important: Client Data</h2>
+    <div class="pp-callout"><p><strong>This Privacy Policy does not apply to Client Data.</strong></p></div>
+    <p>Resonance&rsquo;s obligations with respect to data collected and controlled by its Clients &mdash; including housing authorities, relocation service providers, and preservation developers (&ldquo;Resonance Clients&rdquo;) &mdash; are governed solely by the agreements under which Services are provided to those Clients, including applicable data processing agreements and, where applicable, HIPAA Business Associate Agreements.</p>
+    <p>Resonance Clients are the data controllers of Client Data. Resonance acts as a data processor, processing Client Data only on behalf of and under the instruction of the applicable Client. Resonance generally has no direct relationship with the residents, applicants, or program participants whose information Clients submit to the platform.</p>
+    <p><strong style="color:var(--text-1)">If you are a resident, applicant, or program participant</strong> and have questions about how your information is handled in connection with a housing program: please contact your housing authority or relocation service provider directly. Resonance cannot act on individual rights requests with respect to Client Data.</p>
+    <p>If an authorized Resonance Client requests that we update or remove Client Data and the Client is unable to do so through the platform, we will acknowledge that request within 30 days.</p>
+  </div>
+
+  <div class="pp-section" id="s5">
+    <span class="pp-section-num">05 &mdash; Public Procurement Compliance</span>
+    <h2>Public Procurement Compliance</h2>
+    <p>Resonance&rsquo;s privacy and data governance practices are designed to support compliance with:</p>
+    <ul>
+      <li>U.S. Department of Housing and Urban Development (HUD) program requirements, including those applicable to RAD, PACT, Section 18, Choice Neighborhoods, HOPE VI, LIHTC Preservation, and HUD Disposition programs;</li>
+      <li>Public housing authority procurement standards, including data handling, security, and vendor accountability requirements;</li>
+      <li>Federal contractor data handling obligations under applicable OMB, HUD, and program-specific guidance; and</li>
+      <li>The Uniform Relocation Assistance and Real Property Acquisition Policies Act of 1970 (URA), as amended.</li>
+    </ul>
+    <p>Resonance maintains logs of data access and processing activities consistent with program and audit requirements. A list of Resonance&rsquo;s subprocessors and third-party service providers is available upon written request to <a href="mailto:support@resonancehq.io">support@resonancehq.io</a>.</p>
+  </div>
+
+  <div class="pp-section" id="s6">
+    <span class="pp-section-num">06 &mdash; General Data Protection Regulation (GDPR)</span>
+    <h2>General Data Protection Regulation (GDPR)</h2>
+    <p>If you are located in the European Economic Area (&ldquo;EEA&rdquo;) or the United Kingdom, the GDPR (and, for UK residents, the UK Data Protection Act 2018) may apply to our processing of your personal data.</p>
+    <p><strong style="color:var(--text-1)">Data Controller vs. Data Processor:</strong> Resonance is a data processor &mdash; not a data controller &mdash; with respect to Client Data. With respect to personal data collected directly through the Resonance Site and Resonance Events, Resonance Network Company acts as the data controller.</p>
+    <p><strong style="color:var(--text-1)">Your GDPR Rights:</strong></p>
+    <ul>
+      <li><strong style="color:var(--text-1)">Right of Access:</strong> Request confirmation of whether we process your personal data and, if so, a copy of that data.</li>
+      <li><strong style="color:var(--text-1)">Right to Rectification:</strong> Request correction of inaccurate or incomplete personal data.</li>
+      <li><strong style="color:var(--text-1)">Right to Erasure:</strong> Request deletion of your personal data where there is no compelling reason for continued processing.</li>
+      <li><strong style="color:var(--text-1)">Right to Restriction:</strong> Request that we restrict processing in certain circumstances.</li>
+      <li><strong style="color:var(--text-1)">Right to Data Portability:</strong> Request your data in a structured, machine-readable format where processing is consent- or contract-based.</li>
+      <li><strong style="color:var(--text-1)">Right to Object:</strong> Object to processing based on legitimate interests or for direct marketing.</li>
+      <li><strong style="color:var(--text-1)">Right to Withdraw Consent:</strong> Withdraw consent at any time without affecting the lawfulness of prior processing.</li>
+    </ul>
+    <p>Resonance will respond to GDPR requests within <strong style="color:var(--text-1)">30 days</strong>, with a possible 60-day extension for complex cases. If you believe your rights have not been adequately addressed, you have the right to lodge a complaint with your local data protection supervisory authority.</p>
+  </div>
+
+  <div class="pp-section" id="s7">
+    <span class="pp-section-num">07 &mdash; California Consumer Privacy Act (CCPA/CPRA)</span>
+    <h2>California Consumer Privacy Act (CCPA/CPRA)</h2>
+    <p>If you are a California resident, you have rights under CCPA/CPRA with respect to personal information Resonance collects and controls directly (i.e., not Client Data):</p>
+    <ul>
+      <li><strong style="color:var(--text-1)">Right to Know:</strong> Request disclosure of categories and specific pieces of personal information collected, sources, business purpose, and third-party sharing.</li>
+      <li><strong style="color:var(--text-1)">Right to Delete:</strong> Request deletion of personal information, subject to legal exceptions.</li>
+      <li><strong style="color:var(--text-1)">Right to Correct:</strong> Request correction of inaccurate personal information.</li>
+      <li><strong style="color:var(--text-1)">Right to Opt-Out of Sale or Sharing:</strong> Resonance does not sell or share personal information as defined under CCPA/CPRA.</li>
+      <li><strong style="color:var(--text-1)">Right to Limit Use of Sensitive Personal Information:</strong> Direct us to limit the use and disclosure of sensitive personal information to purposes permitted by law.</li>
+      <li><strong style="color:var(--text-1)">Right to Non-Discrimination:</strong> Exercising any CCPA/CPRA rights will not result in denial or different pricing of goods or services.</li>
+    </ul>
+    <p>Resonance will respond to CCPA/CPRA requests within <strong style="color:var(--text-1)">45 days</strong>, with a possible 45-day extension. You may designate an authorized agent to submit requests on your behalf. In accordance with California Civil Code section 1798.83, Resonance does not disclose personal information to third parties for their direct marketing purposes.</p>
+  </div>
+
+  <div class="pp-section" id="s8">
+    <span class="pp-section-num">08 &mdash; Other U.S. State Privacy Laws</span>
+    <h2>Other U.S. State Privacy Laws</h2>
+    <p>Where applicable, Resonance complies with the following state privacy laws:</p>
+    <ul>
+      <li><strong style="color:var(--text-1)">Virginia:</strong> Consumer Data Protection Act (VCDPA)</li>
+      <li><strong style="color:var(--text-1)">Colorado:</strong> Colorado Privacy Act (CPA)</li>
+      <li><strong style="color:var(--text-1)">Connecticut:</strong> Connecticut Data Privacy Act (CTDPA)</li>
+      <li><strong style="color:var(--text-1)">Texas:</strong> Texas Data Privacy and Security Act (TDPSA)</li>
+    </ul>
+    <p>Residents of these states may have rights to access, correct, delete, and obtain a portable copy of their personal data, and to opt out of certain processing activities. Contact us at <a href="mailto:support@resonancehq.io">support@resonancehq.io</a> to submit a request.</p>
+  </div>
+
+  <div class="pp-section" id="s9">
+    <span class="pp-section-num">09 &mdash; Children&rsquo;s Privacy (COPPA)</span>
+    <h2>Children&rsquo;s Privacy (COPPA)</h2>
+    <p>The Resonance Site and Services are not directed to children under the age of 13. Resonance does not knowingly collect personal information from children under 13 and does not sell the personal information of minors. If we learn that we have collected personal information from a child under 13 without verified parental consent, we will delete that information promptly. Contact us at <a href="mailto:support@resonancehq.io">support@resonancehq.io</a> if you believe we may have collected information from a child under 13.</p>
+  </div>
+
+  <div class="pp-section" id="s10">
+    <span class="pp-section-num">10 &mdash; Information We Collect</span>
+    <h2>Information We Collect</h2>
+    <p><strong style="color:var(--text-1)">Information you provide voluntarily:</strong></p>
+    <ul>
+      <li>Contact information: name, email address, phone number, and mailing address;</li>
+      <li>Professional information: organization name, job title, and organizational address;</li>
+      <li>Marketing and communication preferences; and</li>
+      <li>Any information you provide in free-text fields, including descriptions of your program or operational needs.</li>
+    </ul>
+    <p><strong style="color:var(--text-1)">Information collected automatically:</strong></p>
+    <ul>
+      <li>IP address and general geographic location;</li>
+      <li>Browser type, operating system, and device type;</li>
+      <li>Pages visited, time spent on pages, and referring URLs;</li>
+      <li>Interaction data including clicks, scrolls, and form engagement; and</li>
+      <li>Cookies and similar tracking technologies (see Section 11).</li>
+    </ul>
+    <p><strong style="color:var(--text-1)">Information from other sources:</strong> We may supplement information you provide with data from public databases, third-party data providers, and professional networking platforms, including job titles and organizational affiliations, for the purpose of improving our outreach and keeping our records current.</p>
+  </div>
+
+  <div class="pp-section" id="s11">
+    <span class="pp-section-num">11 &mdash; Cookies &amp; Tracking Technologies</span>
+    <h2>Cookies &amp; Tracking Technologies</h2>
+    <ul>
+      <li><strong style="color:var(--text-1)">Strictly Necessary Cookies:</strong> Required for the site to function. These cannot be disabled.</li>
+      <li><strong style="color:var(--text-1)">Analytics Cookies:</strong> Used to understand how visitors interact with the site. We use Google Analytics (GA4) to collect anonymized usage data.</li>
+      <li><strong style="color:var(--text-1)">Marketing Cookies:</strong> Used to deliver relevant advertising and measure campaign effectiveness on third-party platforms.</li>
+    </ul>
+    <p>Some features of the Resonance Site do not respond to browser Do Not Track signals. You may manage your cookie preferences through your browser settings or any cookie management tool presented on the site.</p>
+  </div>
+
+  <div class="pp-section" id="s12">
+    <span class="pp-section-num">12 &mdash; How We Use Information</span>
+    <h2>How We Use Information</h2>
+    <ul>
+      <li>Respond to inquiries and fulfill requests, including delivering requested materials, demonstrations, or event information;</li>
+      <li>Send administrative communications, including updates to our terms, policies, or Services;</li>
+      <li>Send marketing communications consistent with your preferences and applicable law;</li>
+      <li>Personalize your experience on the Resonance Site based on your interests and prior interactions;</li>
+      <li>Conduct data analysis, fraud monitoring, and security operations;</li>
+      <li>Develop, improve, and enhance the Resonance Site and Services;</li>
+      <li>Comply with legal obligations, respond to legal process, and protect our legal rights; and</li>
+      <li>Support public procurement, audit, and compliance review processes.</li>
+    </ul>
+  </div>
+
+  <div class="pp-section" id="s13">
+    <span class="pp-section-num">13 &mdash; Legal Bases for Processing (GDPR)</span>
+    <h2>Legal Bases for Processing (GDPR)</h2>
+    <ul>
+      <li><strong style="color:var(--text-1)">Responding to inquiries:</strong> Legitimate interests or Consent where required</li>
+      <li><strong style="color:var(--text-1)">Marketing communications:</strong> Consent where required; Legitimate interests otherwise</li>
+      <li><strong style="color:var(--text-1)">Operating and improving the Site:</strong> Legitimate interests</li>
+      <li><strong style="color:var(--text-1)">Analytics and cookies:</strong> Consent where required; Legitimate interests for strictly necessary cookies</li>
+      <li><strong style="color:var(--text-1)">Legal obligations:</strong> Legal obligation</li>
+      <li><strong style="color:var(--text-1)">Protecting our legal rights:</strong> Legitimate interests</li>
+    </ul>
+    <p>You may contact us at <a href="mailto:support@resonancehq.io">support@resonancehq.io</a> to request information about the specific legitimate interests we have identified for any processing activity.</p>
+  </div>
+
+  <div class="pp-section" id="s14">
+    <span class="pp-section-num">14 &mdash; How We Share Information</span>
+    <h2>How We Share Information</h2>
+    <ul>
+      <li><strong style="color:var(--text-1)">Service providers:</strong> Contracted third-party providers (cloud hosting, analytics, email delivery, event management) who access data only as necessary and are contractually obligated to protect it.</li>
+      <li><strong style="color:var(--text-1)">Affiliates:</strong> Affiliated entities of Resonance Network Company for purposes consistent with this Privacy Policy.</li>
+      <li><strong style="color:var(--text-1)">Business transfers:</strong> In the event of a merger, acquisition, or sale of assets, personal information may be transferred. We will provide notice before personal information becomes subject to a different privacy policy.</li>
+      <li><strong style="color:var(--text-1)">Compelled disclosure:</strong> When required by law, court order, or lawful governmental request, or to protect our rights or prevent harm.</li>
+      <li><strong style="color:var(--text-1)">No disclosure for third-party marketing:</strong> Resonance does not rent, sell, or disclose personal information to third parties for their own marketing purposes.</li>
+    </ul>
+  </div>
+
+  <div class="pp-section" id="s15">
+    <span class="pp-section-num">15 &mdash; We Do Not Sell Personal Information</span>
+    <h2>We Do Not Sell Personal Information</h2>
+    <div class="pp-callout">
+      <p><strong>Resonance does not sell personal information to third parties and has not sold personal information within the preceding 12 months.</strong> Resonance does not share personal information for cross-context behavioral advertising purposes as defined under CCPA/CPRA.</p>
+    </div>
+  </div>
+
+  <div class="pp-section" id="s16">
+    <span class="pp-section-num">16 &mdash; Marketing Communications</span>
+    <h2>Marketing Communications</h2>
+    <p>Resonance may send marketing communications to individuals who have provided contact information and expressed interest in our Services, consistent with applicable law including CAN-SPAM and TCPA requirements. You may opt out at any time by clicking the &ldquo;unsubscribe&rdquo; link in any Resonance marketing email, or by contacting <a href="mailto:support@resonancehq.io">support@resonancehq.io</a>. Opting out of marketing does not affect transactional or account-related communications. If you have consented to receive SMS communications from Resonance, you may opt out at any time by replying STOP.</p>
+  </div>
+
+  <div class="pp-section" id="s17">
+    <span class="pp-section-num">17 &mdash; Data Retention</span>
+    <h2>Data Retention</h2>
+    <p>Resonance retains personal information for as long as necessary to fulfill the purposes described in this Privacy Policy, maintain our business relationship with you, and comply with applicable legal, tax, regulatory, and accounting obligations. Retention periods may be extended where required in connection with litigation, regulatory investigations, or other legal proceedings. When personal information is no longer needed, we will delete or anonymize it in a manner that prevents re-identification.</p>
+  </div>
+
+  <div class="pp-section" id="s18">
+    <span class="pp-section-num">18 &mdash; Security</span>
+    <h2>Security</h2>
+    <p>Resonance maintains a comprehensive security program including administrative, technical, and physical safeguards appropriate to the sensitivity of the information we process. Our security practices include access controls, encryption of data in transit and at rest, regular security assessments, and employee training on data handling and privacy obligations.</p>
+    <p>No electronic transmission or data storage system can be guaranteed completely secure. If you believe your information may have been compromised, contact us immediately at <a href="mailto:support@resonancehq.io">support@resonancehq.io</a>.</p>
+  </div>
+
+  <div class="pp-section" id="s19">
+    <span class="pp-section-num">19 &mdash; Your Rights &amp; How to Exercise Them</span>
+    <h2>Your Rights &amp; How to Exercise Them</h2>
+    <p>Depending on your location and applicable law, you may have rights to access, correct, delete, or port your personal information, restrict or object to certain processing, withdraw consent, and lodge a complaint with a data protection supervisory authority.</p>
+    <p>To exercise any of these rights, contact us at <a href="mailto:support@resonancehq.io">support@resonancehq.io</a>. Please include your full name, the nature of your request, and sufficient information for us to verify your identity. We will not discriminate against you for exercising any privacy rights.</p>
+  </div>
+
+  <div class="pp-section" id="s20">
+    <span class="pp-section-num">20 &mdash; Copyright Policy (DMCA)</span>
+    <h2>Copyright Policy (DMCA)</h2>
+    <p>Resonance respects the intellectual property rights of others. In accordance with the DMCA, 17 U.S.C. &sect; 512, if you believe that content on the Resonance Site infringes your copyright, submit a written notice to <a href="mailto:support@resonancehq.io">support@resonancehq.io</a> containing: (1) an authorized signature; (2) a description of the copyrighted work; (3) the location of the infringing material; (4) your contact information; (5) a good faith belief statement; and (6) a statement of accuracy under penalty of perjury. It is Resonance&rsquo;s policy to terminate access for repeat infringers.</p>
+  </div>
+
+  <div class="pp-section" id="s21">
+    <span class="pp-section-num">21 &mdash; Accessibility</span>
+    <h2>Accessibility</h2>
+    <p>Resonance is committed to ensuring the Resonance Site is accessible to all users, including individuals with disabilities. We design our Site to meet WCAG 2.1 Level AA standards. If you encounter an accessibility barrier or require assistance accessing any portion of this Privacy Policy or the Resonance Site, please contact us at <a href="mailto:support@resonancehq.io">support@resonancehq.io</a>.</p>
+  </div>
+
+  <div class="pp-section" id="s22">
+    <span class="pp-section-num">22 &mdash; Changes to This Policy</span>
+    <h2>Changes to This Policy</h2>
+    <p>Resonance reserves the right to update this Privacy Policy at any time. The effective date of the current version is displayed at the top of this document. We will provide notice of material changes &mdash; including by posting a notice on the Resonance Site &mdash; prior to any change taking effect. Your continued use of the Resonance Site following the effective date of an updated policy constitutes acceptance of the changes. We encourage you to review this Privacy Policy periodically.</p>
+  </div>
+
+  <div class="pp-section" id="s23">
+    <span class="pp-section-num">23 &mdash; Contact Us</span>
+    <h2>Contact Us</h2>
+    <p>For all privacy-related inquiries, rights requests, accessibility requests, copyright claims, and subprocessor disclosures:</p>
+    <div class="pp-callout">
+      <p>
+        <strong>Resonance Network Company</strong><br>
+        <a href="mailto:support@resonancehq.io">support@resonancehq.io</a><br>
+        <a href="https://resonancehq.io">resonancehq.io</a>
+      </p>
+    </div>
+    <p>We will respond to all privacy inquiries as promptly as practicable and within the timeframes required by applicable law.</p>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="pp-footer">
+    <a href="/" class="pp-footer-logo">Resonance</a>
+    <a href="/" class="pp-footer-link">&larr; Back to Home</a>
+    <span class="pp-footer-copy">&copy; 2026 Resonance Network Company. All rights reserved.</span>
+  </div>
+
+</main>
+
+</body>
+</html>

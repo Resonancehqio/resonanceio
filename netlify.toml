@@ -23,6 +23,11 @@
   to   = "/nysafah.html"
   status = 200
 
+[[redirects]]
+  from = "/privacy-policy"
+  to   = "/privacy-policy.html"
+  status = 200
+
 # ── Legacy drawer anchor hash redirects → new pages ──
 [[redirects]]
   from = "/#calculators"
