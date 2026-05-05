@@ -1211,5 +1211,29 @@ function toggleTheme() {
   else { html.setAttribute('data-theme', 'light'); localStorage.setItem('theme', 'light'); }
 }
 </script>
+<style>
+footer{position:relative;z-index:1;border-top:0.5px solid var(--border);padding:40px 0 48px;text-align:center;}
+.foot-logo{display:inline-flex;align-items:center;gap:6px;text-decoration:none;margin-bottom:14px;}
+.foot-logo-txt{font-family:var(--ff-display);font-size:1.1rem;font-weight:400;color:var(--text-2);}
+.foot-copy{font-size:12.5px;color:var(--text-3);line-height:2;}
+.foot-copy a{color:var(--text-3);text-decoration:none;transition:color 0.2s;}
+.foot-copy a:hover{color:var(--text-2);}
+.foot-copy .dot{margin:0 6px;}
+</style>
+<footer>
+  <div class="wrap" style="display:flex;flex-direction:column;align-items:center;">
+    <a href="https://resonancehq.io" class="foot-logo">
+      <svg width="22" height="22" viewBox="0 0 154 182" fill="none"><path d="M153.032 120.267C151.562 120.775 150.1 121.263 148.595 121.797C122.192 131.345 96.6636 144.643 77.0527 163.76C76.1612 164.641 75.2855 165.535 74.4268 166.442C74.8954 167.697 75.1533 169.054 75.1533 170.473C75.1533 176.839 69.9929 181.999 63.627 181.999C57.2609 181.999 52.0996 176.839 52.0996 170.473C52.0997 164.107 57.261 158.947 63.627 158.947C65.3899 158.947 67.0597 159.343 68.5537 160.051C69.5224 159.205 70.5035 158.377 71.4951 157.565C94.2724 139.231 121.208 128.493 148.469 121.378C150.02 120.983 151.523 120.635 153.032 120.267Z" fill="#9BE2E4"/><path d="M11.9873 59.3557C18.6078 59.3557 23.9754 64.6194 23.9756 71.1125C23.9756 73.5466 23.2204 75.8077 21.9287 77.6838C22.5991 78.8025 23.2939 79.8907 24.0283 80.967C42.696 108.284 79.6038 118.04 113.279 118.468C115.159 118.48 117.145 118.446 118.953 118.372C117.157 118.591 115.174 118.771 113.293 118.905C79.6598 120.871 41.0566 114.918 17.3516 85.9348C16.4642 84.8277 15.6152 83.7036 14.7891 82.5432C13.8901 82.7543 12.9523 82.8703 11.9873 82.8703C5.36686 82.8701 0 77.6057 0 71.1125C0.000202317 64.6195 5.36698 59.3559 11.9873 59.3557Z" fill="url(#fp0)"/><defs><linearGradient id="fp0" x1="14" y1="71" x2="40" y2="94" gradientUnits="userSpaceOnUse"><stop stop-color="#9CE4E5"/><stop offset="1" stop-color="#936DD7"/></linearGradient></defs></svg>
+      <span class="foot-logo-txt">Resonance</span>
+    </a>
+    <p class="foot-copy">
+      © 2026 Resonance. All rights reserved.
+      <span class="dot">·</span>
+      <a href="/privacy-policy">Privacy Policy</a>
+      <span class="dot">·</span>
+      <a href="https://resonancehq.io">resonancehq.io</a>
+    </p>
+  </div>
+</footer>
 </body>
 </html>
