@@ -62,7 +62,13 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;height:64px;display:flex;ali
 .btn-site:hover{color:var(--text-1);background:rgba(255,255,255,0.055);border-color:var(--border-hi);}
 .btn-demo-nav{font-family:var(--ff-body);font-size:13px;font-weight:600;color:#fff;background:var(--purple);border:none;border-radius:var(--r-md);padding:9px 20px;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:6px;transition:all 0.2s;box-shadow:0 0 0 1px rgba(124,58,237,0.4),0 4px 16px rgba(91,33,182,0.35);}
 .btn-demo-nav:hover{background:var(--purple-mid);transform:translateY(-1px);box-shadow:0 0 0 1px rgba(124,58,237,0.6),0 6px 24px rgba(91,33,182,0.45);}
-@media(max-width:640px){nav{padding:0 20px;}.btn-site{display:none;}.conf-pill{font-size:9px;}}
+@media(max-width:640px){
+  nav{padding:0 16px;}
+  .btn-site{display:none;}
+  .conf-pill{font-size:9px;padding:4px 10px 4px 6px;gap:5px;}
+  .btn-demo-nav{font-size:12px;padding:7px 13px;}
+  .logo-text{font-size:1rem;}
+}
 
 /* LAYOUT */
 section{position:relative;z-index:1;}
