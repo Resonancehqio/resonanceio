@@ -223,8 +223,8 @@ window.addEventListener('error', function(e) {
 <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="dns-prefetch" href="https://fonts.googleapis.com">
-<link rel="preload" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" as="style" crossorigin onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"></noscript>
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Instrument+Sans:wght@400;500;600&family=Nunito+Sans:wght@400;500;600;700&display=swap" as="style" crossorigin onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Instrument+Sans:wght@400;500;600&family=Nunito+Sans:wght@400;500;600;700&display=swap"></noscript>
 <style>
 /* ── TOKENS ── */
 :root {
@@ -254,7 +254,7 @@ window.addEventListener('error', function(e) {
 
   --ff-display: 'Fraunces', Georgia, 'Times New Roman', serif;
   --ff-body:    'Instrument Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-  --ff-mono:    'JetBrains Mono', 'SF Mono', 'Fira Code', 'Courier New', monospace;
+  --ff-mono:    'Nunito Sans', -apple-system, sans-serif;
 
   --radius-sm: 8px;
   --radius-md: 12px;
@@ -1932,7 +1932,7 @@ y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
 .cc-doc-pill.active { border-color:rgba(167,139,250,0.6); background:rgba(91,33,182,0.12); color:#F1EEFF; }
 .cc-score-ring { width:120px; height:120px; border-radius:50%; display:flex; align-items:center; justify-content:center; flex-direction:column; position:relative; flex-shrink:0; transition:background 0.3s, box-shadow 0.3s; }
 .cc-score-ring svg { position:absolute; top:0; left:0; transform:rotate(-90deg); }
-.cc-score-num { font-family:'JetBrains Mono',monospace; font-size:2rem; font-weight:700; line-height:1; position:relative; z-index:1; transition:color 0.3s; }
+.cc-score-num { font-family:'Nunito Sans',sans-serif; font-size:2rem; font-weight:700; line-height:1; position:relative; z-index:1; transition:color 0.3s; }
 .cc-score-label { font-size:10px; color:#7E72B8; letter-spacing:0.06em; text-transform:uppercase; position:relative; z-index:1; margin-top:2px; }
 .cc-finding { display:flex; gap:10px; align-items:flex-start; padding:10px 14px; border-radius:9px; background:rgba(248,113,113,0.06); border:0.5px solid rgba(248,113,113,0.2); font-size:12.5px; color:#B8AAEE; line-height:1.6; }
 .cc-finding-dot { width:6px; height:6px; border-radius:50%; background:#F87171; flex-shrink:0; margin-top:5px; }
