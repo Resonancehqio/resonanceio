@@ -260,6 +260,46 @@ footer{position:relative;z-index:1;border-top:0.5px solid var(--border);padding:
 .foot-copy a{color:var(--text-3);text-decoration:none;transition:color 0.2s;}
 .foot-copy a:hover{color:var(--text-2);}
 .dot{opacity:0.4;margin:0 8px;}
+
+/* PROBLEMS SECTION */
+.prob-sec{padding:100px 0 80px;}
+.prob-eyebrow{font-family:var(--ff-mono);font-size:11px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--teal);display:flex;align-items:center;gap:10px;margin-bottom:16px;}
+.prob-eyebrow::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--teal);}
+.prob-intro{margin-bottom:52px;}
+.prob-intro h2{font-family:var(--ff-display);font-size:clamp(2rem,4vw,2.8rem);font-weight:300;line-height:1.1;letter-spacing:-0.02em;color:var(--text-1);margin-bottom:14px;}
+.prob-intro h2 em{font-style:italic;color:var(--purple-bright);}
+.prob-intro p{font-size:1.05rem;color:var(--text-2);line-height:1.72;max-width:560px;}
+.prob-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:36px;}
+.prob-card{background:var(--dark-2);border:0.5px solid var(--border);border-radius:var(--r-lg);padding:28px 26px;position:relative;overflow:hidden;}
+.prob-card::before{content:'';position:absolute;left:0;top:16px;bottom:16px;width:3px;border-radius:0 2px 2px 0;}
+.prob-card.c1::before{background:#F87171;}
+.prob-card.c2::before{background:#FBBF24;}
+.prob-card.c3::before{background:var(--purple-bright);}
+.prob-tag{display:inline-block;font-family:var(--ff-mono);font-size:9px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;padding:3px 9px;border-radius:4px;margin-bottom:14px;}
+.prob-card.c1 .prob-tag{background:rgba(248,113,113,0.12);color:#F87171;}
+.prob-card.c2 .prob-tag{background:rgba(251,191,36,0.12);color:#FBBF24;}
+.prob-card.c3 .prob-tag{background:rgba(167,139,250,0.12);color:var(--purple-bright);}
+.prob-card h3{font-family:var(--ff-display);font-size:1.15rem;font-weight:400;line-height:1.25;color:var(--text-1);letter-spacing:-0.01em;margin-bottom:10px;}
+.prob-card p{font-size:0.9rem;color:var(--text-2);line-height:1.65;}
+.prob-pivot{background:linear-gradient(135deg,var(--purple) 0%,#0F766E 100%);border-radius:var(--r-lg);padding:28px 36px;text-align:center;}
+.prob-pivot p{font-family:var(--ff-display);font-style:italic;font-size:1.35rem;font-weight:300;line-height:1.4;color:#fff;letter-spacing:-0.01em;}
+.prob-pivot strong{font-style:normal;font-weight:500;}
+@media(max-width:860px){.prob-cards{grid-template-columns:1fr;}}
+
+/* DIFFERENTIATORS SECTION */
+.diff-sec{padding:80px 0 100px;}
+.diff-eyebrow{font-family:var(--ff-mono);font-size:11px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--teal);display:flex;align-items:center;gap:10px;margin-bottom:16px;}
+.diff-eyebrow::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--teal);}
+.diff-intro{margin-bottom:44px;}
+.diff-intro h2{font-family:var(--ff-display);font-size:clamp(1.8rem,3.5vw,2.4rem);font-weight:300;line-height:1.1;letter-spacing:-0.02em;color:var(--text-1);margin-bottom:14px;}
+.diff-intro h2 em{font-style:italic;color:var(--teal-bright);}
+.diff-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.diff-card{background:var(--dark-2);border:0.5px solid var(--border);border-radius:var(--r-lg);padding:28px 26px;position:relative;}
+.diff-card::before{content:'';position:absolute;left:0;top:16px;bottom:16px;width:2px;border-radius:0 1px 1px 0;background:linear-gradient(180deg,var(--purple-mid) 0%,var(--teal) 100%);}
+.diff-card h3{font-family:var(--ff-display);font-size:1.1rem;font-weight:400;line-height:1.25;color:var(--text-1);letter-spacing:-0.01em;margin-bottom:10px;}
+.diff-card h3 em{font-style:italic;color:var(--purple-bright);}
+.diff-card p{font-size:0.88rem;color:var(--text-2);line-height:1.68;}
+@media(max-width:860px){.diff-cards{grid-template-columns:1fr;}}
 </style>
 </head>
 <body>
@@ -336,6 +376,37 @@ footer{position:relative;z-index:1;border-top:0.5px solid var(--border);padding:
         Visit Preservation Logistics
         <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </a>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEMS -->
+<section class="prob-sec">
+  <div class="wrap">
+    <div class="prob-intro">
+      <div class="prob-eyebrow">The problem</div>
+      <h2>Programs are complex.<br>The tools aren't built for <em>that complexity.</em></h2>
+      <p>Most teams are running RAD, PACT, and Section 18 programs on spreadsheets, email threads, and disconnected systems. It works — until it doesn't.</p>
+    </div>
+    <div class="prob-cards">
+      <div class="prob-card c1">
+        <div class="prob-tag">Visibility</div>
+        <h3>A funder asks for status. You have no clean answer.</h3>
+        <p>Status buried across five spreadsheet tabs, three email threads, and someone's calendar. A HUD or LIHTC report takes half a day, and is outdated the moment it's done.</p>
+      </div>
+      <div class="prob-card c2">
+        <div class="prob-tag">Replanning</div>
+        <h3>Construction shifts. The whole plan falls apart.</h3>
+        <p>Phase 2 delays by three weeks. 60 households need re-sequencing. Your team rebuilds the spreadsheet model for a week. Then it changes again Friday.</p>
+      </div>
+      <div class="prob-card c3">
+        <div class="prob-tag">Compliance</div>
+        <h3>HUD wants Section 18 documentation. You're reconstructing from email.</h3>
+        <p>Every match decision, every right-to-return commitment, every URA benefit: scattered across email and chat. Proving defensibility takes hours. Sometimes it can't be proven at all.</p>
+      </div>
+    </div>
+    <div class="prob-pivot">
+      <p>Traditional software tracks what <strong>happened.</strong><br>Resonance coordinates what's <strong>next.</strong></p>
     </div>
   </div>
 </section>
@@ -570,6 +641,30 @@ footer{position:relative;z-index:1;border-top:0.5px solid var(--border);padding:
         </div><!-- /dashboard-body -->
       </div><!-- /platform-preview-inner -->
     </div><!-- /platform-preview -->
+  </div>
+</section>
+
+<!-- DIFFERENTIATORS -->
+<section class="diff-sec">
+  <div class="wrap">
+    <div class="diff-intro">
+      <div class="diff-eyebrow">What sets us apart</div>
+      <h2>Not a PM tool. Not a CRM.<br><em>Purpose-built</em> for this work.</h2>
+    </div>
+    <div class="diff-cards">
+      <div class="diff-card">
+        <h3>Constraint-aware <em>matching & simulation</em></h3>
+        <p>Evaluates every unit against bedroom count, accessibility, phase timing, and right-to-return simultaneously. When plans shift, model the response before committing — not after.</p>
+      </div>
+      <div class="diff-card">
+        <h3>Built for <em>team continuity</em></h3>
+        <p>High turnover doesn't stop programs. New staff see only what's relevant to their role and get up to speed in hours, not weeks. Anyone can pick up where someone else left off — every task, note, and decision is already in the record.</p>
+      </div>
+      <div class="diff-card">
+        <h3>Audit <em>anticipation</em></h3>
+        <p>Every decision timestamped, attributable, and exportable as it happens. Compliance isn't reconstructed at audit time. It's continuous.</p>
+      </div>
+    </div>
   </div>
 </section>
 
