@@ -299,6 +299,24 @@ main { position: relative; z-index: 1; padding-top: 64px; }
 }
 .btn-secondary:hover { background: rgba(20,184,166,0.15); border-color: rgba(20,184,166,0.5); }
 
+/* ── SCROLL PROMPT — mobile only ── */
+.scroll-prompt {
+  display: none;
+}
+@media (max-width: 860px) {
+  .scroll-prompt {
+    display: flex; align-items: center; justify-content: center; gap: 6px;
+    padding: 10px;
+    font-size: 13px; font-weight: 500; color: var(--text-3);
+    font-family: var(--ff-body);
+    animation: bob 1.8s ease-in-out infinite;
+    transition: opacity 0.5s;
+  }
+  .scroll-prompt.hidden { opacity: 0; pointer-events: none; }
+  .scroll-prompt svg { width: 16px; height: 16px; stroke: var(--teal); flex-shrink: 0; }
+  @keyframes bob { 0%,100%{transform:translateY(0)} 50%{transform:translateY(4px)} }
+}
+
 /* ── TABLET (≤ 860px) — stack to single column ── */
 @media (max-width: 860px) {
   nav { padding: 0 20px; }
@@ -429,6 +447,11 @@ main { position: relative; z-index: 1; padding-top: 64px; }
     <div class="video-wrapper">
       <div class="video-ratio">
         <div id="yt-player"></div>
+      </div>
+      <!-- Scroll prompt — mobile only, fades out after first scroll -->
+      <div class="scroll-prompt" id="scroll-prompt">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Scroll for details
       </div>
     </div>
 
@@ -654,6 +677,13 @@ function selectFeature(index) {
 
 pills.forEach((pill, i) => pill.addEventListener('click', () => selectFeature(i)));
 selectFeature(0);
+
+// Hide scroll prompt after first scroll
+window.addEventListener('scroll', function hidePrompt() {
+  var p = document.getElementById('scroll-prompt');
+  if (p) p.classList.add('hidden');
+  window.removeEventListener('scroll', hidePrompt);
+}, { passive: true });
 </script>
 </body>
 </html>
