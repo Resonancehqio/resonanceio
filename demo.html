@@ -325,8 +325,13 @@ main { position: relative; z-index: 1; padding-top: 64px; }
   .nav-center-label { font-size: 0.9rem; }
   main { padding-top: 56px; }
   .tabs-section { padding: 12px 16px 10px; max-width: 100%; }
-  .content-section { padding: 0 16px 24px; gap: 14px; max-width: 100%; }
-  .explainer-bullet { font-size: 12px; }
+  .content-section { padding: 0 16px 24px; gap: 18px; max-width: 100%; }
+  .explainer-title { font-size: 1.4rem; }
+  .explainer-desc { font-size: 15px; line-height: 1.65; }
+  .explainer-bullets { gap: 10px; grid-template-columns: 1fr 1fr; }
+  .explainer-bullet { padding: 14px 14px; }
+  .bullet-num { font-size: 11px; margin-bottom: 6px; }
+  .bullet-text { font-size: 14px; line-height: 1.5; }
 }
 
 /* ── PHONE (≤ 500px) ── */
@@ -336,6 +341,10 @@ main { position: relative; z-index: 1; padding-top: 64px; }
   .nav-btn { padding: 7px 12px; font-size: 12px; }
   main { padding-top: 52px; }
   .tabs-section { padding: 10px 12px 8px; }
+  .explainer-title { font-size: 1.3rem; }
+  .explainer-desc { font-size: 14px; }
+  .explainer-bullets { grid-template-columns: 1fr; }
+  .bullet-text { font-size: 14px; }
   .tabs-row {
     flex-wrap: nowrap; overflow-x: auto;
     justify-content: flex-start;
