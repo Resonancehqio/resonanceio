@@ -136,20 +136,23 @@ main { position: relative; z-index: 1; padding-top: 64px; }
   display: grid;
   grid-template-columns: 3fr 2fr;
   gap: 28px;
-  align-items: start;
+  align-items: stretch;
 }
 
-/* LEFT — video */
+/* LEFT — video stretches to match right panel height */
 .video-wrapper {
   border-radius: 14px; overflow: hidden;
   border: 1px solid var(--border);
   background: var(--dark-1);
   box-shadow: 0 0 0 1px rgba(120,100,220,0.08), 0 20px 50px rgba(0,0,0,0.5);
+  height: 100%;
 }
 .video-ratio {
   position: relative;
   width: 100%;
-  aspect-ratio: 16 / 9;
+  height: 100%;
+  min-height: 280px;
+  aspect-ratio: unset;
 }
 .video-ratio iframe,
 #yt-player {
@@ -292,7 +295,11 @@ main { position: relative; z-index: 1; padding-top: 64px; }
     padding: 0 20px 28px;
     max-width: 100%;
     gap: 16px;
+    align-items: start;
   }
+  /* Restore proper 16:9 for stacked layout */
+  .video-wrapper { height: auto; }
+  .video-ratio { height: auto; aspect-ratio: 16/9; min-height: unset; }
   .explainer-title { font-size: 1.2rem; }
   .explainer-desc { font-size: 13px; }
 }
