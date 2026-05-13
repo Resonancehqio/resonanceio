@@ -580,7 +580,7 @@ var checkInterval = null;
 function onYouTubeIframeAPIReady() {
   player = new YT.Player('yt-player', {
     videoId: YT_ID,
-    playerVars: { rel: 0, modestbranding: 1, color: 'white', playsinline: 1 },
+    playerVars: { rel: 0, modestbranding: 1, color: 'white', playsinline: 1, mute: 1 },
     events: {
       onReady: function() {
         playerReady = true;
@@ -597,8 +597,9 @@ function loadFeature(index) {
   const nextF   = FEATURES[index + 1];
   const endTime = nextF ? nextF.start : null;
 
-  // Seek and play
+  // Seek and play muted
   player.seekTo(f.start, true);
+  player.mute();
   player.playVideo();
 
   // Clear any existing pause timer
