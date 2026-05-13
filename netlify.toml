@@ -55,6 +55,16 @@
   to   = "/calculators"
   status = 301
 
+[[redirects]]
+  from = "/demo"
+  to   = "/demo.html"
+  status = 200
+
+[[redirects]]
+  from = "/demo/"
+  to   = "/demo"
+  status = 301
+
 # ── 404 fallback ──
 [[redirects]]
   from   = "/*"

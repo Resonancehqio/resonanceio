@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>Platform Demo — Resonance</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Instrument+Sans:wght@400;500;600;700&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --teal:          #14B8A6;
+  --teal-bright:   #5EEAD4;
+  --teal-ghost:    rgba(20,184,166,0.1);
+  --teal-glow:     rgba(20,184,166,0.15);
+  --purple:        #5B21B6;
+  --purple-mid:    #7C3AED;
+  --purple-bright: #A78BFA;
+  --purple-ghost:  rgba(91,33,182,0.12);
+  --purple-glow:   rgba(91,33,182,0.22);
+  --dark:          #09080F;
+  --dark-1:        #110E1E;
+  --dark-2:        #1A1630;
+  --dark-3:        #231E3E;
+  --dark-4:        #2D2754;
+  --border:        rgba(120,100,220,0.18);
+  --border-hi:     rgba(120,100,220,0.38);
+  --text-1:        #F1EEFF;
+  --text-2:        #B8AAEE;
+  --text-3:        #7E72B8;
+  --ff-display:    'Fraunces', Georgia, serif;
+  --ff-body:       'Instrument Sans', -apple-system, sans-serif;
+  --ff-mono:       'Nunito Sans', -apple-system, sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--ff-body);
+  background: var(--dark);
+  color: var(--text-1);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* ── BACKGROUND ORBS ──────────────────── */
+.bg-canvas { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+.orb { position: absolute; border-radius: 50%; filter: blur(100px); opacity: 0.5; }
+.orb-1 { width: 700px; height: 700px; background: radial-gradient(circle, rgba(91,33,182,0.45) 0%, transparent 70%); top: -200px; right: -150px; animation: drift 20s ease-in-out infinite alternate; }
+.orb-2 { width: 500px; height: 500px; background: radial-gradient(circle, rgba(20,184,166,0.2) 0%, transparent 70%); bottom: 200px; left: -100px; animation: drift 25s ease-in-out infinite alternate-reverse; }
+@keyframes drift { 0%{transform:translate(0,0)} 100%{transform:translate(40px,30px)} }
+
+/* ── NAV ──────────────────────────────── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  height: 64px;
+  display: grid;
+  grid-template-columns: minmax(160px,1fr) auto minmax(160px,1fr);
+  align-items: center;
+  padding: 0 40px;
+  background: rgba(9,8,15,0.8);
+  backdrop-filter: blur(24px);
+  border-bottom: 0.5px solid var(--border);
+}
+.nav-logo { display: flex; align-items: center; gap: 9px; text-decoration: none; justify-self: start; flex-shrink: 0; }
+.nav-logo svg { width: 32px; height: 38px; flex-shrink: 0; }
+.nav-logo span { font-family: var(--ff-display); font-size: 1.2rem; font-weight: 400; color: var(--text-1); letter-spacing: -0.01em; }
+.nav-center-label {
+  font-family: var(--ff-display); font-size: 1.05rem; font-weight: 300;
+  color: var(--text-2); letter-spacing: -0.01em;
+  white-space: nowrap;
+  justify-self: center;
+}
+.nav-center-label em { font-style: italic; color: var(--teal); }
+.nav-right { display: flex; align-items: center; gap: 12px; justify-self: end; }
+.nav-link { font-size: 13px; font-weight: 500; color: var(--text-2); text-decoration: none; padding: 6px 12px; border-radius: 8px; transition: color 0.2s; }
+.nav-link:hover { color: var(--text-1); }
+.nav-btn {
+  padding: 8px 18px; border-radius: 8px; font-size: 13px; font-weight: 600;
+  background: linear-gradient(135deg, var(--purple), var(--purple-mid));
+  color: white; text-decoration: none; border: none; cursor: pointer;
+  box-shadow: 0 0 20px var(--purple-glow);
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+.nav-btn:hover { box-shadow: 0 0 30px rgba(91,33,182,0.5); transform: translateY(-1px); }
+
+/* ── MAIN CONTENT ─────────────────────── */
+main { position: relative; z-index: 1; padding-top: 64px; }
+.bottom-cta { display: none; }
+.hero { display: none; }
+.eyebrow { display: none; }
+
+/* ── FEATURE TABS ─────────────────────── */
+.tabs-section { padding: 18px 40px 14px; max-width: 1200px; margin: 0 auto; width: 100%; }
+
+.tabs-row {
+  display: flex; gap: 8px; flex-wrap: wrap;
+  justify-content: center;
+}
+
+.tab-pill {
+  display: flex; align-items: center; gap: 7px;
+  padding: 8px 14px; border-radius: 100px;
+  font-family: var(--ff-body); font-size: 12.5px; font-weight: 600;
+  color: var(--text-2);
+  background: var(--dark-2);
+  border: 1px solid var(--border);
+  cursor: pointer;
+  transition: all 0.25s ease;
+  white-space: nowrap;
+  user-select: none;
+}
+.tab-pill svg {
+  width: 15px; height: 15px;
+  stroke: currentColor; fill: none; stroke-width: 1.8;
+  flex-shrink: 0; opacity: 0.7;
+  transition: opacity 0.2s;
+}
+.tab-pill:hover {
+  color: var(--text-1);
+  border-color: var(--border-hi);
+  background: var(--dark-3);
+}
+.tab-pill.active {
+  color: var(--teal-bright);
+  background: var(--teal-ghost);
+  border-color: rgba(20,184,166,0.4);
+  box-shadow: 0 0 16px var(--teal-glow);
+}
+.tab-pill.active svg { opacity: 1; stroke: var(--teal-bright); }
+
+/* ── CONTENT AREA — two-column desktop, stacked mobile ── */
+.content-section {
+  max-width: 1200px; margin: 0 auto; width: 100%;
+  padding: 0 40px 40px;
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  gap: 28px;
+  align-items: start;
+}
+
+/* LEFT — video */
+.video-wrapper {
+  border-radius: 14px; overflow: hidden;
+  border: 1px solid var(--border);
+  background: var(--dark-1);
+  box-shadow: 0 0 0 1px rgba(120,100,220,0.08), 0 20px 50px rgba(0,0,0,0.5);
+}
+.video-ratio {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+}
+.video-ratio iframe,
+#yt-player {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  border: none;
+}
+
+/* RIGHT — explainer */
+.explainer {
+  display: flex; flex-direction: column; gap: 20px;
+  padding-top: 4px;
+}
+.explainer-title {
+  font-family: var(--ff-display);
+  font-size: 1.7rem; font-weight: 300;
+  color: var(--text-1); line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+.explainer-title em { font-style: italic; color: var(--teal); }
+.explainer-desc {
+  font-size: 13.5px; color: var(--text-2);
+  line-height: 1.65;
+  padding-left: 14px;
+  border-left: 2px solid rgba(20,184,166,0.45);
+}
+.explainer-bullets {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  border-top: 1px solid var(--border);
+  padding-top: 16px;
+}
+.explainer-bullet {
+  background: var(--dark-2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 13px 14px;
+  font-size: 12px; color: var(--text-2); line-height: 1.5;
+  transition: border-color 0.2s, background 0.2s;
+  text-decoration: none;
+  display: block;
+  position: relative;
+}
+.explainer-bullet:hover {
+  border-color: var(--border-hi);
+  background: var(--dark-3);
+  color: var(--text-1);
+}
+.bl-arr {
+  position: absolute; bottom: 10px; right: 12px;
+  font-size: 11px; color: var(--teal);
+  opacity: 0;
+  transition: opacity 0.2s, transform 0.2s;
+}
+.explainer-bullet:hover .bl-arr {
+  opacity: 1; transform: translateX(2px);
+}
+.bullet-num {
+  display: block;
+  font-family: var(--ff-mono);
+  font-size: 10px; font-weight: 700;
+  color: var(--teal);
+  letter-spacing: 0.12em;
+  margin-bottom: 7px;
+}
+.explainer-cta {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 13px; font-weight: 600;
+  color: var(--teal);
+  text-decoration: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: 1px solid rgba(20,184,166,0.3);
+  background: var(--teal-ghost);
+  transition: background 0.2s, border-color 0.2s, transform 0.15s;
+  align-self: flex-start;
+}
+.explainer-cta:hover {
+  background: rgba(20,184,166,0.15);
+  border-color: rgba(20,184,166,0.5);
+  transform: translateX(2px);
+}
+
+/* Placeholder state */
+.video-placeholder {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 16px;
+  background: var(--dark-1);
+  color: var(--text-3);
+}
+.video-placeholder .ph-logo { opacity: 0.4; }
+.video-placeholder h3 {
+  font-family: var(--ff-display); font-size: 1.3rem; font-weight: 300;
+  color: var(--text-2);
+}
+.video-placeholder p { font-size: 13px; color: var(--text-3); }
+
+/* ── OLD feature-info — unused ── */
+.feature-info { display: none; }
+
+/* ── BOTTOM CTA ───────────────────────── */
+.bottom-cta {
+  text-align: center; padding: 80px 40px;
+  border-top: 1px solid var(--border);
+  position: relative; z-index: 1;
+}
+.bottom-cta h2 {
+  font-family: var(--ff-display); font-size: clamp(1.8rem,3.5vw,2.6rem);
+  font-weight: 300; color: var(--text-1); margin-bottom: 12px;
+}
+.bottom-cta h2 em { font-style: italic; color: var(--teal); }
+.bottom-cta p { font-size: 16px; color: var(--text-2); margin-bottom: 32px; }
+.cta-buttons { display: flex; align-items: center; justify-content: center; gap: 14px; flex-wrap: wrap; }
+.btn-primary {
+  padding: 13px 28px; border-radius: 10px; font-size: 14px; font-weight: 600;
+  background: linear-gradient(135deg, var(--purple), var(--purple-mid));
+  color: white; text-decoration: none; border: none; cursor: pointer;
+  box-shadow: 0 0 24px var(--purple-glow);
+  transition: box-shadow 0.2s, transform 0.15s;
+}
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 0 36px rgba(91,33,182,0.5); }
+.btn-secondary {
+  padding: 13px 28px; border-radius: 10px; font-size: 14px; font-weight: 600;
+  color: var(--teal); background: var(--teal-ghost);
+  border: 1px solid rgba(20,184,166,0.3); text-decoration: none;
+  transition: background 0.2s, border-color 0.2s;
+}
+.btn-secondary:hover { background: rgba(20,184,166,0.15); border-color: rgba(20,184,166,0.5); }
+
+/* ── TABLET (≤ 860px) — stack to single column ── */
+@media (max-width: 860px) {
+  nav { padding: 0 20px; }
+  .nav-center-label { font-size: 0.95rem; }
+  .tabs-section { padding: 14px 20px 12px; max-width: 100%; }
+  .content-section {
+    grid-template-columns: 1fr;
+    padding: 0 20px 28px;
+    max-width: 100%;
+    gap: 16px;
+  }
+  .explainer-title { font-size: 1.2rem; }
+  .explainer-desc { font-size: 13px; }
+}
+
+/* ── SMALL TABLET / large phone (≤ 680px) ── */
+@media (max-width: 680px) {
+  nav { height: 56px; }
+  .nav-link { display: none; }
+  .nav-center-label { font-size: 0.9rem; }
+  main { padding-top: 56px; }
+  .tabs-section { padding: 12px 16px 10px; max-width: 100%; }
+  .content-section { padding: 0 16px 24px; gap: 14px; max-width: 100%; }
+  .explainer-bullet { font-size: 12px; }
+}
+
+/* ── PHONE (≤ 500px) ── */
+@media (max-width: 500px) {
+  nav { padding: 0 14px; height: 52px; }
+  .nav-center-label { display: none; }
+  .nav-btn { padding: 7px 12px; font-size: 12px; }
+  main { padding-top: 52px; }
+  .tabs-section { padding: 10px 12px 8px; }
+  .tabs-row {
+    flex-wrap: nowrap; overflow-x: auto;
+    justify-content: flex-start;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    mask-image: linear-gradient(to right, black 80%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, black 80%, transparent 100%);
+  }
+  .tabs-row::-webkit-scrollbar { display: none; }
+  .tab-pill { flex-shrink: 0; padding: 7px 11px; font-size: 11px; }
+  .content-section { padding: 0 12px 20px; gap: 12px; }
+  .explainer-title { font-size: 1.1rem; }
+  .explainer-desc { font-size: 12.5px; }
+  .explainer-bullets { grid-template-columns: 1fr; }
+  .explainer-bullet { font-size: 11.5px; padding: 10px 11px; }
+}
+</style>
+</head>
+<body>
+
+<div class="bg-canvas">
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a href="/" class="nav-logo">
+    <svg viewBox="0 0 154 182" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="ng0" x1="14" y1="72" x2="41" y2="94" gradientUnits="userSpaceOnUse"><stop stop-color="#9CE4E5"/><stop offset="1" stop-color="#936DD7"/></linearGradient>
+        <linearGradient id="ng1" x1="27" y1="148" x2="123" y2="125" gradientUnits="userSpaceOnUse"><stop stop-color="#9CE4E5"/><stop offset=".78" stop-color="#5B4790"/><stop offset="1" stop-color="#98D8EB"/></linearGradient>
+        <linearGradient id="ng3" x1="75" y1="0" x2="75" y2="86" gradientUnits="userSpaceOnUse"><stop stop-color="#A37CEC"/><stop offset="1" stop-color="#5B4790"/></linearGradient>
+        <linearGradient id="ng4" x1="107" y1="30" x2="107" y2="102" gradientUnits="userSpaceOnUse"><stop stop-color="#A37CEC"/><stop offset="1" stop-color="#5B4790"/></linearGradient>
+      </defs>
+      <path d="M153.032 120.267C151.562 120.775 150.1 121.263 148.595 121.797C122.192 131.345 96.6636 144.643 77.0527 163.76C76.1612 164.641 75.2855 165.535 74.4268 166.442C74.8954 167.697 75.1533 169.054 75.1533 170.473C75.1533 176.839 69.9929 181.999 63.627 181.999C57.2609 181.999 52.0996 176.839 52.0996 170.473C52.0997 164.107 57.261 158.947 63.627 158.947C65.3899 158.947 67.0597 159.343 68.5537 160.051C69.5224 159.205 70.5035 158.377 71.4951 157.565C94.2724 139.231 121.208 128.493 148.469 121.378C150.02 120.983 151.523 120.635 153.032 120.267Z" fill="#9BE2E4"/>
+      <path d="M11.9873 59.3557C18.6078 59.3557 23.9754 64.6194 23.9756 71.1125C23.9756 73.5466 23.2204 75.8077 21.9287 77.6838C22.5991 78.8025 23.2939 79.8907 24.0283 80.967C42.696 108.284 79.6038 118.04 113.279 118.468C115.159 118.48 117.145 118.446 118.953 118.372C117.157 118.591 115.174 118.771 113.293 118.905C79.6598 120.871 41.0566 114.918 17.3516 85.9348C16.4642 84.8277 15.6152 83.7036 14.7891 82.5432C13.8901 82.7543 12.9523 82.8703 11.9873 82.8703C5.36686 82.8701 0 77.6057 0 71.1125C0.000202317 64.6195 5.36698 59.3559 11.9873 59.3557Z" fill="url(#ng0)"/>
+      <path d="M133.939 120.678C132.369 120.919 130.647 121.204 129.029 121.485C99.5499 126.902 69.8404 134.143 43.9873 147.876C43.4006 148.2 42.8073 148.535 42.2168 148.874C42.3447 149.562 42.415 150.27 42.415 150.995C42.415 157.361 37.2545 162.521 30.8887 162.522C24.5227 162.522 19.3614 157.361 19.3613 150.995C19.3613 144.629 24.5227 139.469 30.8887 139.469C33.4021 139.469 35.726 140.275 37.6201 141.641C38.5159 141.218 39.4179 140.804 40.3027 140.414C68.9294 128.335 99.008 123.935 128.973 121.052C130.611 120.915 132.353 120.774 133.939 120.678Z" fill="url(#ng1)"/>
+      <path d="M90.7822 0.66696C92.6862 -0.538979 95.339 -0.0645439 96.707 1.72653C97.4008 2.63492 97.6295 3.70723 97.4395 4.70114C97.3457 13.2627 97.0693 35.4671 97.0693 55.7363C97.0127 59.4716 96.9525 70.6974 96.833 82.5644C96.8269 83.1338 96.4721 83.6365 95.9395 83.8379L91.54 85.5009C90.8536 85.7605 90.1321 85.4542 89.8232 84.8691C89.667 84.416V10.997L60.6465 29.3769C60.641 41.5872 60.6289 70.4882 60.6289 70.4882C60.6289 72.1676 53.0219 65.8699 52.7832 53.9043V26.8779C52.9805 25.7627 53.7706 24.1095 54.625 23.5683L90.7822 0.66696Z" fill="url(#ng3)"/>
+      <path d="M100.09 30.9179C100.075 30.534 100.509 30.3007 100.821 30.5254L114.154 40.1318C114.274 40.2184 114.346 40.3576 114.346 40.5058V47.0859C114.364 61.7596 114.695 92.4466 114.783 100.316C114.793 101.25 113.895 101.915 113.001 101.646L107.491 99.9922C106.906 99.8166 106.505 99.3019 106.505 98.6914V49.3906L100.671 40.3984C100.541 40.3178 100.459 40.1783 100.453 40.0254L100.09 30.9179Z" fill="url(#ng4)"/>
+    </svg>
+    <span>Resonance</span>
+  </a>
+  <div class="nav-center-label">See Resonance <em>in action</em></div>
+  <div class="nav-right">
+    <a href="/" class="nav-link">Home</a>
+    <a href="/case-studies" class="nav-link">Case Studies</a>
+    <a href="mailto:sean@resonancehq.io" class="nav-btn">Request a Demo</a>
+  </div>
+</nav>
+
+<main>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="eyebrow">Platform Demo</div>
+    <h1>See Resonance<br><em>in action</em></h1>
+    <p>Select any feature below to watch a walkthrough. Every capability — from household tracking to AI-powered relocation simulations — built for RAD, PACT, Section 18, and preservation programs.</p>
+  </section>
+
+  <!-- FEATURE TABS -->
+  <div class="tabs-section">
+    <div class="tabs-row" id="tabs-row">
+
+      <button class="tab-pill active" data-index="0">
+        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+        Platform Overview
+      </button>
+
+      <button class="tab-pill" data-index="1">
+        <svg viewBox="0 0 24 24"><path d="M18 20V10M12 20V4M6 20v-6"/></svg>
+        Dashboard &amp; AI
+      </button>
+
+      <button class="tab-pill" data-index="2">
+        <svg viewBox="0 0 24 24"><circle cx="9" cy="7" r="4"/><path d="M3 21v-2a4 4 0 014-4h4a4 4 0 014 4v2"/></svg>
+        Household Database
+      </button>
+
+      <button class="tab-pill" data-index="3">
+        <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        Construction Tracking
+      </button>
+
+      <button class="tab-pill" data-index="4">
+        <svg viewBox="0 0 24 24"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 014-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 01-4 4H3"/></svg>
+        Relocation Simulations
+      </button>
+
+      <button class="tab-pill" data-index="5">
+        <svg viewBox="0 0 24 24"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+        Workflows &amp; Logs
+      </button>
+
+      <button class="tab-pill" data-index="6">
+        <svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+        Project Management
+      </button>
+
+      <button class="tab-pill" data-index="7">
+        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        Proven at Scale
+      </button>
+
+    </div>
+  </div>
+
+  <!-- TWO-COLUMN: VIDEO LEFT, EXPLAINER RIGHT -->
+  <div class="content-section">
+
+    <!-- LEFT: Video -->
+    <div class="video-wrapper">
+      <div class="video-ratio">
+        <div id="yt-player"></div>
+      </div>
+    </div>
+
+    <!-- RIGHT: Explainer -->
+    <div class="explainer">
+      <div class="explainer-title" id="ex-title">Platform <em>Overview</em></div>
+      <div class="explainer-desc" id="ex-desc"></div>
+      <div class="explainer-bullets" id="ex-bullets"></div>
+      <a href="/" class="explainer-cta" id="ex-link">Explore Resonance →</a>
+    </div>
+
+  </div>
+
+  <!-- BOTTOM CTA -->
+  <div class="bottom-cta">
+    <h2>Ready to see it<br><em>in your program?</em></h2>
+    <p>We'll walk you through every module live — tailored to your portfolio and program type.</p>
+    <div class="cta-buttons">
+      <a href="mailto:sean@resonancehq.io" class="btn-primary">Request a Live Demo</a>
+      <a href="/" class="btn-secondary">Learn More →</a>
+    </div>
+  </div>
+</main>
+
+<script>
+// ── FEATURE DATA ────────────────────────────────────────────────
+// Replace YOUTUBE_ID_X with your actual YouTube video IDs
+const YT_ID = 'VH9EowElUZE';
+
+const FEATURES = [
+  {
+    title: 'Platform Overview',
+    titleDisplay: 'Platform <em>Overview</em>',
+    ytId: YT_ID, start: 0,
+    link: '/', linkLabel: 'Explore Resonance →',
+    desc: 'Resonance is the operating system for affordable housing — bringing every household, unit, vendor, and compliance obligation into one real-time platform, purpose-built for RAD, PACT, Section 18, and preservation relocation programs.',
+    bullets: [
+      'AI orchestration connecting tenant profiles, unit tracking, vendor management, and relocation simulations',
+      'Purpose-built for public housing authorities, developers, owners, operators, and service providers',
+      'Extends with modules for invoicing, work orders, payments, scheduling, and custom integrations',
+      'Already deployed at NYCHA, Houston Housing Authority, and Kalel Companies'
+    ],
+    bulletLinks: ['/#features', '/#use-cases', '/#features', '/case-studies']
+  },
+  {
+    title: 'Dashboard & AI',
+    titleDisplay: 'Dashboard <em>&amp; AI</em>',
+    ytId: YT_ID, start: 78,
+    link: '/#features', linkLabel: 'See all features →',
+    desc: 'Real-time dashboards and an AI chatbot designed to orchestrate strategic decisions with data-driven insights. Your team sees live occupancy rates, maintenance requests, and compliance metrics — the moment they need it.',
+    bullets: [
+      'Agency-wide reporting or zero in on projects, units, and cases assigned directly to you',
+      'Dashboards tailored by department: construction, finance, operations, and compliance',
+      'Ask the AI chatbot anything and get instant, data-driven reports back in seconds',
+      'Role-based access so each stakeholder sees exactly what they need'
+    ],
+    bulletLinks: ['/#features', '/#features', '/#ai-approach', '/#use-cases']
+  },
+  {
+    title: 'Household Database',
+    titleDisplay: 'Household <em>Database</em>',
+    ytId: YT_ID, start: 125,
+    link: '/#features', linkLabel: 'See all features →',
+    desc: 'A centralized profile for every resident — built from tenant needs, preferences, public data sets, and more. Every profile is connected to live workflows and accessible offline in the field.',
+    bullets: [
+      'Names, contact info, current unit, income details, voucher status, and housing preferences at a glance',
+      'Securely store PII, scanned documents, and photos — AI generates summaries in seconds',
+      'Conduct surveys in-person or offline — preload existing data so your team never starts from scratch',
+      'Track notices sent, survey logs, and full communications history per household'
+    ],
+    bulletLinks: ['/#features', '/#features', '/#how', '/#features']
+  },
+  {
+    title: 'Construction Tracking',
+    titleDisplay: 'Construction <em>Tracking</em>',
+    ytId: YT_ID, start: 186,
+    link: '/#features', linkLabel: 'See all features →',
+    desc: 'A master construction schedule where your construction plan, your units, and your residents all come together in one place. See exactly how vacant inventory is being utilized across every phase.',
+    bullets: [
+      'Track construction start dates, end dates, and progress on every unit in one view',
+      'See which households are temporarily relocated and where — residents and plan stay in sync',
+      'Inventory master database captures every specification and environmental detail across buildings',
+      'Drill from the schedule directly into any individual unit profile with one click'
+    ],
+    bulletLinks: ['/#features', '/#features', '/#features', '/#how']
+  },
+  {
+    title: 'Relocation Simulations',
+    titleDisplay: 'Relocation <em>Simulations</em>',
+    ytId: YT_ID, start: 290,
+    link: '/#ai-approach', linkLabel: 'See our AI approach →',
+    desc: 'AI-powered simulations run scenarios using weighted preferences pulled from your tenant data — engineering cost-efficient, successful relocation outcomes before a single move happens.',
+    bullets: [
+      'Run hundreds of simultaneous household moves across the full duration of a construction project',
+      'Generate individual move schedules accounting for staff availability and capacity',
+      'Surface match issues and flagged periods where vacant supply runs low — before they become problems',
+      'Review every match, confirm in bulk, or rerun the scenario when something changes last minute'
+    ],
+    bulletLinks: ['/#ai-approach', '/#ai-approach', '/#features', '/#how']
+  },
+  {
+    title: 'Workflows & Logs',
+    titleDisplay: 'Workflows <em>&amp; Logs</em>',
+    ytId: YT_ID, start: 244,
+    link: '/#how', linkLabel: 'See how it works →',
+    desc: 'Run dozens of activity types, onboard third-party vendors, and manage every communication in one place. Dynamic workflows shift automatically with schedule changes and assign to the right team members.',
+    bullets: [
+      'Create bulk activity workflows that automatically update when your schedule changes',
+      'Onboard contractors and vendors with read-only or edit access on specific workflows',
+      'Responsive design works seamlessly across desktop and mobile for field teams',
+      'Trigger automatic email and in-app notifications using templates or send them manually'
+    ],
+    bulletLinks: ['/#how', '/#features', '/#features', '/#features']
+  },
+  {
+    title: 'Project Management',
+    titleDisplay: 'Project <em>Management</em>',
+    ytId: YT_ID, start: 320,
+    link: '/calculators', linkLabel: 'Try the ROI calculator →',
+    desc: 'Track milestones, key deliverables, financial reports, and overall project readiness in real time. Upload vendor invoices, link them to households and units, and monitor payments and total spend.',
+    bullets: [
+      'Track tasks and milestones, assign stakeholders, and centralize every decision',
+      'Visualize construction schedules and shift dates and dependencies automatically',
+      'Use AI to make bulk schedule changes in seconds, not days',
+      'Monitor payments, vendor invoices, and total project spend from one dashboard'
+    ],
+    bulletLinks: ['/#features', '/#features', '/#ai-approach', '/calculators']
+  },
+  {
+    title: 'Proven at Scale',
+    titleDisplay: 'Proven <em>at Scale</em>',
+    ytId: YT_ID, start: 338,
+    link: '/case-studies', linkLabel: 'Read the case studies →',
+    desc: 'Resonance is already deployed and running in production at the largest housing programs in the country — NYCHA Fulton Elliott-Chelsea, Houston Housing Authority, and Kalel Companies.',
+    bullets: [
+      'NYCHA FEC: Allocation AI, unit renovation tracking, surveying, resident logs, work order management',
+      'Houston Housing Authority: Allocation AI, surveying, resident logs, construction scheduling, analytics',
+      'Kalel Companies: Full platform — every module working together in production',
+      'Our mission: transform how professionals and organizations coordinate affordable housing'
+    ],
+    bulletLinks: ['/case-studies', '/case-studies', '/case-studies', '/about']
+  }
+];
+
+// ── YOUTUBE IFRAME API ───────────────────────────────────────────
+// Load the API script dynamically
+(function() {
+  var s = document.createElement('script');
+  s.src = 'https://www.youtube.com/iframe_api';
+  document.head.appendChild(s);
+})();
+
+var player;
+var playerReady = false;
+var pendingIndex = 0;
+var checkInterval = null;
+
+function onYouTubeIframeAPIReady() {
+  player = new YT.Player('yt-player', {
+    videoId: YT_ID,
+    playerVars: { rel: 0, modestbranding: 1, color: 'white', playsinline: 1 },
+    events: {
+      onReady: function() {
+        playerReady = true;
+        loadFeature(pendingIndex);
+      }
+    }
+  });
+}
+
+function loadFeature(index) {
+  if (!playerReady) { pendingIndex = index; return; }
+
+  const f       = FEATURES[index];
+  const nextF   = FEATURES[index + 1];
+  const endTime = nextF ? nextF.start : null;
+
+  // Seek and play
+  player.seekTo(f.start, true);
+  player.playVideo();
+
+  // Clear any existing pause timer
+  if (checkInterval) clearInterval(checkInterval);
+
+  // Poll every 300ms — pause when we hit the next section's start
+  if (endTime !== null) {
+    checkInterval = setInterval(function() {
+      if (player.getCurrentTime && player.getCurrentTime() >= endTime) {
+        player.pauseVideo();
+        clearInterval(checkInterval);
+        checkInterval = null;
+      }
+    }, 300);
+  }
+}
+
+// ── TAB SWITCHING ────────────────────────────────────────────────
+const pills     = document.querySelectorAll('.tab-pill');
+const exTitle   = document.getElementById('ex-title');
+const exDesc    = document.getElementById('ex-desc');
+const exBullets = document.getElementById('ex-bullets');
+const exLink    = document.getElementById('ex-link');
+
+function selectFeature(index) {
+  const f = FEATURES[index];
+
+  // Active pill
+  pills.forEach((p, i) => p.classList.toggle('active', i === index));
+
+  // Right panel
+  exTitle.innerHTML   = f.titleDisplay;
+  exDesc.textContent  = f.desc;
+  exBullets.innerHTML = f.bullets.map((b, i) => `<a href="${f.bulletLinks[i]}" class="explainer-bullet"><span class="bullet-num">0${i+1}</span>${b}<span class="bl-arr">→</span></a>`).join('');
+  exLink.href         = f.link;
+  exLink.textContent  = f.linkLabel;
+
+  // Video
+  loadFeature(index);
+}
+
+pills.forEach((pill, i) => pill.addEventListener('click', () => selectFeature(i)));
+selectFeature(0);
+</script>
+</body>
+</html>
