@@ -43,12 +43,15 @@ body {
   overflow-x: hidden;
 }
 
-/* ── BACKGROUND ORBS ──────────────────── */
+/* ── BACKGROUND ORBS — desktop only, too heavy for mobile ── */
 .bg-canvas { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
-.orb { position: absolute; border-radius: 50%; filter: blur(100px); opacity: 0.5; }
+.orb { position: absolute; border-radius: 50%; filter: blur(100px); opacity: 0.5; will-change: transform; }
 .orb-1 { width: 700px; height: 700px; background: radial-gradient(circle, rgba(91,33,182,0.45) 0%, transparent 70%); top: -200px; right: -150px; animation: drift 20s ease-in-out infinite alternate; }
 .orb-2 { width: 500px; height: 500px; background: radial-gradient(circle, rgba(20,184,166,0.2) 0%, transparent 70%); bottom: 200px; left: -100px; animation: drift 25s ease-in-out infinite alternate-reverse; }
 @keyframes drift { 0%{transform:translate(0,0)} 100%{transform:translate(40px,30px)} }
+@media (max-width: 860px) {
+  .bg-canvas { display: none; }
+}
 
 /* ── NAV ──────────────────────────────── */
 nav {
@@ -60,7 +63,11 @@ nav {
   padding: 0 40px;
   background: rgba(9,8,15,0.8);
   backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
   border-bottom: 0.5px solid var(--border);
+}
+@media (max-width: 860px) {
+  nav { backdrop-filter: none; -webkit-backdrop-filter: none; background: rgba(9,8,15,0.97); }
 }
 .nav-logo { display: flex; align-items: center; gap: 9px; text-decoration: none; justify-self: start; flex-shrink: 0; }
 .nav-logo svg { width: 32px; height: 38px; flex-shrink: 0; }
@@ -590,15 +597,17 @@ function loadFeature(index) {
   // Clear any existing pause timer
   if (checkInterval) clearInterval(checkInterval);
 
-  // Poll every 300ms — pause when we hit the next section's start
+  // Poll every 1s — pause when we hit the next section's start
   if (endTime !== null) {
     checkInterval = setInterval(function() {
-      if (player.getCurrentTime && player.getCurrentTime() >= endTime) {
-        player.pauseVideo();
-        clearInterval(checkInterval);
-        checkInterval = null;
-      }
-    }, 300);
+      try {
+        if (player.getCurrentTime && player.getCurrentTime() >= endTime) {
+          player.pauseVideo();
+          clearInterval(checkInterval);
+          checkInterval = null;
+        }
+      } catch(e) {}
+    }, 1000);
   }
 }
 
