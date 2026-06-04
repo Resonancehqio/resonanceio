@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resonance — Pricing Overview</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,300;1,9..144,400&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600;700&display=swap">
+<style>
+/* ── RESET ── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+/* ── VARIABLES ── */
+:root{
+  --teal:#0D9488;
+  --teal-light:rgba(13,148,136,0.09);
+  --teal-border:rgba(13,148,136,0.25);
+  --purple:#7C3AED;
+  --purple-light:rgba(124,58,237,0.08);
+  --purple-border:rgba(124,58,237,0.2);
+  --purple-mid:#9461FB;
+  --ink:#1A0F3A;
+  --ink-2:#3D2B6E;
+  --ink-3:#6B5A9A;
+  --ink-4:#9B8DC0;
+  --rule:rgba(91,33,182,0.12);
+  --bg:#FFFFFF;
+  --bg-soft:#F7F4FF;
+  --ff-display:'Fraunces',Georgia,serif;
+  --ff-body:'Instrument Sans',-apple-system,sans-serif;
+  --ff-mono:'JetBrains Mono','SF Mono',monospace;
+}
+
+/* ── SCREEN WRAPPER ── */
+@media screen {
+  html{background:#DDD8EE;min-height:100vh}
+  body{max-width:816px;margin:48px auto 80px;background:var(--bg);box-shadow:0 8px 60px rgba(0,0,0,0.18);-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+
+/* ── DOCUMENT BODY ── */
+body{
+  font-family:var(--ff-body);
+  color:var(--ink);
+  font-size:9.5pt;
+  line-height:1.6;
+  -webkit-print-color-adjust:exact;
+  print-color-adjust:exact;
+}
+
+/* ── PAGE LAYOUT ── */
+.page{padding:0.55in 0.75in}
+.page-break{break-before:page;padding-top:0.55in}
+
+/* ── @PAGE ── */
+@page{
+  size:letter;
+  margin:0.55in 0.72in;
+}
+@page:first{margin-top:0.45in}
+
+/* ── HEADER ── */
+.doc-header{
+  display:flex;align-items:flex-start;justify-content:space-between;
+  padding-bottom:18px;border-bottom:1.5px solid var(--purple);margin-bottom:28px;
+}
+.doc-logo{display:flex;align-items:center;gap:9px}
+.logo-wordmark{font-family:var(--ff-display);font-size:15pt;font-weight:400;color:var(--ink);letter-spacing:-0.01em}
+.doc-header-right{text-align:right}
+.doc-title{font-family:var(--ff-mono);font-size:7pt;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--purple-mid);margin-bottom:2px}
+.doc-date{font-family:var(--ff-mono);font-size:7pt;color:var(--ink-4)}
+
+/* ── EYEBROW ── */
+.eyebrow{font-family:var(--ff-mono);font-size:6.5pt;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--teal);display:flex;align-items:center;gap:6px;margin-bottom:8px}
+.eyebrow::before{content:'';width:4px;height:4px;border-radius:50%;background:var(--teal);flex-shrink:0}
+
+/* ── HEADINGS ── */
+h1{font-family:var(--ff-display);font-size:22pt;font-weight:300;color:var(--ink);letter-spacing:-0.02em;line-height:1.1;margin-bottom:10px}
+h1 em{font-style:italic;color:var(--teal)}
+h2{font-family:var(--ff-display);font-size:14pt;font-weight:300;color:var(--ink);letter-spacing:-0.015em;line-height:1.2;margin-bottom:8px}
+h2 em{font-style:italic;color:var(--teal)}
+h3{font-family:var(--ff-body);font-size:9pt;font-weight:600;color:var(--ink);margin-bottom:4px}
+
+/* ── BODY TEXT ── */
+p{color:var(--ink-2);line-height:1.7}
+.lede{font-size:10.5pt;color:var(--ink-2);line-height:1.7;max-width:520px;margin-bottom:24px}
+
+/* ── SECTION SPACING ── */
+.section{margin-bottom:20px}
+
+/* ── PRICE MODEL BOXES ── */
+.price-model{display:grid;grid-template-columns:1fr 24px 1fr;gap:0;align-items:stretch;margin-bottom:20px}
+.price-box{border:1px solid var(--rule);border-radius:10px;padding:18px 20px}
+.price-box.teal{background:var(--teal-light);border-color:var(--teal-border)}
+.price-box.purple{background:var(--purple-light);border-color:var(--purple-border)}
+.price-box-label{font-family:var(--ff-mono);font-size:6.5pt;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;margin-bottom:6px}
+.price-box-label.t{color:var(--teal)}
+.price-box-label.p{color:var(--purple-mid)}
+.price-box-name{font-family:var(--ff-display);font-size:11pt;font-weight:300;color:var(--ink);margin-bottom:4px}
+.price-box-desc{font-size:7.5pt;color:var(--ink-3);line-height:1.55;margin-bottom:12px}
+.price-big{font-family:var(--ff-mono);font-size:20pt;font-weight:700;color:var(--ink);letter-spacing:-0.02em;line-height:1}
+.price-unit{font-size:7.5pt;font-weight:400;color:var(--ink-3);display:block;margin-top:2px}
+.price-connector{display:flex;align-items:center;justify-content:center;font-family:var(--ff-mono);font-size:14pt;font-weight:700;color:var(--ink-4)}
+
+/* ── VOLUME TIER TABLE ── */
+.tier-table{width:100%;border-collapse:collapse;margin-bottom:20px;font-size:8.5pt}
+.tier-table th{font-family:var(--ff-mono);font-size:6pt;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-4);padding:7px 12px;text-align:left;background:var(--bg-soft);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.tier-table td{padding:10px 12px;border-bottom:1px solid var(--rule);color:var(--ink-2)}
+.tier-table td:first-child{font-weight:500;color:var(--ink)}
+.tier-table td:last-child{font-family:var(--ff-mono);font-weight:700;color:var(--ink);text-align:right}
+.tier-table tr.best td{background:var(--teal-light)}
+.tier-table tr.best td:last-child{color:var(--teal)}
+.tier-note{font-size:7pt;color:var(--ink-4);margin-bottom:20px}
+
+/* ── SCENARIOS TABLE ── */
+.scenarios-table{width:100%;border-collapse:collapse;font-size:8.5pt;margin-bottom:6px}
+.scenarios-table th{font-family:var(--ff-mono);font-size:6pt;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-4);padding:7px 12px;text-align:left;background:var(--bg-soft);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.scenarios-table th:not(:first-child){text-align:right}
+.scenarios-table td{padding:10px 12px;border-bottom:1px solid var(--rule);color:var(--ink-2)}
+.scenarios-table td:first-child{font-weight:500;color:var(--ink)}
+.scenarios-table td:not(:first-child){text-align:right;font-family:var(--ff-mono);font-size:8pt}
+.scenarios-table td.total{font-weight:700;color:var(--ink)}
+.scenarios-table tr:last-child td{border-bottom:none}
+
+/* ── IMPLEMENTATION BOX ── */
+.impl-box{background:var(--bg-soft);border:1px solid var(--rule);border-left:3px solid var(--purple);border-radius:0 8px 8px 0;padding:14px 16px;margin-bottom:0}
+.impl-box-label{font-family:var(--ff-mono);font-size:6.5pt;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--purple-mid);margin-bottom:5px}
+.impl-box-title{font-size:9pt;font-weight:600;color:var(--ink);margin-bottom:4px}
+.impl-box p{font-size:7.5pt;color:var(--ink-3);line-height:1.6;margin:0}
+
+/* ── TWO COLUMN ── */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.three-col{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+
+/* ── FEATURES LIST ── */
+.features-section{margin-bottom:28px}
+.features-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.feature-row{display:flex;align-items:flex-start;gap:8px;padding:8px 10px;border-radius:6px;border:1px solid var(--rule);background:var(--bg-soft)}
+.feature-icon{width:22px;height:22px;border-radius:5px;background:var(--teal-light);display:flex;align-items:center;justify-content:center;font-size:11px;flex-shrink:0;margin-top:1px}
+.feature-name{font-size:8pt;font-weight:600;color:var(--ink);line-height:1.3}
+.feature-desc{font-size:7pt;color:var(--ink-3);line-height:1.4;margin-top:1px}
+
+/* ── ROI CARDS ── */
+.roi-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:20px}
+.roi-card{border:1px solid var(--rule);border-radius:8px;padding:14px 14px;background:var(--bg-soft)}
+.roi-card-num{font-family:var(--ff-mono);font-size:18pt;font-weight:700;color:var(--teal);letter-spacing:-0.02em;line-height:1;margin-bottom:4px}
+.roi-card-label{font-size:8pt;font-weight:600;color:var(--ink);margin-bottom:4px}
+.roi-card-desc{font-size:7pt;color:var(--ink-3);line-height:1.55}
+
+/* ── DIVIDER ── */
+.divider{height:1px;background:var(--rule);margin:16px 0}
+
+/* ── PROGRAM TYPES ── */
+.program-pills{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:20px}
+.pill{font-family:var(--ff-mono);font-size:6.5pt;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:3px 8px;border-radius:20px;background:var(--purple-light);border:1px solid var(--purple-border);color:var(--purple-mid)}
+
+/* ── FOOTER ── */
+.doc-footer{margin-top:28px;padding-top:14px;border-top:1px solid var(--rule);display:flex;justify-content:space-between;align-items:flex-end}
+.footer-contact{font-size:7.5pt;color:var(--ink-2);line-height:1.7}
+.footer-contact strong{color:var(--ink);display:block;margin-bottom:2px;font-size:8pt}
+.footer-contact a{color:var(--teal);text-decoration:none}
+.footer-legal{font-size:6.5pt;color:var(--ink-4);text-align:right;line-height:1.6}
+.footer-logo{font-family:var(--ff-display);font-size:10pt;font-weight:400;color:var(--ink-3)}
+
+/* ── CHECK / CROSS ── */
+.chk{color:var(--teal);font-weight:700}
+
+/* ── MOBILE ── */
+@media screen and (max-width:680px){
+  html{background:var(--bg)}
+  body{max-width:100%;margin:0;box-shadow:none;font-size:11pt}
+  .page{padding:20px 16px}
+  .page-break{padding-top:28px;border-top:2px solid var(--rule);margin-top:8px}
+  h1{font-size:18pt}
+  h2{font-size:13pt}
+  .lede{font-size:10.5pt;max-width:100%}
+  .doc-header{flex-direction:column;gap:8px;align-items:flex-start;margin-bottom:20px;padding-bottom:14px}
+  .doc-header-right{text-align:left}
+  .doc-title{font-size:8pt}
+  .doc-date{font-size:8pt}
+  .logo-wordmark{font-size:14pt}
+  .price-model{grid-template-columns:1fr;gap:0}
+  .price-connector{height:32px;font-size:18pt}
+  .price-box{padding:16px}
+  .price-big{font-size:18pt}
+  .price-unit{font-size:9pt}
+  .price-box-desc{font-size:9pt}
+  .two-col{grid-template-columns:1fr;gap:24px}
+  .three-col{grid-template-columns:1fr;gap:12px}
+  .features-grid{grid-template-columns:1fr}
+  .feature-name{font-size:10pt}
+  .feature-desc{font-size:8.5pt}
+  .roi-grid{grid-template-columns:1fr;gap:10px}
+  .roi-card-num{font-size:22pt}
+  .roi-card-label{font-size:10pt}
+  .roi-card-desc{font-size:9pt}
+  .tier-table,.scenarios-table{width:100%}
+  .tier-table td,.tier-table th{padding:9px 10px;font-size:9pt}
+  .tier-table th{font-size:7.5pt}
+  .scenarios-table td,.scenarios-table th{padding:9px 10px;font-size:9pt}
+  .scenarios-table th{font-size:7.5pt}
+  .tier-note{font-size:8.5pt}
+  .impl-box{padding:14px}
+  .impl-box-title{font-size:11pt}
+  .impl-box p{font-size:9pt}
+  .doc-footer{flex-direction:column;gap:12px;align-items:flex-start;margin-top:20px}
+  .footer-legal{text-align:left}
+  .footer-contact{font-size:9pt}
+  .footer-contact strong{font-size:10pt}
+  .section{margin-bottom:20px}
+  .eyebrow{font-size:8pt}
+  .pill{font-size:8pt;padding:4px 9px}
+  .program-pills{gap:5px}
+  .two-col[style*="gap:28px"]{gap:20px!important}
+}
+
+/* ── PRINT ONLY ── */
+@media print{
+  @page{size:letter;margin:0.55in 0.72in}
+  html{background:white}
+  body{max-width:none;margin:0;box-shadow:none}
+  .page{padding:0}
+  .page-break{padding-top:0}
+  a{color:inherit;text-decoration:none}
+  .section{margin-bottom:14px}
+  .divider{margin:12px 0}
+  .price-model{margin-bottom:14px}
+  .price-box{padding:12px 16px}
+  .lede{margin-bottom:16px;font-size:9.5pt}
+  .program-pills{margin-bottom:14px}
+  .tier-table th,.tier-table td{padding:6px 12px}
+  .scenarios-table th,.scenarios-table td{padding:6px 12px}
+  .tier-note{margin-bottom:14px}
+  .impl-box{padding:11px 14px}
+  .doc-footer{margin-top:18px}
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════ PAGE 1 ═══ -->
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="doc-header">
+    <div class="doc-logo">
+      <svg width="28" height="33" viewBox="0 0 154 182" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M153.032 120.267C151.562 120.775 150.1 121.263 148.595 121.797C122.192 131.345 96.6636 144.643 77.0527 163.76C76.1612 164.641 75.2855 165.535 74.4268 166.442C74.8954 167.697 75.1533 169.054 75.1533 170.473C75.1533 176.839 69.9929 181.999 63.627 181.999C57.2609 181.999 52.0996 176.839 52.0996 170.473C52.0997 164.107 57.261 158.947 63.627 158.947C65.3899 158.947 67.0597 159.343 68.5537 160.051C69.5224 159.205 70.5035 158.377 71.4951 157.565C94.2724 139.231 121.208 128.493 148.469 121.378C150.02 120.983 151.523 120.635 153.032 120.267Z" fill="#9BE2E4"/>
+<path d="M11.9873 59.3557C18.6078 59.3557 23.9754 64.6194 23.9756 71.1125C23.9756 73.5466 23.2204 75.8077 21.9287 77.6838C22.5991 78.8025 23.2939 79.8907 24.0283 80.967C42.696 108.284 79.6038 118.04 113.279 118.468C115.159 118.48 117.145 118.446 118.953 118.372C117.157 118.591 115.174 118.771 113.293 118.905C79.6598 120.871 41.0566 114.918 17.3516 85.9348C16.4642 84.8277 15.6152 83.7036 14.7891 82.5432C13.8901 82.7543 12.9523 82.8703 11.9873 82.8703C5.36686 82.8701 0 77.6057 0 71.1125C0.000202317 64.6195 5.36698 59.3559 11.9873 59.3557Z" fill="url(#p1a)"/>
+<path d="M133.939 120.678C132.369 120.919 130.647 121.204 129.029 121.485C99.5499 126.902 69.8404 134.143 43.9873 147.876C43.4006 148.2 42.8073 148.535 42.2168 148.874C42.3447 149.562 42.415 150.27 42.415 150.995C42.415 157.361 37.2545 162.521 30.8887 162.522C24.5227 162.522 19.3614 157.361 19.3613 150.995C19.3613 144.629 24.5227 139.469 30.8887 139.469C33.4021 139.469 35.726 140.275 37.6201 141.641C38.5159 141.218 39.4179 140.804 40.3027 140.414C68.9294 128.335 99.008 123.935 128.973 121.052C130.611 120.915 132.353 120.774 133.939 120.678Z" fill="url(#p1b)"/>
+<path d="M42.417 51.5175C47.7642 51.5178 52.0986 55.7692 52.0986 61.0136C52.0986 63.9272 50.7594 66.5324 48.6533 68.2744C49.2172 69.1005 49.7957 69.9154 50.3936 70.7236C71.577 98.807 108.849 112.23 144.412 114.014C146.432 113.955 148.534 114.174 150.306 113.301C149.859 113.553 149.387 113.733 148.898 113.866C149.14 113.837 149.381 113.803 149.617 113.762C149.178 113.865 148.728 113.945 148.27 114.011C147.03 114.248 145.706 114.248 144.42 114.358C144.137 114.36 143.854 114.358 143.57 114.357C143.561 114.358 143.551 114.359 143.542 114.359C107.681 115.104 65.8779 107.282 43.7041 74.0498C42.9458 72.8727 42.2307 71.6873 41.5449 70.4697C36.606 70.0374 32.7344 65.97 32.7344 61.0136C32.7344 55.7691 37.0696 51.5175 42.417 51.5175Z" fill="url(#p1c)"/>
+<path d="M90.7822 0.66696C92.6862 -0.538979 95.339 -0.0645439 96.707 1.72653C97.4008 2.63492 97.6295 3.70723 97.4395 4.70114C97.4522 4.82516 97.4598 4.9512 97.458 5.07907C97.3457 13.2627 97.0693 35.4671 97.0693 55.7363C97.0693 57.032 97.0492 58.2767 97.0127 59.4716C96.9525 70.6974 96.8631 79.7189 96.833 82.5644C96.8269 83.1338 96.4721 83.6365 95.9395 83.8379L91.54 85.5009C90.8536 85.7605 90.1321 85.4542 89.8232 84.8691C89.7229 84.7836 89.667 84.631 89.667 84.416V10.997L60.6465 29.3769C60.641 41.5872 60.6289 69.1824 60.6289 70.4882C60.6289 72.1676 53.0219 65.8699 52.7832 53.9043V26.8779C52.7832 26.486 52.8525 26.1102 52.9805 25.7627C53.2129 24.897 53.7706 24.1095 54.625 23.5683L90.7822 0.66696Z" fill="url(#p1d)"/>
+<path d="M100.09 30.9179C100.075 30.534 100.509 30.3007 100.821 30.5254L114.154 40.1318C114.274 40.2184 114.346 40.3576 114.346 40.5058V47.0859C114.364 61.7596 114.695 92.4466 114.783 100.316C114.793 101.25 113.895 101.915 113.001 101.646L107.491 99.9922C106.906 99.8166 106.505 99.3019 106.505 98.6914V49.3906C106.505 49.3746 106.507 49.3571 106.508 49.3379V44.0117L100.671 40.3984C100.541 40.3178 100.459 40.1783 100.453 40.0254L100.09 30.9179Z" fill="url(#p1e)"/>
+<defs>
+<linearGradient id="p1a" x1="14.0623" y1="71.5739" x2="40.5735" y2="94.3963" gradientUnits="userSpaceOnUse"><stop stop-color="#9CE4E5"/><stop offset="1" stop-color="#936DD7"/></linearGradient>
+<linearGradient id="p1b" x1="27.1997" y1="148.111" x2="123.334" y2="125.056" gradientUnits="userSpaceOnUse"><stop stop-color="#9CE4E5"/><stop offset="0.778846" stop-color="#5B4790"/><stop offset="1" stop-color="#98D8EB"/></linearGradient>
+<linearGradient id="p1c" x1="91.52" y1="51.5175" x2="91.52" y2="114.407" gradientUnits="userSpaceOnUse"><stop stop-color="#96D0F0"/><stop offset="1" stop-color="#90B6EF"/></linearGradient>
+<linearGradient id="p1d" x1="75.1434" y1="0" x2="75.1434" y2="85.594" gradientUnits="userSpaceOnUse"><stop stop-color="#A37CEC"/><stop offset="1" stop-color="#5B4790"/></linearGradient>
+<linearGradient id="p1e" x1="107.436" y1="30.4375" x2="107.436" y2="101.706" gradientUnits="userSpaceOnUse"><stop stop-color="#A37CEC"/><stop offset="1" stop-color="#5B4790"/></linearGradient>
+</defs>
+      </svg>
+      <span class="logo-wordmark">Resonance</span>
+    </div>
+    <div class="doc-header-right">
+      <div class="doc-title">Pricing Overview</div>
+      <div class="doc-date">June 2026 · resonancehq.io</div>
+    </div>
+  </div>
+
+  <!-- INTRO -->
+  <div class="section">
+    <div class="eyebrow">The Model</div>
+    <h1>Simple, transparent pricing.<br><em>Aligned with your program.</em></h1>
+    <p class="lede">Resonance is priced in two parts: a flat monthly platform fee that covers your entire organization, plus a per-unit rate based on your active household count. No per-seat charges. No feature tiers. No module add-ons.</p>
+    <div class="program-pills">
+      <span class="pill">RAD</span>
+      <span class="pill">PACT</span>
+      <span class="pill">Section 18</span>
+      <span class="pill">Choice Neighborhoods</span>
+      <span class="pill">HOPE VI</span>
+      <span class="pill">LIHTC Preservation</span>
+      <span class="pill">HUD Disposition</span>
+    </div>
+  </div>
+
+  <!-- PRICING MODEL BOXES -->
+  <div class="section">
+    <div class="price-model">
+      <div class="price-box teal">
+        <div class="price-box-label t">Platform fee · monthly</div>
+        <div class="price-box-name">Platform License</div>
+        <div class="price-box-desc">One flat fee. Full access to the entire Resonance platform — every feature, every user in your organization, every program you manage.</div>
+        <div class="price-big">$3,000 <span class="price-unit">per month · covers your full organization</span></div>
+      </div>
+      <div class="price-connector">+</div>
+      <div class="price-box purple">
+        <div class="price-box-label p">Usage fee · per active unit</div>
+        <div class="price-box-name">Per Active Unit</div>
+        <div class="price-box-desc">On top of the platform fee, you pay per active household in your program. Your rate decreases automatically as your portfolio grows.</div>
+        <div class="price-big">$7–$15 <span class="price-unit">per active unit / month · volume-tiered</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TWO COLUMN: VOLUME TABLE + SCENARIOS -->
+  <div class="two-col">
+
+    <!-- Volume Tiers -->
+    <div>
+      <div class="eyebrow">Volume Pricing</div>
+      <h2>The rate scales<br><em>as you grow.</em></h2>
+      <table class="tier-table">
+        <thead>
+          <tr>
+            <th>Active Units</th>
+            <th>Per Unit / Month</th>
+            <th style="text-align:right">Effective Rate</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Up to 500 units</td>
+            <td><strong>$15.00</strong></td>
+            <td>Standard</td>
+          </tr>
+          <tr>
+            <td>501 – 1,000 units</td>
+            <td><strong>$10.00</strong></td>
+            <td>−33%</td>
+          </tr>
+          <tr class="best">
+            <td>1,000+ units</td>
+            <td><strong>$7.00</strong></td>
+            <td>−53%</td>
+          </tr>
+          <tr>
+            <td>On-hold projects</td>
+            <td><strong>$3.00</strong></td>
+            <td>Read-only</td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="tier-note">Rate is calculated on your active unit count at the end of each billing period. Units added mid-month are prorated. Programs that close out are removed from your active count automatically.</p>
+    </div>
+
+    <!-- Sample Estimates -->
+    <div>
+      <div class="eyebrow">Sample Estimates</div>
+      <h2>What you'd pay<br><em>at different scales.</em></h2>
+      <table class="scenarios-table">
+        <thead>
+          <tr>
+            <th>Program Size</th>
+            <th>Units</th>
+            <th>Rate</th>
+            <th>Total / Mo</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Small pilot</td>
+            <td>150</td>
+            <td>$15</td>
+            <td class="total">$5,250</td>
+          </tr>
+          <tr>
+            <td>Mid-size RSP</td>
+            <td>400</td>
+            <td>$15</td>
+            <td class="total">$9,000</td>
+          </tr>
+          <tr>
+            <td>Large PHA program</td>
+            <td>800</td>
+            <td>$10</td>
+            <td class="total">$11,000</td>
+          </tr>
+          <tr>
+            <td>Multi-program portfolio</td>
+            <td>1,500</td>
+            <td>$7</td>
+            <td class="total">$13,500</td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="tier-note">All estimates: $3,000 platform + (units × rate). Annual contracts available with discount on both components.</p>
+    </div>
+
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- IMPLEMENTATION FEE -->
+  <div class="impl-box">
+    <div class="impl-box-label">One-Time · Per Program Setup</div>
+    <div class="impl-box-title">Implementation Fee — scoped to program size and complexity</div>
+    <p>Charged once per new program onboarded. Covers: data migration from existing systems, workflow configuration to match your program structure, and team onboarding to get coordinators productive from day one. We provide a fixed scope and timeline upfront — no open-ended engagements, no surprise overruns. Implementation pricing is provided in your proposal.</p>
+  </div>
+
+
+</div><!-- end page 1 -->
+
+
+<!-- ═══════════════════════════════════════════ PAGE 2 ═══ -->
+<div class="page page-break">
+
+  <!-- HEADER PAGE 2 -->
+  <div class="doc-header">
+    <div class="doc-logo">
+      <svg width="22" height="26" viewBox="0 0 154 182" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M153.032 120.267C151.562 120.775 150.1 121.263 148.595 121.797C122.192 131.345 96.6636 144.643 77.0527 163.76C76.1612 164.641 75.2855 165.535 74.4268 166.442C74.8954 167.697 75.1533 169.054 75.1533 170.473C75.1533 176.839 69.9929 181.999 63.627 181.999C57.2609 181.999 52.0996 176.839 52.0996 170.473C52.0997 164.107 57.261 158.947 63.627 158.947C65.3899 158.947 67.0597 159.343 68.5537 160.051C69.5224 159.205 70.5035 158.377 71.4951 157.565C94.2724 139.231 121.208 128.493 148.469 121.378C150.02 120.983 151.523 120.635 153.032 120.267Z" fill="#9BE2E4"/>
+<path d="M11.9873 59.3557C18.6078 59.3557 23.9754 64.6194 23.9756 71.1125C23.9756 73.5466 23.2204 75.8077 21.9287 77.6838C22.5991 78.8025 23.2939 79.8907 24.0283 80.967C42.696 108.284 79.6038 118.04 113.279 118.468C115.159 118.48 117.145 118.446 118.953 118.372C117.157 118.591 115.174 118.771 113.293 118.905C79.6598 120.871 41.0566 114.918 17.3516 85.9348C16.4642 84.8277 15.6152 83.7036 14.7891 82.5432C13.8901 82.7543 12.9523 82.8703 11.9873 82.8703C5.36686 82.8701 0 77.6057 0 71.1125C0.000202317 64.6195 5.36698 59.3559 11.9873 59.3557Z" fill="url(#p2a)"/>
+<path d="M133.939 120.678C132.369 120.919 130.647 121.204 129.029 121.485C99.5499 126.902 69.8404 134.143 43.9873 147.876C43.4006 148.2 42.8073 148.535 42.2168 148.874C42.3447 149.562 42.415 150.27 42.415 150.995C42.415 157.361 37.2545 162.521 30.8887 162.522C24.5227 162.522 19.3614 157.361 19.3613 150.995C19.3613 144.629 24.5227 139.469 30.8887 139.469C33.4021 139.469 35.726 140.275 37.6201 141.641C38.5159 141.218 39.4179 140.804 40.3027 140.414C68.9294 128.335 99.008 123.935 128.973 121.052C130.611 120.915 132.353 120.774 133.939 120.678Z" fill="url(#p2b)"/>
+<path d="M42.417 51.5175C47.7642 51.5178 52.0986 55.7692 52.0986 61.0136C52.0986 63.9272 50.7594 66.5324 48.6533 68.2744C49.2172 69.1005 49.7957 69.9154 50.3936 70.7236C71.577 98.807 108.849 112.23 144.412 114.014C146.432 113.955 148.534 114.174 150.306 113.301C149.859 113.553 149.387 113.733 148.898 113.866C149.14 113.837 149.381 113.803 149.617 113.762C149.178 113.865 148.728 113.945 148.27 114.011C147.03 114.248 145.706 114.248 144.42 114.358C144.137 114.36 143.854 114.358 143.57 114.357C143.561 114.358 143.551 114.359 143.542 114.359C107.681 115.104 65.8779 107.282 43.7041 74.0498C42.9458 72.8727 42.2307 71.6873 41.5449 70.4697C36.606 70.0374 32.7344 65.97 32.7344 61.0136C32.7344 55.7691 37.0696 51.5175 42.417 51.5175Z" fill="url(#p2c)"/>
+<path d="M90.7822 0.66696C92.6862 -0.538979 95.339 -0.0645439 96.707 1.72653C97.4008 2.63492 97.6295 3.70723 97.4395 4.70114C97.4522 4.82516 97.4598 4.9512 97.458 5.07907C97.3457 13.2627 97.0693 35.4671 97.0693 55.7363C97.0693 57.032 97.0492 58.2767 97.0127 59.4716C96.9525 70.6974 96.8631 79.7189 96.833 82.5644C96.8269 83.1338 96.4721 83.6365 95.9395 83.8379L91.54 85.5009C90.8536 85.7605 90.1321 85.4542 89.8232 84.8691C89.7229 84.7836 89.667 84.631 89.667 84.416V10.997L60.6465 29.3769C60.641 41.5872 60.6289 69.1824 60.6289 70.4882C60.6289 72.1676 53.0219 65.8699 52.7832 53.9043V26.8779C52.7832 26.486 52.8525 26.1102 52.9805 25.7627C53.2129 24.897 53.7706 24.1095 54.625 23.5683L90.7822 0.66696Z" fill="url(#p2d)"/>
+<path d="M100.09 30.9179C100.075 30.534 100.509 30.3007 100.821 30.5254L114.154 40.1318C114.274 40.2184 114.346 40.3576 114.346 40.5058V47.0859C114.364 61.7596 114.695 92.4466 114.783 100.316C114.793 101.25 113.895 101.915 113.001 101.646L107.491 99.9922C106.906 99.8166 106.505 99.3019 106.505 98.6914V49.3906C106.505 49.3746 106.507 49.3571 106.508 49.3379V44.0117L100.671 40.3984C100.541 40.3178 100.459 40.1783 100.453 40.0254L100.09 30.9179Z" fill="url(#p2e)"/>
+<defs>
+<linearGradient id="p2a" x1="14.0623" y1="71.5739" x2="40.5735" y2="94.3963" gradientUnits="userSpaceOnUse"><stop stop-color="#9CE4E5"/><stop offset="1" stop-color="#936DD7"/></linearGradient>
+<linearGradient id="p2b" x1="27.1997" y1="148.111" x2="123.334" y2="125.056" gradientUnits="userSpaceOnUse"><stop stop-color="#9CE4E5"/><stop offset="0.778846" stop-color="#5B4790"/><stop offset="1" stop-color="#98D8EB"/></linearGradient>
+<linearGradient id="p2c" x1="91.52" y1="51.5175" x2="91.52" y2="114.407" gradientUnits="userSpaceOnUse"><stop stop-color="#96D0F0"/><stop offset="1" stop-color="#90B6EF"/></linearGradient>
+<linearGradient id="p2d" x1="75.1434" y1="0" x2="75.1434" y2="85.594" gradientUnits="userSpaceOnUse"><stop stop-color="#A37CEC"/><stop offset="1" stop-color="#5B4790"/></linearGradient>
+<linearGradient id="p2e" x1="107.436" y1="30.4375" x2="107.436" y2="101.706" gradientUnits="userSpaceOnUse"><stop stop-color="#A37CEC"/><stop offset="1" stop-color="#5B4790"/></linearGradient>
+</defs>
+      </svg>
+      <span class="logo-wordmark" style="font-size:11pt;color:#6B5A9A;">Resonance · Pricing Overview</span>
+    </div>
+    <div class="doc-header-right">
+      <div class="doc-date" style="margin-top:4px;">The full platform · ROI · Next steps</div>
+    </div>
+  </div>
+
+  <!-- WHAT'S INCLUDED -->
+  <div class="features-section">
+    <div class="eyebrow">What's Included</div>
+    <h2>The full platform. <em>No modules. No upsells.</em></h2>
+    <p style="font-size:8pt;color:var(--ink-3);margin-bottom:14px;">Every capability below is included at every price point. We don't gate features behind higher tiers.</p>
+
+    <div class="features-grid">
+      <div class="feature-row">
+        <div class="feature-icon">🏠</div>
+        <div>
+          <div class="feature-name">Household &amp; Case Management</div>
+          <div class="feature-desc">Full profiles, history, and status tracking for every household in your program</div>
+        </div>
+      </div>
+      <div class="feature-row">
+        <div class="feature-icon">🎯</div>
+        <div>
+          <div class="feature-name">AI Unit Matching Engine</div>
+          <div class="feature-desc">Ranked unit matches by bedroom count, accessibility, phase, and eligibility criteria</div>
+        </div>
+      </div>
+      <div class="feature-row">
+        <div class="feature-icon">📐</div>
+        <div>
+          <div class="feature-name">Scenario Planning</div>
+          <div class="feature-desc">Model re-sequencing scenarios across phases before committing to one</div>
+        </div>
+      </div>
+      <div class="feature-row">
+        <div class="feature-icon">🔗</div>
+        <div>
+          <div class="feature-name">Chain-Move Coordination</div>
+          <div class="feature-desc">Map dependency chains across households; surface blockers in real time</div>
+        </div>
+      </div>
+      <div class="feature-row">
+        <div class="feature-icon">🛡️</div>
+        <div>
+          <div class="feature-name">URA Compliance Documentation</div>
+          <div class="feature-desc">Generate 90-day and 30-day notices; maintain HUD-ready audit records automatically</div>
+        </div>
+      </div>
+      <div class="feature-row">
+        <div class="feature-icon">↩️</div>
+        <div>
+          <div class="feature-name">Right-to-Return Tracking</div>
+          <div class="feature-desc">Eligibility rosters, commitments, and placement status across all construction phases</div>
+        </div>
+      </div>
+      <div class="feature-row">
+        <div class="feature-icon">📋</div>
+        <div>
+          <div class="feature-name">Phase Sequencing</div>
+          <div class="feature-desc">Multi-building, multi-phase construction and relocation timeline coordination</div>
+        </div>
+      </div>
+      <div class="feature-row">
+        <div class="feature-icon">📱</div>
+        <div>
+          <div class="feature-name">Field Workflow Logs</div>
+          <div class="feature-desc">Notice delivery, incident reports, and unit prep — all timestamped and attributable</div>
+        </div>
+      </div>
+      <div class="feature-row">
+        <div class="feature-icon">📊</div>
+        <div>
+          <div class="feature-name">Multi-Stakeholder Dashboards</div>
+          <div class="feature-desc">Real-time program status for leadership, developers, and PHA teams simultaneously</div>
+        </div>
+      </div>
+      <div class="feature-row">
+        <div class="feature-icon">✅</div>
+        <div>
+          <div class="feature-name">Pre-Construction Compliance Checklist</div>
+          <div class="feature-desc">Cascading compliance milestones tied to construction and relocation phases</div>
+        </div>
+      </div>
+      <div class="feature-row">
+        <div class="feature-icon">🚚</div>
+        <div>
+          <div class="feature-name">Vendor Assignment Tracking</div>
+          <div class="feature-desc">Every vendor linked to a household — status updated automatically through the move</div>
+        </div>
+      </div>
+      <div class="feature-row">
+        <div class="feature-icon">📄</div>
+        <div>
+          <div class="feature-name">HUD Audit Documentation Export</div>
+          <div class="feature-desc">Package your full audit trail for HUD reviews in seconds, not days</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ROI -->
+  <div class="section">
+    <div class="eyebrow">Return on Investment</div>
+    <h2>Does Resonance justify its cost?</h2>
+    <p style="font-size:8pt;color:var(--ink-3);margin-bottom:14px;">Three ways to look at the value Resonance delivers relative to what you pay.</p>
+
+    <div class="roi-grid">
+      <div class="roi-card">
+        <div class="roi-card-num">&lt;10%</div>
+        <div class="roi-card-label">Of your contract value</div>
+        <div class="roi-card-desc">RSP contracts typically run $100–$200 per unit per year. At 500 units, Resonance costs ~$126k/yr — less than 10% of a $750k contract, while managing the compliance exposure that protects the rest.</div>
+      </div>
+      <div class="roi-card">
+        <div class="roi-card-num">3×</div>
+        <div class="roi-card-label">Capacity per coordinator</div>
+        <div class="roi-card-desc">Coordinators managing relocation manually top out around 100 units each. With Resonance, the same person handles ~300. Adding capacity through software is dramatically cheaper than hiring.</div>
+      </div>
+      <div class="roi-card">
+        <div class="roi-card-num">~10 hrs</div>
+        <div class="roi-card-label">Weekly savings needed to break even</div>
+        <div class="roi-card-desc">At 500 units, 10 coordinators, $25/hr — Resonance pays for itself if each coordinator saves ~10 hours per week. Most report saving several hours per day on paperwork and coordination alone.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- HOW ENGAGEMENTS WORK -->
+  <div class="section" style="break-before:page">
+    <div class="two-col" style="gap:28px">
+
+      <div>
+        <div class="eyebrow">Typical Engagement Path</div>
+        <h2 style="font-size:11pt">How most relationships start</h2>
+        <div style="margin-top:12px;display:flex;flex-direction:column;gap:10px;">
+          <div style="display:flex;gap:10px;align-items:flex-start">
+            <div style="width:20px;height:20px;border-radius:50%;background:var(--teal-light);border:1px solid var(--teal-border);display:flex;align-items:center;justify-content:center;font-family:var(--ff-mono);font-size:7pt;font-weight:700;color:var(--teal);flex-shrink:0;">1</div>
+            <div>
+              <div style="font-size:8pt;font-weight:600;color:var(--ink);margin-bottom:2px;">Scoped pilot</div>
+              <div style="font-size:7.5pt;color:var(--ink-3);line-height:1.55">One program or one phase. Real data, full support, defined success criteria. Fixed scope and implementation fee upfront.</div>
+            </div>
+          </div>
+          <div style="display:flex;gap:10px;align-items:flex-start">
+            <div style="width:20px;height:20px;border-radius:50%;background:var(--purple-light);border:1px solid var(--purple-border);display:flex;align-items:center;justify-content:center;font-family:var(--ff-mono);font-size:7pt;font-weight:700;color:var(--purple-mid);flex-shrink:0;">2</div>
+            <div>
+              <div style="font-size:8pt;font-weight:600;color:var(--ink);margin-bottom:2px;">Annual contract</div>
+              <div style="font-size:7.5pt;color:var(--ink-3);line-height:1.55">Discount on both the platform fee and the per-unit rate. Annual contracts also get priority onboarding for new programs added during the term.</div>
+            </div>
+          </div>
+          <div style="display:flex;gap:10px;align-items:flex-start">
+            <div style="width:20px;height:20px;border-radius:50%;background:var(--bg-soft);border:1px solid var(--rule);display:flex;align-items:center;justify-content:center;font-family:var(--ff-mono);font-size:7pt;font-weight:700;color:var(--ink-3);flex-shrink:0;">3</div>
+            <div>
+              <div style="font-size:8pt;font-weight:600;color:var(--ink);margin-bottom:2px;">Enterprise / multi-program</div>
+              <div style="font-size:7.5pt;color:var(--ink-3);line-height:1.55">Organizations managing 1,000+ units across multiple programs: negotiated per-unit rate below $7, custom base fee, dedicated account support.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="eyebrow">Common Questions</div>
+        <h2 style="font-size:11pt">Quick answers</h2>
+        <div style="margin-top:12px;display:flex;flex-direction:column;gap:9px;">
+          <div style="border-bottom:1px solid var(--rule);padding-bottom:9px;">
+            <div style="font-size:8pt;font-weight:600;color:var(--ink);margin-bottom:3px;">What counts as an "active unit"?</div>
+            <div style="font-size:7.5pt;color:var(--ink-3);line-height:1.55">Any unit currently enrolled in your program — surveyed, matched, in relocation, or being managed. Closed-out or archived units are not counted.</div>
+          </div>
+          <div style="border-bottom:1px solid var(--rule);padding-bottom:9px;">
+            <div style="font-size:8pt;font-weight:600;color:var(--ink);margin-bottom:3px;">Can units be added mid-month?</div>
+            <div style="font-size:7.5pt;color:var(--ink-3);line-height:1.55">Yes. The per-unit fee is calculated on your active count at end of billing period. New programs added mid-month are prorated.</div>
+          </div>
+          <div style="border-bottom:1px solid var(--rule);padding-bottom:9px;">
+            <div style="font-size:8pt;font-weight:600;color:var(--ink);margin-bottom:3px;">What if our program ends?</div>
+            <div style="font-size:7.5pt;color:var(--ink-3);line-height:1.55">Units are archived and removed from your active count. Between programs, we can discuss reduced-rate archive tiers or account hold options.</div>
+          </div>
+          <div>
+            <div style="font-size:8pt;font-weight:600;color:var(--ink);margin-bottom:3px;">Do you offer nonprofit / PHA pricing?</div>
+            <div style="font-size:7.5pt;color:var(--ink-3);line-height:1.55">Pricing is based on program size, not organization type. We're happy to structure payment timing around HUD funding cycles.</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- FOOTER PAGE 2 -->
+  <div class="doc-footer" style="margin-top:20px">
+    <div class="footer-contact">
+      <strong>Get a tailored proposal for your program</strong>
+      Sean Christensen · <a href="mailto:sean@resonancehq.io">sean@resonancehq.io</a><br>
+      We respond within one business day. No sales scripts — just a real conversation about your program.
+    </div>
+    <div class="footer-legal">
+      <div class="footer-logo" style="margin-bottom:4px;">Resonance</div>
+      resonancehq.io
+    </div>
+  </div>
+
+</div><!-- end page 2 -->
+
+</body>
+</html>
