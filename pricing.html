@@ -29,7 +29,7 @@
   --ff-display:'Fraunces',Georgia,'Times New Roman',serif;
   --ff-body:'Instrument Sans',-apple-system,sans-serif;
   --ff-mono:'JetBrains Mono','SF Mono','Fira Code',monospace;
-  --radius-lg:14px;--radius-xl:20px;
+  --radius-sm:8px;--radius-md:12px;--radius-lg:14px;--radius-xl:20px;
 }
 html[data-theme="light"]{
   --dark:#F5F2FF;--dark-1:#ECE6FA;--dark-2:#E2DAF5;--dark-3:#D4CCED;--dark-4:#C3B9E2;
@@ -50,72 +50,268 @@ section{padding:96px 0 112px;border-top:0.5px solid var(--border)}
 section:first-of-type{border-top:none}
 
 /* ── NAV ── */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 32px;height:64px;background:rgba(9,8,15,0.75);backdrop-filter:blur(16px);border-bottom:0.5px solid var(--border)}
-html[data-theme="light"] nav{background:rgba(245,242,255,0.88)!important}
-.nav-logo{display:flex;align-items:center;gap:8px;text-decoration:none;flex-shrink:0}
-.logo-text{font-family:var(--ff-display);font-size:1.15rem;font-weight:400;color:var(--text-1);letter-spacing:-0.01em}
-.nav-center{display:flex;align-items:center;gap:4px}
-.nav-item{position:relative}
-.nav-btn{background:none;border:none;color:var(--text-2);font-family:var(--ff-body);font-size:13.5px;font-weight:500;cursor:pointer;padding:6px 12px;border-radius:8px;display:flex;align-items:center;gap:5px;transition:color .2s,background .2s}
-.nav-btn svg{width:10px;height:10px;transition:transform .2s}
-.nav-btn:hover,.nav-item:hover .nav-btn{color:var(--text-1);background:rgba(255,255,255,0.06)}
-.nav-item:hover .nav-btn svg{transform:rotate(180deg)}
-.dropdown{position:absolute;top:calc(100% + 12px);left:50%;transform:translateX(-50%);background:var(--dark-2);border:0.5px solid var(--border-hi);border-radius:var(--radius-lg);padding:16px 8px 8px;min-width:270px;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .18s,transform .18s,visibility .18s;box-shadow:0 24px 64px rgba(0,0,0,0.6),0 0 0 0.5px var(--border);display:flex;gap:16px}
-html[data-theme="light"] .dropdown{box-shadow:0 8px 32px rgba(91,33,182,0.12),0 0 0 0.5px var(--border-hi)}
-.dropdown::before{content:'';position:absolute;top:0;left:0;right:0;height:16px;transform:translateY(-100%)}
-.dropdown-wide{min-width:480px}
-.nav-item:hover .dropdown{opacity:1;visibility:visible;pointer-events:all;transform:translateX(-50%) translateY(0)}
-.dd-section{flex:1}
-.dd-label{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text-3);padding:4px 12px 8px}
-.dd-item{display:flex;align-items:flex-start;gap:10px;padding:9px 12px;border-radius:8px;text-decoration:none;transition:background .15s;cursor:pointer;color:var(--text-2)}
-.dd-item:hover{background:rgba(255,255,255,0.07)}
-.dd-icon{width:28px;height:28px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
-.dd-icon.t{background:var(--teal-ghost)}
-.dd-icon.v{background:var(--purple-ghost)}
-.dd-icon.a{background:rgba(245,158,11,0.12)}
-.dd-name{font-size:13px;font-weight:600;color:var(--text-1);margin-bottom:2px}
-.dd-desc{font-size:11.5px;color:var(--text-3);line-height:1.4}
-.dd-divider{height:0.5px;background:var(--border);margin:6px 12px}
-.nav-right{display:flex;align-items:center;gap:10px}
-.btn-login{font-size:13px;color:var(--text-2);text-decoration:none;padding:6px 12px;border-radius:8px;transition:color .2s,background .2s}
-.btn-login:hover{color:var(--text-1);background:rgba(255,255,255,0.06)}
-.btn-case-studies,.btn-calculators{font-size:13px;color:var(--text-2);text-decoration:none;padding:6px 12px;border-radius:8px;transition:color .2s,background .2s}
-.btn-case-studies:hover,.btn-calculators:hover{color:var(--text-1);background:rgba(255,255,255,0.06)}
-.btn-demo{display:flex;align-items:center;gap:6px;background:var(--purple);color:#fff;border:none;font-family:var(--ff-body);font-size:13px;font-weight:600;padding:8px 16px;border-radius:20px;cursor:pointer;text-decoration:none;transition:background .2s,transform .15s,box-shadow .2s;box-shadow:0 0 0 1px rgba(124,58,237,0.4),0 4px 16px rgba(91,33,182,0.35)}
-.btn-demo:hover{background:var(--purple-mid);transform:translateY(-1px)}
-.theme-toggle{width:32px;height:32px;border-radius:8px;border:0.5px solid var(--border);background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--text-2);transition:background .2s,color .2s}
-.theme-toggle:hover{background:rgba(255,255,255,0.06);color:var(--text-1)}
-.icon-sun{display:none}
-html[data-theme="light"] .icon-sun{display:block}
-html[data-theme="light"] .icon-moon{display:none}
-.nav-hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;width:36px;height:36px;background:none;border:none;cursor:pointer;padding:4px}
-.nav-hamburger span{display:block;height:1.5px;background:var(--text-2);border-radius:2px;transition:transform .3s,opacity .3s}
+html[data-theme="light"] nav { background: rgba(245,245,247,0.92) !important; }
+.theme-toggle {
+  width: 34px; height: 34px; border-radius: 10px;
+  border: 0.5px solid var(--border-hi); background: transparent;
+  color: var(--text-2); cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: background 0.2s, color 0.2s, border-color 0.2s; flex-shrink: 0;
+}
+.theme-toggle:hover { background: rgba(255,255,255,0.07); color: var(--text-1); }
+html[data-theme="light"] .theme-toggle:hover { background: rgba(0,0,0,0.06); }
+.theme-toggle .icon-sun { display: none; }
+.theme-toggle .icon-moon { display: block; }
+html[data-theme="light"] .theme-toggle .icon-sun { display: block; }
+html[data-theme="light"] .theme-toggle .icon-moon { display: none; }
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  height: 64px;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 40px;
+  background: rgba(9,8,15,0.75);
+  backdrop-filter: blur(24px) saturate(150%);
+  border-bottom: 0.5px solid var(--border);
+  transition: background 0.3s;
+}
+.nav-logo {
+  display: flex; align-items: center; gap: 5px;
+  text-decoration: none; flex-shrink: 0;
+}
+.logo-mark {
+  width: 34px; height: 34px; background: none;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.logo-text {
+  font-family: var(--ff-display); font-size: 1.2rem; font-weight: 400;
+  color: var(--text-1); letter-spacing: -0.01em;
+}
+.nav-center { display: flex; align-items: center; gap: 2px; }
+.nav-btn {
+  font-family: var(--ff-body); font-size: 13.5px; font-weight: 500;
+  color: var(--text-2); background: none; border: none; cursor: pointer;
+  padding: 7px 13px; border-radius: var(--radius-sm);
+  display: flex; align-items: center; gap: 4px;
+  transition: color 0.2s, background 0.2s;
+  text-decoration: none;
+}
+.nav-btn:hover { color: var(--text-1); background: rgba(255,255,255,0.055); }
+.nav-btn svg { width: 11px; height: 11px; transition: transform 0.2s; flex-shrink: 0; }
+.nav-item:hover .nav-btn svg { transform: rotate(180deg); }
+.nav-right { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+.btn-login {
+  font-size: 13.5px; font-weight: 500; color: var(--text-1);
+  text-decoration: none; padding: 7px 16px; border-radius: var(--radius-md);
+  border: 0.5px solid rgba(255,255,255,0.15);
+  transition: color 0.2s, background 0.2s, border-color 0.2s;
+}
+.btn-login:hover { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.25); }
+.btn-case-studies {
+  font-family: var(--ff-body); font-size: 13px; font-weight: 600;
+  color: var(--teal-bright); text-decoration: none;
+  padding: 7px 16px; border-radius: var(--radius-md);
+  border: 0.5px solid rgba(20,184,166,0.35);
+  background: rgba(20,184,166,0.07);
+  transition: color 0.2s, background 0.2s, border-color 0.2s;
+  white-space: nowrap;
+}
+.btn-case-studies:hover { background: rgba(20,184,166,0.14); border-color: rgba(20,184,166,0.6); }
+.btn-calculators {
+  font-family: var(--ff-body); font-size: 13px; font-weight: 600;
+  color: var(--purple-bright); text-decoration: none;
+  padding: 7px 16px; border-radius: var(--radius-md);
+  border: 0.5px solid rgba(167,139,250,0.35);
+  background: rgba(167,139,250,0.07);
+  transition: color 0.2s, background 0.2s, border-color 0.2s;
+  white-space: nowrap;
+}
+.btn-calculators:hover { background: rgba(167,139,250,0.14); border-color: rgba(167,139,250,0.6); }
+@media (max-width: 768px) {
+  .btn-case-studies, .btn-calculators { display: none; }
+}
+.btn-demo {
+  font-family: var(--ff-body); font-size: 13px; font-weight: 600;
+  color: white; background: var(--purple);
+  border: none; border-radius: var(--radius-md); padding: 9px 20px; cursor: pointer;
+  text-decoration: none; display: inline-flex; align-items: center; gap: 7px;
+  transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+  box-shadow: 0 0 0 1px rgba(124,58,237,0.4), 0 4px 16px rgba(91,33,182,0.35);
+}
+.btn-demo:hover { background: var(--purple-mid); transform: translateY(-1px); box-shadow: 0 0 0 1px rgba(124,58,237,0.6), 0 6px 24px rgba(91,33,182,0.45); }
 
-/* ── MOBILE NAV ── */
-#mobile-nav-overlay{display:none;position:fixed;inset:0;z-index:1499;background:rgba(0,0,0,0.5);backdrop-filter:blur(4px)}
-#mobile-nav-overlay.open{display:block}
-#mobile-nav{display:none;position:fixed;top:0;right:0;bottom:0;z-index:1500;width:min(340px,92vw);background:var(--dark-1);border-left:0.5px solid var(--border);flex-direction:column;overflow:hidden}
-#mobile-nav.open{display:flex}
-.mob-nav-header{display:flex;align-items:center;justify-content:space-between;padding:0 20px;height:64px;border-bottom:0.5px solid var(--border);flex-shrink:0}
-.mob-nav-logo{font-family:var(--ff-display);font-size:1.1rem;color:var(--text-1)}
-.mob-nav-close{background:none;border:none;color:var(--text-2);cursor:pointer;font-size:18px;padding:4px}
-.mob-nav-body{flex:1;overflow-y:auto;padding:16px 0}
-.mob-section{border-bottom:0.5px solid var(--border)}
-.mob-accord{width:100%;background:none;border:none;color:var(--text-1);font-family:var(--ff-body);font-size:14px;font-weight:600;padding:14px 20px;display:flex;justify-content:space-between;align-items:center;cursor:pointer}
-.mob-accord svg{width:12px;height:12px;transition:transform .2s;flex-shrink:0}
-.mob-accord.open svg{transform:rotate(180deg)}
-.mob-accord-body{display:none;padding:4px 0 12px}
-.mob-accord-body.open{display:block}
-.mob-link{display:flex;align-items:center;gap:10px;padding:10px 20px;text-decoration:none;color:var(--text-2);font-size:13.5px;transition:background .15s}
-.mob-link:hover{background:rgba(255,255,255,0.05)}
-.mob-link-icon{width:24px;text-align:center;flex-shrink:0}
-.mob-link-inner{display:flex;flex-direction:column;gap:1px}
-.mob-link-title{font-size:13px;font-weight:600;color:var(--text-1)}
-.mob-link-desc{font-size:11px;color:var(--text-3)}
-.mob-link-standalone{border-top:0.5px solid var(--border);margin-top:4px}
-.mob-nav-footer{flex-shrink:0;padding:16px 20px;border-top:0.5px solid var(--border);display:flex;gap:10px}
-.mob-btn-login{flex:1;padding:10px;border-radius:8px;border:0.5px solid var(--border);background:transparent;color:var(--text-2);font-family:var(--ff-body);font-size:13px;cursor:pointer;text-align:center;text-decoration:none}
-.mob-btn-demo{flex:2;padding:10px;border-radius:8px;background:var(--purple);color:#fff;font-family:var(--ff-body);font-size:13px;font-weight:600;cursor:pointer;text-align:center;text-decoration:none;border:none}
+.nav-item { position: relative; }
+.dropdown {
+  position: absolute; top: 100%; left: 50%;
+  transform: translateX(-50%) translateY(4px);
+  background: var(--dark-2); border: 0.5px solid var(--border-hi);
+  border-radius: var(--radius-lg);
+  padding: 16px 8px 8px;
+  min-width: 270px;
+  opacity: 0; visibility: hidden; pointer-events: none;
+  transition: opacity 0.18s, transform 0.18s, visibility 0.18s;
+  box-shadow: 0 24px 64px rgba(0,0,0,0.6), 0 0 0 0.5px var(--border);
+}
+.dropdown::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 16px;
+  background: transparent;
+}
+.nav-item:hover .dropdown {
+  opacity: 1; visibility: visible; pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
+}
+.dropdown-wide { min-width: 540px; display: grid; grid-template-columns: 1fr 1fr; gap: 4px; }
+.dd-section { padding: 4px 0; }
+.dd-label {
+  font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--text-3); padding: 6px 12px 4px;
+}
+.dd-item {
+  display: flex; align-items: flex-start; gap: 11px; padding: 9px 11px;
+  border-radius: 10px; text-decoration: none; cursor: pointer;
+  transition: background 0.15s;
+}
+.dd-item:hover { background: rgba(255,255,255,0.055); }
+.dd-icon {
+  width: 30px; height: 30px; border-radius: 8px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+}
+.dd-icon.v { background: rgba(91,33,182,0.25); color: var(--purple-bright); }
+.dd-icon.t { background: rgba(20,184,166,0.18); color: var(--teal); }
+.dd-icon.a { background: rgba(245,158,11,0.18); color: rgba(251,191,36,1); }
+.dd-name { font-size: 13px; font-weight: 500; color: var(--text-1); line-height: 1.3; }
+.dd-desc { font-size: 11.5px; color: var(--text-3); margin-top: 1px; }
+.dd-divider { height: 0.5px; background: var(--border); margin: 5px 8px; }
+
+/* ══════════════════════════════════
+   HAMBURGER & MOBILE NAV
+   ══════════════════════════════════ */
+.nav-hamburger {
+  display: none;
+  flex-direction: column; justify-content: center; align-items: center;
+  gap: 5px; width: 36px; height: 36px;
+  background: transparent; border: none; cursor: pointer; padding: 4px;
+  border-radius: 8px; transition: background 0.15s;
+}
+.nav-hamburger:hover { background: rgba(255,255,255,0.07); }
+.nav-hamburger span {
+  display: block; width: 20px; height: 1.5px;
+  background: var(--text-2); border-radius: 2px;
+  transition: transform 0.3s, opacity 0.3s, width 0.3s;
+  transform-origin: center;
+}
+.nav-hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+.nav-hamburger.open span:nth-child(2) { opacity: 0; width: 0; }
+.nav-hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+#mobile-nav-overlay {
+  display: none; position: fixed; inset: 0; z-index: 1500;
+  background: rgba(9,8,15,0.82);
+}
+#mobile-nav-overlay.open { display: block; }
+
+#mobile-nav {
+  display: none; position: fixed; top: 0; right: 0; bottom: 0;
+  width: min(340px, 92vw); z-index: 1600;
+  background: #0e0c1a;
+  border-left: 0.5px solid rgba(255,255,255,0.08);
+  box-shadow: -24px 0 80px rgba(0,0,0,0.7);
+  transform: translateX(100%);
+  transition: transform 0.38s cubic-bezier(0.32,0.72,0,1);
+  flex-direction: column; overflow: hidden;
+}
+#mobile-nav.open { transform: translateX(0); }
+
+.mob-nav-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 18px 20px 14px;
+  border-bottom: 0.5px solid rgba(255,255,255,0.07); flex-shrink: 0;
+}
+.mob-nav-logo {
+  font-family: var(--ff-display); font-size: 1.2rem; font-weight: 300;
+  color: var(--text-1); letter-spacing: -0.01em;
+}
+.mob-nav-close {
+  width: 32px; height: 32px; border-radius: 50%;
+  background: rgba(255,255,255,0.06); border: 0.5px solid rgba(255,255,255,0.1);
+  color: var(--text-3); font-size: 16px; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: background 0.15s, color 0.15s;
+}
+.mob-nav-close:hover { background: rgba(255,255,255,0.12); color: var(--text-1); }
+
+.mob-nav-body {
+  flex: 1; overflow-y: auto; padding: 8px 0 16px;
+  scrollbar-width: none;
+}
+.mob-nav-body::-webkit-scrollbar { display: none; }
+
+.mob-section { border-bottom: 0.5px solid rgba(255,255,255,0.05); }
+
+.mob-accord {
+  display: flex; align-items: center; justify-content: space-between;
+  width: 100%; padding: 14px 20px;
+  background: transparent; border: none; cursor: pointer;
+  font-family: var(--ff-body); font-size: 14.5px; font-weight: 500;
+  color: var(--text-1); text-align: left;
+  transition: background 0.15s;
+}
+.mob-accord:hover { background: rgba(255,255,255,0.04); }
+.mob-accord svg { width: 12px; height: 12px; color: var(--text-3); transition: transform 0.25s; flex-shrink: 0; }
+.mob-accord.open svg { transform: rotate(180deg); }
+
+.mob-accord-body {
+  max-height: 0; overflow: hidden;
+  transition: max-height 0.3s ease;
+  padding: 0;
+}
+.mob-accord-body.open { max-height: 400px; }
+
+.mob-link {
+  display: flex; align-items: center; gap: 12px;
+  padding: 10px 20px; text-decoration: none;
+  border-bottom: 0.5px solid rgba(255,255,255,0.04);
+  transition: background 0.15s;
+}
+.mob-link:last-child { border-bottom: none; }
+.mob-link:hover { background: rgba(255,255,255,0.04); }
+.mob-link-icon {
+  display: flex; align-items: center; justify-content: center;
+  width: 32px; height: 32px; border-radius: 8px; flex-shrink: 0;
+  color: var(--text-2);
+  background: rgba(255,255,255,0.06); border: 0.5px solid rgba(255,255,255,0.08);
+}
+.mob-link-inner { display: flex; flex-direction: column; min-width: 0; }
+.mob-link-title { font-size: 13.5px; font-weight: 500; color: var(--text-1); line-height: 1.3; }
+.mob-link-desc  { font-size: 11.5px; color: var(--text-3); margin-top: 2px; line-height: 1.3; }
+.mob-link-teal .mob-link-title { color: var(--teal); }
+.mob-link-teal .mob-link-icon { background: rgba(20,184,166,0.1); border-color: rgba(20,184,166,0.2); color: var(--teal); }
+.mob-link-standalone {
+  display: flex; align-items: center; gap: 12px;
+  padding: 13px 20px; border-bottom: none;
+  text-decoration: none; transition: background 0.15s;
+}
+.mob-link-standalone:hover { background: rgba(255,255,255,0.04); }
+.mob-link-standalone .mob-link-title { font-size: 14.5px; font-weight: 600; color: var(--text-1); }
+
+.mob-nav-footer {
+  padding: 14px 20px 20px; border-top: 0.5px solid rgba(255,255,255,0.07);
+  display: flex; flex-direction: column; gap: 8px; flex-shrink: 0;
+}
+.mob-btn-login {
+  display: block; text-align: center; padding: 10px;
+  border-radius: 10px; border: 0.5px solid rgba(255,255,255,0.15);
+  font-size: 13.5px; font-weight: 500; color: var(--text-1);
+  text-decoration: none; transition: background 0.15s;
+}
+.mob-btn-login:hover { background: rgba(255,255,255,0.06); }
+.mob-btn-demo {
+  display: block; text-align: center; padding: 11px;
+  border-radius: 10px; background: var(--purple);
+  font-size: 13.5px; font-weight: 600; color: white;
+  text-decoration: none; transition: background 0.15s;
+}
+.mob-btn-demo:hover { background: var(--purple-bright); }
 
 /* ── BUTTONS ── */
 .btn-lg{display:inline-flex;align-items:center;gap:8px;padding:13px 26px;border-radius:10px;font-size:14px;font-weight:600;font-family:var(--ff-body);text-decoration:none;transition:all .2s;cursor:pointer}
@@ -242,9 +438,15 @@ html[data-theme="light"] .footer-link:hover{color:#1A0F3A!important}
 .footer-bottom{margin-top:64px;padding:32px 0 40px;border-top:0.5px solid var(--border);display:flex;justify-content:space-between;align-items:center;font-size:12px;color:var(--text-3)}
 html[data-theme="light"] .footer-bottom{color:#7B5EA7!important;border-top-color:rgba(0,0,0,0.1)!important}
 
+@media(max-width:1160px){
+  nav { padding: 0 20px; justify-content: space-between; }
+  .nav-center { display: none; }
+  .nav-right { display: none; }
+  .nav-hamburger { display: flex; }
+  #mobile-nav { display: flex; }
+  #mobile-nav-overlay { display: none; }
+}
 @media(max-width:900px){
-  .nav-center,.btn-login,.btn-case-studies,.btn-calculators{display:none}
-  .nav-hamburger{display:flex}
   .roi-grid{grid-template-columns:1fr}
   .features-grid{grid-template-columns:1fr 1fr}
   .footer-grid{grid-template-columns:1fr 1fr;gap:36px}
@@ -316,39 +518,215 @@ html[data-theme="light"] .footer-bottom{color:#7B5EA7!important;border-top-color
     <span class="logo-text">Resonance</span>
   </a>
   <div class="nav-center">
-    <a href="/" style="font-size:13.5px;color:var(--text-2);text-decoration:none;padding:6px 12px;border-radius:8px;transition:color .2s,background .2s" onmouseover="this.style.color='var(--text-1)';this.style.background='rgba(255,255,255,0.06)'" onmouseout="this.style.color='';this.style.background=''">Home</a>
-    <a href="/case-studies" style="font-size:13.5px;color:var(--text-2);text-decoration:none;padding:6px 12px;border-radius:8px;transition:color .2s" onmouseover="this.style.color='var(--text-1)'" onmouseout="this.style.color=''">Case Studies</a>
-    <a href="/calculators" style="font-size:13.5px;color:var(--text-2);text-decoration:none;padding:6px 12px;border-radius:8px;transition:color .2s" onmouseover="this.style.color='var(--text-1)'" onmouseout="this.style.color=''">Calculators</a>
-    <a href="/about" style="font-size:13.5px;color:var(--text-2);text-decoration:none;padding:6px 12px;border-radius:8px;transition:color .2s" onmouseover="this.style.color='var(--text-1)'" onmouseout="this.style.color=''">About</a>
-    <a href="/pricing" style="font-size:13.5px;color:var(--text-1);text-decoration:none;padding:6px 12px;border-radius:8px;background:rgba(255,255,255,0.06);">Pricing</a>
+    <div class="nav-item">
+      <button class="nav-btn">Why Resonance
+        <svg viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </button>
+      <div class="dropdown dropdown-wide">
+        <div class="dd-section">
+          <div class="dd-label">The problem we solve</div>
+          <a href="/#problem" class="dd-item"><div class="dd-icon v"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 0 1-2-2V9m0 0h18"/></svg></div><div><div class="dd-name">Why spreadsheets fail you</div><div class="dd-desc">When programs get complex, spreadsheets break down</div></div></a>
+          <a href="/#how" class="dd-item"><div class="dd-icon t"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div><div><div class="dd-name">How Resonance works</div><div class="dd-desc">From chaos to coordinated execution</div></div></a>
+          <a href="/#beforeafter" class="dd-item"><div class="dd-icon a"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3 4 7l4 4"/><path d="M4 7h16"/><path d="m16 21 4-4-4-4"/><path d="M20 17H4"/></svg></div><div><div class="dd-name">Before &amp; After</div><div class="dd-desc">Life before Resonance vs. after</div></div></a>
+          <a href="/case-studies" class="dd-item"><div class="dd-icon v"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg></div><div><div class="dd-name">Case Studies</div><div class="dd-desc">Real programs. Real results.</div></div></a>
+        </div>
+        <div class="dd-section">
+          <div class="dd-label">Our edge</div>
+          <a href="/#ai-approach" class="dd-item"><div class="dd-icon v"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="16" height="16" x="4" y="4" rx="2"/><rect width="6" height="6" x="9" y="9" rx="1"/><path d="M15 2v2M15 20v2M2 15h2M2 9h2M20 15h2M20 9h2M9 2v2M9 20v2"/></svg></div><div><div class="dd-name">AI that reasons, not just reports</div><div class="dd-desc">Declarative AI: not a chatbot on a spreadsheet</div></div></a>
+          <a href="/#features" class="dd-item"><div class="dd-icon t"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"/><path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"/><path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"/></svg></div><div><div class="dd-name">One connected platform</div><div class="dd-desc">Households, units, vendors, docs: all live</div></div></a>
+          <a href="/#features" class="dd-item"><div class="dd-icon a"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg></div><div><div class="dd-name">Audit-ready by design</div><div class="dd-desc">Every decision timestamped and defensible</div></div></a>
+          <a href="/calculators" class="dd-item"><div class="dd-icon t"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="16" height="20" x="4" y="2" rx="2"/><line x1="8" x2="16" y1="6" y2="6"/><line x1="16" x2="16" y1="14" y2="18"/><path d="M16 10h.01M12 10h.01M8 10h.01M12 14h.01M8 14h.01M12 18h.01M8 18h.01"/></svg></div><div><div class="dd-name">All calculators</div><div class="dd-desc">ROI · Capacity · Risk · Compliance: your numbers</div></div></a>
+        </div>
+      </div>
+    </div>
+    <div class="nav-item">
+      <button class="nav-btn">Solutions
+        <svg viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </button>
+      <div class="dropdown dropdown-wide" style="min-width:600px;">
+        <div>
+          <div class="dd-label">Core platform</div>
+          <a href="/#features" class="dd-item"><div class="dd-icon v"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div><div><div class="dd-name">Household & Case Management</div><div class="dd-desc">Full profiles, history, and status: always current</div></div></a>
+          <a href="/#features" class="dd-item"><div class="dd-icon t"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div><div><div class="dd-name">Relocation & Matching Engine</div><div class="dd-desc">AI-powered unit matching in minutes, not days</div></div></a>
+          <a href="/#features" class="dd-item"><div class="dd-icon v"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="6" x2="6" y1="3" y2="15"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><path d="M18 9a9 9 0 0 1-9 9"/></svg></div><div><div class="dd-name">Scenario Planning</div><div class="dd-desc">Model multiple plans before committing to one</div></div></a>
+          <div class="dd-divider"></div>
+          <div class="dd-label">Operations layer</div>
+          <a href="/#features" class="dd-item"><div class="dd-icon t"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M8 16H3v5"/></svg></div><div><div class="dd-name">Simulations</div><div class="dd-desc">Replace email chaos with structured execution</div></div></a>
+          <a href="/#features" class="dd-item"><div class="dd-icon a"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg></div><div><div class="dd-name">Compliance & Document Generation</div><div class="dd-desc">HUD reports and URA notices in seconds</div></div></a>
+          <a href="/#ai-approach" class="dd-item"><div class="dd-icon v"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/><path d="M20 3v4"/><path d="M22 5h-4"/><path d="M4 17v2"/><path d="M5 18H3"/></svg></div><div><div class="dd-name">AI Intelligence Layer</div><div class="dd-desc">Declarative AI: grounded in your program data</div></div></a>
+        </div>
+        <div>
+          <div class="dd-label">Calculators</div>
+          <a href="/calculators#roi" class="dd-item"><div class="dd-icon t"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" x2="18" y1="20" y2="10"/><line x1="12" x2="12" y1="20" y2="4"/><line x1="6" x2="6" y1="20" y2="14"/></svg></div><div><div class="dd-name">ROI Calculator</div><div class="dd-desc">See what manual coordination is actually costing you</div></div></a>
+          <a href="/calculators#capacity" class="dd-item"><div class="dd-icon v"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg></div><div><div class="dd-name">Capacity Calculator</div><div class="dd-desc">Unlock more programs without adding headcount</div></div></a>
+          <a href="/calculators#risk" class="dd-item"><div class="dd-icon a"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg></div><div><div class="dd-name">Timeline Risk Calculator</div><div class="dd-desc">Model construction delay exposure before it hits</div></div></a>
+          <a href="/calculators#compliance" class="dd-item"><div class="dd-icon t"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/></svg></div><div><div class="dd-name">Compliance Risk Assessment</div><div class="dd-desc">Score your HUD audit readiness across 8 dimensions</div></div></a>
+          <div class="dd-divider"></div>
+          <a href="/#managed-services" class="dd-item"><div class="dd-icon t"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="7" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div><div><div class="dd-name">Managed Services</div><div class="dd-desc">Resonance coordinators embedded in your program</div></div></a>
+        </div>
+      </div>
+    </div>
+    <div class="nav-item">
+      <button class="nav-btn">Who We Serve
+        <svg viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </button>
+      <div class="dropdown">
+        <div class="dd-label">Program types</div>
+        <a href="/#uc-pha" class="dd-item"><div class="dd-icon v"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" x2="21" y1="22" y2="22"/><line x1="6" x2="6" y1="18" y2="11"/><line x1="10" x2="10" y1="18" y2="11"/><line x1="14" x2="14" y1="18" y2="11"/><line x1="18" x2="18" y1="18" y2="11"/><polygon points="12 2 20 7 4 7"/></svg></div><div><div class="dd-name">Public Housing Authorities</div><div class="dd-desc">RAD, Choice Neighborhoods, HOPE VI</div></div></a>
+        <a href="/#uc-dev" class="dd-item"><div class="dd-icon t"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/><path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"/><path d="M10 6h4"/><path d="M10 10h4"/><path d="M10 14h4"/><path d="M10 18h4"/></svg></div><div><div class="dd-name">Affordable Housing Developers</div><div class="dd-desc">LIHTC preservation and mixed-income redevelopment</div></div></a>
+        <a href="/#uc-rsp" class="dd-item"><div class="dd-icon a"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18H9"/><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14"/><circle cx="17" cy="18" r="2"/><circle cx="7" cy="18" r="2"/></svg></div><div><div class="dd-name">Relocation Service Providers</div><div class="dd-desc">URA compliance, multi-program portfolio ops</div></div></a>
+        <a href="/calculators#capacity" class="dd-item"><div class="dd-icon t"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg></div><div><div class="dd-name">RSP Capacity Planning</div><div class="dd-desc">See how many more programs your team can handle</div></div></a>
+        <a href="/#uc-rsp" class="dd-item"><div class="dd-icon v"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="5" x="2" y="3" rx="1"/><path d="M4 8v11a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8"/><path d="M10 12h4"/></svg></div><div><div class="dd-name">Preservation Operators</div><div class="dd-desc">Section 8, PBRA, LIHTC renewal programs</div></div></a>
+      </div>
+    </div>
+    <div class="nav-item">
+      <button class="nav-btn">Company
+        <svg viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </button>
+      <div class="dropdown dropdown-wide" style="min-width:480px;">
+        <div>
+          <div class="dd-label">Company</div>
+          <a href="/about" class="dd-item"><div class="dd-icon v"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg></div><div><div class="dd-name">About Resonance</div><div class="dd-desc">Our story and mission</div></div></a>
+          <a href="#" onclick="openLeadDrawer('general'); return false;" class="dd-item"><div class="dd-icon t"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></div><div><div class="dd-name">Contact us</div><div class="dd-desc">Sales, service, and general inquiries</div></div></a>
+        </div>
+        <div>
+          <div class="dd-label">Evaluate</div>
+          <a href="/#faq" class="dd-item"><div class="dd-icon a"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg></div><div><div class="dd-name">FAQ</div><div class="dd-desc">Common questions answered honestly</div></div></a>
+          <a href="/pricing" class="dd-item" style="background:rgba(91,33,182,0.07);border-radius:10px;"><div class="dd-icon v"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" x2="12" y1="1" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div><div><div class="dd-name" style="color:var(--purple-bright);">Pricing</div><div class="dd-desc">Transparent, program-level pricing</div></div></a>
+          <a href="/calculators#capacity" class="dd-item"><div class="dd-icon t"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" x2="18" y1="20" y2="10"/><line x1="12" x2="12" y1="20" y2="4"/><line x1="6" x2="6" y1="20" y2="14"/></svg></div><div><div class="dd-name">Capacity Calculator</div><div class="dd-desc">Calculate your portfolio growth potential</div></div></a>
+          <a href="/calculators#compliance" class="dd-item"><div class="dd-icon a"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/></svg></div><div><div class="dd-name">Compliance Risk Score</div><div class="dd-desc">Know your HUD audit exposure before they do</div></div></a>
+        </div>
+      </div>
+    </div>
   </div>
-  <button class="nav-hamburger" id="nav-hamburger" onclick="toggleMobileNav()" aria-label="Open menu"><span></span><span></span><span></span></button>
+  <button class="nav-hamburger" id="nav-hamburger" onclick="toggleMobileNav()" aria-label="Open menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
   <div class="nav-right">
+    <a href="/case-studies" class="btn-case-studies">Case Studies</a>
+    <a href="/calculators" class="btn-calculators">Calculators</a>
     <a href="https://resonancehq.app" class="btn-login">Log in</a>
-    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
-      <svg class="icon-moon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-      <svg class="icon-sun" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+    <button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()" aria-label="Toggle color theme" title="Toggle light/dark mode">
+      <svg class="icon-moon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="icon-sun" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
     </button>
-    <a href="mailto:sean@resonancehq.io" class="btn-demo">Schedule a demo</a>
+    <button class="btn-demo" onclick="openLeadDrawer('general')">
+      Get a proposal
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2.5 6h7m-3-3 3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
   </div>
 </nav>
 
-<!-- Mobile nav -->
+<!-- ── MOBILE NAV DRAWER ── -->
 <div id="mobile-nav-overlay" onclick="closeMobileNav()"></div>
-<div id="mobile-nav">
+<div id="mobile-nav" role="dialog" aria-label="Navigation">
   <div class="mob-nav-header">
-    <span class="mob-nav-logo">Resonance</span>
-    <button class="mob-nav-close" onclick="closeMobileNav()">&#x2715;</button>
+    <a href="/" style="display:flex;align-items:center;gap:5px;text-decoration:none;">
+      <div class="logo-mark" style="background:none;padding:0;width:28px;height:28px;display:flex;align-items:center;justify-content:center;"><svg width="28" height="28" viewBox="0 0 154 182" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M153.032 120.267C151.562 120.775 150.1 121.263 148.595 121.797C122.192 131.345 96.6636 144.643 77.0527 163.76C76.1612 164.641 75.2855 165.535 74.4268 166.442C74.8954 167.697 75.1533 169.054 75.1533 170.473C75.1533 176.839 69.9929 181.999 63.627 181.999C57.2609 181.999 52.0996 176.839 52.0996 170.473C52.0997 164.107 57.261 158.947 63.627 158.947C65.3899 158.947 67.0597 159.343 68.5537 160.051C69.5224 159.205 70.5035 158.377 71.4951 157.565C94.2724 139.231 121.208 128.493 148.469 121.378C150.02 120.983 151.523 120.635 153.032 120.267Z" fill="#9BE2E4"/>
+<path d="M11.9873 59.3557C18.6078 59.3557 23.9754 64.6194 23.9756 71.1125C23.9756 73.5466 23.2204 75.8077 21.9287 77.6838C22.5991 78.8025 23.2939 79.8907 24.0283 80.967C42.696 108.284 79.6038 118.04 113.279 118.468C115.159 118.48 117.145 118.446 118.953 118.372C117.157 118.591 115.174 118.771 113.293 118.905C79.6598 120.871 41.0566 114.918 17.3516 85.9348C16.4642 84.8277 15.6152 83.7036 14.7891 82.5432C13.8901 82.7543 12.9523 82.8703 11.9873 82.8703C5.36686 82.8701 0 77.6057 0 71.1125C0.000202317 64.6195 5.36698 59.3559 11.9873 59.3557Z" fill="url(#paint0_28)"/>
+<path d="M133.939 120.678C132.369 120.919 130.647 121.204 129.029 121.485C99.5499 126.902 69.8404 134.143 43.9873 147.876C43.4006 148.2 42.8073 148.535 42.2168 148.874C42.3447 149.562 42.415 150.27 42.415 150.995C42.415 157.361 37.2545 162.521 30.8887 162.522C24.5227 162.522 19.3614 157.361 19.3613 150.995C19.3613 144.629 24.5227 139.469 30.8887 139.469C33.4021 139.469 35.726 140.275 37.6201 141.641C38.5159 141.218 39.4179 140.804 40.3027 140.414C68.9294 128.335 99.008 123.935 128.973 121.052C130.611 120.915 132.353 120.774 133.939 120.678Z" fill="url(#paint1_28)"/>
+<path d="M42.417 51.5175C47.7642 51.5178 52.0986 55.7692 52.0986 61.0136C52.0986 63.9272 50.7594 66.5324 48.6533 68.2744C49.2172 69.1005 49.7957 69.9154 50.3936 70.7236C71.577 98.807 108.849 112.23 144.412 114.014C146.432 113.955 148.534 114.174 150.306 113.301C149.859 113.553 149.387 113.733 148.898 113.866C149.14 113.837 149.381 113.803 149.617 113.762C149.178 113.865 148.728 113.945 148.27 114.011C147.03 114.248 145.706 114.248 144.42 114.358C144.137 114.36 143.854 114.358 143.57 114.357C143.561 114.358 143.551 114.359 143.542 114.359C107.681 115.104 65.8779 107.282 43.7041 74.0498C42.9458 72.8727 42.2307 71.6873 41.5449 70.4697C36.606 70.0374 32.7344 65.97 32.7344 61.0136C32.7344 55.7691 37.0696 51.5175 42.417 51.5175Z" fill="url(#paint2_28)"/>
+<path d="M90.7822 0.66696C92.6862 -0.538979 95.339 -0.0645439 96.707 1.72653C97.4008 2.63492 97.6295 3.70723 97.4395 4.70114C97.4522 4.82516 97.4598 4.9512 97.458 5.07907C97.3457 13.2627 97.0693 35.4671 97.0693 55.7363C97.0693 57.032 97.0492 58.2767 97.0127 59.4716C96.9525 70.6974 96.8631 79.7189 96.833 82.5644C96.8269 83.1338 96.4721 83.6365 95.9395 83.8379L91.54 85.5009C90.8536 85.7605 90.1321 85.4542 89.8232 84.8691C89.7229 84.7836 89.667 84.631 89.667 84.416V10.997L60.6465 29.3769C60.641 41.5872 60.6289 69.1824 60.6289 70.4882C60.6289 72.1676 53.0219 65.8699 52.7832 53.9043V26.8779C52.7832 26.486 52.8525 26.1102 52.9805 25.7627C53.2129 24.897 53.7706 24.1095 54.625 23.5683L90.7822 0.66696Z" fill="url(#paint3_28)"/>
+<path d="M100.09 30.9179C100.075 30.534 100.509 30.3007 100.821 30.5254L114.154 40.1318C114.274 40.2184 114.346 40.3576 114.346 40.5058V47.0859C114.364 61.7596 114.695 92.4466 114.783 100.316C114.793 101.25 113.895 101.915 113.001 101.646L107.491 99.9922C106.906 99.8166 106.505 99.3019 106.505 98.6914V49.3906C106.505 49.3746 106.507 49.3571 106.508 49.3379V44.0117L100.671 40.3984C100.541 40.3178 100.459 40.1783 100.453 40.0254L100.09 30.9179Z" fill="url(#paint4_28)"/>
+<defs>
+<linearGradient id="paint0_28" x1="14.0623" y1="71.5739" x2="40.5735" y2="94.3963" gradientUnits="userSpaceOnUse">
+<stop stop-color="#9CE4E5"/>
+<stop offset="1" stop-color="#936DD7"/>
+</linearGradient>
+<linearGradient id="paint1_28" x1="27.1997" y1="148.111" x2="123.334" y2="125.056" gradientUnits="userSpaceOnUse">
+<stop stop-color="#9CE4E5"/>
+<stop offset="0.778846" stop-color="#5B4790"/>
+<stop offset="1" stop-color="#98D8EB"/>
+</linearGradient>
+<linearGradient id="paint2_28" x1="91.52" y1="51.5175" x2="91.52" y2="114.407" gradientUnits="userSpaceOnUse">
+<stop stop-color="#96D0F0"/>
+<stop offset="1" stop-color="#90B6EF"/>
+</linearGradient>
+<linearGradient id="paint3_28" x1="75.1434" y1="0" x2="75.1434" y2="85.594" gradientUnits="userSpaceOnUse">
+<stop stop-color="#A37CEC"/>
+<stop offset="1" stop-color="#5B4790"/>
+</linearGradient>
+<linearGradient id="paint4_28" x1="107.436" y1="30.4375" x2="107.436" y2="101.706" gradientUnits="userSpaceOnUse">
+<stop stop-color="#A37CEC"/>
+<stop offset="1" stop-color="#5B4790"/>
+</linearGradient>
+</defs>
+</svg></div>
+      <span class="mob-nav-logo">Resonance</span>
+    </a>
+    <button class="mob-nav-close" onclick="closeMobileNav()" aria-label="Close menu">&#x2715;</button>
   </div>
   <div class="mob-nav-body">
-    <a href="/" class="mob-link mob-link-standalone"><span class="mob-link-icon">🏠</span><span class="mob-link-inner"><span class="mob-link-title">Home</span></span></a>
-    <a href="/case-studies" class="mob-link mob-link-standalone"><span class="mob-link-icon">🏆</span><span class="mob-link-inner"><span class="mob-link-title">Case Studies</span></span></a>
-    <a href="/calculators" class="mob-link mob-link-standalone"><span class="mob-link-icon">📐</span><span class="mob-link-inner"><span class="mob-link-title">Calculators</span></span></a>
-    <a href="/about" class="mob-link mob-link-standalone"><span class="mob-link-icon">🌟</span><span class="mob-link-inner"><span class="mob-link-title">About</span></span></a>
-  </div>
+
+    <!-- Accordions for each dropdown -->
+    <div class="mob-section">
+      <button class="mob-accord" onclick="toggleMobAccord(this)">
+        Why Resonance <svg viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </button>
+      <div class="mob-accord-body">
+        <a href="/#problem" class="mob-link" onclick="closeMobileNav()"><span class="mob-link-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 0 1-2-2V9m0 0h18"/></svg></span><span class="mob-link-inner"><span class="mob-link-title">Why spreadsheets fail you</span><span class="mob-link-desc">When programs get complex, spreadsheets break down</span></span></a>
+        <a href="/#how" class="mob-link" onclick="closeMobileNav()"><span class="mob-link-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></span><span class="mob-link-inner"><span class="mob-link-title">How Resonance works</span><span class="mob-link-desc">From chaos to coordinated execution</span></span></a>
+        <a href="/#beforeafter" class="mob-link" onclick="closeMobileNav()"><span class="mob-link-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3 4 7l4 4"/><path d="M4 7h16"/><path d="m16 21 4-4-4-4"/><path d="M20 17H4"/></svg></span><span class="mob-link-inner"><span class="mob-link-title">Before &amp; After</span><span class="mob-link-desc">Life before Resonance vs. after</span></span></a>
+        <a href="/#ai-approach" class="mob-link" onclick="closeMobileNav()"><span class="mob-link-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="16" height="16" x="4" y="4" rx="2"/><rect width="6" height="6" x="9" y="9" rx="1"/><path d="M15 2v2M15 20v2M2 15h2M2 9h2M20 15h2M20 9h2M9 2v2M9 20v2"/></svg></span><span class="mob-link-inner"><span class="mob-link-title">AI intelligence layer</span><span class="mob-link-desc">Declarative AI grounded in your program data</span></span></a>
+        <a href="/#features" class="mob-link" onclick="closeMobileNav()"><span class="mob-link-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"/><path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"/><path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"/></svg></span><span class="mob-link-inner"><span class="mob-link-title">Platform features</span><span class="mob-link-desc">One connected system: households to compliance</span></span></a>
+      </div>
+    </div>
+
+    <div class="mob-section">
+      <button class="mob-accord" onclick="toggleMobAccord(this)">
+        Solutions <svg viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </button>
+      <div class="mob-accord-body">
+        <a href="/#features" class="mob-link" onclick="closeMobileNav()"><span class="mob-link-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></span><span class="mob-link-inner"><span class="mob-link-title">Household &amp; Case Management</span><span class="mob-link-desc">Full profiles, history, and status: always current</span></span></a>
+        <a href="/#features" class="mob-link" onclick="closeMobileNav()"><span class="mob-link-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></span><span class="mob-link-inner"><span class="mob-link-title">Relocation &amp; Matching Engine</span><span class="mob-link-desc">AI-powered unit matching in minutes, not days</span></span></a>
+        <a href="/#features" class="mob-link" onclick="closeMobileNav()"><span class="mob-link-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="6" x2="6" y1="3" y2="15"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><path d="M18 9a9 9 0 0 1-9 9"/></svg></span><span class="mob-link-inner"><span class="mob-link-title">Scenario Planning &amp; Simulations</span><span class="mob-link-desc">Model multiple plans before committing to one</span></span></a>
+        <a href="/#features" class="mob-link" onclick="closeMobileNav()"><span class="mob-link-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg></span><span class="mob-link-inner"><span class="mob-link-title">Compliance &amp; Document Generation</span><span class="mob-link-desc">HUD reports and URA notices in seconds</span></span></a>
+        <a href="/#managed-services" class="mob-link" onclick="closeMobileNav()"><span class="mob-link-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="7" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></span><span class="mob-link-inner"><span class="mob-link-title">Managed Services</span><span class="mob-link-desc">Resonance coordinators embedded in your program</span></span></a>
+      </div>
+    </div>
+
+    <div class="mob-section">
+      <button class="mob-accord" onclick="toggleMobAccord(this)">
+        Calculators <svg viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </button>
+      <div class="mob-accord-body">
+        <a href="/calculators#roi" onclick="closeMobileNav();" class="mob-link mob-link-teal"><span class="mob-link-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" x2="18" y1="20" y2="10"/><line x1="12" x2="12" y1="20" y2="4"/><line x1="6" x2="6" y1="20" y2="14"/></svg></span><span class="mob-link-inner"><span class="mob-link-title">ROI Calculator</span><span class="mob-link-desc">Cost of your current coordination setup</span></span></a>
+        <a href="/calculators#capacity" onclick="closeMobileNav();" class="mob-link mob-link-teal"><span class="mob-link-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg></span><span class="mob-link-inner"><span class="mob-link-title">Capacity Calculator</span><span class="mob-link-desc">How many more programs could your team run?</span></span></a>
+        <a href="/calculators#risk" onclick="closeMobileNav();" class="mob-link mob-link-teal"><span class="mob-link-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg></span><span class="mob-link-inner"><span class="mob-link-title">Timeline Risk Calculator</span><span class="mob-link-desc">Model construction delay exposure</span></span></a>
+        <a href="/calculators#compliance" onclick="closeMobileNav();" class="mob-link mob-link-teal"><span class="mob-link-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/></svg></span><span class="mob-link-inner"><span class="mob-link-title">Compliance Risk Score</span><span class="mob-link-desc">Your HUD audit risk across 8 dimensions</span></span></a>
+      </div>
+    </div>
+
+    <div class="mob-section">
+      <button class="mob-accord" onclick="toggleMobAccord(this)">
+        Who We Serve <svg viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </button>
+      <div class="mob-accord-body">
+        <a href="/#uc-pha" class="mob-link" onclick="closeMobileNav()"><span class="mob-link-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" x2="21" y1="22" y2="22"/><line x1="6" x2="6" y1="18" y2="11"/><line x1="10" x2="10" y1="18" y2="11"/><line x1="14" x2="14" y1="18" y2="11"/><line x1="18" x2="18" y1="18" y2="11"/><polygon points="12 2 20 7 4 7"/></svg></span><span class="mob-link-inner"><span class="mob-link-title">Public Housing Authorities</span><span class="mob-link-desc">RAD, Choice Neighborhoods, HOPE VI</span></span></a>
+        <a href="/#uc-dev" class="mob-link" onclick="closeMobileNav()"><span class="mob-link-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/><path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"/><path d="M10 6h4"/><path d="M10 10h4"/><path d="M10 14h4"/><path d="M10 18h4"/></svg></span><span class="mob-link-inner"><span class="mob-link-title">Affordable Housing Developers</span><span class="mob-link-desc">LIHTC preservation and mixed-income redevelopment</span></span></a>
+        <a href="/#uc-rsp" class="mob-link" onclick="closeMobileNav()"><span class="mob-link-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18H9"/><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14"/><circle cx="17" cy="18" r="2"/><circle cx="7" cy="18" r="2"/></svg></span><span class="mob-link-inner"><span class="mob-link-title">Relocation Service Providers</span><span class="mob-link-desc">URA compliance, multi-program portfolio ops</span></span></a>
+      </div>
+    </div>
+
+    <div class="mob-section">
+      <button class="mob-accord" onclick="toggleMobAccord(this)">
+        Company <svg viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </button>
+      <div class="mob-accord-body">
+        <a href="/about" onclick="closeMobileNav();" class="mob-link"><span class="mob-link-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg></span><span class="mob-link-inner"><span class="mob-link-title">About Resonance</span><span class="mob-link-desc">Our story and mission</span></span></a>
+        <a href="/pricing" onclick="closeMobileNav();" class="mob-link" style="background:rgba(91,33,182,0.07);"><span class="mob-link-icon" style="background:rgba(91,33,182,0.2);border-color:rgba(167,139,250,0.3);color:var(--purple-bright);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" x2="12" y1="1" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></span><span class="mob-link-inner"><span class="mob-link-title" style="color:var(--purple-bright);">Pricing</span><span class="mob-link-desc">Transparent, program-level pricing</span></span></a>
+        <a href="/#faq" class="mob-link" onclick="closeMobileNav()"><span class="mob-link-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg></span><span class="mob-link-inner"><span class="mob-link-title">FAQ</span><span class="mob-link-desc">Common questions answered honestly</span></span></a>
+      </div>
+    </div>
+
+    <a href="/case-studies" onclick="closeMobileNav();" class="mob-link mob-link-standalone"><span class="mob-link-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg></span><span class="mob-link-inner"><span class="mob-link-title">Case Studies</span><span class="mob-link-desc">Real programs. Real results.</span></span></a>
+
+  </div><!-- /mob-nav-body -->
+
   <div class="mob-nav-footer">
     <a href="https://resonancehq.app" class="mob-btn-login">Log in</a>
-    <a href="mailto:sean@resonancehq.io" class="mob-btn-demo">Schedule a demo</a>
+    <button class="mob-btn-demo" onclick="openLeadDrawer('general')">Get a proposal</button>
   </div>
 </div>
 
@@ -854,8 +1232,9 @@ html[data-theme="light"] .footer-bottom{color:#7B5EA7!important;border-top-color
 function toggleTheme(){var h=document.documentElement,l=h.getAttribute('data-theme')==='light';if(l){h.removeAttribute('data-theme');localStorage.removeItem('theme');}else{h.setAttribute('data-theme','light');localStorage.setItem('theme','light');}}
 
 // Mobile nav
-function toggleMobileNav(){var n=document.getElementById('mobile-nav'),o=document.getElementById('mobile-nav-overlay'),b=document.getElementById('nav-hamburger'),open=n.classList.contains('open');if(open){closeMobileNav();return;}n.classList.add('open');o.classList.add('open');document.body.style.overflow='hidden';}
-function closeMobileNav(){document.getElementById('mobile-nav').classList.remove('open');document.getElementById('mobile-nav-overlay').classList.remove('open');document.body.style.overflow='';}
+function toggleMobileNav(){var n=document.getElementById('mobile-nav'),o=document.getElementById('mobile-nav-overlay'),b=document.getElementById('nav-hamburger'),open=n.classList.contains('open');if(open){closeMobileNav();return;}n.classList.add('open');o.classList.add('open');b.classList.add('open');b.setAttribute('aria-expanded','true');document.body.style.overflow='hidden';}
+function closeMobileNav(){document.getElementById('mobile-nav').classList.remove('open');document.getElementById('mobile-nav-overlay').classList.remove('open');var b=document.getElementById('nav-hamburger');if(b){b.classList.remove('open');b.setAttribute('aria-expanded','false');}document.body.style.overflow='';}
+function toggleMobAccord(btn){var body=btn.nextElementSibling,isOpen=body.classList.contains('open');document.querySelectorAll('.mob-accord-body.open').forEach(function(b){b.classList.remove('open');});document.querySelectorAll('.mob-accord.open').forEach(function(b){b.classList.remove('open');});if(!isOpen){body.classList.add('open');btn.classList.add('open');}}
 document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeMobileNav();closeLeadDrawer();}});
 
 // FAQ

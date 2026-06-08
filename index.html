@@ -2154,10 +2154,15 @@ y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
 @media (max-width: 1160px) {
   nav { padding: 0 20px; justify-content: space-between; }
   .nav-center { display: none; }
-  .nav-right { display: none; }
   .nav-hamburger { display: flex; }
   #mobile-nav { display: flex; }
   #mobile-nav-overlay { display: none; }
+}
+@media (max-width: 768px) {
+  .nav-right { display: none; }
+}
+@media (min-width: 769px) and (max-width: 1160px) {
+  #pill-nav { display: flex !important; transform: translateY(0) !important; pointer-events: all !important; }
 }
 </style>
 
