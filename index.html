@@ -1110,7 +1110,7 @@ h2.section-title em { font-style: italic; color: var(--teal-bright); }
 .uc-card:hover .uc-who { color: rgba(20,184,166,0.7); }
 .uc-card:hover .uc-title { color: #fff; }
 .uc-card:hover .uc-desc { color: var(--text-1); }
-.uc-icon { font-size: 26px; margin-bottom: 20px; }
+.uc-icon { margin-bottom: 20px; display: flex; color: var(--text-3); }
 .uc-who { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-3); margin-bottom: 10px; }
 .uc-title { font-family: var(--ff-display); font-weight: 300; font-size: 1.25rem; color: var(--text-1); margin-bottom: 12px; line-height: 1.25; letter-spacing: -0.01em; }
 .uc-desc { font-size: 13px; color: var(--text-2); line-height: 1.72; }
@@ -3648,21 +3648,21 @@ y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
       </div>
       <div style="display: flex; flex-direction: column; gap: 14px;">
         <div style="background: var(--dark-2); border: 0.5px solid var(--border-hi); border-radius: var(--radius-lg); padding: 24px 26px; display: flex; gap: 18px; align-items: flex-start;">
-          <div style="width: 40px; height: 40px; border-radius: 10px; background: rgba(91,33,182,0.25); display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0;">🧑‍💼</div>
+          <div style="width: 40px; height: 40px; border-radius: 10px; background: rgba(91,33,182,0.25); display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: var(--purple-bright);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
           <div>
             <div style="font-size: 14px; font-weight: 600; color: var(--text-1); margin-bottom: 6px;">Dedicated team members, embedded in your program</div>
             <div style="font-size: 13px; color: var(--text-2); line-height: 1.7;">A named Resonance team member works inside your program daily: managing case progress, flagging blockers, and keeping workflows moving using proven industry practices tailored to your program type.</div>
           </div>
         </div>
         <div style="background: var(--dark-2); border: 0.5px solid var(--border-hi); border-radius: var(--radius-lg); padding: 24px 26px; display: flex; gap: 18px; align-items: flex-start;">
-          <div style="width: 40px; height: 40px; border-radius: 10px; background: rgba(20,184,166,0.18); display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0;">📋</div>
+          <div style="width: 40px; height: 40px; border-radius: 10px; background: rgba(20,184,166,0.18); display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: var(--teal);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="M12 11h4"/><path d="M12 16h4"/><path d="M8 11h.01"/><path d="M8 16h.01"/></svg></div>
           <div>
             <div style="font-size: 14px; font-weight: 600; color: var(--text-1); margin-bottom: 6px;">Strategic consultation grounded in industry best practices</div>
             <div style="font-size: 13px; color: var(--text-2); line-height: 1.7;">We bring deep experience across RAD, Section 18, LIHTC, URA, and Section 8 programs. Our consultants advise on preservation logistics, right-to-return strategy, capital planning sequencing, and compliance: so your team isn't figuring it out alone.</div>
           </div>
         </div>
         <div style="background: var(--dark-2); border: 0.5px solid var(--border-hi); border-radius: var(--radius-lg); padding: 24px 26px; display: flex; gap: 18px; align-items: flex-start;">
-          <div style="width: 40px; height: 40px; border-radius: 10px; background: rgba(245,158,11,0.18); display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0;">⚡</div>
+          <div style="width: 40px; height: 40px; border-radius: 10px; background: rgba(245,158,11,0.18); display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: rgba(251,191,36,1);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
           <div>
             <div style="font-size: 14px; font-weight: 600; color: var(--text-1); margin-bottom: 6px;">Operational from day one: no ramp-up lag</div>
             <div style="font-size: 13px; color: var(--text-2); line-height: 1.7;">Because our team lives in the platform, there's no handoff delay. Your program runs efficiently from the first week: not after months of onboarding your staff has to manage on their own.</div>
@@ -3682,21 +3682,21 @@ y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
     </div>
     <div class="use-grid">
       <div class="uc-card" id="uc-pha">
-        <div class="uc-icon">🏛️</div>
+        <div class="uc-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="3" x2="21" y1="22" y2="22"/><line x1="6" x2="6" y1="18" y2="11"/><line x1="10" x2="10" y1="18" y2="11"/><line x1="14" x2="14" y1="18" y2="11"/><line x1="18" x2="18" y1="18" y2="11"/><polygon points="12 2 20 7 4 7"/></svg></div>
         <div class="uc-who">Public Housing Authorities</div>
         <div class="uc-title">Run RAD, Section 18, and Choice Neighborhoods without losing your mind</div>
         <p class="uc-desc">You're managing 800 households across a phased preservation and redevelopment program: tracking right-to-return commitments, coordinating with a developer, fielding daily resident calls, and satisfying HUD. Resonance gives you the command center that spreadsheets never could.</p>
         <div class="uc-outcome">Allocation time drops from weeks to hours</div>
       </div>
       <div class="uc-card" id="uc-dev">
-        <div class="uc-icon">🏗️</div>
+        <div class="uc-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/><path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"/><path d="M10 6h4"/><path d="M10 10h4"/><path d="M10 14h4"/><path d="M10 18h4"/></svg></div>
         <div class="uc-who">Affordable Housing Developers</div>
         <div class="uc-title">Capital planning, preservation logistics, and residents: one system</div>
         <p class="uc-desc">Your construction schedule is shifting, your physical needs assessment flagged units behind schedule, and relocation is under pressure. Resonance connects the physical asset side of your preservation program to the resident side: when unit readiness changes, the relocation plan and right-to-return sequencing update automatically.</p>
         <div class="uc-outcome">Faster delivery, fewer compliance flags</div>
       </div>
       <div class="uc-card" id="uc-rsp">
-        <div class="uc-icon">🚚</div>
+        <div class="uc-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18H9"/><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14"/><circle cx="17" cy="18" r="2"/><circle cx="7" cy="18" r="2"/></svg></div>
         <div class="uc-who">Relocation Service Providers</div>
         <div class="uc-title">Grow your preservation portfolio without burning out your coordinators</div>
         <p class="uc-desc">You're running five preservation and relocation programs in three cities: each with its own URA obligations, right-to-return roster, and funder reporting requirements. Resonance is the single platform that handles all of them, so you can take on more programs without proportionally growing your overhead.</p>
