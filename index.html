@@ -1247,6 +1247,8 @@ html[data-theme="light"] .bg-canvas { display: none; }
 html[data-theme="light"] .uc-card:hover { background: rgba(91,33,182,0.06) !important; border-color: rgba(91,33,182,0.25) !important; box-shadow: 0 12px 40px rgba(91,33,182,0.08) !important; }
 html[data-theme="light"] .uc-card:hover .uc-title { color: #1A0F3A !important; }
 html[data-theme="light"] .uc-card:hover .uc-who { color: #0B7A6E !important; }
+html[data-theme="light"] .faq-q:hover { color: var(--text-1) !important; background: rgba(91,33,182,0.06) !important; }
+html[data-theme="light"] .faq-item.open .faq-toggle { background: var(--purple-mid) !important; }
 html[data-theme="light"] .uc-card:hover .uc-desc { color: #4A3580 !important; }
 html[data-theme="light"] footer { background: #ffffff !important; border-top-color: rgba(91,33,182,0.15) !important; }
 html[data-theme="light"] .footer-link { color: #3D2B6E !important; }
@@ -3716,9 +3718,8 @@ y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
   </div>
 </section>
 
-<!-- PRICING -->
-<!-- hidden: pricing section
-<section class="pricing-section" id="pricing">
+<!-- PRICING (hidden) -->
+<section class="pricing-section" id="pricing" style="display:none">
   <div class="wrap">
     <div class="section-header center">
       <div class="eyebrow" style="justify-content:center">Pricing</div>
@@ -3834,7 +3835,6 @@ y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
     <p class="pricing-note" style="margin-top:20px;">Questions? <a href="mailto:sean@resonancehq.io">Email us →</a></p>
   </div>
 </section>
-hidden: pricing section -->
 
 <section class="faq-section" id="faq">
   <div class="wrap">
