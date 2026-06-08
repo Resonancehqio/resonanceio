@@ -1244,7 +1244,13 @@ html[data-theme="light"] .pricing-plus-badge { background: #f4f4f6 !important; b
 html[data-theme="light"] .pricing-sub-card { background: white !important; border-color: rgba(0,0,0,0.1) !important; }
 html[data-theme="light"] .platform-preview-inner { box-shadow: 0 24px 80px rgba(91,33,182,0.12), 0 0 0 0.5px rgba(91,33,182,0.15) !important; }
 html[data-theme="light"] .bg-canvas { display: none; }
-html[data-theme="light"] .cta-glow { background: radial-gradient(ellipse 800px 400px at center, rgba(91,33,182,0.04), transparent) !important; }
+html[data-theme="light"] .cta-glow,
+html[data-theme="light"] .section-glow { opacity: 0.15 !important; }
+html[data-theme="light"] .proof-strip { background: none !important; }
+html[data-theme="light"] .before-after { background: none !important; }
+html[data-theme="light"] .use-cases { background: none !important; }
+html[data-theme="light"] .ld-context { background: rgba(11,122,110,0.06) !important; }
+html[data-theme="light"] .ld-context::before { opacity: 0.2 !important; }
 html[data-theme="light"] .uc-card:hover { background: rgba(91,33,182,0.06) !important; border-color: rgba(91,33,182,0.25) !important; box-shadow: 0 12px 40px rgba(91,33,182,0.08) !important; }
 html[data-theme="light"] .uc-card:hover .uc-title { color: #1A0F3A !important; }
 html[data-theme="light"] .uc-card:hover .uc-who { color: #0B7A6E !important; }
@@ -3590,7 +3596,7 @@ y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
 </section>
 
 <section id="ai-approach" style="padding: 96px 0 112px; border-top: 0.5px solid var(--border); position: relative; overflow: hidden;">
-  <div style="position:absolute;inset:0;background:radial-gradient(ellipse 900px 500px at 60% 50%, rgba(91,33,182,0.09), transparent);pointer-events:none;"></div>
+  <div class="section-glow" style="position:absolute;inset:0;background:radial-gradient(ellipse 900px 500px at 60% 50%, rgba(91,33,182,0.09), transparent);pointer-events:none;"></div>
   <div class="wrap" style="position:relative;z-index:1;">
 
     <div class="section-header center" style="margin-bottom:64px;">
