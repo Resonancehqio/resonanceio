@@ -250,13 +250,11 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 200; height: 64px; di
 .btn-outline-lg { color: var(--text-1); border: 0.5px solid var(--border-hi); background: transparent; }
 .btn-outline-lg:hover { background: rgba(255,255,255,0.06); }
 /* ── Mobile ── */
-@media (max-width: 1160px) {
+@media (max-width: 768px) {
   nav { padding: 0 20px; }
+  .nav-right { display: none; }
   .nav-center { display: none; }
   .nav-hamburger { display: flex; }
-}
-@media (max-width: 768px) {
-  .nav-right { display: none; }
 }
 @media (max-width: 1160px) {
   .wrap { padding: 0 20px; }
