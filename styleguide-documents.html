@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resonance — Document Style Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600;700&display=swap" as="style" crossorigin onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600;700&display=swap"></noscript>
+<style>
+/* ── DOCUMENT STYLE GUIDE — LIGHT THEME ── */
+:root {
+  /* Print document tokens */
+  --teal-doc:          #0D9488;
+  --teal-light-doc:    rgba(13,148,136,0.09);
+  --teal-border-doc:   rgba(13,148,136,0.25);
+  --purple-doc:        #7C3AED;
+  --purple-mid-doc:    #9461FB;
+  --purple-light-doc:  rgba(124,58,237,0.08);
+  --purple-border-doc: rgba(124,58,237,0.20);
+  --ink:               #1A0F3A;
+  --ink-2:             #3D2B6E;
+  --ink-3:             #6B5A9A;
+  --ink-4:             #9B8DC0;
+  --rule:              rgba(91,33,182,0.12);
+  --bg:                #FFFFFF;
+  --bg-soft:           #F7F4FF;
+  --soft:              #EDE8FA;
+  /* Font vars — document shorthand */
+  --fd: 'Fraunces', Georgia, serif;
+  --fb: 'Instrument Sans', -apple-system, sans-serif;
+  --fm: 'JetBrains Mono', 'SF Mono', monospace;
+}
+
+*,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--fb);
+  background: #FFFFFF;
+  color: var(--ink);
+  display: flex;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--bg-soft); }
+::-webkit-scrollbar-thumb { background: #C4B8E8; border-radius: 3px; }
+
+/* ── SIDEBAR ── */
+.sidebar-nav {
+  position: fixed; top: 0; left: 0; bottom: 0;
+  width: 200px; z-index: 100;
+  background: var(--bg-soft);
+  border-right: 0.5px solid var(--rule);
+  display: flex; flex-direction: column;
+  overflow-y: auto;
+}
+.sidebar-logo {
+  display: flex; align-items: center; gap: 7px;
+  padding: 20px 18px 18px;
+  border-bottom: 0.5px solid var(--rule);
+  text-decoration: none; flex-shrink: 0;
+}
+.sidebar-logo-text {
+  font-family: var(--fd); font-size: 1.1rem; font-weight: 400;
+  color: var(--ink); letter-spacing: -0.01em;
+}
+.sidebar-section-label {
+  font-family: var(--fm); font-size: 9px; font-weight: 700;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--ink-4); padding: 20px 18px 8px;
+}
+.sidebar-link {
+  display: block; font-size: 12.5px; font-weight: 500; color: var(--ink-3);
+  text-decoration: none; padding: 7px 18px;
+  transition: color 0.15s, background 0.15s;
+  border-left: 2px solid transparent;
+}
+.sidebar-link:hover { color: var(--ink); background: rgba(91,33,182,0.05); border-left-color: var(--rule); }
+.sidebar-link.active { color: var(--teal-doc); border-left-color: var(--teal-doc); background: rgba(13,148,136,0.06); }
+.sidebar-footer {
+  margin-top: auto; padding: 16px 18px;
+  border-top: 0.5px solid var(--rule);
+}
+.sidebar-footer a {
+  font-size: 11px; color: var(--ink-4); text-decoration: none;
+  display: flex; align-items: center; gap: 5px;
+  transition: color 0.15s;
+}
+.sidebar-footer a:hover { color: var(--ink-3); }
+
+/* ── MAIN ── */
+.main {
+  margin-left: 200px; flex: 1;
+  padding: 48px 56px 80px;
+  max-width: calc(100% - 200px);
+}
+
+/* ── PAGE HEADER ── */
+.page-header { margin-bottom: 56px; padding-bottom: 32px; border-bottom: 0.5px solid var(--rule); }
+.page-header-eyebrow {
+  font-family: var(--fm); font-size: 10px; font-weight: 700;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--teal-doc); display: flex; align-items: center; gap: 7px; margin-bottom: 14px;
+}
+.page-header-eyebrow::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--teal-doc); flex-shrink: 0; }
+.page-header h1 {
+  font-family: var(--fd); font-weight: 300;
+  font-size: 2.6rem; letter-spacing: -0.02em; line-height: 1.1;
+  color: var(--ink); margin-bottom: 12px;
+}
+.page-header h1 em { font-style: italic; color: var(--purple-doc); }
+.page-header p { font-size: 0.95rem; color: var(--ink-3); line-height: 1.72; max-width: 560px; }
+
+/* ── SECTION ── */
+.sg-section { padding: 52px 0; border-bottom: 0.5px solid var(--rule); }
+.sg-section:last-child { border-bottom: none; }
+.section-eyebrow {
+  font-family: var(--fm); font-size: 10px; font-weight: 700;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--teal-doc); display: inline-flex; align-items: center; gap: 7px; margin-bottom: 10px;
+}
+.section-eyebrow::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--teal-doc); flex-shrink: 0; }
+.section-title {
+  font-family: var(--fd); font-weight: 300;
+  font-size: 1.75rem; letter-spacing: -0.02em; line-height: 1.15;
+  color: var(--ink); margin-bottom: 10px;
+}
+.section-desc { font-size: 0.875rem; color: var(--ink-3); line-height: 1.7; max-width: 600px; margin-bottom: 32px; }
+.sg-sub {
+  font-family: var(--fm); font-size: 9.5px; font-weight: 700;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--ink-4); margin: 28px 0 14px;
+}
+
+/* ── INLINE CODE ── */
+code.ic {
+  font-family: var(--fm); font-size: 11px;
+  background: var(--soft); padding: 2px 6px; border-radius: 4px;
+  color: var(--purple-doc);
+}
+
+/* ── CODE BLOCK ── */
+.code-block {
+  background: #F0EDF8; border: 0.5px solid var(--rule);
+  border-radius: 10px; padding: 16px 20px; margin-top: 12px;
+  font-family: var(--fm); font-size: 11.5px; line-height: 1.65;
+  color: var(--ink-2); overflow-x: auto; white-space: pre;
+}
+.code-block .p { color: var(--teal-doc); }
+.code-block .v { color: var(--purple-doc); }
+.code-block .c { color: #9461FB; }
+.code-block .x { color: var(--ink-4); }
+
+/* ── COLOR SWATCHES ── */
+.swatch-grid { display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 16px; }
+.swatch { display: flex; flex-direction: column; gap: 8px; }
+.swatch-color { width: 80px; height: 80px; border-radius: 10px; border: 0.5px solid rgba(91,33,182,0.12); }
+.swatch-name { font-family: var(--fm); font-size: 9px; font-weight: 600; color: var(--ink-3); white-space: nowrap; }
+.swatch-hex  { font-family: var(--fm); font-size: 9px; color: var(--ink-4); }
+
+/* ── COMPARISON TABLE ── */
+.comparison-table { width: 100%; border-collapse: collapse; }
+.comparison-table th {
+  background: var(--purple-light-doc);
+  color: var(--ink-2); font-weight: 700; text-transform: uppercase;
+  font-family: var(--fm); font-size: 8pt; letter-spacing: 0.06em;
+  padding: 8px 14px; text-align: left;
+  border-bottom: 0.5px solid var(--rule);
+}
+.comparison-table td {
+  padding: 11px 14px; font-size: 13px; color: var(--ink-2);
+  border-bottom: 0.5px solid var(--rule); vertical-align: top; line-height: 1.55;
+}
+.comparison-table tr:nth-child(even) td { background: var(--bg-soft); }
+.comparison-table tr:last-child td { border-bottom: none; }
+.comparison-table td:first-child { font-weight: 600; color: var(--ink); }
+.mode-badge {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-family: var(--fm); font-size: 9px; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 3px 9px; border-radius: 100px;
+}
+.mode-badge.print  { background: rgba(13,148,136,0.1);  color: var(--teal-doc);  border: 0.5px solid var(--teal-border-doc); }
+.mode-badge.dark   { background: rgba(91,33,182,0.09);  color: var(--purple-doc); border: 0.5px solid var(--purple-border-doc); }
+
+/* ── TYPE SPECIMENS ── */
+.type-specimen {
+  padding: 20px 24px; background: var(--bg-soft);
+  border: 0.5px solid var(--rule); border-radius: 10px; margin-bottom: 0;
+}
+.spec-label {
+  font-family: var(--fm); font-size: 8pt; font-weight: 600;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--ink-4); margin-bottom: 10px;
+}
+.spec-stack { margin-top: 16px; }
+
+/* ── DOCUMENT HEADER DEMO ── */
+.doc-header-demo {
+  background: white; border: 0.5px solid var(--rule); border-radius: 12px;
+  padding: 20px 24px; overflow: hidden;
+}
+.doc-header-inner {
+  display: flex; justify-content: space-between; align-items: center;
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--purple-doc);
+}
+.doc-logo-group { display: flex; align-items: center; gap: 8px; }
+.doc-wordmark { font-family: var(--fd); font-size: 11pt; color: var(--ink-3); }
+.doc-title-label {
+  font-family: var(--fm); font-size: 8pt; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink-3);
+}
+
+/* ── CARD / BOX DEMOS ── */
+.card-row { display: flex; gap: 16px; flex-wrap: wrap; }
+.doc-card {
+  flex: 1; min-width: 180px;
+  border-radius: 10px; padding: 16px 18px;
+}
+.doc-card-teal {
+  background: var(--teal-light-doc);
+  border: 1px solid var(--teal-border-doc);
+}
+.doc-card-purple {
+  background: var(--purple-light-doc);
+  border: 1px solid var(--purple-border-doc);
+}
+.doc-card-neutral {
+  background: var(--bg-soft);
+  border: 0.5px solid var(--rule);
+}
+.doc-card-label {
+  font-family: var(--fm); font-size: 7pt; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.1em;
+  margin-bottom: 8px;
+}
+.doc-card-teal .doc-card-label   { color: var(--teal-doc); }
+.doc-card-purple .doc-card-label { color: var(--purple-doc); }
+.doc-card-neutral .doc-card-label { color: var(--ink-3); }
+.doc-card-body { font-size: 9pt; color: var(--ink-2); line-height: 1.55; }
+
+/* ── TABLE DEMO ── */
+.doc-table-demo { width: 100%; border-collapse: collapse; font-size: 8.5pt; }
+.doc-table-demo th {
+  background: var(--purple-light-doc);
+  color: var(--ink-2); font-weight: 700; text-transform: uppercase;
+  font-family: var(--fm); font-size: 7pt; letter-spacing: 0.06em;
+  padding: 7px 10px; text-align: left;
+}
+.doc-table-demo td {
+  padding: 8px 10px; color: var(--ink);
+  border-bottom: 0.5px solid var(--rule);
+  vertical-align: top;
+}
+.doc-table-demo tr:nth-child(even) td { background: var(--bg-soft); }
+.doc-table-demo tr:last-child td { border-bottom: none; }
+.doc-table-demo td.muted { color: var(--ink-3); }
+
+/* ── PAGE SIZE MOCKUPS ── */
+.page-mockup-row { display: flex; gap: 24px; align-items: flex-end; flex-wrap: wrap; }
+.page-mockup { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+.page-rect {
+  background: white;
+  border: 1px solid rgba(91,33,182,0.2);
+  border-radius: 3px;
+  position: relative;
+  box-shadow: 0 2px 12px rgba(91,33,182,0.08);
+}
+.page-rect::before {
+  content: '';
+  position: absolute;
+  top: 12%; left: 12%; right: 12%; bottom: 12%;
+  border: 0.5px dashed rgba(91,33,182,0.2);
+  border-radius: 1px;
+}
+.page-label { font-family: var(--fm); font-size: 9px; font-weight: 600; color: var(--ink-3); text-align: center; letter-spacing: 0.06em; line-height: 1.6; }
+
+/* ── PILL COMPARISON ── */
+.pill-compare-row { display: flex; gap: 20px; align-items: center; flex-wrap: wrap; }
+.pill-doc {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-family: var(--fm); font-size: 7pt; font-weight: 700;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  padding: 4px 10px; border-radius: 100px;
+}
+.pill-doc-teal   { background: rgba(13,148,136,0.09); color: var(--teal-doc);  border: 0.5px solid var(--teal-border-doc); }
+.pill-doc-purple { background: var(--purple-light-doc); color: var(--purple-doc); border: 0.5px solid var(--purple-border-doc); }
+.pill-dark {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: var(--fm); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 5px 13px; border-radius: 100px;
+}
+.pill-dark-teal   { color: #14B8A6; background: rgba(20,184,166,0.1); border: 0.5px solid rgba(20,184,166,0.28); }
+.pill-dark-purple { color: #A78BFA; background: rgba(91,33,182,0.15); border: 0.5px solid rgba(167,139,250,0.3); }
+.pill-context-label { font-size: 11px; color: var(--ink-4); font-family: var(--fm); letter-spacing: 0.06em; text-transform: uppercase; font-size: 8pt; }
+
+/* ── DECISION TREE ── */
+.decision-tree { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.dt-box {
+  border-radius: 12px; padding: 20px 22px;
+}
+.dt-box-print  { background: rgba(13,148,136,0.07);  border: 1px solid var(--teal-border-doc); }
+.dt-box-dark   { background: rgba(91,33,182,0.07);   border: 1px solid var(--purple-border-doc); }
+.dt-trigger {
+  font-family: var(--fd); font-size: 16pt; font-weight: 300;
+  color: var(--ink); margin-bottom: 14px; line-height: 1.2;
+}
+.dt-box-print .dt-trigger em { font-style: italic; color: var(--teal-doc); }
+.dt-box-dark  .dt-trigger em { font-style: italic; color: var(--purple-doc); }
+.dt-tokens {
+  display: flex; flex-direction: column; gap: 5px;
+}
+.dt-token {
+  font-family: var(--fm); font-size: 9pt; font-weight: 600;
+  padding: 5px 10px; border-radius: 6px;
+}
+.dt-box-print .dt-token { background: rgba(13,148,136,0.09); color: var(--teal-doc); }
+.dt-box-dark  .dt-token { background: rgba(91,33,182,0.09); color: var(--purple-doc); }
+.dt-note { font-size: 10pt; color: var(--ink-3); margin-top: 12px; line-height: 1.6; }
+</style>
+</head>
+<body>
+
+<!-- ── SIDEBAR ── -->
+<nav class="sidebar-nav">
+  <a href="#" class="sidebar-logo">
+    <div style="background:none;padding:0;width:26px;height:26px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+      <svg width="26" height="26" viewBox="0 0 154 182" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M153.032 120.267C151.562 120.775 150.1 121.263 148.595 121.797C122.192 131.345 96.6636 144.643 77.0527 163.76C76.1612 164.641 75.2855 165.535 74.4268 166.442C74.8954 167.697 75.1533 169.054 75.1533 170.473C75.1533 176.839 69.9929 181.999 63.627 181.999C57.2609 181.999 52.0996 176.839 52.0996 170.473C52.0997 164.107 57.261 158.947 63.627 158.947C65.3899 158.947 67.0597 159.343 68.5537 160.051C69.5224 159.205 70.5035 158.377 71.4951 157.565C94.2724 139.231 121.208 128.493 148.469 121.378C150.02 120.983 151.523 120.635 153.032 120.267Z" fill="#0D9488"/>
+        <path d="M11.9873 59.3557C18.6078 59.3557 23.9754 64.6194 23.9756 71.1125C23.9756 73.5466 23.2204 75.8077 21.9287 77.6838C22.5991 78.8025 23.2939 79.8907 24.0283 80.967C42.696 108.284 79.6038 118.04 113.279 118.468C115.159 118.48 117.145 118.446 118.953 118.372C117.157 118.591 115.174 118.771 113.293 118.905C79.6598 120.871 41.0566 114.918 17.3516 85.9348C16.4642 84.8277 15.6152 83.7036 14.7891 82.5432C13.8901 82.7543 12.9523 82.8703 11.9873 82.8703C5.36686 82.8701 0 77.6057 0 71.1125C0.000202317 64.6195 5.36698 59.3559 11.9873 59.3557Z" fill="url(#p0doc)"/>
+        <path d="M133.939 120.678C132.369 120.919 130.647 121.204 129.029 121.485C99.5499 126.902 69.8404 134.143 43.9873 147.876C43.4006 148.2 42.8073 148.535 42.2168 148.874C42.3447 149.562 42.415 150.27 42.415 150.995C42.415 157.361 37.2545 162.521 30.8887 162.522C24.5227 162.522 19.3614 157.361 19.3613 150.995C19.3613 144.629 24.5227 139.469 30.8887 139.469C33.4021 139.469 35.726 140.275 37.6201 141.641C38.5159 141.218 39.4179 140.804 40.3027 140.414C68.9294 128.335 99.008 123.935 128.973 121.052C130.611 120.915 132.353 120.774 133.939 120.678Z" fill="url(#p1doc)"/>
+        <path d="M42.417 51.5175C47.7642 51.5178 52.0986 55.7692 52.0986 61.0136C52.0986 63.9272 50.7594 66.5324 48.6533 68.2744C49.2172 69.1005 49.7957 69.9154 50.3936 70.7236C71.577 98.807 108.849 112.23 144.412 114.014C146.432 113.955 148.534 114.174 150.306 113.301C149.859 113.553 149.387 113.733 148.898 113.866C149.14 113.837 149.381 113.803 149.617 113.762C149.178 113.865 148.728 113.945 148.27 114.011C147.03 114.248 145.706 114.248 144.42 114.358C144.137 114.36 143.854 114.358 143.57 114.357C143.561 114.358 143.551 114.359 143.542 114.359C107.681 115.104 65.8779 107.282 43.7041 74.0498C42.9458 72.8727 42.2307 71.6873 41.5449 70.4697C36.606 70.0374 32.7344 65.97 32.7344 61.0136C32.7344 55.7691 37.0696 51.5175 42.417 51.5175Z" fill="url(#p2doc)"/>
+        <path d="M90.7822 0.66696C92.6862 -0.538979 95.339 -0.0645439 96.707 1.72653C97.4008 2.63492 97.6295 3.70723 97.4395 4.70114C97.4522 4.82516 97.4598 4.9512 97.458 5.07907C97.3457 13.2627 97.0693 35.4671 97.0693 55.7363C97.0693 57.032 97.0492 58.2767 97.0127 59.4716C96.9525 70.6974 96.8631 79.7189 96.833 82.5644C96.8269 83.1338 96.4721 83.6365 95.9395 83.8379L91.54 85.5009C90.8536 85.7605 90.1321 85.4542 89.8232 84.8691C89.7229 84.7836 89.667 84.631 89.667 84.416V10.997L60.6465 29.3769C60.641 41.5872 60.6289 69.1824 60.6289 70.4882C60.6289 72.1676 53.0219 65.8699 52.7832 53.9043V26.8779C52.7832 26.486 52.8525 26.1102 52.9805 25.7627C53.2129 24.897 53.7706 24.1095 54.625 23.5683L90.7822 0.66696Z" fill="url(#p3doc)"/>
+        <path d="M100.09 30.9179C100.075 30.534 100.509 30.3007 100.821 30.5254L114.154 40.1318C114.274 40.2184 114.346 40.3576 114.346 40.5058V47.0859C114.364 61.7596 114.695 92.4466 114.783 100.316C114.793 101.25 113.895 101.915 113.001 101.646L107.491 99.9922C106.906 99.8166 106.505 99.3019 106.505 98.6914V49.3906C106.505 49.3746 106.507 49.3571 106.508 49.3379V44.0117L100.671 40.3984C100.541 40.3178 100.459 40.1783 100.453 40.0254L100.09 30.9179Z" fill="url(#p4doc)"/>
+        <defs>
+          <linearGradient id="p0doc" x1="14.0623" y1="71.5739" x2="40.5735" y2="94.3963" gradientUnits="userSpaceOnUse"><stop stop-color="#0D9488"/><stop offset="1" stop-color="#7C3AED"/></linearGradient>
+          <linearGradient id="p1doc" x1="27.1997" y1="148.111" x2="123.334" y2="125.056" gradientUnits="userSpaceOnUse"><stop stop-color="#0D9488"/><stop offset="0.778846" stop-color="#3D2B6E"/><stop offset="1" stop-color="#60A5FA"/></linearGradient>
+          <linearGradient id="p2doc" x1="91.52" y1="51.5175" x2="91.52" y2="114.407" gradientUnits="userSpaceOnUse"><stop stop-color="#7C3AED"/><stop offset="1" stop-color="#3D2B6E"/></linearGradient>
+          <linearGradient id="p3doc" x1="75.1434" y1="0" x2="75.1434" y2="85.594" gradientUnits="userSpaceOnUse"><stop stop-color="#7C3AED"/><stop offset="1" stop-color="#3D2B6E"/></linearGradient>
+          <linearGradient id="p4doc" x1="107.436" y1="30.4375" x2="107.436" y2="101.706" gradientUnits="userSpaceOnUse"><stop stop-color="#7C3AED"/><stop offset="1" stop-color="#3D2B6E"/></linearGradient>
+        </defs>
+      </svg>
+    </div>
+    <span class="sidebar-logo-text">Resonance</span>
+  </a>
+
+  <div class="sidebar-section-label">Document Guide</div>
+  <a href="#modes"       class="sidebar-link">1. Two Modes</a>
+  <a href="#colors"      class="sidebar-link">2. Color Tokens</a>
+  <a href="#typography"  class="sidebar-link">3. Typography Scale</a>
+  <a href="#docheader"   class="sidebar-link">4. Document Header</a>
+  <a href="#cards"       class="sidebar-link">5. Cards &amp; Boxes</a>
+  <a href="#tables"      class="sidebar-link">6. Table Pattern</a>
+  <a href="#pagesizing"  class="sidebar-link">7. Page Sizing</a>
+  <a href="#pills"       class="sidebar-link">8. Pill / Label</a>
+  <a href="#quickref"    class="sidebar-link">9. Quick Reference</a>
+
+  <div class="sidebar-footer">
+    <a href="styleguide.html">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 0 1-2-2V9m0 0h18"/></svg>
+      Web style guide →
+    </a>
+  </div>
+</nav>
+
+<!-- ── MAIN ── -->
+<main class="main">
+
+  <header class="page-header">
+    <div class="page-header-eyebrow">Resonance Design System</div>
+    <h1>Document Style Guide — <em>Print &amp; Light Theme</em></h1>
+    <p>Tokens, patterns, and sizing for standalone HTML document files: pricing overviews, HUD briefs, platform decks, and proposals. Print/Document mode uses its own token set distinct from the main site's dark theme.</p>
+  </header>
+
+  <!-- ═════════════════════════
+       §1 TWO MODES
+  ═════════════════════════ -->
+  <section class="sg-section" id="modes">
+    <div class="section-eyebrow">Section 01</div>
+    <h2 class="section-title">Two Document Modes</h2>
+    <p class="section-desc">Standalone HTML files fall into two modes. The token sets are distinct — use the right one for your output target.</p>
+
+    <table class="comparison-table">
+      <thead>
+        <tr>
+          <th>Property</th>
+          <th><span class="mode-badge print">Print / Document</span></th>
+          <th><span class="mode-badge dark">Web / Dark</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Files</td>
+          <td>pricing-overview.html, hud-overview.html, platform-overview.html</td>
+          <td>nysafah.html, demo.html</td>
+        </tr>
+        <tr>
+          <td>Background</td>
+          <td>White / soft lavender (#F7F4FF surround)</td>
+          <td>Dark #09080F</td>
+        </tr>
+        <tr>
+          <td>Intended output</td>
+          <td>Print, PDF export, screen share in meeting</td>
+          <td>Browser only — live presentations</td>
+        </tr>
+        <tr>
+          <td>Text token set</td>
+          <td><code class="ic">--ink</code> · <code class="ic">--ink-2</code> · <code class="ic">--ink-3</code> · <code class="ic">--ink-4</code></td>
+          <td><code class="ic">--text-1</code> · <code class="ic">--text-2</code> · <code class="ic">--text-3</code></td>
+        </tr>
+        <tr>
+          <td>Font variables</td>
+          <td><code class="ic">--fd</code> · <code class="ic">--fb</code> · <code class="ic">--fm</code></td>
+          <td><code class="ic">--ff-display</code> · <code class="ic">--ff-body</code> · <code class="ic">--ff-mono</code></td>
+        </tr>
+        <tr>
+          <td>Size units</td>
+          <td><code class="ic">pt</code> for typography, <code class="ic">px</code> for layout</td>
+          <td><code class="ic">px</code> / <code class="ic">rem</code> / <code class="ic">clamp()</code></td>
+        </tr>
+        <tr>
+          <td>Teal color</td>
+          <td><code class="ic">#0D9488</code> (darker for white bg legibility)</td>
+          <td><code class="ic">#14B8A6</code></td>
+        </tr>
+        <tr>
+          <td>Page sizing</td>
+          <td><code class="ic">@page</code> with letter/landscape</td>
+          <td>None — full-viewport</td>
+        </tr>
+        <tr>
+          <td>Nav</td>
+          <td>None (document has no nav)</td>
+          <td>Simplified: logo + CTA only, 64px fixed</td>
+        </tr>
+        <tr>
+          <td>Background decoration</td>
+          <td>None</td>
+          <td>Grid layer + animated orbs (.bg-canvas)</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ═════════════════════════
+       §2 COLOR TOKENS
+  ═════════════════════════ -->
+  <section class="sg-section" id="colors">
+    <div class="section-eyebrow">Section 02</div>
+    <h2 class="section-title">Color Tokens — Print</h2>
+    <p class="section-desc">Print docs use their own named tokens. The teal is slightly darker than the web version for legibility on white backgrounds.</p>
+
+    <div class="sg-sub">Teal &amp; Purple Accents</div>
+    <div class="swatch-grid">
+      <div class="swatch"><div class="swatch-color" style="background:#0D9488;"></div><div><div class="swatch-name">--teal-doc</div><div class="swatch-hex">#0D9488</div></div></div>
+      <div class="swatch"><div class="swatch-color" style="background:rgba(13,148,136,0.09);border:0.5px solid rgba(13,148,136,0.25);"></div><div><div class="swatch-name">--teal-light-doc</div><div class="swatch-hex">rgba(13,148,136,0.09)</div></div></div>
+      <div class="swatch"><div class="swatch-color" style="background:#7C3AED;"></div><div><div class="swatch-name">--purple-doc</div><div class="swatch-hex">#7C3AED</div></div></div>
+      <div class="swatch"><div class="swatch-color" style="background:#9461FB;"></div><div><div class="swatch-name">--purple-mid-doc</div><div class="swatch-hex">#9461FB</div></div></div>
+      <div class="swatch"><div class="swatch-color" style="background:rgba(124,58,237,0.08);border:0.5px solid rgba(124,58,237,0.2);"></div><div><div class="swatch-name">--purple-light-doc</div><div class="swatch-hex">rgba(124,58,237,0.08)</div></div></div>
+    </div>
+
+    <div class="sg-sub">Ink (Text) Scale</div>
+    <div class="swatch-grid">
+      <div class="swatch"><div class="swatch-color" style="background:#1A0F3A;"></div><div><div class="swatch-name">--ink</div><div class="swatch-hex">#1A0F3A</div></div></div>
+      <div class="swatch"><div class="swatch-color" style="background:#3D2B6E;"></div><div><div class="swatch-name">--ink-2</div><div class="swatch-hex">#3D2B6E</div></div></div>
+      <div class="swatch"><div class="swatch-color" style="background:#6B5A9A;"></div><div><div class="swatch-name">--ink-3</div><div class="swatch-hex">#6B5A9A</div></div></div>
+      <div class="swatch"><div class="swatch-color" style="background:#9B8DC0;"></div><div><div class="swatch-name">--ink-4</div><div class="swatch-hex">#9B8DC0</div></div></div>
+    </div>
+
+    <div class="sg-sub">Background &amp; Rule</div>
+    <div class="swatch-grid">
+      <div class="swatch"><div class="swatch-color" style="background:#FFFFFF;border:0.5px solid rgba(91,33,182,0.15);"></div><div><div class="swatch-name">--bg</div><div class="swatch-hex">#FFFFFF</div></div></div>
+      <div class="swatch"><div class="swatch-color" style="background:#F7F4FF;border:0.5px solid rgba(91,33,182,0.15);"></div><div><div class="swatch-name">--bg-soft</div><div class="swatch-hex">#F7F4FF</div></div></div>
+      <div class="swatch"><div class="swatch-color" style="background:#EDE8FA;border:0.5px solid rgba(91,33,182,0.15);"></div><div><div class="swatch-name">--soft</div><div class="swatch-hex">#EDE8FA</div></div></div>
+      <div class="swatch"><div class="swatch-color" style="background:rgba(91,33,182,0.12);border:0.5px solid rgba(91,33,182,0.2);"></div><div><div class="swatch-name">--rule</div><div class="swatch-hex">rgba(91,33,182,0.12)</div></div></div>
+    </div>
+
+    <div class="code-block"><span class="p">--teal-doc</span>:          <span class="v">#0D9488</span>;          <span class="x">/* slightly darker than web #14B8A6 */</span>
+<span class="p">--teal-light-doc</span>:    <span class="v">rgba(13,148,136,0.09)</span>;
+<span class="p">--teal-border-doc</span>:   <span class="v">rgba(13,148,136,0.25)</span>;
+<span class="p">--purple-doc</span>:        <span class="v">#7C3AED</span>;          <span class="x">/* same as --purple-mid on web */</span>
+<span class="p">--ink</span>:               <span class="v">#1A0F3A</span>;          <span class="x">/* darkest body text */</span>
+<span class="p">--ink-2</span>:             <span class="v">#3D2B6E</span>;          <span class="x">/* headings / strong */</span>
+<span class="p">--ink-3</span>:             <span class="v">#6B5A9A</span>;          <span class="x">/* secondary text */</span>
+<span class="p">--ink-4</span>:             <span class="v">#9B8DC0</span>;          <span class="x">/* muted / captions */</span>
+<span class="p">--rule</span>:              <span class="v">rgba(91,33,182,0.12)</span>;  <span class="x">/* dividers */</span>
+<span class="p">--bg-soft</span>:           <span class="v">#F7F4FF</span>;
+<span class="p">--soft</span>:              <span class="v">#EDE8FA</span>;</div>
+  </section>
+
+  <!-- ═════════════════════════
+       §3 TYPOGRAPHY SCALE
+  ═════════════════════════ -->
+  <section class="sg-section" id="typography">
+    <div class="section-eyebrow">Section 03</div>
+    <h2 class="section-title">Typography Scale — Print</h2>
+    <p class="section-desc">All type uses <code class="ic">pt</code> units for print fidelity. Font variables use shorthand: <code class="ic">--fd</code> (Fraunces), <code class="ic">--fb</code> (Instrument Sans), <code class="ic">--fm</code> (JetBrains Mono).</p>
+
+    <div class="type-specimen">
+      <div class="spec-label">Document title — Fraunces 300, 24pt</div>
+      <div style="font-family:var(--fd);font-weight:300;font-size:24pt;line-height:1.15;color:var(--ink);letter-spacing:-0.01em;">Resonance Platform Overview</div>
+    </div>
+    <div class="code-block"><span class="p">font-family</span>: <span class="v">var(--fd)</span>;  <span class="p">font-weight</span>: <span class="v">300</span>;
+<span class="p">font-size</span>: <span class="v">20–24pt</span>;  <span class="p">color</span>: <span class="v">var(--ink)</span>;  <span class="p">line-height</span>: <span class="v">1.15</span>;</div>
+
+    <div class="spec-stack">
+      <div class="type-specimen">
+        <div class="spec-label">Section heading — Fraunces 300, 16pt</div>
+        <div style="font-family:var(--fd);font-weight:300;font-size:16pt;line-height:1.2;color:var(--ink);">Relocation Operations</div>
+      </div>
+      <div class="code-block"><span class="p">font-family</span>: <span class="v">var(--fd)</span>;  <span class="p">font-size</span>: <span class="v">13–16pt</span>;  <span class="p">font-weight</span>: <span class="v">300–400</span>;</div>
+    </div>
+
+    <div class="spec-stack">
+      <div class="type-specimen">
+        <div class="spec-label">Sub-heading — Instrument Sans 700, 9pt, uppercase</div>
+        <div style="font-family:var(--fb);font-weight:700;font-size:9pt;text-transform:uppercase;letter-spacing:0.06em;color:var(--ink-3);">Program capabilities</div>
+      </div>
+      <div class="code-block"><span class="p">font-family</span>: <span class="v">var(--fb)</span>;  <span class="p">font-weight</span>: <span class="v">700</span>;  <span class="p">font-size</span>: <span class="v">9–10pt</span>;
+<span class="p">text-transform</span>: <span class="v">uppercase</span>;  <span class="p">color</span>: <span class="v">var(--ink-3)</span>;</div>
+    </div>
+
+    <div class="spec-stack">
+      <div class="type-specimen">
+        <div class="spec-label">Body copy — Instrument Sans 400, 9pt</div>
+        <p style="font-family:var(--fb);font-weight:400;font-size:9pt;color:var(--ink-2);line-height:1.55;max-width:540px;">Resonance is purpose-built for the operational complexity of RAD, PACT, and Section 18 programs. Every household profile, unit match, and compliance record lives in one auditable system.</p>
+      </div>
+      <div class="code-block"><span class="p">font-family</span>: <span class="v">var(--fb)</span>;  <span class="p">font-size</span>: <span class="v">8.5–9.5pt</span>;  <span class="p">color</span>: <span class="v">var(--ink-2)</span>;  <span class="p">line-height</span>: <span class="v">1.45–1.6</span>;</div>
+    </div>
+
+    <div class="spec-stack">
+      <div class="type-specimen">
+        <div class="spec-label">Mono label — JetBrains Mono 600, 8pt</div>
+        <div style="font-family:var(--fm);font-weight:600;font-size:8pt;text-transform:uppercase;letter-spacing:0.1em;color:var(--teal-doc);">URA compliance</div>
+      </div>
+      <div class="code-block"><span class="p">font-family</span>: <span class="v">var(--fm)</span>;  <span class="p">font-size</span>: <span class="v">7–8pt</span>;  <span class="p">font-weight</span>: <span class="v">600–700</span>;
+<span class="p">color</span>: <span class="v">var(--teal-doc)</span> or <span class="v">var(--ink-3)</span>;</div>
+    </div>
+
+    <div class="spec-stack">
+      <div class="type-specimen">
+        <div class="spec-label">Caption — Instrument Sans 400, 7.5pt</div>
+        <p style="font-family:var(--fb);font-weight:400;font-size:7.5pt;color:var(--ink-4);line-height:1.55;">*Confidential. For authorized recipients only. resonancehq.io</p>
+      </div>
+      <div class="code-block"><span class="p">font-family</span>: <span class="v">var(--fb)</span>;  <span class="p">font-size</span>: <span class="v">7–7.5pt</span>;  <span class="p">color</span>: <span class="v">var(--ink-4)</span>;</div>
+    </div>
+  </section>
+
+  <!-- ═════════════════════════
+       §4 DOCUMENT HEADER
+  ═════════════════════════ -->
+  <section class="sg-section" id="docheader">
+    <div class="section-eyebrow">Section 04</div>
+    <h2 class="section-title">Document Header Pattern</h2>
+    <p class="section-desc">Every print document opens with a consistent header. Logo mark + wordmark on the left; document title on the right. Separated by a 2px purple rule.</p>
+
+    <div class="doc-header-demo">
+      <div class="doc-header-inner">
+        <div class="doc-logo-group">
+          <svg width="22" height="22" viewBox="0 0 154 182" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M153.032 120.267C151.562 120.775 150.1 121.263 148.595 121.797C122.192 131.345 96.6636 144.643 77.0527 163.76C76.1612 164.641 75.2855 165.535 74.4268 166.442C74.8954 167.697 75.1533 169.054 75.1533 170.473C75.1533 176.839 69.9929 181.999 63.627 181.999C57.2609 181.999 52.0996 176.839 52.0996 170.473C52.0997 164.107 57.261 158.947 63.627 158.947C65.3899 158.947 67.0597 159.343 68.5537 160.051C69.5224 159.205 70.5035 158.377 71.4951 157.565C94.2724 139.231 121.208 128.493 148.469 121.378C150.02 120.983 151.523 120.635 153.032 120.267Z" fill="#0D9488"/>
+            <path d="M11.9873 59.3557C18.6078 59.3557 23.9754 64.6194 23.9756 71.1125C23.9756 73.5466 23.2204 75.8077 21.9287 77.6838C22.5991 78.8025 23.2939 79.8907 24.0283 80.967C42.696 108.284 79.6038 118.04 113.279 118.468C115.159 118.48 117.145 118.446 118.953 118.372C117.157 118.591 115.174 118.771 113.293 118.905C79.6598 120.871 41.0566 114.918 17.3516 85.9348C16.4642 84.8277 15.6152 83.7036 14.7891 82.5432C13.8901 82.7543 12.9523 82.8703 11.9873 82.8703C5.36686 82.8701 0 77.6057 0 71.1125C0.000202317 64.6195 5.36698 59.3559 11.9873 59.3557Z" fill="#7C3AED"/>
+            <path d="M133.939 120.678C132.369 120.919 130.647 121.204 129.029 121.485C99.5499 126.902 69.8404 134.143 43.9873 147.876C43.4006 148.2 42.8073 148.535 42.2168 148.874C42.3447 149.562 42.415 150.27 42.415 150.995C42.415 157.361 37.2545 162.521 30.8887 162.522C24.5227 162.522 19.3614 157.361 19.3613 150.995C19.3613 144.629 24.5227 139.469 30.8887 139.469C33.4021 139.469 35.726 140.275 37.6201 141.641C38.5159 141.218 39.4179 140.804 40.3027 140.414C68.9294 128.335 99.008 123.935 128.973 121.052C130.611 120.915 132.353 120.774 133.939 120.678Z" fill="#3D2B6E"/>
+            <path d="M42.417 51.5175C47.7642 51.5178 52.0986 55.7692 52.0986 61.0136C52.0986 63.9272 50.7594 66.5324 48.6533 68.2744C49.2172 69.1005 49.7957 69.9154 50.3936 70.7236C71.577 98.807 108.849 112.23 144.412 114.014C146.432 113.955 148.534 114.174 150.306 113.301C149.859 113.553 149.387 113.733 148.898 113.866C149.14 113.837 149.381 113.803 149.617 113.762C149.178 113.865 148.728 113.945 148.27 114.011C147.03 114.248 145.706 114.248 144.42 114.358C144.137 114.36 143.854 114.358 143.57 114.357C143.561 114.358 143.551 114.359 143.542 114.359C107.681 115.104 65.8779 107.282 43.7041 74.0498C42.9458 72.8727 42.2307 71.6873 41.5449 70.4697C36.606 70.0374 32.7344 65.97 32.7344 61.0136C32.7344 55.7691 37.0696 51.5175 42.417 51.5175Z" fill="#6B5A9A"/>
+            <path d="M90.7822 0.66696C92.6862 -0.538979 95.339 -0.0645439 96.707 1.72653C97.4008 2.63492 97.6295 3.70723 97.4395 4.70114C97.4522 4.82516 97.4598 4.9512 97.458 5.07907C97.3457 13.2627 97.0693 35.4671 97.0693 55.7363C97.0693 57.032 97.0492 58.2767 97.0127 59.4716C96.9525 70.6974 96.8631 79.7189 96.833 82.5644C96.8269 83.1338 96.4721 83.6365 95.9395 83.8379L91.54 85.5009C90.8536 85.7605 90.1321 85.4542 89.8232 84.8691C89.7229 84.7836 89.667 84.631 89.667 84.416V10.997L60.6465 29.3769C60.641 41.5872 60.6289 69.1824 60.6289 70.4882C60.6289 72.1676 53.0219 65.8699 52.7832 53.9043V26.8779C52.7832 26.486 52.8525 26.1102 52.9805 25.7627C53.2129 24.897 53.7706 24.1095 54.625 23.5683L90.7822 0.66696Z" fill="#9461FB"/>
+            <path d="M100.09 30.9179C100.075 30.534 100.509 30.3007 100.821 30.5254L114.154 40.1318C114.274 40.2184 114.346 40.3576 114.346 40.5058V47.0859C114.364 61.7596 114.695 92.4466 114.783 100.316C114.793 101.25 113.895 101.915 113.001 101.646L107.491 99.9922C106.906 99.8166 106.505 99.3019 106.505 98.6914V49.3906C106.505 49.3746 106.507 49.3571 106.508 49.3379V44.0117L100.671 40.3984C100.541 40.3178 100.459 40.1783 100.453 40.0254L100.09 30.9179Z" fill="#7C3AED"/>
+          </svg>
+          <span class="doc-wordmark">Resonance</span>
+        </div>
+        <span class="doc-title-label">Pricing Overview · Confidential</span>
+      </div>
+      <div style="padding-top:14px;font-family:var(--fd);font-size:22pt;font-weight:300;color:var(--ink);">Resonance Platform Pricing</div>
+      <p style="font-family:var(--fb);font-size:9pt;color:var(--ink-3);margin-top:6px;">Program-level SaaS for affordable housing relocation &amp; redevelopment.</p>
+    </div>
+
+    <div class="code-block"><span class="x">/* Document header layout */</span>
+<span class="c">.doc-header</span> {
+  <span class="p">display</span>: <span class="v">flex</span>; <span class="p">justify-content</span>: <span class="v">space-between</span>; <span class="p">align-items</span>: <span class="v">center</span>;
+  <span class="p">padding-bottom</span>: <span class="v">10–12px</span>;
+  <span class="p">border-bottom</span>: <span class="v">1.5–2px solid var(--purple-doc)</span>;  <span class="x">/* or --teal-doc */</span>
+}
+<span class="c">.doc-wordmark</span>  { <span class="p">font-family</span>: <span class="v">var(--fd)</span>; <span class="p">font-size</span>: <span class="v">11pt</span>; <span class="p">color</span>: <span class="v">var(--ink-3)</span>; }
+<span class="c">.doc-title-label</span> { <span class="p">font-family</span>: <span class="v">var(--fm)</span>; <span class="p">font-size</span>: <span class="v">7–8pt</span>; <span class="p">text-transform</span>: <span class="v">uppercase</span>; }</div>
+  </section>
+
+  <!-- ═════════════════════════
+       §5 CARDS & BOXES
+  ═════════════════════════ -->
+  <section class="sg-section" id="cards">
+    <div class="section-eyebrow">Section 05</div>
+    <h2 class="section-title">Cards &amp; Boxes</h2>
+    <p class="section-desc">Three box patterns: teal accent (capability/feature callouts), purple accent (compliance/risk), and neutral (general content). Border-radius 8–10px for print scale.</p>
+
+    <div class="card-row">
+      <div class="doc-card doc-card-teal">
+        <div class="doc-card-label">Platform capability</div>
+        <div class="doc-card-body">AI-assisted unit matching across your entire unit inventory — matching criteria evaluated in seconds, not days.</div>
+      </div>
+      <div class="doc-card doc-card-purple">
+        <div class="doc-card-label">Compliance requirement</div>
+        <div class="doc-card-body">URA documentation required within 90 days of household displacement. Resonance generates notices automatically.</div>
+      </div>
+      <div class="doc-card doc-card-neutral">
+        <div class="doc-card-label">Program note</div>
+        <div class="doc-card-body">Pricing is per-program, not per-seat. Contact us to scope your portfolio.</div>
+      </div>
+    </div>
+
+    <div class="code-block"><span class="x">/* Teal accent box */</span>
+<span class="c">.box-teal</span> { <span class="p">background</span>: <span class="v">var(--teal-light-doc)</span>; <span class="p">border</span>: <span class="v">1px solid var(--teal-border-doc)</span>; }
+
+<span class="x">/* Purple accent box */</span>
+<span class="c">.box-purple</span> { <span class="p">background</span>: <span class="v">var(--purple-light-doc)</span>; <span class="p">border</span>: <span class="v">1px solid var(--purple-border-doc)</span>; }
+
+<span class="x">/* Neutral card */</span>
+<span class="c">.box-neutral</span> { <span class="p">background</span>: <span class="v">var(--bg-soft)</span>; <span class="p">border</span>: <span class="v">0.5px solid var(--rule)</span>; }
+
+<span class="x">/* All boxes */</span>
+<span class="c">.box</span> { <span class="p">border-radius</span>: <span class="v">8–10px</span>; <span class="p">padding</span>: <span class="v">12–20px</span>; }</div>
+  </section>
+
+  <!-- ═════════════════════════
+       §6 TABLE PATTERN
+  ═════════════════════════ -->
+  <section class="sg-section" id="tables">
+    <div class="section-eyebrow">Section 06</div>
+    <h2 class="section-title">Table Pattern</h2>
+    <p class="section-desc">Header in purple-light with uppercase mono labels. Alternating rows using <code class="ic">--bg</code> and <code class="ic">--bg-soft</code>. Rule separator between rows.</p>
+
+    <table class="doc-table-demo">
+      <thead>
+        <tr>
+          <th>Feature</th>
+          <th>Starter</th>
+          <th>Standard</th>
+          <th>Enterprise</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Household case management</td>
+          <td>Up to 100</td>
+          <td>Up to 500</td>
+          <td>Unlimited</td>
+        </tr>
+        <tr>
+          <td>URA compliance documentation</td>
+          <td class="muted">—</td>
+          <td>Included</td>
+          <td>Included + custom forms</td>
+        </tr>
+        <tr>
+          <td>Right-to-return tracking</td>
+          <td class="muted">—</td>
+          <td>Included</td>
+          <td>Included</td>
+        </tr>
+        <tr>
+          <td>AI matching engine</td>
+          <td class="muted">—</td>
+          <td class="muted">—</td>
+          <td>Included</td>
+        </tr>
+        <tr>
+          <td>Managed services</td>
+          <td class="muted">—</td>
+          <td>Optional add-on</td>
+          <td>Included</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="code-block"><span class="c">th</span> {
+  <span class="p">background</span>: <span class="v">var(--purple-light-doc)</span>;
+  <span class="p">font-family</span>: <span class="v">var(--fm)</span>;  <span class="p">font-size</span>: <span class="v">7pt</span>;
+  <span class="p">text-transform</span>: <span class="v">uppercase</span>;  <span class="p">letter-spacing</span>: <span class="v">0.06em</span>;
+  <span class="p">padding</span>: <span class="v">7px 10px</span>;
+}
+<span class="c">td</span> {
+  <span class="p">font-family</span>: <span class="v">var(--fb)</span>;  <span class="p">font-size</span>: <span class="v">8–8.5pt</span>;
+  <span class="p">padding</span>: <span class="v">7–8px 10px</span>;
+  <span class="p">border-bottom</span>: <span class="v">0.5px solid var(--rule)</span>;
+}
+<span class="c">tr:nth-child(even) td</span> { <span class="p">background</span>: <span class="v">var(--bg-soft)</span>; }</div>
+  </section>
+
+  <!-- ═════════════════════════
+       §7 PAGE SIZING
+  ═════════════════════════ -->
+  <section class="sg-section" id="pagesizing">
+    <div class="section-eyebrow">Section 07</div>
+    <h2 class="section-title">Page Sizing</h2>
+    <p class="section-desc">Two page configurations. Portrait letter for standard documents (pricing, proposals). Landscape for presentation-style decks. Always include <code class="ic">print-color-adjust: exact</code>.</p>
+
+    <div class="page-mockup-row">
+      <div class="page-mockup">
+        <div class="page-rect" style="width:80px;height:104px;"></div>
+        <div class="page-label">Portrait<br>Letter<br>8.5 × 11 in<br>0.55in / 0.72in margins</div>
+      </div>
+      <div class="page-mockup">
+        <div class="page-rect" style="width:130px;height:88px;"></div>
+        <div class="page-label">Landscape<br>Presentation<br>11 × 8.5 in<br>No @page margin</div>
+      </div>
+    </div>
+
+    <div class="code-block"><span class="x">/* Portrait — letter */</span>
+<span class="c">@page</span> { <span class="p">size</span>: <span class="v">letter</span>; <span class="p">margin</span>: <span class="v">0.55in 0.72in</span>; }
+<span class="c">body</span>  { <span class="p">max-width</span>: <span class="v">816px</span>; <span class="p">margin</span>: <span class="v">48px auto 80px</span>; }
+
+<span class="x">/* Landscape — presentation */</span>
+<span class="c">@page</span> { <span class="p">size</span>: <span class="v">11in 8.5in landscape</span>; <span class="p">margin</span>: <span class="v">0</span>; }
+<span class="c">body</span>  { <span class="p">width</span>: <span class="v">1200px</span>; }
+
+<span class="x">/* Always include — preserves colors in PDF */</span>
+<span class="c">*</span> { <span class="p">-webkit-print-color-adjust</span>: <span class="v">exact</span>; <span class="p">print-color-adjust</span>: <span class="v">exact</span>; }
+
+<span class="x">/* Screen wrapper (browser chrome surround) */</span>
+<span class="c">html</span> { <span class="p">background</span>: <span class="v">#D6D1EC</span>; } <span class="x">/* or #DDD8EE */</span></div>
+  </section>
+
+  <!-- ═════════════════════════
+       §8 PILL / LABEL
+  ═════════════════════════ -->
+  <section class="sg-section" id="pills">
+    <div class="section-eyebrow">Section 08</div>
+    <h2 class="section-title">Pill / Label Pattern</h2>
+    <p class="section-desc">Print pills are smaller (7pt) and tighter. Dark-web pills are larger (10px) with a pulsing dot. Both share the same shape: mono, uppercase, <code class="ic">border-radius: 100px</code>.</p>
+
+    <div class="sg-sub">Print Document Pills</div>
+    <div class="pill-compare-row">
+      <span class="pill-doc pill-doc-teal">Program active</span>
+      <span class="pill-doc pill-doc-purple">Compliance required</span>
+    </div>
+    <div class="code-block"><span class="x">/* Print pill */</span>
+<span class="c">.pill-doc</span> {
+  <span class="p">font-family</span>: <span class="v">var(--fm)</span>;  <span class="p">font-size</span>: <span class="v">7pt</span>;  <span class="p">font-weight</span>: <span class="v">700</span>;
+  <span class="p">letter-spacing</span>: <span class="v">0.08–0.12em</span>;  <span class="p">text-transform</span>: <span class="v">uppercase</span>;
+  <span class="p">padding</span>: <span class="v">3–4px 8–10px</span>;  <span class="p">border-radius</span>: <span class="v">100px</span>;
+}</div>
+
+    <div class="sg-sub" style="margin-top:28px;">Dark Web Pills (for comparison)</div>
+    <div class="pill-compare-row" style="background:var(--ink);padding:14px 18px;border-radius:12px;display:inline-flex;gap:10px;">
+      <span class="pill-dark pill-dark-teal">Live demo</span>
+      <span class="pill-dark pill-dark-purple">New feature</span>
+    </div>
+    <div class="code-block"><span class="x">/* Dark web pill */</span>
+<span class="c">.pill</span> {
+  <span class="p">font-family</span>: <span class="v">var(--ff-mono)</span>;  <span class="p">font-size</span>: <span class="v">10px</span>;
+  <span class="p">letter-spacing</span>: <span class="v">0.1em</span>;  <span class="p">text-transform</span>: <span class="v">uppercase</span>;
+  <span class="p">padding</span>: <span class="v">5px 13px</span>;  <span class="p">border-radius</span>: <span class="v">100px</span>;
+}
+<span class="c">.pill-teal::before</span> { <span class="p">animation</span>: <span class="v">pulse 2s infinite</span>; } <span class="x">/* pulsing 5px dot */</span></div>
+  </section>
+
+  <!-- ═════════════════════════
+       §9 QUICK REFERENCE
+  ═════════════════════════ -->
+  <section class="sg-section" id="quickref">
+    <div class="section-eyebrow">Section 09</div>
+    <h2 class="section-title">Quick Reference</h2>
+    <p class="section-desc">Decision tree for choosing the right token set when starting a new file.</p>
+
+    <div class="decision-tree">
+      <div class="dt-box dt-box-print">
+        <div class="dt-trigger">New <em>print/PDF</em> document?</div>
+        <div class="dt-tokens">
+          <span class="dt-token">--ink · --ink-2 · --ink-3 · --ink-4</span>
+          <span class="dt-token">--fd · --fb · --fm</span>
+          <span class="dt-token">pt units for typography</span>
+          <span class="dt-token">@page with letter or landscape</span>
+          <span class="dt-token">print-color-adjust: exact</span>
+          <span class="dt-token">--teal-doc: #0D9488</span>
+        </div>
+        <div class="dt-note">Files: <em>pricing-overview.html, hud-overview.html, platform-overview.html</em>, proposals</div>
+      </div>
+
+      <div class="dt-box dt-box-dark">
+        <div class="dt-trigger">New <em>dark web</em> page?</div>
+        <div class="dt-tokens">
+          <span class="dt-token">--text-1 · --text-2 · --text-3</span>
+          <span class="dt-token">--ff-display · --ff-body · --ff-mono</span>
+          <span class="dt-token">px / rem / clamp() units</span>
+          <span class="dt-token">Fixed nav 64px · backdrop-filter</span>
+          <span class="dt-token">Background grid + orb canvas</span>
+          <span class="dt-token">--teal: #14B8A6</span>
+        </div>
+        <div class="dt-note">Files: <em>nysafah.html, demo.html</em> — mirror index.html tokens exactly</div>
+      </div>
+    </div>
+
+    <div style="margin-top:28px;padding:18px 22px;background:var(--soft);border-radius:10px;border:0.5px solid var(--rule);">
+      <div style="font-family:var(--fm);font-size:9pt;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--ink-3);margin-bottom:10px;">Logo rule (both modes)</div>
+      <p style="font-size:12px;color:var(--ink-2);line-height:1.65;">Always use the full 6-path SVG — one solid path (<code class="ic">#9BE2E4</code>) plus five gradient paths (<code class="ic">paint0_32</code>–<code class="ic">paint4_32</code>). Never a simplified version. In documents, size: 22–28px. In the nav bar: 28–32px.</p>
+    </div>
+  </section>
+
+</main>
+
+<script>
+// Highlight active sidebar link on scroll
+const links = document.querySelectorAll('.sidebar-link[href^="#"]');
+const sections = [...links].map(l => document.querySelector(l.getAttribute('href'))).filter(Boolean);
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      links.forEach(l => l.classList.remove('active'));
+      const active = [...links].find(l => l.getAttribute('href') === '#' + e.target.id);
+      if (active) active.classList.add('active');
+    }
+  });
+}, { rootMargin: '-20% 0px -70% 0px' });
+sections.forEach(s => obs.observe(s));
+</script>
+</body>
+</html>
