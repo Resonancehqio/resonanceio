@@ -1,0 +1,1210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resonance — RSP Outreach Brief</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,300;1,9..144,400&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600;700&display=swap">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --teal:#0D9488;
+  --teal-light:rgba(13,148,136,0.09);
+  --teal-border:rgba(13,148,136,0.25);
+  --purple:#7C3AED;
+  --purple-light:rgba(124,58,237,0.08);
+  --purple-border:rgba(124,58,237,0.20);
+  --purple-mid:#9461FB;
+  --amber:#B45309;
+  --amber-light:rgba(180,83,9,0.07);
+  --amber-border:rgba(180,83,9,0.22);
+  --green:#0D7A50;
+  --green-light:rgba(13,122,80,0.08);
+  --green-border:rgba(13,122,80,0.22);
+  --ink:#1A0F3A;
+  --ink-2:#3D2B6E;
+  --ink-3:#6B5A9A;
+  --ink-4:#9B8DC0;
+  --rule:rgba(91,33,182,0.12);
+  --bg:#FFFFFF;
+  --bg-soft:#F7F4FF;
+  --fd:'Fraunces',Georgia,serif;
+  --fb:'Instrument Sans',-apple-system,sans-serif;
+  --fm:'JetBrains Mono','SF Mono',monospace;
+}
+
+@media screen{
+  html{background:#DDD8EE;min-height:100vh}
+  body{max-width:816px;margin:48px auto 80px;background:var(--bg);box-shadow:0 8px 60px rgba(0,0,0,0.18);-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+
+body{font-family:var(--fb);color:var(--ink);font-size:9.5pt;line-height:1.6;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+
+.page{padding:0.55in 0.72in}
+.page-break{break-before:page;padding-top:0.55in}
+
+@page{size:letter;margin:0.55in 0.72in}
+
+/* ── HEADER ── */
+.doc-header{display:flex;align-items:flex-start;justify-content:space-between;padding-bottom:18px;border-bottom:1.5px solid var(--purple);margin-bottom:28px}
+.doc-logo{display:flex;align-items:center;gap:9px}
+.logo-wordmark{font-family:var(--fd);font-size:15pt;font-weight:400;color:var(--ink);letter-spacing:-0.01em}
+.doc-header-right{text-align:right}
+.doc-title{font-family:var(--fm);font-size:7pt;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--purple-mid);margin-bottom:2px}
+.doc-date{font-family:var(--fm);font-size:7pt;color:var(--ink-4)}
+
+/* ── EYEBROW ── */
+.eyebrow{font-family:var(--fm);font-size:6.5pt;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--teal);display:flex;align-items:center;gap:6px;margin-bottom:8px}
+.eyebrow::before{content:'';width:4px;height:4px;border-radius:50%;background:var(--teal);flex-shrink:0}
+
+/* ── HEADINGS ── */
+h1{font-family:var(--fd);font-size:22pt;font-weight:300;color:var(--ink);letter-spacing:-0.02em;line-height:1.1;margin-bottom:10px}
+h1 em{font-style:italic;color:var(--teal)}
+h2{font-family:var(--fd);font-size:13pt;font-weight:300;color:var(--ink);letter-spacing:-0.015em;line-height:1.2;margin-bottom:8px}
+h2 em{font-style:italic;color:var(--teal)}
+h3{font-family:var(--fb);font-size:8.5pt;font-weight:700;color:var(--ink-3);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px}
+
+/* ── BODY ── */
+p{color:var(--ink-2);line-height:1.7}
+.lede{font-size:10.5pt;color:var(--ink-2);line-height:1.7;max-width:520px;margin-bottom:20px}
+.section{margin-bottom:22px}
+.divider{height:1px;background:var(--rule);margin:20px 0}
+
+/* ── STATUS BADGES ── */
+.badge{display:inline-flex;align-items:center;gap:4px;font-family:var(--fm);font-size:5.5pt;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:2px 8px;border-radius:20px}
+.badge::before{content:'';width:4px;height:4px;border-radius:50%;flex-shrink:0}
+.badge-active{background:rgba(13,122,80,0.10);border:1px solid rgba(13,122,80,0.28);color:var(--green)}
+.badge-active::before{background:var(--green)}
+.badge-priority{background:var(--teal-light);border:1px solid var(--teal-border);color:var(--teal)}
+.badge-priority::before{background:var(--teal)}
+.badge-warm{background:var(--amber-light);border:1px solid var(--amber-border);color:var(--amber)}
+.badge-warm::before{background:var(--amber)}
+.badge-national{background:var(--purple-light);border:1px solid var(--purple-border);color:var(--purple-mid)}
+.badge-national::before{display:none}
+.badge-regional{background:var(--bg-soft);border:1px solid var(--rule);color:var(--ink-3)}
+.badge-regional::before{display:none}
+.badge-boutique{background:var(--amber-light);border:1px solid var(--amber-border);color:var(--amber)}
+.badge-boutique::before{display:none}
+
+/* ── OVERVIEW TABLE ── */
+.overview-table{width:100%;border-collapse:collapse;font-size:8pt;margin-bottom:6px}
+.overview-table thead tr{background:var(--purple-light)}
+.overview-table thead th{font-family:var(--fm);font-size:5.5pt;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-2);padding:7px 10px;text-align:left;border-bottom:1px solid var(--rule)}
+.overview-table tbody tr{border-bottom:0.5px solid var(--rule)}
+.overview-table tbody tr:nth-child(even){background:var(--bg-soft)}
+.overview-table td{padding:8px 10px;color:var(--ink-2);vertical-align:middle;line-height:1.4}
+.overview-table td:first-child{font-weight:600;color:var(--ink)}
+.overview-table td.mono{font-family:var(--fm);font-size:7.5pt;color:var(--ink-3)}
+.overview-table tr:last-child td{border-bottom:none}
+
+/* ── FIRM CARD ── */
+.firm-card{border:1px solid var(--rule);border-radius:10px;overflow:hidden;margin-bottom:20px}
+.firm-card-header{padding:14px 18px;background:var(--bg-soft);border-bottom:1px solid var(--rule);display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+.firm-card-header-left{flex:1}
+.firm-card-name{font-family:var(--fd);font-size:12.5pt;font-weight:400;color:var(--ink);letter-spacing:-0.01em;line-height:1.2;margin-bottom:4px}
+.firm-card-meta{display:flex;flex-wrap:wrap;gap:5px;align-items:center;margin-top:6px}
+.firm-card-url{font-family:var(--fm);font-size:7pt;color:var(--ink-4)}
+.firm-card-body{padding:14px 18px;display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.firm-card-col{}
+.col-label{font-family:var(--fm);font-size:6pt;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-4);margin-bottom:6px;padding-bottom:4px;border-bottom:0.5px solid var(--rule)}
+.firm-stat-row{display:flex;gap:8px;margin-bottom:10px;flex-wrap:wrap}
+.stat-box{flex:1;min-width:70px;background:var(--bg);border:0.5px solid var(--rule);border-radius:7px;padding:8px 10px}
+.stat-num{font-family:var(--fm);font-size:12pt;font-weight:700;color:var(--ink);letter-spacing:-0.02em;line-height:1}
+.stat-label{font-family:var(--fm);font-size:6pt;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink-4);margin-top:2px}
+
+/* ── BULLET LIST ── */
+.blist{list-style:none;padding:0;margin:0}
+.blist li{display:flex;align-items:flex-start;gap:7px;font-size:8pt;color:var(--ink-2);line-height:1.55;margin-bottom:5px}
+.blist li::before{content:'→';color:var(--teal);font-weight:700;flex-shrink:0;margin-top:0px;font-size:8.5pt}
+.blist li:last-child{margin-bottom:0}
+
+/* ── PAIN LIST ── */
+.plist{list-style:none;padding:0;margin:0}
+.plist li{display:flex;align-items:flex-start;gap:7px;font-size:8pt;color:var(--ink-2);line-height:1.55;margin-bottom:5px}
+.plist li::before{content:'✕';color:var(--amber);font-weight:700;flex-shrink:0;font-size:8pt}
+.plist li:last-child{margin-bottom:0}
+
+/* ── CALLOUT ── */
+.callout{border-radius:8px;padding:13px 15px}
+.callout.teal{background:var(--teal-light);border:1px solid var(--teal-border);border-left:3px solid var(--teal)}
+.callout.purple{background:var(--purple-light);border:1px solid var(--purple-border);border-left:3px solid var(--purple)}
+.callout.amber{background:var(--amber-light);border:1px solid var(--amber-border);border-left:3px solid var(--amber)}
+.callout.green{background:var(--green-light);border:1px solid var(--green-border);border-left:3px solid var(--green)}
+.callout-label{font-family:var(--fm);font-size:6pt;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:5px}
+.callout.teal .callout-label{color:var(--teal)}
+.callout.purple .callout-label{color:var(--purple-mid)}
+.callout.amber .callout-label{color:var(--amber)}
+.callout.green .callout-label{color:var(--green)}
+.callout-body{font-size:8pt;color:var(--ink-2);line-height:1.65}
+.callout-body strong{color:var(--ink);font-weight:600}
+
+/* ── HOOK BOX ── */
+.hook-box{background:var(--teal-light);border:1px solid var(--teal-border);border-radius:8px;padding:12px 15px;margin-top:10px}
+.hook-label{font-family:var(--fm);font-size:5.5pt;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--teal);margin-bottom:5px}
+.hook-body{font-size:8pt;color:var(--ink);font-style:italic;line-height:1.65}
+
+/* ── NEXT STEPS ── */
+.step-list{display:flex;flex-direction:column;gap:8px}
+.step{display:flex;gap:9px;align-items:flex-start}
+.step-num{width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--fm);font-size:6.5pt;font-weight:700;flex-shrink:0;margin-top:1px}
+.step-num.t{background:var(--teal-light);border:1px solid var(--teal-border);color:var(--teal)}
+.step-num.p{background:var(--purple-light);border:1px solid var(--purple-border);color:var(--purple-mid)}
+.step-num.a{background:var(--amber-light);border:1px solid var(--amber-border);color:var(--amber)}
+.step-title{font-size:8pt;font-weight:600;color:var(--ink);margin-bottom:1px}
+.step-desc{font-size:7.5pt;color:var(--ink-3);line-height:1.5}
+
+/* ── SECTION HEADER ── */
+.section-divider{display:flex;align-items:center;gap:12px;margin:28px 0 20px}
+.section-divider-line{flex:1;height:0.5px;background:var(--rule)}
+.section-divider-label{font-family:var(--fm);font-size:7pt;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-4);white-space:nowrap}
+
+/* ── FOOTER ── */
+.doc-footer{margin-top:28px;padding-top:14px;border-top:1px solid var(--rule);display:flex;justify-content:space-between;align-items:flex-end}
+.footer-contact{font-size:7.5pt;color:var(--ink-2);line-height:1.7}
+.footer-contact strong{color:var(--ink);display:block;margin-bottom:2px;font-size:8pt}
+.footer-contact a{color:var(--teal);text-decoration:none}
+.footer-legal{font-size:6.5pt;color:var(--ink-4);text-align:right;line-height:1.6}
+.footer-logo{font-family:var(--fd);font-size:10pt;font-weight:400;color:var(--ink-3)}
+
+/* ── PROGRAM PILLS ── */
+.pill-row{display:flex;flex-wrap:wrap;gap:4px;margin-top:4px}
+.prog-pill{font-family:var(--fm);font-size:5.5pt;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:2px 7px;border-radius:20px;background:var(--purple-light);border:1px solid var(--purple-border);color:var(--purple-mid)}
+
+/* ── INTRO STATS ROW ── */
+.intro-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:20px 0}
+.intro-stat{text-align:center;padding:14px;background:var(--bg-soft);border:0.5px solid var(--rule);border-radius:8px}
+.intro-stat-num{font-family:var(--fm);font-size:18pt;font-weight:700;color:var(--teal);letter-spacing:-0.02em;line-height:1}
+.intro-stat-label{font-size:7.5pt;color:var(--ink-3);margin-top:3px;line-height:1.4}
+
+/* ── MOBILE ── */
+@media screen and (max-width:680px){
+  html{background:var(--bg)}
+  body{max-width:100%;margin:0;box-shadow:none}
+  .page{padding:24px 18px}
+  .page-break{padding-top:24px;border-top:2px solid var(--rule);margin-top:8px}
+  h1{font-size:18pt}
+  .doc-header{flex-direction:column;gap:8px;align-items:flex-start}
+  .doc-header-right{text-align:left}
+  .firm-card-header{flex-direction:column}
+  .firm-card-body{grid-template-columns:1fr}
+  .intro-stats{grid-template-columns:1fr}
+  .overview-table{font-size:9pt}
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="doc-header">
+    <div class="doc-logo">
+      <svg width="18" height="22" viewBox="0 0 154 182" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M153.032 120.267C151.562 120.775 150.1 121.263 148.595 121.797C122.192 131.345 96.6636 144.643 77.0527 163.76C76.1612 164.641 75.2855 165.535 74.4268 166.442C74.8954 167.697 75.1533 169.054 75.1533 170.473C75.1533 176.839 69.9929 181.999 63.627 181.999C57.2609 181.999 52.0996 176.839 52.0996 170.473C52.0997 164.107 57.261 158.947 63.627 158.947C65.3899 158.947 67.0597 159.343 68.5537 160.051C69.5224 159.205 70.5035 158.377 71.4951 157.565C94.2724 139.231 121.208 128.493 148.469 121.378C150.02 120.983 151.523 120.635 153.032 120.267Z" fill="#9BE2E4"/><path d="M11.9873 59.3557C18.6078 59.3557 23.9754 64.6194 23.9756 71.1125C23.9756 73.5466 23.2204 75.8077 21.9287 77.6838C22.5991 78.8025 23.2939 79.8907 24.0283 80.967C42.696 108.284 79.6038 118.04 113.279 118.468C115.159 118.48 117.145 118.446 118.953 118.372C117.157 118.591 115.174 118.771 113.293 118.905C79.6598 120.871 41.0566 114.918 17.3516 85.9348C16.4642 84.8277 15.6152 83.7036 14.7891 82.5432C13.8901 82.7543 12.9523 82.8703 11.9873 82.8703C5.36686 82.8701 0 77.6057 0 71.1125C0.000202317 64.6195 5.36698 59.3559 11.9873 59.3557Z" fill="url(#ga)"/><path d="M133.939 120.678C132.369 120.919 130.647 121.204 129.029 121.485C99.5499 126.902 69.8404 134.143 43.9873 147.876C43.4006 148.2 42.8073 148.535 42.2168 148.874C42.3447 149.562 42.415 150.27 42.415 150.995C42.415 157.361 37.2545 162.521 30.8887 162.522C24.5227 162.522 19.3614 157.361 19.3613 150.995C19.3613 144.629 24.5227 139.469 30.8887 139.469C33.4021 139.469 35.726 140.275 37.6201 141.641C38.5159 141.218 39.4179 140.804 40.3027 140.414C68.9294 128.335 99.008 123.935 128.973 121.052C130.611 120.915 132.353 120.774 133.939 120.678Z" fill="url(#gb)"/><path d="M42.417 51.5175C47.7642 51.5178 52.0986 55.7692 52.0986 61.0136C52.0986 63.9272 50.7594 66.5324 48.6533 68.2744C49.2172 69.1005 49.7957 69.9154 50.3936 70.7236C71.577 98.807 108.849 112.23 144.412 114.014C146.432 113.955 148.534 114.174 150.306 113.301C149.859 113.553 149.387 113.733 148.898 113.866C149.14 113.837 149.381 113.803 149.617 113.762C149.178 113.865 148.728 113.945 148.27 114.011C147.03 114.248 145.706 114.248 144.42 114.358C144.137 114.36 143.854 114.358 143.57 114.357C143.561 114.358 143.551 114.359 143.542 114.359C107.681 115.104 65.8779 107.282 43.7041 74.0498C42.9458 72.8727 42.2307 71.6873 41.5449 70.4697C36.606 70.0374 32.7344 65.97 32.7344 61.0136C32.7344 55.7691 37.0696 51.5175 42.417 51.5175Z" fill="url(#gc)"/><path d="M90.7822 0.66696C92.6862 -0.538979 95.339 -0.0645439 96.707 1.72653C97.4008 2.63492 97.6295 3.70723 97.4395 4.70114C97.4522 4.82516 97.4598 4.9512 97.458 5.07907C97.3457 13.2627 97.0693 35.4671 97.0693 55.7363C97.0693 57.032 97.0492 58.2767 97.0127 59.4716C96.9525 70.6974 96.8631 79.7189 96.833 82.5644C96.8269 83.1338 96.4721 83.6365 95.9395 83.8379L91.54 85.5009C90.8536 85.7605 90.1321 85.4542 89.8232 84.8691C89.7229 84.7836 89.667 84.631 89.667 84.416V10.997L60.6465 29.3769C60.641 41.5872 60.6289 69.1824 60.6289 70.4882C60.6289 72.1676 53.0219 65.8699 52.7832 53.9043V26.8779C52.7832 26.486 52.8525 26.1102 52.9805 25.7627C53.2129 24.897 53.7706 24.1095 54.625 23.5683L90.7822 0.66696Z" fill="url(#gd)"/><path d="M100.09 30.9179C100.075 30.534 100.509 30.3007 100.821 30.5254L114.154 40.1318C114.274 40.2184 114.346 40.3576 114.346 40.5058V47.0859C114.364 61.7596 114.695 92.4466 114.783 100.316C114.793 101.25 113.895 101.915 113.001 101.646L107.491 99.9922C106.906 99.8166 106.505 99.3019 106.505 98.6914V49.3906C106.505 49.3746 106.507 49.3571 106.508 49.3379V44.0117L100.671 40.3984C100.541 40.3178 100.459 40.1783 100.453 40.0254L100.09 30.9179Z" fill="url(#ge)"/>
+      <defs><linearGradient id="ga" x1="14" y1="71" x2="40" y2="94" gradientUnits="userSpaceOnUse"><stop stop-color="#9CE4E5"/><stop offset="1" stop-color="#936DD7"/></linearGradient><linearGradient id="gb" x1="27" y1="148" x2="123" y2="125" gradientUnits="userSpaceOnUse"><stop stop-color="#9CE4E5"/><stop offset="0.78" stop-color="#5B4790"/><stop offset="1" stop-color="#98D8EB"/></linearGradient><linearGradient id="gc" x1="91" y1="51" x2="91" y2="114" gradientUnits="userSpaceOnUse"><stop stop-color="#96D0F0"/><stop offset="1" stop-color="#90B6EF"/></linearGradient><linearGradient id="gd" x1="75" y1="0" x2="75" y2="85" gradientUnits="userSpaceOnUse"><stop stop-color="#A37CEC"/><stop offset="1" stop-color="#5B4790"/></linearGradient><linearGradient id="ge" x1="107" y1="30" x2="107" y2="101" gradientUnits="userSpaceOnUse"><stop stop-color="#A37CEC"/><stop offset="1" stop-color="#5B4790"/></linearGradient></defs>
+      </svg>
+      <span class="logo-wordmark">Resonance</span>
+    </div>
+    <div class="doc-header-right">
+      <div class="doc-title">RSP Outreach Brief</div>
+      <div class="doc-date">June 2026 · Internal Use Only</div>
+    </div>
+  </div>
+
+  <!-- INTRO -->
+  <div class="section">
+    <div class="eyebrow">Market Intelligence</div>
+    <h1>Relocation Service <em>Provider Targets</em></h1>
+    <p class="lede">There are fewer than 50 RSP firms nationally — no HUD registry, no industry directory. These firms find tools through referrals and conferences. This brief profiles the five confirmed firms with actionable outreach angles for each.</p>
+
+    <div class="intro-stats">
+      <div class="intro-stat">
+        <div class="intro-stat-num">12</div>
+        <div class="intro-stat-label">Confirmed RSP firms found<br>across two research passes</div>
+      </div>
+      <div class="intro-stat">
+        <div class="intro-stat-num">0</div>
+        <div class="intro-stat-label">HUD directories or<br>approved RSP registries</div>
+      </div>
+      <div class="intro-stat">
+        <div class="intro-stat-num">2-tier</div>
+        <div class="intro-stat-label">Market structure: national<br>operators + regional boutiques</div>
+      </div>
+    </div>
+
+    <div class="callout purple">
+      <div class="callout-label">Strategic Context</div>
+      <div class="callout-body">RSPs are a distinct customer segment from PHAs and developers — they manage projects <strong>on behalf of</strong> clients and bill per unit. Their software costs can be passed through as project expenses, making price sensitivity lower than it first appears. The pitch: <strong>Resonance helps RSPs win and retain developer/PHA clients</strong>, not just run operations more efficiently.</div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- SUMMARY TABLE -->
+  <div class="section">
+    <h3>All Confirmed Firms at a Glance</h3>
+    <table class="overview-table">
+      <thead>
+        <tr>
+          <th>Firm</th>
+          <th>Scale</th>
+          <th>Geography</th>
+          <th>Staff est.</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>ECM (Equally Crafted Mgmt.)</td>
+          <td><span class="badge badge-national">National</span></td>
+          <td class="mono">14 states</td>
+          <td class="mono">~10–25</td>
+          <td><span class="badge badge-active">Active Conversation</span></td>
+        </tr>
+        <tr>
+          <td>HousingToHome (HTH)</td>
+          <td><span class="badge badge-national">National</span></td>
+          <td class="mono">10+ regions</td>
+          <td class="mono">70+</td>
+          <td><span class="badge badge-priority">Priority Target</span></td>
+        </tr>
+        <tr>
+          <td>The Urban Group</td>
+          <td><span class="badge badge-regional">Regional</span></td>
+          <td class="mono">Florida-concentrated</td>
+          <td class="mono">Unknown</td>
+          <td><span class="badge badge-warm">Warm Outreach</span></td>
+        </tr>
+        <tr>
+          <td>CRHS (Comp. Relocation &amp; Housing)</td>
+          <td><span class="badge badge-boutique">Boutique</span></td>
+          <td class="mono">Pittsburgh / PA</td>
+          <td class="mono">1–10</td>
+          <td><span class="badge badge-warm">Warm Outreach</span></td>
+        </tr>
+        <tr>
+          <td>Nan McKay &amp; Associates (NMA)</td>
+          <td><span class="badge badge-national">National</span></td>
+          <td class="mono">National</td>
+          <td class="mono">Large</td>
+          <td><span class="badge badge-priority">Priority Target</span></td>
+        </tr>
+        <tr>
+          <td>Judy Cohn Housing &amp; Relocation</td>
+          <td><span class="badge badge-regional">Regional</span></td>
+          <td class="mono">MA/RI/CT/NH/VT/ME/NY</td>
+          <td class="mono">Small</td>
+          <td><span class="badge badge-warm">Warm Outreach</span></td>
+        </tr>
+        <tr>
+          <td>Sav NuChapter / SavRelo LLC</td>
+          <td><span class="badge badge-boutique">Boutique</span></td>
+          <td class="mono">Port Chester, NY</td>
+          <td class="mono">Small</td>
+          <td><span class="badge badge-warm">Warm Outreach</span></td>
+        </tr>
+        <tr>
+          <td>RELO Ltd + Revival Development Services</td>
+          <td><span class="badge badge-regional">Regional</span></td>
+          <td class="mono">AZ / Mountain West + national</td>
+          <td class="mono">Small–Mid</td>
+          <td><span class="badge badge-priority">Priority Target</span></td>
+        </tr>
+        <tr>
+          <td>Reliance Relocation Services</td>
+          <td><span class="badge badge-regional">Regional</span></td>
+          <td class="mono">Chicago, IL</td>
+          <td class="mono">Unknown</td>
+          <td><span class="badge badge-warm">Warm Outreach</span></td>
+        </tr>
+        <tr style="opacity:0.65">
+          <td>Fulson Housing Group / RSC</td>
+          <td><span class="badge badge-boutique">Developer-Internal</span></td>
+          <td class="mono">Lee's Summit, MO</td>
+          <td class="mono">Small</td>
+          <td><span class="badge" style="background:var(--purple-light);border:1px solid var(--purple-border);color:var(--purple-mid);font-family:var(--fm);font-size:5.5pt;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:2px 8px;border-radius:20px;">Prospect (not RSP)</span></td>
+        </tr>
+        <tr style="opacity:0.65">
+          <td>LHP Capital</td>
+          <td><span class="badge badge-boutique">Developer-Internal</span></td>
+          <td class="mono">Nashville, TN · 6 states</td>
+          <td class="mono">Mid</td>
+          <td><span class="badge" style="background:var(--purple-light);border:1px solid var(--purple-border);color:var(--purple-mid);font-family:var(--fm);font-size:5.5pt;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:2px 8px;border-radius:20px;">Prospect (not RSP)</span></td>
+        </tr>
+      </tbody>
+    </table>
+    <p style="font-size:7pt;color:var(--ink-4);margin-top:6px;font-style:italic;">Faded rows = developer-internal relocation operations, not third-party RSPs. Relevant as Resonance customers, not competitors.</p>
+  </div>
+
+  <!-- SECTION DIVIDER -->
+  <div class="section-divider">
+    <div class="section-divider-line"></div>
+    <div class="section-divider-label">Firm Profiles</div>
+    <div class="section-divider-line"></div>
+  </div>
+
+  <!-- ── FIRM 1: ECM ── -->
+  <div class="firm-card">
+    <div class="firm-card-header">
+      <div class="firm-card-header-left">
+        <div class="firm-card-name">ECM — Equally Crafted Management</div>
+        <div class="firm-card-url">equallycraftedmanagement.com</div>
+        <div class="firm-card-meta">
+          <span class="badge badge-active">Active Conversation</span>
+          <span class="badge badge-national">National · 14 States</span>
+        </div>
+      </div>
+      <div style="text-align:right;flex-shrink:0">
+        <div style="font-family:var(--fm);font-size:6pt;color:var(--ink-4);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:3px">Demo Call</div>
+        <div style="font-family:var(--fm);font-size:8pt;font-weight:700;color:var(--green)">June 8, 2026</div>
+      </div>
+    </div>
+
+    <div class="firm-card-body">
+      <div class="firm-card-col">
+        <div class="col-label">Key Facts</div>
+        <div class="firm-stat-row">
+          <div class="stat-box">
+            <div class="stat-num">14</div>
+            <div class="stat-label">States Active</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num">20+</div>
+            <div class="stat-label">Projects Pipeline</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num">50–700</div>
+            <div class="stat-label">Units / Project</div>
+          </div>
+        </div>
+        <div class="col-label" style="margin-top:10px">Programs &amp; Context</div>
+        <div class="pill-row" style="margin-bottom:10px">
+          <span class="prog-pill">RAD</span>
+          <span class="prog-pill">PACT</span>
+          <span class="prog-pill">URA Compliance</span>
+          <span class="prog-pill">Full Relocation</span>
+          <span class="prog-pill">In-Place Rehab</span>
+        </div>
+        <ul class="blist">
+          <li>Founded after managing 149 senior moves in 30 days (Nov 2020); founder Natalie is the sole decision-maker</li>
+          <li>Currently on OneDrive / shared folders — no formal ops system</li>
+          <li>Prioritizes full move-out projects; first in-place project in ~2 years is Denver (4 small projects, ~200 units)</li>
+          <li>Upcoming anchor client: <strong>April Housing (Blackstone-owned)</strong> — project kickoff ~June 19</li>
+        </ul>
+        <div class="col-label" style="margin-top:12px">Active Projects Starting Soon</div>
+        <ul class="blist">
+          <li><strong>April Housing (Blackstone)</strong> — ~June 19–20 start, 18-month project</li>
+          <li><strong>Salem, MA</strong> — 250–300 units, starting August</li>
+          <li><strong>Troy, OH</strong> — ~200 units, Sept/Oct start</li>
+          <li><strong>Denver, CO</strong> — 4 in-place projects, ~200 units total</li>
+        </ul>
+      </div>
+
+      <div class="firm-card-col">
+        <div class="col-label">Pain Points Resonance Solves</div>
+        <ul class="plist">
+          <li>No system to track stipend disbursements or verify who is actually out of unit</li>
+          <li>URA compliance anxiety — certified mail disputes, no centralized audit trail</li>
+          <li>Staff oversight gaps across 14 states; managers can't trust remote teams</li>
+          <li>Per-project budget sticker shock prevents using good tools on smaller clients</li>
+          <li>No role-based access for GCs, moving companies, or inspectors</li>
+        </ul>
+
+        <div class="col-label" style="margin-top:12px">What She Said That Matters</div>
+        <div class="callout green" style="margin-bottom:8px">
+          <div class="callout-label">Exact Quote</div>
+          <div class="callout-body">"I need this. I need to figure out what I can cut — can I cut part of marketing? That's my initial thought."</div>
+        </div>
+        <div class="callout teal">
+          <div class="callout-label">Competitive Signal</div>
+          <div class="callout-body">Was actively scoping a custom build on Upwork before this call. No other software evaluated — Resonance is her only live option.</div>
+        </div>
+
+        <div class="col-label" style="margin-top:12px">Next Steps</div>
+        <div class="step-list">
+          <div class="step">
+            <div class="step-num t">1</div>
+            <div>
+              <div class="step-title">Send pricing sheet immediately</div>
+              <div class="step-desc">Sean committed to this on the call. Include both per-project and annual/portfolio options. Her instinct was ~$100k/yr all-in company-wide.</div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num t">2</div>
+            <div>
+              <div class="step-title">CC Greg on pricing email</div>
+              <div class="step-desc">Natalie mentioned Greg by name as someone to include on pricing conversations.</div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num a">3</div>
+            <div>
+              <div class="step-title">Propose April Housing as pilot project</div>
+              <div class="step-desc">18-month project starting ~June 19. Blackstone client = high visibility. She will want to impress them. Frame Resonance as the tool that makes that possible.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── FIRM 2: HTH ── -->
+  <div class="firm-card">
+    <div class="firm-card-header">
+      <div class="firm-card-header-left">
+        <div class="firm-card-name">HousingToHome (HTH)</div>
+        <div class="firm-card-url">housingtohome.com</div>
+        <div class="firm-card-meta">
+          <span class="badge badge-priority">Priority Target</span>
+          <span class="badge badge-national">National · 10+ Regions</span>
+        </div>
+      </div>
+      <div style="flex-shrink:0">
+        <span class="badge" style="background:rgba(13,122,80,0.10);border:1px solid rgba(13,122,80,0.25);color:var(--green);font-family:var(--fm);font-size:5.5pt;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:3px 9px;border-radius:20px;">WBE · WSOB Certified</span>
+      </div>
+    </div>
+
+    <div class="firm-card-body">
+      <div class="firm-card-col">
+        <div class="col-label">Key Facts</div>
+        <div class="firm-stat-row">
+          <div class="stat-box">
+            <div class="stat-num">70+</div>
+            <div class="stat-label">Staff Members</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num">2020</div>
+            <div class="stat-label">Founded</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num">10+</div>
+            <div class="stat-label">US Regions</div>
+          </div>
+        </div>
+        <div class="col-label" style="margin-top:10px">Regions Covered</div>
+        <ul class="blist" style="font-size:7.5pt">
+          <li>New England · NY/NJ · DC/VA/MD</li>
+          <li>Ohio · Michigan · Washington</li>
+          <li>California · Nevada · North Carolina · Florida</li>
+        </ul>
+        <div class="col-label" style="margin-top:10px">Services Confirmed</div>
+        <ul class="blist">
+          <li>Residential &amp; non-residential relocation</li>
+          <li>URA &amp; regulatory compliance guidance</li>
+          <li>Community engagement</li>
+          <li>Relocation planning &amp; strategy</li>
+          <li>Project coordination &amp; resident support</li>
+        </ul>
+        <div class="col-label" style="margin-top:10px">Confirmed Active Projects</div>
+        <ul class="blist">
+          <li>Reno, NV (confirmed Nov 2023)</li>
+          <li>Charlottesville, VA (confirmed Nov 2023)</li>
+        </ul>
+      </div>
+
+      <div class="firm-card-col">
+        <div class="col-label">Why HTH Is High Priority</div>
+        <div class="callout teal" style="margin-bottom:10px">
+          <div class="callout-label">Same Profile as ECM</div>
+          <div class="callout-body">Founded 2020 — same era as ECM's explosive growth. 70+ staff across 10 regions means they have exactly the remote team oversight problems Natalie described: <strong>can't verify what's happening on the ground, no single source of truth across projects.</strong></div>
+        </div>
+        <div class="callout amber">
+          <div class="callout-label">WBE Certification = Procurement Advantage</div>
+          <div class="callout-body">HTH actively markets its Women-owned status to win developer and PHA contracts that have MBE/WBE requirements. A platform that documents their work and generates compliance records <strong>makes their WBE pitch stronger</strong>, not just more efficient.</div>
+        </div>
+
+        <div class="col-label" style="margin-top:12px">Pain Points</div>
+        <ul class="plist">
+          <li>70+ staff distributed across 10 regions — no visibility into what's happening project by project without a platform</li>
+          <li>Fast growth (2020 → national in 4 years) means systems were never properly built</li>
+          <li>Non-residential relocation adds complexity (businesses, nonprofits) that generic tools can't handle</li>
+        </ul>
+
+        <div class="hook-box">
+          <div class="hook-label">Suggested Opening Line</div>
+          <div class="hook-body">"We work with RSPs who are scaling fast and running out of runway on spreadsheets and shared drives. With 70+ staff across 10 regions, I'm guessing you know exactly what I mean. Would love to show you how the FEC/NYCHA team runs 2,000+ units on Resonance."</div>
+        </div>
+
+        <div class="col-label" style="margin-top:12px">Next Steps</div>
+        <div class="step-list">
+          <div class="step">
+            <div class="step-num t">1</div>
+            <div>
+              <div class="step-title">Find founder/leadership on LinkedIn</div>
+              <div class="step-desc">No named contact confirmed in research. Check housingtohome.com/about for team page, then connect with founder or VP of Operations.</div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num t">2</div>
+            <div>
+              <div class="step-title">Lead with scale + remote team angle</div>
+              <div class="step-desc">Don't open with compliance. Open with the "70 people, 10 regions, no single source of truth" problem — that's their immediate pain.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- end page 1 -->
+
+<div class="page page-break">
+
+  <!-- HEADER REPEAT -->
+  <div class="doc-header">
+    <div class="doc-logo">
+      <svg width="18" height="22" viewBox="0 0 154 182" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M153.032 120.267C151.562 120.775 150.1 121.263 148.595 121.797C122.192 131.345 96.6636 144.643 77.0527 163.76C76.1612 164.641 75.2855 165.535 74.4268 166.442C74.8954 167.697 75.1533 169.054 75.1533 170.473C75.1533 176.839 69.9929 181.999 63.627 181.999C57.2609 181.999 52.0996 176.839 52.0996 170.473C52.0997 164.107 57.261 158.947 63.627 158.947C65.3899 158.947 67.0597 159.343 68.5537 160.051C69.5224 159.205 70.5035 158.377 71.4951 157.565C94.2724 139.231 121.208 128.493 148.469 121.378C150.02 120.983 151.523 120.635 153.032 120.267Z" fill="#9BE2E4"/><path d="M11.9873 59.3557C18.6078 59.3557 23.9754 64.6194 23.9756 71.1125C23.9756 73.5466 23.2204 75.8077 21.9287 77.6838C22.5991 78.8025 23.2939 79.8907 24.0283 80.967C42.696 108.284 79.6038 118.04 113.279 118.468C115.159 118.48 117.145 118.446 118.953 118.372C117.157 118.591 115.174 118.771 113.293 118.905C79.6598 120.871 41.0566 114.918 17.3516 85.9348C16.4642 84.8277 15.6152 83.7036 14.7891 82.5432C13.8901 82.7543 12.9523 82.8703 11.9873 82.8703C5.36686 82.8701 0 77.6057 0 71.1125C0.000202317 64.6195 5.36698 59.3559 11.9873 59.3557Z" fill="url(#ga2)"/><path d="M133.939 120.678C132.369 120.919 130.647 121.204 129.029 121.485C99.5499 126.902 69.8404 134.143 43.9873 147.876C43.4006 148.2 42.8073 148.535 42.2168 148.874C42.3447 149.562 42.415 150.27 42.415 150.995C42.415 157.361 37.2545 162.521 30.8887 162.522C24.5227 162.522 19.3614 157.361 19.3613 150.995C19.3613 144.629 24.5227 139.469 30.8887 139.469C33.4021 139.469 35.726 140.275 37.6201 141.641C38.5159 141.218 39.4179 140.804 40.3027 140.414C68.9294 128.335 99.008 123.935 128.973 121.052C130.611 120.915 132.353 120.774 133.939 120.678Z" fill="url(#gb2)"/><path d="M42.417 51.5175C47.7642 51.5178 52.0986 55.7692 52.0986 61.0136C52.0986 63.9272 50.7594 66.5324 48.6533 68.2744C49.2172 69.1005 49.7957 69.9154 50.3936 70.7236C71.577 98.807 108.849 112.23 144.412 114.014C146.432 113.955 148.534 114.174 150.306 113.301C149.859 113.553 149.387 113.733 148.898 113.866C149.14 113.837 149.381 113.803 149.617 113.762C149.178 113.865 148.728 113.945 148.27 114.011C147.03 114.248 145.706 114.248 144.42 114.358C144.137 114.36 143.854 114.358 143.57 114.357C107.681 115.104 65.8779 107.282 43.7041 74.0498C42.9458 72.8727 42.2307 71.6873 41.5449 70.4697C36.606 70.0374 32.7344 65.97 32.7344 61.0136C32.7344 55.7691 37.0696 51.5175 42.417 51.5175Z" fill="url(#gc2)"/><path d="M90.7822 0.66696C92.6862 -0.538979 95.339 -0.0645439 96.707 1.72653C97.4008 2.63492 97.6295 3.70723 97.4395 4.70114C97.4522 4.82516 97.4598 4.9512 97.458 5.07907C97.3457 13.2627 97.0693 35.4671 97.0693 55.7363C97.0693 57.032 97.0492 58.2767 97.0127 59.4716C96.9525 70.6974 96.8631 79.7189 96.833 82.5644C96.8269 83.1338 96.4721 83.6365 95.9395 83.8379L91.54 85.5009C90.8536 85.7605 90.1321 85.4542 89.8232 84.8691C89.7229 84.7836 89.667 84.631 89.667 84.416V10.997L60.6465 29.3769C60.641 41.5872 60.6289 69.1824 60.6289 70.4882C60.6289 72.1676 53.0219 65.8699 52.7832 53.9043V26.8779C52.7832 26.486 52.8525 26.1102 52.9805 25.7627C53.2129 24.897 53.7706 24.1095 54.625 23.5683L90.7822 0.66696Z" fill="url(#gd2)"/><path d="M100.09 30.9179C100.075 30.534 100.509 30.3007 100.821 30.5254L114.154 40.1318C114.274 40.2184 114.346 40.3576 114.346 40.5058V47.0859C114.364 61.7596 114.695 92.4466 114.783 100.316C114.793 101.25 113.895 101.915 113.001 101.646L107.491 99.9922C106.906 99.8166 106.505 99.3019 106.505 98.6914V49.3906C106.505 49.3746 106.507 49.3571 106.508 49.3379V44.0117L100.671 40.3984C100.541 40.3178 100.459 40.1783 100.453 40.0254L100.09 30.9179Z" fill="url(#ge2)"/>
+      <defs><linearGradient id="ga2" x1="14" y1="71" x2="40" y2="94" gradientUnits="userSpaceOnUse"><stop stop-color="#9CE4E5"/><stop offset="1" stop-color="#936DD7"/></linearGradient><linearGradient id="gb2" x1="27" y1="148" x2="123" y2="125" gradientUnits="userSpaceOnUse"><stop stop-color="#9CE4E5"/><stop offset="0.78" stop-color="#5B4790"/><stop offset="1" stop-color="#98D8EB"/></linearGradient><linearGradient id="gc2" x1="91" y1="51" x2="91" y2="114" gradientUnits="userSpaceOnUse"><stop stop-color="#96D0F0"/><stop offset="1" stop-color="#90B6EF"/></linearGradient><linearGradient id="gd2" x1="75" y1="0" x2="75" y2="85" gradientUnits="userSpaceOnUse"><stop stop-color="#A37CEC"/><stop offset="1" stop-color="#5B4790"/></linearGradient><linearGradient id="ge2" x1="107" y1="30" x2="107" y2="101" gradientUnits="userSpaceOnUse"><stop stop-color="#A37CEC"/><stop offset="1" stop-color="#5B4790"/></linearGradient></defs>
+      </svg>
+      <span class="logo-wordmark">Resonance</span>
+    </div>
+    <div class="doc-header-right">
+      <div class="doc-title">RSP Outreach Brief — continued</div>
+      <div class="doc-date">June 2026 · Internal Use Only</div>
+    </div>
+  </div>
+
+  <!-- ── FIRM 4: THE URBAN GROUP ── -->
+  <div class="firm-card">
+    <div class="firm-card-header">
+      <div class="firm-card-header-left">
+        <div class="firm-card-name">The Urban Group</div>
+        <div class="firm-card-url">theurbangroup.com · Fort Lauderdale, FL</div>
+        <div class="firm-card-meta">
+          <span class="badge badge-warm">Warm Outreach</span>
+          <span class="badge badge-regional">Regional · Florida</span>
+        </div>
+      </div>
+      <div style="flex-shrink:0">
+        <span class="badge" style="background:var(--bg-soft);border:1px solid var(--rule);color:var(--ink-3);font-family:var(--fm);font-size:5.5pt;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:3px 9px;border-radius:20px;">Est. 1984</span>
+      </div>
+    </div>
+
+    <div class="firm-card-body">
+      <div class="firm-card-col">
+        <div class="col-label">Key Facts</div>
+        <div class="firm-stat-row">
+          <div class="stat-box">
+            <div class="stat-num">40+</div>
+            <div class="stat-label">Years Operating</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num">FL</div>
+            <div class="stat-label">Primary Market</div>
+          </div>
+        </div>
+        <div class="col-label" style="margin-top:10px">Confirmed Clients</div>
+        <ul class="blist">
+          <li>Fort Lauderdale Housing Authority (20-unit temp + 240-unit permanent, NSP1)</li>
+          <li>City of Sarasota</li>
+          <li>Florida DOT (FDOT)</li>
+          <li>Broward County ($39M noise mitigation, 398 residents, URA)</li>
+          <li>Seminole Tribe of Florida</li>
+        </ul>
+        <div class="col-label" style="margin-top:10px">Programs</div>
+        <div class="pill-row">
+          <span class="prog-pill">URA</span>
+          <span class="prog-pill">NSP</span>
+          <span class="prog-pill">Public Housing</span>
+          <span class="prog-pill">Government / DOT</span>
+        </div>
+      </div>
+
+      <div class="firm-card-col">
+        <div class="col-label">Strategic Context</div>
+        <div class="callout amber" style="margin-bottom:10px">
+          <div class="callout-label">Long-Tenured = Set in Their Ways</div>
+          <div class="callout-body">40 years of operation means they've built their own processes. Outreach should acknowledge this — <strong>don't sell disruption, sell augmentation</strong>. "Keep everything you've built; add real-time visibility and automated compliance records on top."</div>
+        </div>
+        <div class="callout teal">
+          <div class="callout-label">Florida Pipeline Is Real</div>
+          <div class="callout-body">Florida has active RAD and PACT pipeline — Miami, Orlando, Jacksonville all have PHAs with conversion programs. Urban Group likely has or is competing for this work. Resonance can help them win bids by offering clients better reporting and visibility.</div>
+        </div>
+
+        <div class="hook-box" style="margin-top:10px">
+          <div class="hook-label">Suggested Opening Line</div>
+          <div class="hook-body">"We work with relocation firms on Florida's active RAD and PACT pipeline. Given your history with Fort Lauderdale HA and Broward County, I'd love to show you how Resonance handles URA documentation and contractor coordination — without changing how your team already operates."</div>
+        </div>
+
+        <div class="col-label" style="margin-top:12px">Next Steps</div>
+        <div class="step-list">
+          <div class="step">
+            <div class="step-num a">1</div>
+            <div>
+              <div class="step-title">Find principal/owner contact at theurbangroup.com</div>
+              <div class="step-desc">No named contact confirmed. Check their team or about page; this is a small firm likely led by a founder.</div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num a">2</div>
+            <div>
+              <div class="step-title">Lead with Broward County scale</div>
+              <div class="step-desc">398 residents under URA for FDOT is substantial. Reference the noise mitigation project type — shows you know their work.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── FIRM 5: CRHS ── -->
+  <div class="firm-card">
+    <div class="firm-card-header">
+      <div class="firm-card-header-left">
+        <div class="firm-card-name">Comprehensive Relocation and Housing Services (CRHS)</div>
+        <div class="firm-card-url">relocationandhousing.com · Pittsburgh, PA</div>
+        <div class="firm-card-meta">
+          <span class="badge badge-warm">Warm Outreach</span>
+          <span class="badge badge-boutique">Boutique · 1–10 Staff</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="firm-card-body">
+      <div class="firm-card-col">
+        <div class="col-label">Key Facts</div>
+        <div class="firm-stat-row">
+          <div class="stat-box">
+            <div class="stat-num">300+</div>
+            <div class="stat-label">RAD Units Supervised</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num">1–10</div>
+            <div class="stat-label">Employees</div>
+          </div>
+        </div>
+        <div class="col-label" style="margin-top:10px">Programs Covered</div>
+        <div class="pill-row" style="margin-bottom:10px">
+          <span class="prog-pill">URA</span>
+          <span class="prog-pill">Section 104(d)</span>
+          <span class="prog-pill">Section 18</span>
+          <span class="prog-pill">RAD</span>
+          <span class="prog-pill">Choice Neighborhoods</span>
+        </div>
+        <ul class="blist">
+          <li>Develops HUD-compliant, state and local relocation plans for occupied rehab, demolition, and redevelopment projects</li>
+          <li>Full spectrum URA coverage: from relocation planning through case management</li>
+          <li>Pittsburgh-based but serves broader PA/OH corridor</li>
+        </ul>
+      </div>
+
+      <div class="firm-card-col">
+        <div class="col-label">Why Contact Them</div>
+        <div class="callout purple" style="margin-bottom:10px">
+          <div class="callout-label">Broadest Program Coverage of Any Boutique</div>
+          <div class="callout-body">CRHS handles URA, 104(d), Section 18, RAD, <em>and</em> Choice Neighborhoods — that's the full HUD program set. A 1–10 person firm covering this breadth without a platform is doing it manually. <strong>Every log, every notice, every deadline tracked by hand.</strong></div>
+        </div>
+        <div class="callout teal">
+          <div class="callout-label">ECM Has a Troy, OH Project Starting Sept/Oct</div>
+          <div class="callout-body">CRHS is in the Pittsburgh/PA/OH corridor. If ECM signs with Resonance, CRHS operates in overlapping geography and will hear about it through the small-world RSP network.</div>
+        </div>
+
+        <div class="hook-box" style="margin-top:10px">
+          <div class="hook-label">Suggested Opening Line</div>
+          <div class="hook-body">"We built Resonance specifically around RAD, Section 18, and URA compliance — the same programs CRHS specializes in. For a small team doing the breadth of work you do, automated notice generation and a full audit trail can eliminate most of the manual risk. Would love 20 minutes."</div>
+        </div>
+
+        <div class="col-label" style="margin-top:12px">Next Steps</div>
+        <div class="step-list">
+          <div class="step">
+            <div class="step-num a">1</div>
+            <div>
+              <div class="step-title">Check relocationandhousing.com for principal contact</div>
+              <div class="step-desc">Small firm — likely founder-led. Contact form or direct email on their site.</div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num a">2</div>
+            <div>
+              <div class="step-title">Lower-urgency prospect — prioritize after ECM, HTH close</div>
+              <div class="step-desc">Boutique with &lt;$5M revenue. Valuable for market coverage but not a large contract. Good for referrals and word-of-mouth in the Pittsburgh/PA/OH market.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION DIVIDER: NEW FIRMS -->
+  <div class="section-divider">
+    <div class="section-divider-line"></div>
+    <div class="section-divider-label">Additional Confirmed Firms</div>
+    <div class="section-divider-line"></div>
+  </div>
+
+  <!-- ── FIRM 6: NAN McKAY ── -->
+  <div class="firm-card">
+    <div class="firm-card-header">
+      <div class="firm-card-header-left">
+        <div class="firm-card-name">Nan McKay &amp; Associates (NMA)</div>
+        <div class="firm-card-url">nanmckay.com · National</div>
+        <div class="firm-card-meta">
+          <span class="badge badge-priority">Priority Target</span>
+          <span class="badge badge-national">National</span>
+        </div>
+      </div>
+      <div style="flex-shrink:0">
+        <span class="badge" style="background:var(--bg-soft);border:1px solid var(--rule);color:var(--ink-3);font-family:var(--fm);font-size:5.5pt;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:3px 9px;border-radius:20px;">Est. 40+ Years</span>
+      </div>
+    </div>
+    <div class="firm-card-body">
+      <div class="firm-card-col">
+        <div class="col-label">Key Facts</div>
+        <div class="firm-stat-row">
+          <div class="stat-box">
+            <div class="stat-num">~4,000</div>
+            <div class="stat-label">Households Relocated</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num">40+</div>
+            <div class="stat-label">Years Operating</div>
+          </div>
+        </div>
+        <div class="col-label" style="margin-top:10px">Context</div>
+        <ul class="blist">
+          <li>One of the most established PHA consulting firms in the country — training, compliance, asset management, <em>and</em> relocation</li>
+          <li>Self-reports ~4,000 households relocated under Section 18 and URA 104(d)</li>
+          <li>Known for a large California PHA conversion (2,500+ households on a single project)</li>
+          <li>Already trusted by PHAs nationally — relocation is a service line, not their whole business</li>
+        </ul>
+        <div class="col-label" style="margin-top:10px">Programs</div>
+        <div class="pill-row">
+          <span class="prog-pill">RAD</span>
+          <span class="prog-pill">Section 18</span>
+          <span class="prog-pill">Section 104(d)</span>
+          <span class="prog-pill">URA</span>
+        </div>
+      </div>
+      <div class="firm-card-col">
+        <div class="col-label">Why They Matter</div>
+        <div class="callout teal" style="margin-bottom:10px">
+          <div class="callout-label">High-Volume, High-Trust Client Base</div>
+          <div class="callout-body">NMA already has the trust relationships with PHAs. If Resonance becomes their recommended platform for relocation tracking, that's a distribution channel — not just a customer. Worth exploring a <strong>referral or preferred-vendor relationship</strong>, not just a subscription sale.</div>
+        </div>
+        <div class="callout amber">
+          <div class="callout-label">Risk: They May Have Built Something Internal</div>
+          <div class="callout-body">40 years in business means they've had time to develop proprietary templates, tools, or systems. The pitch must acknowledge this: "We're not asking you to abandon your process — we're giving it infrastructure."</div>
+        </div>
+        <div class="hook-box" style="margin-top:10px">
+          <div class="hook-label">Suggested Opening Line</div>
+          <div class="hook-body">"Given NMA's relocation volume — 4,000+ households under Section 18 and 104(d) — I'd love to show you how Resonance handles that scale with dynamic date scheduling, automated notice generation, and a full URA audit trail. 20 minutes?"</div>
+        </div>
+        <div class="col-label" style="margin-top:12px">Next Steps</div>
+        <div class="step-list">
+          <div class="step">
+            <div class="step-num t">1</div>
+            <div>
+              <div class="step-title">Find relocation practice lead at nanmckay.com/about</div>
+              <div class="step-desc">NMA is a large firm — target the relocation services practice lead, not the CEO.</div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num p">2</div>
+            <div>
+              <div class="step-title">Explore partnership vs. customer conversation</div>
+              <div class="step-desc">NMA's client network could make them a distribution partner. Worth raising after an initial demo lands.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── FIRM 7: JUDY COHN ── -->
+  <div class="firm-card">
+    <div class="firm-card-header">
+      <div class="firm-card-header-left">
+        <div class="firm-card-name">Judy Cohn Housing and Relocation Consultants</div>
+        <div class="firm-card-url">judycohn.com · New England (MA, RI, CT, NH, VT, ME, NY)</div>
+        <div class="firm-card-meta">
+          <span class="badge badge-warm">Warm Outreach</span>
+          <span class="badge badge-regional">Regional · New England</span>
+        </div>
+      </div>
+      <div style="flex-shrink:0">
+        <span class="badge" style="background:var(--bg-soft);border:1px solid var(--rule);color:var(--ink-3);font-family:var(--fm);font-size:5.5pt;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:3px 9px;border-radius:20px;">Est. 1995</span>
+      </div>
+    </div>
+    <div class="firm-card-body">
+      <div class="firm-card-col">
+        <div class="col-label">Key Facts</div>
+        <div class="firm-stat-row">
+          <div class="stat-box">
+            <div class="stat-num">~6,800</div>
+            <div class="stat-label">Households Assisted</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num">30+</div>
+            <div class="stat-label">Years Operating</div>
+          </div>
+        </div>
+        <div class="col-label" style="margin-top:10px">Named Clients</div>
+        <ul class="blist">
+          <li>Boston Housing Authority</li>
+          <li>New Haven Housing Authority</li>
+          <li>Lowell Housing Authority</li>
+          <li>Lynn Housing Authority</li>
+          <li>CDCs and private developers across New England</li>
+        </ul>
+        <div class="col-label" style="margin-top:10px">Programs</div>
+        <div class="pill-row">
+          <span class="prog-pill">URA</span>
+          <span class="prog-pill">MA Chapter 79A</span>
+          <span class="prog-pill">Public Housing</span>
+          <span class="prog-pill">RAD</span>
+        </div>
+      </div>
+      <div class="firm-card-col">
+        <div class="col-label">Outreach Angle</div>
+        <div class="callout teal" style="margin-bottom:10px">
+          <div class="callout-label">New England Is a Hot RAD Market</div>
+          <div class="callout-body">Boston, New Haven, Lowell — all active RAD/PACT markets. Judy Cohn is already embedded with the housing authorities that are driving conversions. If ECM's Salem, MA project (250–300 units, August start) goes live on Resonance, that's a direct reference point in Judy Cohn's own backyard.</div>
+        </div>
+        <div class="callout amber">
+          <div class="callout-label">Long-Tenured = Resistant but Reachable</div>
+          <div class="callout-body">30 years of doing it manually. Don't pitch "modernization" — pitch <strong>liability reduction</strong>. Judy Cohn already knows URA compliance risk. The certified mail dispute story (from the ECM call) will resonate directly with her client base.</div>
+        </div>
+        <div class="hook-box" style="margin-top:10px">
+          <div class="hook-label">Suggested Opening Line</div>
+          <div class="hook-body">"We're working with RSPs on the Boston and New Haven HA pipeline and I'd love to show you how Resonance handles URA documentation — certified delivery proof, resident signatures, full audit trail — in a way that ends the 'I never received that notice' disputes."</div>
+        </div>
+        <div class="col-label" style="margin-top:12px">Next Steps</div>
+        <div class="step-list">
+          <div class="step">
+            <div class="step-num a">1</div>
+            <div>
+              <div class="step-title">Contact via judycohn.com — likely founder-led, direct outreach works</div>
+              <div class="step-desc">Small firm. Judy Cohn herself is probably the decision-maker. A personal email or phone call is more effective than a LinkedIn message.</div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num a">2</div>
+            <div>
+              <div class="step-title">Time outreach to ECM's Salem, MA project launch (August)</div>
+              <div class="step-desc">Once ECM is live in Salem, that's a local reference. "Another RSP just went live on Resonance for a 250-unit project in Salem" is the strongest possible hook.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── FIRM 8: SAV NUCHAPTER ── -->
+  <div class="firm-card">
+    <div class="firm-card-header">
+      <div class="firm-card-header-left">
+        <div class="firm-card-name">Sav NuChapter / SavRelo LLC</div>
+        <div class="firm-card-url">ajsav.com · savrelo.com · Port Chester, NY</div>
+        <div class="firm-card-meta">
+          <span class="badge badge-warm">Warm Outreach</span>
+          <span class="badge badge-boutique">Boutique · NY Metro</span>
+        </div>
+      </div>
+    </div>
+    <div class="firm-card-body">
+      <div class="firm-card-col">
+        <div class="col-label">Key Facts</div>
+        <ul class="blist">
+          <li>Principal: <strong>Anthony Savarese</strong>, Port Chester, NY</li>
+          <li>Operates as SavRelo LLC doing business as Sav NuChapter</li>
+          <li>Covers URA/104(d), HUD, LIHTC, RAD regulations</li>
+          <li>Specializes in <strong>Year 15 LIHTC over-income relocation</strong> — a technically precise niche most RSPs don't mention</li>
+        </ul>
+        <div class="col-label" style="margin-top:10px">Programs</div>
+        <div class="pill-row">
+          <span class="prog-pill">URA</span>
+          <span class="prog-pill">Section 104(d)</span>
+          <span class="prog-pill">RAD</span>
+          <span class="prog-pill">LIHTC</span>
+          <span class="prog-pill">Year 15 Over-Income</span>
+        </div>
+      </div>
+      <div class="firm-card-col">
+        <div class="col-label">Why Contact Them</div>
+        <div class="callout teal" style="margin-bottom:10px">
+          <div class="callout-label">NY Metro = High-Density RAD Pipeline</div>
+          <div class="callout-body">Port Chester, NY puts them squarely in the NYC metro market — one of the most active RAD/PACT markets in the country (NYCHA alone has thousands of units in conversion). Anthony Savarese is likely a solo or small-team operator with deep program expertise but no operational infrastructure.</div>
+        </div>
+        <div class="callout purple">
+          <div class="callout-label">Year 15 LIHTC Is a Differentiator</div>
+          <div class="callout-body">Almost no RSP mentions Year 15 LIHTC over-income relocation. This signals Anthony is technically deep. He'll respond to technical specificity — lead with Resonance's URA compliance documentation features, not generic "case management."</div>
+        </div>
+        <div class="hook-box" style="margin-top:10px">
+          <div class="hook-label">Suggested Opening Line</div>
+          <div class="hook-body">"We built Resonance specifically around RAD, URA/104(d), and LIHTC compliance for RSPs — including Year 15 over-income workflows. Given your NY metro footprint, I'd love to show you how the platform handles notice generation and audit trail in 20 minutes."</div>
+        </div>
+        <div class="col-label" style="margin-top:12px">Next Steps</div>
+        <div class="step-list">
+          <div class="step">
+            <div class="step-num a">1</div>
+            <div>
+              <div class="step-title">Email Anthony directly via ajsav.com contact</div>
+              <div class="step-desc">Small operation — Anthony is likely the only decision-maker. Technical opening line will get attention.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── FIRM 9: RELO LTD + REVIVAL ── -->
+  <div class="firm-card">
+    <div class="firm-card-header">
+      <div class="firm-card-header-left">
+        <div class="firm-card-name">RELO Ltd + Revival Development Services</div>
+        <div class="firm-card-url">relo-ltd.com · revivaldevelopmentservices.com · Phoenix/Chandler, AZ</div>
+        <div class="firm-card-meta">
+          <span class="badge badge-priority">Priority Target</span>
+          <span class="badge badge-regional">Southwest + National Projects</span>
+        </div>
+      </div>
+    </div>
+    <div class="firm-card-body">
+      <div class="firm-card-col">
+        <div class="col-label">Structure</div>
+        <div class="callout purple" style="margin-bottom:10px">
+          <div class="callout-label">Affiliated Pair</div>
+          <div class="callout-body">Revival Development Services handles resident-level execution; RELO Ltd handles relocation plan development and URA compliance. Same leadership. One outreach conversation reaches both entities.</div>
+        </div>
+        <div class="col-label" style="margin-top:10px">Key Contact</div>
+        <ul class="blist">
+          <li><strong>Chad Wakefield</strong> — President, Revival / RELO Ltd</li>
+          <li>Credentials: PMP, SRWA, RW-RAC (all verified via NAHRO)</li>
+          <li>NAHRO conference presenter: <em>"Relocation — What You Don't Know Will Hurt You"</em></li>
+        </ul>
+        <div class="col-label" style="margin-top:10px">Documented Projects</div>
+        <ul class="blist">
+          <li>Housing Authority of Contra Costa County — 81 households, RAD</li>
+          <li>Thrive in the 05 — Choice Neighborhoods, Tucson, AZ</li>
+        </ul>
+        <div class="col-label" style="margin-top:10px">Programs</div>
+        <div class="pill-row">
+          <span class="prog-pill">URA</span>
+          <span class="prog-pill">RAD</span>
+          <span class="prog-pill">Section 18</span>
+          <span class="prog-pill">Section 22</span>
+          <span class="prog-pill">CNI / Choice</span>
+          <span class="prog-pill">MAP Guide</span>
+          <span class="prog-pill">104(d)</span>
+        </div>
+      </div>
+      <div class="firm-card-col">
+        <div class="col-label">Why This Is a Priority</div>
+        <div class="callout teal" style="margin-bottom:10px">
+          <div class="callout-label">Broadest Program Coverage Found</div>
+          <div class="callout-body">RELO Ltd's tagline is literally "URA, RAD, CNI and MAP Guide Experts." That's the full HUD program stack. Chad Wakefield is a NAHRO presenter who literally trains other people on relocation compliance. He already understands the problem deeply — the pitch is short.</div>
+        </div>
+        <div class="callout green">
+          <div class="callout-label">NAHRO Connection Is the Fastest Door</div>
+          <div class="callout-body">Chad Wakefield is an active NAHRO conference presence. If Resonance is exhibiting or attending NAHRO, he's a guaranteed warm encounter. He also trains PHAs — if he recommends Resonance, that's word-of-mouth into his entire client base.</div>
+        </div>
+        <div class="hook-box" style="margin-top:10px">
+          <div class="hook-label">Suggested Opening Line (referencing his NAHRO talk)</div>
+          <div class="hook-body">"Saw your NAHRO session on relocation compliance — you know better than anyone what 'what you don't know will hurt you' looks like in practice. Resonance is the platform that makes sure nothing falls through: dynamic date scheduling, automated URA notices, full audit trail. 20 minutes?"</div>
+        </div>
+        <div class="col-label" style="margin-top:12px">Next Steps</div>
+        <div class="step-list">
+          <div class="step">
+            <div class="step-num t">1</div>
+            <div>
+              <div class="step-title">LinkedIn: Chad Wakefield, Phoenix AZ, Revival Development Services</div>
+              <div class="step-desc">Named, credentialed, NAHRO-verified. High-confidence contact. Reference his NAHRO talk in the opening message.</div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num t">2</div>
+            <div>
+              <div class="step-title">Target NAHRO Annual for in-person intro</div>
+              <div class="step-desc">He's an active NAHRO presence. Meeting in person at the conference is likely more effective than cold outreach.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── FIRM 10: RELIANCE ── -->
+  <div class="firm-card">
+    <div class="firm-card-header">
+      <div class="firm-card-header-left">
+        <div class="firm-card-name">Reliance Relocation Services, Inc.</div>
+        <div class="firm-card-url">Chicago, IL · 161 N Clark St Ste 1250</div>
+        <div class="firm-card-meta">
+          <span class="badge badge-warm">Warm Outreach</span>
+          <span class="badge badge-regional">Midwest · Chicago</span>
+        </div>
+      </div>
+      <div style="flex-shrink:0">
+        <span class="badge" style="background:rgba(13,122,80,0.10);border:1px solid rgba(13,122,80,0.25);color:var(--green);font-family:var(--fm);font-size:5.5pt;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:3px 9px;border-radius:20px;">GSA Schedule Active thru 2027</span>
+      </div>
+    </div>
+    <div class="firm-card-body">
+      <div class="firm-card-col">
+        <div class="col-label">Key Facts</div>
+        <ul class="blist">
+          <li>Confirmed HUD contract via USASpending.gov (federal procurement database)</li>
+          <li>Active GSA schedule through 2027 — contract award as recent as March 2026</li>
+          <li>Chicago Loop address (161 N Clark St) suggests established operation</li>
+          <li>Chicago is a major affordable housing market (CHA has active RAD pipeline)</li>
+        </ul>
+        <div class="col-label" style="margin-top:10px">Caveat</div>
+        <div class="callout amber">
+          <div class="callout-label">Scope Needs Verification</div>
+          <div class="callout-body">Their NAICS code (484210 — household goods moving) suggests they may be a <strong>physical moving company</strong> with HUD contracts, not a URA case management RSP. Verify before outreach whether they handle compliance and case management vs. just logistics.</div>
+        </div>
+      </div>
+      <div class="firm-card-col">
+        <div class="col-label">Why Still Worth Contact</div>
+        <div class="callout teal">
+          <div class="callout-label">Physical Movers Are in Every Project</div>
+          <div class="callout-body">If Reliance is a logistics firm rather than a URA case management RSP, they're still embedded in every relocation project they touch. <strong>That makes them a referral source</strong> — they know which RSPs are doing case management on the projects where they're moving furniture. Ask "who handles the URA compliance side on your projects?" and you get warm introductions to other RSPs.</div>
+        </div>
+        <div class="hook-box" style="margin-top:10px">
+          <div class="hook-label">Approach if Physical Moving Company</div>
+          <div class="hook-body">"We build software for the RSPs and housing authorities that manage the relocation compliance side of the projects you work on. If you're often partnered with URA consultants or case management firms, we'd love a warm intro — and happy to refer business your way too."</div>
+        </div>
+        <div class="col-label" style="margin-top:12px">Next Steps</div>
+        <div class="step-list">
+          <div class="step">
+            <div class="step-num a">1</div>
+            <div>
+              <div class="step-title">Verify scope before full outreach</div>
+              <div class="step-desc">Call or check their website. If URA case management: pitch Resonance directly. If physical moving only: ask for RSP introductions.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DEVELOPER PROSPECTS -->
+  <div class="section-divider">
+    <div class="section-divider-line"></div>
+    <div class="section-divider-label">Developer-Internal Operations — Resonance Prospects</div>
+    <div class="section-divider-line"></div>
+  </div>
+
+  <div class="callout purple" style="margin-bottom:16px">
+    <div class="callout-label">Different Buyer, Same Problem</div>
+    <div class="callout-body">These firms are developers who built in-house relocation operations to manage their own URA obligations — not third-party RSPs for hire. They are <strong>Resonance customers</strong>, not competitors. The pitch is slightly different: "Replace the manual process your team built with purpose-built infrastructure — so you can stop reinventing the wheel on every new project."</div>
+  </div>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:24px">
+    <div class="firm-card" style="margin-bottom:0">
+      <div class="firm-card-header">
+        <div class="firm-card-header-left">
+          <div class="firm-card-name" style="font-size:11pt">Fulson Housing Group / RSC</div>
+          <div class="firm-card-url">fulsonhousing.com · Lee's Summit, MO</div>
+          <div class="firm-card-meta" style="margin-top:4px">
+            <span class="badge" style="background:var(--purple-light);border:1px solid var(--purple-border);color:var(--purple-mid);font-family:var(--fm);font-size:5.5pt;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:2px 8px;border-radius:20px;">Developer-Internal</span>
+          </div>
+        </div>
+      </div>
+      <div style="padding:12px 16px">
+        <ul class="blist">
+          <li>Formed Relocation Services Company (RSC) specifically to handle URA for their own developments</li>
+          <li>Quoted: "Penalties for failure to handle URA correctly can be a tremendous cost to a developer" — they understand the risk</li>
+          <li>Missouri-based developer portfolio</li>
+        </ul>
+        <div class="hook-box" style="margin-top:10px">
+          <div class="hook-label">Pitch Angle</div>
+          <div class="hook-body">"You built RSC because URA compliance was too risky to outsource. Resonance gives you the infrastructure that makes RSC more scalable — without building software."</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="firm-card" style="margin-bottom:0">
+      <div class="firm-card-header">
+        <div class="firm-card-header-left">
+          <div class="firm-card-name" style="font-size:11pt">LHP Capital</div>
+          <div class="firm-card-url">lhp.net · Nashville, TN · TN/AR/GA/KY/LA/VA</div>
+          <div class="firm-card-meta" style="margin-top:4px">
+            <span class="badge" style="background:var(--purple-light);border:1px solid var(--purple-border);color:var(--purple-mid);font-family:var(--fm);font-size:5.5pt;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:2px 8px;border-radius:20px;">Developer-Internal</span>
+          </div>
+        </div>
+      </div>
+      <div style="padding:12px 16px">
+        <ul class="blist">
+          <li>Mid-size affordable housing developer with in-house relocation services across 6 states</li>
+          <li>Explicitly built to "fit your needs while adhering to federal URA guidelines and state-specific criteria"</li>
+          <li>Nashville HQ, active in Southeast / Mid-South markets</li>
+        </ul>
+        <div class="hook-box" style="margin-top:10px">
+          <div class="hook-label">Pitch Angle</div>
+          <div class="hook-body">"You're already doing relocation in-house across 6 states. Resonance turns your existing process into a traceable, auditable system — without hiring more staff."</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION DIVIDER -->
+  <div class="section-divider">
+    <div class="section-divider-line"></div>
+    <div class="section-divider-label">Messaging Guide</div>
+    <div class="section-divider-line"></div>
+  </div>
+
+  <!-- MESSAGING GUIDE -->
+  <div class="section">
+    <div class="eyebrow">Universal Outreach Principles</div>
+    <h2>What to Say <em>(and What Not to Say)</em></h2>
+    <p style="margin-bottom:16px;font-size:9pt;color:var(--ink-2);line-height:1.7">The RSP market is tiny and word-of-mouth. Every conversation matters. These principles apply across all firms.</p>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+
+      <div class="callout teal">
+        <div class="callout-label">Always Lead With</div>
+        <div class="callout-body">
+          <strong>FEC/NYCHA as social proof.</strong> Every RSP knows big PACT projects. "We run the FEC relocation program" is the fastest credibility signal in this market. It opens doors that a product description won't.<br><br>
+          <strong>The specific pain.</strong> Don't pitch features. Ask: "What are you using to track notices and URA documentation across your portfolio right now?" Let them name the spreadsheet.
+        </div>
+      </div>
+
+      <div class="callout amber">
+        <div class="callout-label">Never Lead With</div>
+        <div class="callout-body">
+          <strong>Pricing.</strong> RSPs bill per unit and pass costs through. Price is not the first question — fit is. Get to a demo first.<br><br>
+          <strong>"Are you using software?"</strong> The answer is no, and it makes them feel behind. Ask what they're using instead — they'll tell you the gap.<br><br>
+          <strong>A feature list.</strong> Natalie's reaction wasn't to features. It was to dynamic date scheduling and the Tetris metaphor. Lead with outcomes, not capabilities.
+        </div>
+      </div>
+
+      <div class="callout purple">
+        <div class="callout-label">The RSP-Specific Value Prop</div>
+        <div class="callout-body">
+          RSPs don't just need Resonance to run their operations — <strong>they need it to impress their clients.</strong> Natalie said this unprompted: "I think this will blow my clients away." That's the real pitch: Resonance is how RSPs differentiate themselves in a word-of-mouth market where the next contract depends on the last project's reputation.
+        </div>
+      </div>
+
+      <div class="callout green">
+        <div class="callout-label">Conference Circuit Strategy</div>
+        <div class="callout-body">
+          Resonance was discovered at <strong>NICHA</strong>. The same circuit applies to all five firms: NAHRO Annual Conference, NICHA, and regional affordable housing convenings are where these firms find tools, referrals, and each other.<br><br>
+          <strong>One RSP referral from ECM can open every other door on this list.</strong> Close Natalie first — then ask who else she knows. In a market of 50 firms, one warm intro is worth 10 cold emails.
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="doc-footer">
+    <div class="footer-contact">
+      <strong>Resonance</strong>
+      <a href="mailto:ray@yourresonance.com">ray@yourresonance.com</a><br>
+      resonancehq.io
+    </div>
+    <div style="text-align:center">
+      <div class="footer-logo">Resonance</div>
+    </div>
+    <div class="footer-legal">
+      Internal use only. Do not distribute.<br>
+      Research as of June 2026 · resonancehq.io
+    </div>
+  </div>
+
+</div><!-- end page 2 -->
+</body>
+</html>
