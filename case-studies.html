@@ -1064,15 +1064,6 @@ nav {
   ]
 }
 </script>
-<!-- Nav logo entrance animation (GSAP) -->
-<style>
-  #navLogoIntro { opacity: 0; transform: scale(0.9); transform-origin: left center; }
-  @media (prefers-reduced-motion: reduce) {
-    #navLogoIntro { opacity: 1 !important; transform: none !important; }
-  }
-</style>
-<noscript><style>#navLogoIntro { opacity: 1 !important; transform: none !important; }</style></noscript>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 </head>
 <body>
 
@@ -1085,7 +1076,7 @@ nav {
 
 <!-- Nav -->
 <nav>
-  <a href="/" class="nav-logo" id="navLogoIntro">
+  <a href="/" class="nav-logo">
     <div class="logo-mark" style="background:none;padding:0;width:32px;height:32px;display:flex;align-items:center;justify-content:center;"><svg width="32" height="32" viewBox="0 0 154 182" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M153.032 120.267C151.562 120.775 150.1 121.263 148.595 121.797C122.192 131.345 96.6636 144.643 77.0527 163.76C76.1612 164.641 75.2855 165.535 74.4268 166.442C74.8954 167.697 75.1533 169.054 75.1533 170.473C75.1533 176.839 69.9929 181.999 63.627 181.999C57.2609 181.999 52.0996 176.839 52.0996 170.473C52.0997 164.107 57.261 158.947 63.627 158.947C65.3899 158.947 67.0597 159.343 68.5537 160.051C69.5224 159.205 70.5035 158.377 71.4951 157.565C94.2724 139.231 121.208 128.493 148.469 121.378C150.02 120.983 151.523 120.635 153.032 120.267Z" fill="#9BE2E4"/>
 <path d="M11.9873 59.3557C18.6078 59.3557 23.9754 64.6194 23.9756 71.1125C23.9756 73.5466 23.2204 75.8077 21.9287 77.6838C22.5991 78.8025 23.2939 79.8907 24.0283 80.967C42.696 108.284 79.6038 118.04 113.279 118.468C115.159 118.48 117.145 118.446 118.953 118.372C117.157 118.591 115.174 118.771 113.293 118.905C79.6598 120.871 41.0566 114.918 17.3516 85.9348C16.4642 84.8277 15.6152 83.7036 14.7891 82.5432C13.8901 82.7543 12.9523 82.8703 11.9873 82.8703C5.36686 82.8701 0 77.6057 0 71.1125C0.000202317 64.6195 5.36698 59.3559 11.9873 59.3557Z" fill="url(#paint0_cs)"/>
@@ -2349,26 +2340,5 @@ footer{position:relative;z-index:1;border-top:0.5px solid var(--border);padding:
     </p>
   </div>
 </footer>
-<!-- Nav logo entrance animation trigger -->
-<script>
-  (function () {
-    function playLogoIntro() {
-      var logo = document.getElementById('navLogoIntro');
-      if (!logo) return;
-      var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      if (window.gsap && !reduce) {
-        gsap.to(logo, { opacity: 1, scale: 1, duration: 0.6, ease: 'power2.out' });
-      } else {
-        logo.style.opacity = '1';
-        logo.style.transform = 'none';
-      }
-    }
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', playLogoIntro);
-    } else {
-      playLogoIntro();
-    }
-  })();
-</script>
 </body>
 </html>
