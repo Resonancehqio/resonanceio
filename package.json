@@ -1,0 +1,9 @@
+{
+  "name": "resonance-site",
+  "private": true,
+  "description": "resonancehq.io — static marketing site with Netlify Functions for referral capture",
+  "type": "module",
+  "dependencies": {
+    "@netlify/blobs": "^8.2.0"
+  }
+}

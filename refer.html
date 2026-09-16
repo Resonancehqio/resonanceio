@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-D655YVSZ1V"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-D655YVSZ1V');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Refer a colleague to Resonance</title>
+<meta name="description" content="Introduce a housing authority, developer, or relocation team to Resonance. We follow up within one business day and keep you posted.">
+<meta name="robots" content="noindex, nofollow">
+<meta property="og:title" content="Refer a colleague to Resonance">
+<meta property="og:description" content="Introduce a housing authority, developer, or relocation team to Resonance.">
+<meta property="og:image" content="https://resonancehq.io/ogimage.png">
+<meta property="og:url" content="https://resonancehq.io/refer">
+<link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="48x48">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Instrument+Sans:wght@400;500;600&family=Nunito+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --purple:#5B21B6;--purple-mid:#7C3AED;--purple-bright:#A78BFA;
+  --purple-ghost:rgba(91,33,182,0.12);--purple-glow:rgba(91,33,182,0.28);
+  --teal:#14B8A6;--teal-bright:#5EEAD4;--teal-ghost:rgba(20,184,166,0.1);
+  --dark:#09080F;--dark-1:#110E1E;--dark-2:#1A1630;--dark-3:#231E3E;--dark-4:#2D2754;
+  --border:rgba(120,100,220,0.18);--border-hi:rgba(120,100,220,0.38);
+  --text-1:#F1EEFF;--text-2:#B8AAEE;--text-3:#7E72B8;
+  --amber:#F59E0B;--green:#34D399;--red:#F87171;
+  --ff-display:'Fraunces',Georgia,'Times New Roman',serif;
+  --ff-body:'Instrument Sans',-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
+  --ff-mono:'Nunito Sans',-apple-system,sans-serif;
+  --r-sm:8px;--r-md:12px;--r-lg:18px;--r-xl:24px;
+}
+html{scroll-behavior:smooth;font-size:16px;}
+body{font-family:var(--ff-body);background:var(--dark);color:var(--text-1);overflow-x:hidden;-webkit-font-smoothing:antialiased;}
+::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:var(--dark)}::-webkit-scrollbar-thumb{background:var(--dark-4);border-radius:3px}
+
+.bg-grid{position:fixed;inset:0;z-index:0;pointer-events:none;background-image:linear-gradient(rgba(120,100,220,0.035) 1px,transparent 1px),linear-gradient(90deg,rgba(120,100,220,0.035) 1px,transparent 1px);background-size:52px 52px;}
+.bg-canvas{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;}
+.orb{position:absolute;border-radius:50%;filter:blur(100px);opacity:0.5;}
+.orb-1{width:700px;height:700px;background:radial-gradient(circle,rgba(91,33,182,0.45) 0%,transparent 70%);top:-200px;right:-150px;animation:drift 20s ease-in-out infinite alternate;}
+.orb-2{width:500px;height:500px;background:radial-gradient(circle,rgba(20,184,166,0.22) 0%,transparent 70%);bottom:100px;left:-100px;animation:drift 25s ease-in-out infinite alternate-reverse;}
+@keyframes drift{0%{transform:translate(0,0)}100%{transform:translate(40px,30px)}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.5;transform:scale(0.8)}}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 40px;background:rgba(9,8,15,0.8);backdrop-filter:blur(24px) saturate(150%);border-bottom:0.5px solid var(--border);}
+.nav-logo{display:flex;align-items:center;gap:6px;text-decoration:none;}
+.logo-text{font-family:var(--ff-display);font-size:1.2rem;font-weight:400;color:var(--text-1);letter-spacing:-0.01em;}
+.conf-pill{display:inline-flex;align-items:center;gap:7px;background:rgba(20,184,166,0.08);border:0.5px solid rgba(20,184,166,0.35);border-radius:100px;padding:5px 14px 5px 8px;font-family:var(--ff-mono);font-size:10px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--teal);}
+.conf-pill::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--teal);animation:pulse 2s infinite;}
+.nav-right{display:flex;align-items:center;gap:10px;}
+.btn-site{font-family:var(--ff-body);font-size:13px;font-weight:500;color:var(--text-2);text-decoration:none;padding:7px 14px;border-radius:var(--r-sm);border:0.5px solid var(--border);transition:all 0.2s;}
+.btn-site:hover{color:var(--text-1);background:rgba(255,255,255,0.055);border-color:var(--border-hi);}
+.btn-demo-nav{font-family:var(--ff-body);font-size:13px;font-weight:600;color:#fff;background:var(--purple);border:none;border-radius:var(--r-md);padding:9px 20px;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:6px;transition:all 0.2s;box-shadow:0 0 0 1px rgba(124,58,237,0.4),0 4px 16px rgba(91,33,182,0.35);}
+.btn-demo-nav:hover{background:var(--purple-mid);transform:translateY(-1px);}
+@media(max-width:640px){nav{padding:0 16px;}.btn-site{display:none;}.conf-pill{font-size:9px;padding:4px 10px 4px 6px;gap:5px;}.btn-demo-nav{font-size:12px;padding:7px 13px;white-space:nowrap;}.logo-text{font-size:1rem;}}
+
+/* LAYOUT */
+section{position:relative;z-index:1;}
+.wrap{max-width:1100px;margin:0 auto;padding:0 32px;}
+.wrap-tight{max-width:760px;margin:0 auto;padding:0 32px;}
+@media(max-width:600px){.wrap,.wrap-tight{padding:0 16px;}}
+
+/* HERO */
+.hero{display:flex;flex-direction:column;align-items:center;text-align:center;padding:150px 24px 56px;}
+.conf-badge{display:inline-flex;align-items:center;gap:10px;margin-bottom:28px;background:rgba(20,184,166,0.07);border:0.5px solid rgba(20,184,166,0.38);border-radius:100px;padding:7px 18px 7px 10px;animation:fadeUp 0.6s ease both;}
+.conf-badge-tag{background:var(--teal);color:var(--dark);font-family:var(--ff-mono);font-size:10px;font-weight:700;letter-spacing:0.06em;padding:3px 10px;border-radius:100px;text-transform:uppercase;}
+.conf-badge-txt{font-size:13px;color:var(--text-2);font-weight:500;}
+.hero h1{font-family:var(--ff-display);font-weight:300;font-size:clamp(2.4rem,6vw,4.6rem);line-height:1.06;letter-spacing:-0.025em;color:var(--text-1);max-width:880px;margin:0 auto 8px;animation:fadeUp 0.6s 0.1s ease both;}
+.hero h1 em{font-style:italic;color:var(--teal-bright);}
+.hero-sub{font-size:clamp(1rem,2vw,1.15rem);color:var(--text-2);line-height:1.78;max-width:600px;margin:18px auto 0;animation:fadeUp 0.6s 0.15s ease both;}
+
+/* STEPS */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:900px;margin:44px auto 0;animation:fadeUp 0.6s 0.25s ease both;}
+.step{background:var(--dark-2);border:0.5px solid var(--border);border-radius:var(--r-lg);padding:22px 22px 20px;text-align:left;position:relative;}
+.step::before{content:'';position:absolute;left:0;top:16px;bottom:16px;width:2px;border-radius:0 1px 1px 0;background:linear-gradient(180deg,var(--purple-mid) 0%,var(--teal) 100%);}
+.step-n{font-family:var(--ff-mono);font-size:10px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--teal);margin-bottom:8px;}
+.step h3{font-family:var(--ff-display);font-size:1.08rem;font-weight:400;color:var(--text-1);margin-bottom:6px;letter-spacing:-0.01em;}
+.step p{font-size:0.86rem;color:var(--text-2);line-height:1.6;}
+@media(max-width:760px){.steps{grid-template-columns:1fr;}}
+
+/* SHARED */
+.eyebrow{display:inline-flex;align-items:center;gap:7px;font-family:var(--ff-mono);font-size:11px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--teal);}
+.eyebrow::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--teal);flex-shrink:0;}
+.section-h2{font-family:var(--ff-display);font-weight:300;font-size:clamp(1.8rem,3.6vw,2.6rem);line-height:1.12;letter-spacing:-0.02em;color:var(--text-1);margin-bottom:12px;}
+.section-h2 em{font-style:italic;color:var(--teal-bright);}
+.section-lead{font-size:1rem;color:var(--text-2);line-height:1.72;max-width:600px;}
+
+/* FORM */
+.form-sec{padding:40px 0 100px;}
+.form-card{max-width:720px;margin:36px auto 0;background:var(--dark-1);border:0.5px solid var(--border-hi);border-radius:var(--r-xl);padding:44px 40px;position:relative;overflow:hidden;}
+.form-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(91,33,182,0.6),rgba(94,234,212,0.4),transparent);}
+.f-group{margin-bottom:8px;}
+.f-group-title{display:flex;align-items:center;gap:10px;font-family:var(--ff-mono);font-size:10.5px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--purple-bright);margin:0 0 18px;}
+.f-group-title::after{content:'';flex:1;height:0.5px;background:var(--border);}
+.f-group + .f-group{margin-top:28px;}
+.f-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;}
+.f-full{margin-bottom:16px;}
+.f-lbl{display:block;font-family:var(--ff-mono);font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-3);margin-bottom:8px;}
+.f-lbl .opt{color:var(--text-3);opacity:0.6;letter-spacing:0.04em;text-transform:none;font-weight:500;}
+.f-input,.f-select,.f-textarea{width:100%;background:rgba(255,255,255,0.04);border:0.5px solid rgba(255,255,255,0.12);border-radius:var(--r-sm);padding:11px 14px;font-size:14px;color:var(--text-1);font-family:var(--ff-body);outline:none;transition:border-color 0.2s,background 0.2s;-webkit-appearance:none;appearance:none;}
+.f-input:focus,.f-select:focus,.f-textarea:focus{border-color:rgba(167,139,250,0.5);background:rgba(255,255,255,0.06);}
+.f-input::placeholder,.f-textarea::placeholder{color:var(--text-3);}
+.f-input.err,.f-select.err{border-color:rgba(248,113,113,0.6);}
+.f-textarea{min-height:96px;resize:vertical;line-height:1.55;}
+.f-select{cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M4 6l4 4 4-4' stroke='%236B7280' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;background-size:16px;padding-right:36px;}
+.f-select option{background:var(--dark-2);color:var(--text-1);}
+.f-check{display:flex;align-items:flex-start;gap:12px;font-size:13.5px;color:var(--text-2);line-height:1.55;cursor:pointer;margin:6px 0 4px;}
+.f-check input{appearance:none;-webkit-appearance:none;width:18px;height:18px;flex-shrink:0;margin-top:1px;border-radius:5px;border:0.5px solid rgba(255,255,255,0.25);background:rgba(255,255,255,0.04);cursor:pointer;position:relative;transition:all 0.15s;}
+.f-check input:checked{background:var(--purple);border-color:var(--purple-mid);}
+.f-check input:checked::after{content:'';position:absolute;left:5.5px;top:2px;width:5px;height:9px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg);}
+.f-submit{width:100%;padding:14px;border-radius:var(--r-md);border:none;background:var(--purple);color:#fff;font-size:15px;font-weight:600;font-family:var(--ff-body);cursor:pointer;margin-top:18px;transition:background 0.2s,transform 0.1s,box-shadow 0.2s;box-shadow:0 0 0 1px rgba(124,58,237,0.4),0 6px 20px rgba(91,33,182,0.35);}
+.f-submit:hover{background:var(--purple-mid);transform:translateY(-1px);}
+.f-submit:disabled{opacity:0.6;cursor:default;transform:none;}
+.f-note{font-size:12px;color:var(--text-3);text-align:center;margin-top:14px;line-height:1.6;}
+.f-error{display:none;background:rgba(248,113,113,0.1);border:0.5px solid rgba(248,113,113,0.35);color:#FCA5A5;border-radius:var(--r-sm);padding:11px 14px;font-size:13px;line-height:1.5;margin-top:16px;}
+.f-success{display:none;text-align:center;padding:40px 12px;}
+.f-success-icon{width:56px;height:56px;border-radius:50%;background:rgba(52,211,153,0.12);border:0.5px solid rgba(52,211,153,0.35);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;color:var(--green);}
+.f-success h3{font-family:var(--ff-display);font-size:1.9rem;font-weight:300;margin-bottom:12px;letter-spacing:-0.01em;}
+.f-success p{color:var(--text-2);font-size:15px;line-height:1.7;max-width:460px;margin:0 auto;}
+.f-success .btn-again{display:inline-block;margin-top:22px;font-family:var(--ff-body);font-size:13.5px;font-weight:500;color:var(--teal);background:transparent;border:0.5px solid rgba(20,184,166,0.35);border-radius:var(--r-sm);padding:9px 16px;cursor:pointer;transition:all 0.2s;}
+.f-success .btn-again:hover{background:var(--teal-ghost);}
+.hp{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;}
+@media(max-width:560px){.f-row{grid-template-columns:1fr;}.form-card{padding:30px 20px;}}
+
+/* TRACKER (client / admin view) */
+.track-sec{display:none;padding:0 0 100px;}
+.track-card{max-width:900px;margin:0 auto;background:var(--dark-1);border:0.5px solid var(--border);border-radius:var(--r-xl);overflow:hidden;}
+.track-head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px;padding:32px 32px 24px;border-bottom:0.5px solid var(--border);}
+.track-head h2{font-family:var(--ff-display);font-weight:300;font-size:1.7rem;letter-spacing:-0.02em;color:var(--text-1);margin-top:12px;}
+.track-head p{font-size:13.5px;color:var(--text-3);margin-top:6px;}
+.track-stats{display:flex;gap:28px;}
+.ts{text-align:right;}
+.ts-n{font-family:var(--ff-display);font-size:1.9rem;font-weight:300;line-height:1;background:linear-gradient(135deg,var(--teal-bright),var(--purple-bright));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.ts-l{font-family:var(--ff-mono);font-size:9.5px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-3);margin-top:6px;}
+.track-table{width:100%;border-collapse:collapse;}
+.track-table th{text-align:left;padding:12px 18px;font-family:var(--ff-mono);font-size:10px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-3);background:rgba(255,255,255,0.03);border-bottom:0.5px solid var(--border);}
+.track-table td{padding:14px 18px;font-size:13.5px;color:var(--text-2);border-bottom:0.5px solid rgba(120,100,220,0.08);vertical-align:top;}
+.track-table tr:last-child td{border-bottom:none;}
+.track-table .nm{font-weight:500;color:var(--text-1);}
+.track-table .sub{font-size:11.5px;color:var(--text-3);margin-top:3px;}
+.track-table .dt{font-family:var(--ff-mono);font-size:12px;color:var(--text-3);white-space:nowrap;}
+.badge{display:inline-flex;align-items:center;gap:6px;font-family:var(--ff-mono);font-size:10px;font-weight:600;padding:4px 10px;border-radius:100px;letter-spacing:0.04em;text-transform:uppercase;white-space:nowrap;}
+.badge::before{content:'';width:5px;height:5px;border-radius:50%;flex-shrink:0;background:currentColor;}
+.b-new{background:rgba(167,139,250,0.12);color:var(--purple-bright);border:0.5px solid rgba(167,139,250,0.25);}
+.b-contacted{background:rgba(20,184,166,0.12);color:var(--teal);border:0.5px solid rgba(20,184,166,0.25);}
+.b-demo{background:rgba(94,234,212,0.12);color:var(--teal-bright);border:0.5px solid rgba(94,234,212,0.25);}
+.b-proposal{background:rgba(245,158,11,0.12);color:var(--amber);border:0.5px solid rgba(245,158,11,0.25);}
+.b-won{background:rgba(52,211,153,0.12);color:var(--green);border:0.5px solid rgba(52,211,153,0.25);}
+.b-lost{background:rgba(248,113,113,0.12);color:var(--red);border:0.5px solid rgba(248,113,113,0.25);}
+.status-sel{font-family:var(--ff-mono);font-size:11px;font-weight:600;letter-spacing:0.04em;text-transform:uppercase;background:var(--dark-3);color:var(--text-1);border:0.5px solid var(--border-hi);border-radius:100px;padding:5px 26px 5px 12px;cursor:pointer;-webkit-appearance:none;appearance:none;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M4 6l4 4 4-4' stroke='%23B8AAEE' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 9px center;background-size:13px;}
+.status-sel option{background:var(--dark-2);text-transform:none;}
+.track-empty{padding:48px 24px;text-align:center;color:var(--text-3);font-size:14px;line-height:1.7;}
+.track-foot{padding:16px 32px;border-top:0.5px solid var(--border);font-size:12px;color:var(--text-3);display:flex;flex-wrap:wrap;gap:8px 20px;justify-content:space-between;}
+.track-foot a{color:var(--teal);text-decoration:none;}
+.track-wrap{overflow-x:auto;}
+@media(max-width:640px){.track-head{padding:24px 20px 18px;}.track-stats{gap:18px;}.track-table th,.track-table td{padding:12px 14px;}.track-foot{padding:14px 20px;}}
+
+/* FOOTER */
+footer{position:relative;z-index:1;border-top:0.5px solid var(--border);padding:40px 0 48px;text-align:center;}
+.foot-logo{display:inline-flex;align-items:center;gap:6px;text-decoration:none;margin-bottom:14px;}
+.foot-logo-txt{font-family:var(--ff-display);font-size:1.1rem;font-weight:400;color:var(--text-2);}
+.foot-copy{font-size:12.5px;color:var(--text-3);line-height:2;}
+.foot-copy a{color:var(--text-3);text-decoration:none;transition:color 0.2s;}
+.foot-copy a:hover{color:var(--text-2);}
+.dot{opacity:0.4;margin:0 8px;}
+</style>
+</head>
+<body>
+
+<div class="bg-grid"></div>
+<div class="bg-canvas"><div class="orb orb-1"></div><div class="orb orb-2"></div></div>
+
+<!-- NAV -->
+<nav>
+  <a href="https://resonancehq.io" class="nav-logo">
+    <svg width="32" height="32" viewBox="0 0 154 182" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M153.032 120.267C151.562 120.775 150.1 121.263 148.595 121.797C122.192 131.345 96.6636 144.643 77.0527 163.76C76.1612 164.641 75.2855 165.535 74.4268 166.442C74.8954 167.697 75.1533 169.054 75.1533 170.473C75.1533 176.839 69.9929 181.999 63.627 181.999C57.2609 181.999 52.0996 176.839 52.0996 170.473C52.0997 164.107 57.261 158.947 63.627 158.947C65.3899 158.947 67.0597 159.343 68.5537 160.051C69.5224 159.205 70.5035 158.377 71.4951 157.565C94.2724 139.231 121.208 128.493 148.469 121.378C150.02 120.983 151.523 120.635 153.032 120.267Z" fill="#9BE2E4"/>
+      <path d="M11.9873 59.3557C18.6078 59.3557 23.9754 64.6194 23.9756 71.1125C23.9756 73.5466 23.2204 75.8077 21.9287 77.6838C22.5991 78.8025 23.2939 79.8907 24.0283 80.967C42.696 108.284 79.6038 118.04 113.279 118.468C115.159 118.48 117.145 118.446 118.953 118.372C117.157 118.591 115.174 118.771 113.293 118.905C79.6598 120.871 41.0566 114.918 17.3516 85.9348C16.4642 84.8277 15.6152 83.7036 14.7891 82.5432C13.8901 82.7543 12.9523 82.8703 11.9873 82.8703C5.36686 82.8701 0 77.6057 0 71.1125C0.000202317 64.6195 5.36698 59.3559 11.9873 59.3557Z" fill="url(#p0)"/>
+      <path d="M133.939 120.678C132.369 120.919 130.647 121.204 129.029 121.485C99.5499 126.902 69.8404 134.143 43.9873 147.876C43.4006 148.2 42.8073 148.535 42.2168 148.874C42.3447 149.562 42.415 150.27 42.415 150.995C42.415 157.361 37.2545 162.521 30.8887 162.522C24.5227 162.522 19.3614 157.361 19.3613 150.995C19.3613 144.629 24.5227 139.469 30.8887 139.469C33.4021 139.469 35.726 140.275 37.6201 141.641C38.5159 141.218 39.4179 140.804 40.3027 140.414C68.9294 128.335 99.008 123.935 128.973 121.052C130.611 120.915 132.353 120.774 133.939 120.678Z" fill="url(#p1)"/>
+      <path d="M42.417 51.5175C47.7642 51.5178 52.0986 55.7692 52.0986 61.0136C52.0986 63.9272 50.7594 66.5324 48.6533 68.2744C49.2172 69.1005 49.7957 69.9154 50.3936 70.7236C71.577 98.807 108.849 112.23 144.412 114.014C146.432 113.955 148.534 114.174 150.306 113.301C149.859 113.553 149.387 113.733 148.898 113.866C149.178 113.865 148.728 113.945 148.27 114.011C147.03 114.248 145.706 114.248 144.42 114.358C107.681 115.104 65.8779 107.282 43.7041 74.0498C42.9458 72.8727 42.2307 71.6873 41.5449 70.4697C36.606 70.0374 32.7344 65.97 32.7344 61.0136C32.7344 55.7691 37.0696 51.5175 42.417 51.5175Z" fill="url(#p2)"/>
+      <path d="M90.7822 0.66696C92.6862 -0.538979 95.339 -0.0645439 96.707 1.72653C97.4008 2.63492 97.6295 3.70723 97.4395 4.70114C97.4522 4.82516 97.4598 4.9512 97.458 5.07907C97.3457 13.2627 97.0693 35.4671 97.0693 55.7363C97.0693 57.032 97.0492 58.2767 97.0127 59.4716C96.9525 70.6974 96.8631 79.7189 96.833 82.5644C96.8269 83.1338 96.4721 83.6365 95.9395 83.8379L91.54 85.5009C90.8536 85.7605 90.1321 85.4542 89.8232 84.8691C89.7229 84.7836 89.667 84.631 89.667 84.416V10.997L60.6465 29.3769C60.641 41.5872 60.6289 69.1824 60.6289 70.4882C60.6289 72.1676 53.0219 65.8699 52.7832 53.9043V26.8779C52.7832 26.486 52.8525 26.1102 52.9805 25.7627C53.2129 24.897 53.7706 24.1095 54.625 23.5683L90.7822 0.66696Z" fill="url(#p3)"/>
+      <path d="M100.09 30.9179C100.075 30.534 100.509 30.3007 100.821 30.5254L114.154 40.1318C114.274 40.2184 114.346 40.3576 114.346 40.5058V47.0859C114.364 61.7596 114.695 92.4466 114.783 100.316C114.793 101.25 113.895 101.915 113.001 101.646L107.491 99.9922C106.906 99.8166 106.505 99.3019 106.505 98.6914V49.3906L100.671 40.3984C100.541 40.3178 100.459 40.1783 100.453 40.0254L100.09 30.9179Z" fill="url(#p4)"/>
+      <defs>
+        <linearGradient id="p0" x1="14.0623" y1="71.5739" x2="40.5735" y2="94.3963" gradientUnits="userSpaceOnUse"><stop stop-color="#9CE4E5"/><stop offset="1" stop-color="#936DD7"/></linearGradient>
+        <linearGradient id="p1" x1="27.1997" y1="148.111" x2="123.334" y2="125.056" gradientUnits="userSpaceOnUse"><stop stop-color="#9CE4E5"/><stop offset="0.778846" stop-color="#5B4790"/><stop offset="1" stop-color="#98D8EB"/></linearGradient>
+        <linearGradient id="p2" x1="91.52" y1="51.5175" x2="91.52" y2="114.407" gradientUnits="userSpaceOnUse"><stop stop-color="#96D0F0"/><stop offset="1" stop-color="#90B6EF"/></linearGradient>
+        <linearGradient id="p3" x1="75.1434" y1="0" x2="75.1434" y2="85.594" gradientUnits="userSpaceOnUse"><stop stop-color="#A37CEC"/><stop offset="1" stop-color="#5B4790"/></linearGradient>
+        <linearGradient id="p4" x1="107.436" y1="30.4375" x2="107.436" y2="101.706" gradientUnits="userSpaceOnUse"><stop stop-color="#A37CEC"/><stop offset="1" stop-color="#5B4790"/></linearGradient>
+      </defs>
+    </svg>
+    <span class="logo-text">Resonance</span>
+  </a>
+  <div class="conf-pill" id="navPill">Referral Program</div>
+  <div class="nav-right">
+    <a href="https://resonancehq.io" class="btn-site" target="_blank">Main Site ↗</a>
+    <a href="#refer" class="btn-demo-nav">Make a referral</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="conf-badge" id="heroBadge">
+    <span class="conf-badge-tag">Referral</span>
+    <span class="conf-badge-txt" id="heroBadgeTxt">Introduce a colleague to Resonance</span>
+  </div>
+  <h1 id="heroH1">Know someone running a <em>relocation program</em>?</h1>
+  <p class="hero-sub" id="heroSub">Tell us who they are and we'll take it from there. One focused conversation, no cold outreach, and you'll hear back from us on how it went.</p>
+
+  <div class="steps">
+    <div class="step"><div class="step-n">01 · You</div><h3>Share a name</h3><p>Two minutes. Who they are, where they work, and a line on what they're dealing with.</p></div>
+    <div class="step"><div class="step-n">02 · Us</div><h3>We reach out</h3><p>Within one business day, mentioning you by name. A focused demo built around their program, not generic slides.</p></div>
+    <div class="step"><div class="step-n">03 · Both</div><h3>You stay in the loop</h3><p>We confirm when we've connected and let you know how it's progressing.</p></div>
+  </div>
+</section>
+
+<!-- FORM -->
+<section class="form-sec" id="refer">
+  <div class="wrap">
+    <div class="wrap-tight" style="text-align:center;">
+      <div class="eyebrow" style="margin-bottom:14px;justify-content:center;">Make a referral</div>
+      <h2 class="section-h2">Who should we <em>talk to</em>?</h2>
+      <p class="section-lead" style="margin:0 auto;">Housing authorities, developers, relocation service providers, consultants. Anyone who has households to move and a deadline to hit.</p>
+    </div>
+
+    <div class="form-card">
+      <form id="referForm" novalidate>
+        <div class="hp" aria-hidden="true"><label for="website">Website</label><input type="text" id="website" name="website" tabindex="-1" autocomplete="off"></div>
+
+        <div class="f-group">
+          <div class="f-group-title">About you</div>
+          <div class="f-row">
+            <div><label class="f-lbl" for="referrer_name">Your name</label><input class="f-input" type="text" id="referrer_name" placeholder="Full name" autocomplete="name" required></div>
+            <div><label class="f-lbl" for="referrer_email">Your email</label><input class="f-input" type="email" id="referrer_email" placeholder="you@yourorg.com" autocomplete="email" required></div>
+          </div>
+          <div class="f-full">
+            <label class="f-lbl" for="referrer_org">Your organization</label><input class="f-input" type="text" id="referrer_org" placeholder="Company or agency" autocomplete="organization">
+          </div>
+        </div>
+
+        <div class="f-group">
+          <div class="f-group-title">Who you're referring</div>
+          <div class="f-row">
+            <div><label class="f-lbl" for="first_name">First name</label><input class="f-input" type="text" id="first_name" placeholder="First name" required></div>
+            <div><label class="f-lbl" for="last_name">Last name</label><input class="f-input" type="text" id="last_name" placeholder="Last name"></div>
+          </div>
+          <div class="f-row">
+            <div><label class="f-lbl" for="email">Their email</label><input class="f-input" type="email" id="email" placeholder="them@theirorg.org" required></div>
+            <div><label class="f-lbl" for="organization">Their organization</label><input class="f-input" type="text" id="organization" placeholder="Housing authority / developer…" required></div>
+          </div>
+          <div class="f-row">
+            <div>
+              <label class="f-lbl" for="role">Their role</label>
+              <select class="f-select" id="role">
+                <option value="" selected>Select…</option>
+                <option>Executive / Leadership</option>
+                <option>Program or Project Manager</option>
+                <option>Relocation Coordinator</option>
+                <option>Development Team</option>
+                <option>Compliance / Asset Management</option>
+                <option>Consultant / Advisor</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div>
+              <label class="f-lbl" for="program">Program type <span class="opt">(if known)</span></label>
+              <select class="f-select" id="program">
+                <option value="" selected>Select…</option>
+                <option>PACT / RAD Conversion</option>
+                <option>Section 18 Disposition</option>
+                <option>Choice Neighborhoods</option>
+                <option>LIHTC Preservation</option>
+                <option>HOPE VI</option>
+                <option>HUD Disposition</option>
+                <option>Multiple Programs</option>
+                <option>Not sure</option>
+              </select>
+            </div>
+          </div>
+          <div class="f-full">
+            <label class="f-lbl" for="households">Households in scope <span class="opt">(rough guess is fine)</span></label>
+            <select class="f-select" id="households">
+              <option value="" selected>Select…</option>
+              <option>Under 100</option>
+              <option>100 – 500</option>
+              <option>500 – 1,500</option>
+              <option>1,500 – 5,000</option>
+              <option>5,000+</option>
+              <option>Not sure</option>
+            </select>
+          </div>
+          <div class="f-full">
+            <label class="f-lbl" for="context">Anything we should know? <span class="opt">(optional)</span></label>
+            <textarea class="f-textarea" id="context" placeholder="What they're working on, what's painful right now, how you know them, the best way to reach them…"></textarea>
+          </div>
+          <label class="f-check"><input type="checkbox" id="consent"><span>They know I'm passing their details along and are open to hearing from Resonance.</span></label>
+        </div>
+
+        <div class="f-error" id="formError"></div>
+        <button class="f-submit" type="submit" id="submitBtn">Send the introduction →</button>
+        <p class="f-note">We only use this to make the introduction. Nothing is shared or added to any list.</p>
+      </form>
+
+      <div class="f-success" id="formSuccess">
+        <div class="f-success-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
+        <h3>Thank you. We're on it.</h3>
+        <p id="successMsg">We'll reach out within one business day and let you know when we've connected.</p>
+        <button class="btn-again" type="button" onclick="resetForm()">Refer someone else</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRACKER: appears only with a valid key -->
+<section class="track-sec" id="tracker">
+  <div class="wrap">
+    <div class="track-card">
+      <div class="track-head">
+        <div>
+          <div class="eyebrow" id="trackEyebrow">Your referrals</div>
+          <h2 id="trackTitle">Where things stand</h2>
+          <p id="trackSub">Every introduction you've made and its current status.</p>
+        </div>
+        <div class="track-stats">
+          <div class="ts"><div class="ts-n" id="tsTotal">0</div><div class="ts-l">Referred</div></div>
+          <div class="ts"><div class="ts-n" id="tsActive">0</div><div class="ts-l">In progress</div></div>
+          <div class="ts"><div class="ts-n" id="tsWon">0</div><div class="ts-l">Won</div></div>
+        </div>
+      </div>
+      <div class="track-wrap"><table class="track-table" id="trackTable"></table></div>
+      <div class="track-empty" id="trackEmpty" style="display:none;">No referrals yet. The first one you send will show up here.</div>
+      <div class="track-foot"><span id="trackFootL">Updated as we work each introduction.</span><span id="trackFootR"></span></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap" style="display:flex;flex-direction:column;align-items:center;">
+    <a href="https://resonancehq.io" class="foot-logo" target="_blank">
+      <span class="foot-logo-txt">Resonance</span>
+    </a>
+    <p class="foot-copy">
+      © 2026 Resonance. All rights reserved.
+      <span class="dot">·</span>
+      <a href="/privacy-policy">Privacy Policy</a>
+      <span class="dot">·</span>
+      <a href="mailto:sean@resonancehq.io">sean@resonancehq.io</a>
+    </p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var API = '/api';
+  var $ = function(id){ return document.getElementById(id); };
+  var p = new URLSearchParams(location.search);
+  var esc = function(s){ return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); };
+
+  /* ── Who is referring: /refer/<slug> or ?via=<slug> ── */
+  var pathSlug = (location.pathname.match(/^\/refer\/([^\/?#]+)/) || [])[1] || '';
+  var slug = (p.get('via') || pathSlug || '').toLowerCase().replace(/[^a-z0-9-]/g, '');
+  var key  = p.get('key') || '';
+  window._utm = { source: p.get('utm_source') || (slug ? 'referral' : 'direct'), medium: p.get('utm_medium') || (slug ? 'partner' : ''), campaign: p.get('utm_campaign') || slug };
+  window._referrer = { slug: slug, name: '', org: '' };
+
+  var titleCase = function(s){ return s.replace(/-/g,' ').replace(/\b\w/g, function(c){ return c.toUpperCase(); }); };
+
+  function personalize(info){
+    if(!slug) return;
+    var name = (info && info.name) || titleCase(slug);
+    var org  = (info && info.org)  || name;
+    window._referrer.name = name; window._referrer.org = org;
+    $('navPill').textContent = 'Referred by ' + name;
+    $('heroBadgeTxt').textContent = 'Referral link for ' + org;
+    $('heroH1').innerHTML = 'Thanks for the <em>introduction</em>, ' + esc(name) + '.';
+    $('heroSub').textContent = 'You know who\'s wrestling with a relocation program right now. Point us at them and we\'ll handle the rest, mentioning you by name.';
+    if(!$('referrer_org').value) $('referrer_org').value = org;
+    document.title = 'Refer a colleague to Resonance · ' + name;
+  }
+  fetch('/referrers.json', { cache: 'no-store' }).then(function(r){ return r.ok ? r.json() : {}; })
+    .then(function(map){ personalize(map[slug]); }).catch(function(){ personalize(null); });
+
+  /* ── Form ── */
+  var startedAt = Date.now();
+  var form = $('referForm'), btn = $('submitBtn'), errBox = $('formError');
+
+  function showErr(msg, ids){
+    errBox.textContent = msg; errBox.style.display = 'block';
+    (ids||[]).forEach(function(id){ $(id).classList.add('err'); });
+    var first = ids && ids.length ? $(ids[0]) : errBox;
+    first.scrollIntoView({ behavior:'smooth', block:'center' });
+  }
+  form.addEventListener('input', function(e){ if(e.target.classList) e.target.classList.remove('err'); errBox.style.display='none'; });
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var v = function(id){ return ($(id).value || '').trim(); };
+    var bad = [], msgs = [];
+    var em = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if(!v('referrer_name'))          { bad.push('referrer_name');  msgs.push('your name'); }
+    if(!em.test(v('referrer_email'))){ bad.push('referrer_email'); msgs.push('your email'); }
+    if(!v('first_name'))             { bad.push('first_name');     msgs.push('their first name'); }
+    if(!em.test(v('email')))         { bad.push('email');          msgs.push('their email'); }
+    if(!v('organization'))           { bad.push('organization');   msgs.push('their organization'); }
+    if(bad.length) return showErr('Please add ' + msgs.join(', ') + '.', bad);
+    if(!$('consent').checked) return showErr('Please confirm they\'re expecting to hear from us. We don\'t cold-contact anyone.', []);
+
+    var payload = {
+      website: v('website'), elapsed_ms: Date.now() - startedAt,
+      referrer_slug: slug, referrer_name: v('referrer_name'), referrer_email: v('referrer_email'), referrer_org: v('referrer_org'),
+      first_name: v('first_name'), last_name: v('last_name'), email: v('email'), organization: v('organization'),
+      role: v('role'), program: v('program'), households: v('households'), context: v('context'),
+      consent: $('consent').checked,
+      utm_source: window._utm.source, utm_medium: window._utm.medium, utm_campaign: window._utm.campaign,
+      page_url: location.href.replace(/([?&])key=[^&]*/, '$1')
+    };
+
+    btn.disabled = true; btn.textContent = 'Sending…';
+    if(window.gtag) gtag('event', 'referral_submit', { event_label: slug || 'direct' });
+
+    fetch(API + '/refer', { method:'POST', headers:{ 'Content-Type':'application/json', 'Accept':'application/json' }, body: JSON.stringify(payload) })
+      .then(function(r){ return r.json().then(function(d){ return { ok: r.ok && d.ok, d: d }; }); })
+      .then(function(res){
+        if(!res.ok) throw new Error(res.d && res.d.error || 'Something went wrong.');
+        form.style.display = 'none';
+        $('successMsg').textContent = 'We\'ll reach out to ' + v('first_name') + ' within one business day and let you know when we\'ve connected.';
+        $('formSuccess').style.display = 'block';
+        $('formSuccess').scrollIntoView({ behavior:'smooth', block:'center' });
+        if(key) loadTracker();
+      })
+      .catch(function(err){
+        btn.disabled = false; btn.textContent = 'Send the introduction →';
+        showErr((err.message || 'Something went wrong.') + ' If this keeps happening, email sean@resonancehq.io.', []);
+      });
+  });
+
+  window.resetForm = function(){
+    form.reset(); startedAt = Date.now();
+    if(window._referrer.org) $('referrer_org').value = window._referrer.org;
+    $('formSuccess').style.display = 'none'; form.style.display = 'block';
+    btn.disabled = false; btn.textContent = 'Send the introduction →';
+    $('refer').scrollIntoView({ behavior:'smooth' });
+  };
+
+  /* ── Tracker (client view with REFERRER_TOKEN, admin view with export token) ── */
+  var BADGE = { 'new':'b-new', 'contacted':'b-contacted', 'demo scheduled':'b-demo', 'proposal':'b-proposal', 'won':'b-won', 'lost':'b-lost' };
+  var fmtDate = function(iso){ var d = new Date(iso); return isNaN(d) ? '' : d.toLocaleDateString('en-US', { month:'short', day:'numeric', year:'numeric' }); };
+
+  function loadTracker(){
+    if(!key) return;
+    var q = '?key=' + encodeURIComponent(key) + (slug ? '&via=' + encodeURIComponent(slug) : '');
+    fetch(API + '/referrals/mine' + q, { cache:'no-store' })
+      .then(function(r){ return r.ok ? r.json() : null; })
+      .then(function(d){ if(d && d.ok) renderTracker(d); })
+      .catch(function(){});
+  }
+
+  function renderTracker(d){
+    var sec = $('tracker'), tbl = $('trackTable'), recs = d.records || [];
+    sec.style.display = 'block';
+    if(d.admin){
+      $('trackEyebrow').textContent = 'Admin · all referrals' + (d.via ? ' · ' + d.via : '');
+      $('trackTitle').textContent = 'Referral pipeline';
+      $('trackSub').textContent = 'Change a status here and the referrer sees it on their page.';
+      $('trackFootR').innerHTML = '<a href="' + API + '/referrals.csv?token=' + encodeURIComponent(key) + (d.via ? '&via=' + encodeURIComponent(d.via) : '') + '">Download CSV ↓</a>';
+    } else {
+      $('trackEyebrow').textContent = 'Your referrals';
+      $('trackFootR').textContent = 'Questions? sean@resonancehq.io';
+    }
+    var active = recs.filter(function(r){ return ['contacted','demo scheduled','proposal'].indexOf(r.status) > -1; }).length;
+    var won = recs.filter(function(r){ return r.status === 'won'; }).length;
+    $('tsTotal').textContent = recs.length; $('tsActive').textContent = active; $('tsWon').textContent = won;
+
+    if(!recs.length){ tbl.innerHTML = ''; $('trackEmpty').style.display = 'block'; return; }
+    $('trackEmpty').style.display = 'none';
+    var head = '<tr><th>Contact</th>' + (d.admin ? '<th>Referred by</th>' : '') + '<th>Program</th><th>Submitted</th><th>Status</th></tr>';
+    var rows = recs.map(function(r){
+      var nm = esc(((r.first_name||'') + ' ' + (r.last_name||'')).trim());
+      var status = r.status || 'new';
+      var statusCell = d.admin
+        ? '<select class="status-sel" data-id="' + esc(r.id) + '">' + (d.statuses||Object.keys(BADGE)).map(function(s){ return '<option' + (s===status?' selected':'') + '>' + esc(s) + '</option>'; }).join('') + '</select>'
+        : '<span class="badge ' + (BADGE[status]||'b-new') + '">' + esc(status) + '</span>';
+      return '<tr><td><div class="nm">' + nm + '</div><div class="sub">' + esc(r.organization||'') + (r.role ? ' · ' + esc(r.role) : '') + (d.admin && r.email ? '<br>' + esc(r.email) : '') + '</div></td>'
+        + (d.admin ? '<td>' + esc(r.referrer_name||r.referrer_slug||'') + '<div class="sub">' + esc(r.referrer_email||'') + '</div></td>' : '')
+        + '<td>' + esc(r.program || '—') + (r.households ? '<div class="sub">' + esc(r.households) + ' households</div>' : '') + '</td>'
+        + '<td class="dt">' + fmtDate(r.submitted_at) + '</td><td>' + statusCell + '</td></tr>';
+    }).join('');
+    tbl.innerHTML = head + rows;
+
+    if(d.admin){
+      tbl.querySelectorAll('.status-sel').forEach(function(sel){
+        sel.addEventListener('change', function(){
+          sel.disabled = true;
+          fetch(API + '/referrals/status?key=' + encodeURIComponent(key), { method:'POST', headers:{ 'Content-Type':'application/json' }, body: JSON.stringify({ id: sel.dataset.id, status: sel.value }) })
+            .then(function(r){ return r.json(); })
+            .then(function(res){ if(!res.ok) throw new Error(res.error); loadTracker(); })
+            .catch(function(e){ alert('Could not update: ' + (e.message||'unknown error')); sel.disabled = false; });
+        });
+      });
+    }
+  }
+  loadTracker();
+})();
+</script>
+</body>
+</html>

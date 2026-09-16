@@ -2,6 +2,10 @@
   publish = "."
   command = ""
 
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild"
+
 # ── Pretty URLs: strip .html extensions ──
 [[redirects]]
   from   = "/about"
@@ -64,6 +68,21 @@
   from = "/demo/"
   to   = "/demo"
   status = 301
+
+[[redirects]]
+  from = "/refer"
+  to   = "/refer.html"
+  status = 200
+
+[[redirects]]
+  from = "/refer/"
+  to   = "/refer"
+  status = 301
+
+[[redirects]]
+  from = "/refer/*"
+  to   = "/refer.html"
+  status = 200
 
 # ── 404 fallback ──
 [[redirects]]
