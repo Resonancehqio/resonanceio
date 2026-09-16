@@ -6,7 +6,7 @@
 import { getStore } from "@netlify/blobs";
 
 export const STATUSES = ["new", "contacted", "demo scheduled", "proposal", "won", "lost"];
-const CLIENT_FIELDS = ["id", "submitted_at", "status", "first_name", "last_name", "organization", "program", "role"];
+const CLIENT_FIELDS = ["id", "submitted_at", "status", "source", "first_name", "last_name", "organization", "program", "role"];
 
 const json = (body, status = 200) =>
   new Response(JSON.stringify(body), { status, headers: { "Content-Type": "application/json", "Cache-Control": "no-store" } });

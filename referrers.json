@@ -1,4 +1,4 @@
 {
-  "kalel": { "name": "Kalel", "org": "Kalel Companies", "type": "Developer" },
-  "fec":   { "name": "FEC", "org": "FEC / NYCHA PACT", "type": "Developer" }
+  "kalel": { "name": "Kalel", "org": "Kalel Companies", "type": "Developer", "email": "" },
+  "fec":   { "name": "FEC", "org": "FEC / NYCHA PACT", "type": "Developer", "email": "" }
 }

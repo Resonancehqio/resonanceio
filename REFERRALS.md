@@ -30,12 +30,26 @@ Clients can see the status of their own referrals on the same page with a privat
 
 Generate tokens with: `openssl rand -hex 24`
 
+## Two kinds of link per client
+
+| Link | Who fills it in | What it does |
+|---|---|---|
+| `https://resonancehq.io/refer/kalel` | **Kalel** | Kalel introduces someone: fills in their own name/email plus the contact's details. |
+| `https://resonancehq.io/via/kalel` | **The prospect** | Kalel hands this to people. They fill in their own details; the submission is tagged to Kalel automatically and shows in Kalel's tracker with a "via link" badge. |
+
+Both are the same page (`refer.html`) in two modes. The `/via/` path (or `?mode=self`) switches to prospect mode:
+referrer fields hidden, copy rewritten ("Kalel thinks we should talk"), consent reworded, tracker never shown.
+
+In prospect mode the referrer's thank-you email goes to the `email` in `referrers.json` for that slug. Leave it blank and
+that email is simply skipped; you and the prospect still get theirs.
+
 ## Links to hand out
 
 | Who | Link |
 |---|---|
 | Client referral page | `https://resonancehq.io/refer/kalel` |
 | Same, with their private tracker | `https://resonancehq.io/refer/kalel?key=<REFERRER_TOKEN_KALEL>` |
+| Share link for the client to give prospects | `https://resonancehq.io/via/kalel` |
 | Your admin view (all referrers, editable status) | `https://resonancehq.io/refer?key=<REFERRALS_EXPORT_TOKEN>` |
 | Admin view, one referrer | `https://resonancehq.io/refer/kalel?key=<REFERRALS_EXPORT_TOKEN>` |
 | CSV download | `https://resonancehq.io/api/referrals.csv?token=<REFERRALS_EXPORT_TOKEN>` (add `&via=kalel` to filter) |
@@ -44,9 +58,9 @@ The client sees only: contact name, organization, role, program, date, status. N
 
 ## Adding a new referrer
 
-1. Add a line to `referrers.json`: `"acme": { "name": "Acme", "org": "Acme Housing Partners", "type": "Developer" }`
+1. Add a line to `referrers.json`: `"acme": { "name": "Acme", "org": "Acme Housing Partners", "type": "Developer", "email": "contact@acme.com" }` (email optional; used for the thank-you when a prospect comes in via their share link)
 2. Add `REFERRER_TOKEN_ACME` in Netlify (optional; only needed if they should see their tracker).
-3. Send them `https://resonancehq.io/refer/acme?key=…`
+3. Send them `https://resonancehq.io/refer/acme?key=…` (their page + tracker) and `https://resonancehq.io/via/acme` (to pass on to prospects)
 
 ## Statuses
 
@@ -65,12 +79,12 @@ Status changes update the blob only. The Sheet is an intake mirror; treat the bl
 ## Google Sheet mirror (optional)
 
 1. Create a Sheet with a tab named `Referrals`. Row 1 headers, in this order:
-   `submitted_at, status, referrer_slug, referrer_name, referrer_org, referrer_email, first_name, last_name, email, organization, role, program, households, context, utm_source, utm_medium, utm_campaign, page_url, id`
+   `submitted_at, status, source, referrer_slug, referrer_name, referrer_org, referrer_email, first_name, last_name, email, organization, role, program, households, context, utm_source, utm_medium, utm_campaign, page_url, id`
 2. Extensions → Apps Script. Replace the contents with:
 
 ```javascript
 const SECRET = 'paste-the-same-value-as-SHEETS_WEBHOOK_SECRET';
-const COLS = ['submitted_at','status','referrer_slug','referrer_name','referrer_org','referrer_email',
+const COLS = ['submitted_at','status','source','referrer_slug','referrer_name','referrer_org','referrer_email',
   'first_name','last_name','email','organization','role','program','households','context',
   'utm_source','utm_medium','utm_campaign','page_url','id'];
 

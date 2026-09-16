@@ -206,7 +206,7 @@ footer{position:relative;z-index:1;border-top:0.5px solid var(--border);padding:
   <div class="conf-pill" id="navPill">Referral Program</div>
   <div class="nav-right">
     <a href="https://resonancehq.io" class="btn-site" target="_blank">Main Site ↗</a>
-    <a href="#refer" class="btn-demo-nav">Make a referral</a>
+    <a href="#refer" class="btn-demo-nav" id="navCta">Make a referral</a>
   </div>
 </nav>
 
@@ -219,7 +219,7 @@ footer{position:relative;z-index:1;border-top:0.5px solid var(--border);padding:
   <h1 id="heroH1">Know someone running a <em>relocation program</em>?</h1>
   <p class="hero-sub" id="heroSub">Tell us who they are and we'll take it from there. One focused conversation, no cold outreach, and you'll hear back from us on how it went.</p>
 
-  <div class="steps">
+  <div class="steps" id="steps">
     <div class="step"><div class="step-n">01 · You</div><h3>Share a name</h3><p>Two minutes. Who they are, where they work, and a line on what they're dealing with.</p></div>
     <div class="step"><div class="step-n">02 · Us</div><h3>We reach out</h3><p>Within one business day, mentioning you by name. A focused demo built around their program, not generic slides.</p></div>
     <div class="step"><div class="step-n">03 · Both</div><h3>You stay in the loop</h3><p>We confirm when we've connected and let you know how it's progressing.</p></div>
@@ -230,16 +230,16 @@ footer{position:relative;z-index:1;border-top:0.5px solid var(--border);padding:
 <section class="form-sec" id="refer">
   <div class="wrap">
     <div class="wrap-tight" style="text-align:center;">
-      <div class="eyebrow" style="margin-bottom:14px;justify-content:center;">Make a referral</div>
-      <h2 class="section-h2">Who should we <em>talk to</em>?</h2>
-      <p class="section-lead" style="margin:0 auto;">Housing authorities, developers, relocation service providers, consultants. Anyone who has households to move and a deadline to hit.</p>
+      <div class="eyebrow" style="margin-bottom:14px;justify-content:center;" id="formEyebrow">Make a referral</div>
+      <h2 class="section-h2" id="formH2">Who should we <em>talk to</em>?</h2>
+      <p class="section-lead" style="margin:0 auto;" id="formLead">Housing authorities, developers, relocation service providers, consultants. Anyone who has households to move and a deadline to hit.</p>
     </div>
 
     <div class="form-card">
       <form id="referForm" novalidate>
         <div class="hp" aria-hidden="true"><label for="website">Website</label><input type="text" id="website" name="website" tabindex="-1" autocomplete="off"></div>
 
-        <div class="f-group">
+        <div class="f-group" id="referrerGroup">
           <div class="f-group-title">About you</div>
           <div class="f-row">
             <div><label class="f-lbl" for="referrer_name">Your name</label><input class="f-input" type="text" id="referrer_name" placeholder="Full name" autocomplete="name" required></div>
@@ -251,18 +251,18 @@ footer{position:relative;z-index:1;border-top:0.5px solid var(--border);padding:
         </div>
 
         <div class="f-group">
-          <div class="f-group-title">Who you're referring</div>
+          <div class="f-group-title" id="contactGroupTitle">Who you're referring</div>
           <div class="f-row">
             <div><label class="f-lbl" for="first_name">First name</label><input class="f-input" type="text" id="first_name" placeholder="First name" required></div>
             <div><label class="f-lbl" for="last_name">Last name</label><input class="f-input" type="text" id="last_name" placeholder="Last name"></div>
           </div>
           <div class="f-row">
-            <div><label class="f-lbl" for="email">Their email</label><input class="f-input" type="email" id="email" placeholder="them@theirorg.org" required></div>
-            <div><label class="f-lbl" for="organization">Their organization</label><input class="f-input" type="text" id="organization" placeholder="Housing authority / developer…" required></div>
+            <div><label class="f-lbl" for="email" id="lblEmail">Their email</label><input class="f-input" type="email" id="email" placeholder="them@theirorg.org" required></div>
+            <div><label class="f-lbl" for="organization" id="lblOrg">Their organization</label><input class="f-input" type="text" id="organization" placeholder="Housing authority / developer…" required></div>
           </div>
           <div class="f-row">
             <div>
-              <label class="f-lbl" for="role">Their role</label>
+              <label class="f-lbl" for="role" id="lblRole">Their role</label>
               <select class="f-select" id="role">
                 <option value="" selected>Select…</option>
                 <option>Executive / Leadership</option>
@@ -305,19 +305,19 @@ footer{position:relative;z-index:1;border-top:0.5px solid var(--border);padding:
             <label class="f-lbl" for="context">Anything we should know? <span class="opt">(optional)</span></label>
             <textarea class="f-textarea" id="context" placeholder="What they're working on, what's painful right now, how you know them, the best way to reach them…"></textarea>
           </div>
-          <label class="f-check"><input type="checkbox" id="consent"><span>They know I'm passing their details along and are open to hearing from Resonance.</span></label>
+          <label class="f-check"><input type="checkbox" id="consent"><span id="consentTxt">They know I'm passing their details along and are open to hearing from Resonance.</span></label>
         </div>
 
         <div class="f-error" id="formError"></div>
         <button class="f-submit" type="submit" id="submitBtn">Send the introduction →</button>
-        <p class="f-note">We only use this to make the introduction. Nothing is shared or added to any list.</p>
+        <p class="f-note" id="formNote">We only use this to make the introduction. Nothing is shared or added to any list.</p>
       </form>
 
       <div class="f-success" id="formSuccess">
         <div class="f-success-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
         <h3>Thank you. We're on it.</h3>
         <p id="successMsg">We'll reach out within one business day and let you know when we've connected.</p>
-        <button class="btn-again" type="button" onclick="resetForm()">Refer someone else</button>
+        <button class="btn-again" type="button" id="againBtn" onclick="resetForm()">Refer someone else</button>
       </div>
     </div>
   </div>
@@ -370,11 +370,15 @@ footer{position:relative;z-index:1;border-top:0.5px solid var(--border);padding:
   var esc = function(s){ return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); };
 
   /* ── Who is referring: /refer/<slug> or ?via=<slug> ── */
-  var pathSlug = (location.pathname.match(/^\/refer\/([^\/?#]+)/) || [])[1] || '';
+  var pathMatch = location.pathname.match(/^\/(refer|via)\/([^\/?#]+)/) || [];
+  var pathSlug = pathMatch[2] || '';
   var slug = (p.get('via') || pathSlug || '').toLowerCase().replace(/[^a-z0-9-]/g, '');
-  var key  = p.get('key') || '';
+  /* selfMode: the prospect fills in their own details via a partner's share link (/via/<slug>) */
+  var selfMode = !!slug && (pathMatch[1] === 'via' || p.get('mode') === 'self');
+  var key  = selfMode ? '' : (p.get('key') || '');
+  var SUBMIT_LABEL = selfMode ? 'Get in touch →' : 'Send the introduction →';
   window._utm = { source: p.get('utm_source') || (slug ? 'referral' : 'direct'), medium: p.get('utm_medium') || (slug ? 'partner' : ''), campaign: p.get('utm_campaign') || slug };
-  window._referrer = { slug: slug, name: '', org: '' };
+  window._referrer = { slug: slug, name: '', org: '', email: '' };
 
   var titleCase = function(s){ return s.replace(/-/g,' ').replace(/\b\w/g, function(c){ return c.toUpperCase(); }); };
 
@@ -382,13 +386,40 @@ footer{position:relative;z-index:1;border-top:0.5px solid var(--border);padding:
     if(!slug) return;
     var name = (info && info.name) || titleCase(slug);
     var org  = (info && info.org)  || name;
-    window._referrer.name = name; window._referrer.org = org;
+    window._referrer.name = name; window._referrer.org = org; window._referrer.email = (info && info.email) || '';
+    if(selfMode) return personalizeSelf(name, org);
     $('navPill').textContent = 'Referred by ' + name;
     $('heroBadgeTxt').textContent = 'Referral link for ' + org;
     $('heroH1').innerHTML = 'Thanks for the <em>introduction</em>, ' + esc(name) + '.';
     $('heroSub').textContent = 'You know who\'s wrestling with a relocation program right now. Point us at them and we\'ll handle the rest, mentioning you by name.';
     if(!$('referrer_org').value) $('referrer_org').value = org;
     document.title = 'Refer a colleague to Resonance · ' + name;
+  }
+  function personalizeSelf(name, org){
+    document.body.classList.add('self-mode');
+    $('navPill').textContent = 'Via ' + name;
+    $('navCta').textContent = 'Get in touch';
+    $('heroBadgeTxt').textContent = org + ' suggested Resonance';
+    $('heroH1').innerHTML = esc(name) + ' thinks we should <em>talk</em>.';
+    $('heroSub').textContent = 'Resonance is purpose-built software for affordable housing relocation and redevelopment programs. Tell us a little about yours and we\'ll set up a focused conversation, no generic slides.';
+    $('steps').innerHTML =
+      '<div class="step"><div class="step-n">01 · You</div><h3>Tell us about your program</h3><p>Two minutes. Where you work, what you\'re running, and what\'s hard right now.</p></div>' +
+      '<div class="step"><div class="step-n">02 · Us</div><h3>We reach out</h3><p>Within one business day. A demo built around your program type and portfolio, not a pitch deck.</p></div>' +
+      '<div class="step"><div class="step-n">03 · ' + esc(name) + '</div><h3>Stays in the loop</h3><p>We let ' + esc(name) + ' know we connected. Nothing you share here goes further than that.</p></div>';
+    $('formEyebrow').textContent = 'Get in touch';
+    $('formH2').innerHTML = 'Tell us about <em>your program</em>';
+    $('formLead').textContent = 'Housing authority, developer, relocation provider, or consultant. Anyone with households to move and a deadline to hit.';
+    $('referrerGroup').style.display = 'none';
+    $('contactGroupTitle').textContent = 'About you';
+    $('lblEmail').textContent = 'Work email'; $('email').placeholder = 'you@yourorg.org';
+    $('lblOrg').textContent = 'Your organization'; $('organization').placeholder = 'Housing authority / developer…';
+    $('lblRole').textContent = 'Your role';
+    $('context').placeholder = 'What you\'re working on, what\'s painful right now, the best way to reach you…';
+    $('consentTxt').textContent = 'I\'d like Resonance to reach out about my program.';
+    $('submitBtn').textContent = SUBMIT_LABEL;
+    $('formNote').textContent = 'We only use this to get in touch. Nothing is shared or added to any list.';
+    $('againBtn').style.display = 'none';
+    document.title = 'Talk to Resonance · via ' + name;
   }
   fetch('/referrers.json', { cache: 'no-store' }).then(function(r){ return r.ok ? r.json() : {}; })
     .then(function(map){ personalize(map[slug]); }).catch(function(){ personalize(null); });
@@ -410,17 +441,22 @@ footer{position:relative;z-index:1;border-top:0.5px solid var(--border);padding:
     var v = function(id){ return ($(id).value || '').trim(); };
     var bad = [], msgs = [];
     var em = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if(!v('referrer_name'))          { bad.push('referrer_name');  msgs.push('your name'); }
-    if(!em.test(v('referrer_email'))){ bad.push('referrer_email'); msgs.push('your email'); }
-    if(!v('first_name'))             { bad.push('first_name');     msgs.push('their first name'); }
-    if(!em.test(v('email')))         { bad.push('email');          msgs.push('their email'); }
-    if(!v('organization'))           { bad.push('organization');   msgs.push('their organization'); }
+    var their = selfMode ? 'your ' : 'their ';
+    if(!selfMode && !v('referrer_name'))          { bad.push('referrer_name');  msgs.push('your name'); }
+    if(!selfMode && !em.test(v('referrer_email'))){ bad.push('referrer_email'); msgs.push('your email'); }
+    if(!v('first_name'))             { bad.push('first_name');     msgs.push(their + 'first name'); }
+    if(!em.test(v('email')))         { bad.push('email');          msgs.push(their + 'email'); }
+    if(!v('organization'))           { bad.push('organization');   msgs.push(their + 'organization'); }
     if(bad.length) return showErr('Please add ' + msgs.join(', ') + '.', bad);
-    if(!$('consent').checked) return showErr('Please confirm they\'re expecting to hear from us. We don\'t cold-contact anyone.', []);
+    if(!$('consent').checked) return showErr(selfMode ? 'Please tick the box so we know you\'d like to hear from us.' : 'Please confirm they\'re expecting to hear from us. We don\'t cold-contact anyone.', []);
 
     var payload = {
       website: v('website'), elapsed_ms: Date.now() - startedAt,
-      referrer_slug: slug, referrer_name: v('referrer_name'), referrer_email: v('referrer_email'), referrer_org: v('referrer_org'),
+      mode: selfMode ? 'self' : 'introduction',
+      referrer_slug: slug,
+      referrer_name:  selfMode ? window._referrer.name  : v('referrer_name'),
+      referrer_email: selfMode ? window._referrer.email : v('referrer_email'),
+      referrer_org:   selfMode ? window._referrer.org   : v('referrer_org'),
       first_name: v('first_name'), last_name: v('last_name'), email: v('email'), organization: v('organization'),
       role: v('role'), program: v('program'), households: v('households'), context: v('context'),
       consent: $('consent').checked,
@@ -436,13 +472,15 @@ footer{position:relative;z-index:1;border-top:0.5px solid var(--border);padding:
       .then(function(res){
         if(!res.ok) throw new Error(res.d && res.d.error || 'Something went wrong.');
         form.style.display = 'none';
-        $('successMsg').textContent = 'We\'ll reach out to ' + v('first_name') + ' within one business day and let you know when we\'ve connected.';
+        $('successMsg').textContent = selfMode
+          ? 'Thanks, ' + v('first_name') + '. Someone from Resonance will reach out within one business day.'
+          : 'We\'ll reach out to ' + v('first_name') + ' within one business day and let you know when we\'ve connected.';
         $('formSuccess').style.display = 'block';
         $('formSuccess').scrollIntoView({ behavior:'smooth', block:'center' });
         if(key) loadTracker();
       })
       .catch(function(err){
-        btn.disabled = false; btn.textContent = 'Send the introduction →';
+        btn.disabled = false; btn.textContent = SUBMIT_LABEL;
         showErr((err.message || 'Something went wrong.') + ' If this keeps happening, email sean@resonancehq.io.', []);
       });
   });
@@ -451,7 +489,7 @@ footer{position:relative;z-index:1;border-top:0.5px solid var(--border);padding:
     form.reset(); startedAt = Date.now();
     if(window._referrer.org) $('referrer_org').value = window._referrer.org;
     $('formSuccess').style.display = 'none'; form.style.display = 'block';
-    btn.disabled = false; btn.textContent = 'Send the introduction →';
+    btn.disabled = false; btn.textContent = SUBMIT_LABEL;
     $('refer').scrollIntoView({ behavior:'smooth' });
   };
 
@@ -493,7 +531,8 @@ footer{position:relative;z-index:1;border-top:0.5px solid var(--border);padding:
       var statusCell = d.admin
         ? '<select class="status-sel" data-id="' + esc(r.id) + '">' + (d.statuses||Object.keys(BADGE)).map(function(s){ return '<option' + (s===status?' selected':'') + '>' + esc(s) + '</option>'; }).join('') + '</select>'
         : '<span class="badge ' + (BADGE[status]||'b-new') + '">' + esc(status) + '</span>';
-      return '<tr><td><div class="nm">' + nm + '</div><div class="sub">' + esc(r.organization||'') + (r.role ? ' · ' + esc(r.role) : '') + (d.admin && r.email ? '<br>' + esc(r.email) : '') + '</div></td>'
+      var src = r.source === 'link' ? ' <span class="badge b-contacted" style="margin-left:6px;vertical-align:middle">via link</span>' : '';
+      return '<tr><td><div class="nm">' + nm + src + '</div><div class="sub">' + esc(r.organization||'') + (r.role ? ' · ' + esc(r.role) : '') + (d.admin && r.email ? '<br>' + esc(r.email) : '') + '</div></td>'
         + (d.admin ? '<td>' + esc(r.referrer_name||r.referrer_slug||'') + '<div class="sub">' + esc(r.referrer_email||'') + '</div></td>' : '')
         + '<td>' + esc(r.program || '—') + (r.households ? '<div class="sub">' + esc(r.households) + ' households</div>' : '') + '</td>'
         + '<td class="dt">' + fmtDate(r.submitted_at) + '</td><td>' + statusCell + '</td></tr>';

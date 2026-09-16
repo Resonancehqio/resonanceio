@@ -4,7 +4,7 @@
 
 import { getStore } from "@netlify/blobs";
 
-const COLS = ["submitted_at","status","referrer_slug","referrer_name","referrer_org","referrer_email",
+const COLS = ["submitted_at","status","source","referrer_slug","referrer_name","referrer_org","referrer_email",
   "first_name","last_name","email","organization","role","program","households","context",
   "utm_source","utm_medium","utm_campaign","page_url","id"];
 

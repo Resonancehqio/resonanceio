@@ -11,4 +11,5 @@
 /refer           /refer.html           200
 /refer/          /refer                301
 /refer/*         /refer.html           200
+/via/*           /refer.html           200
 /*               /index.html           404

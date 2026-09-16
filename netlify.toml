@@ -84,6 +84,11 @@
   to   = "/refer.html"
   status = 200
 
+[[redirects]]
+  from = "/via/*"
+  to   = "/refer.html"
+  status = 200
+
 # ── 404 fallback ──
 [[redirects]]
   from   = "/*"

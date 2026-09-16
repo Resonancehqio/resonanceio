@@ -32,12 +32,15 @@ export default async (req) => {
 
   const slug = slugify(body.referrer_slug || body.referrer_name);
   const known = referrers[slug] || null;
+  const selfMode = body.mode === "self";           // prospect filled in their own details via /via/<slug>
+  const titleCase = (s) => s.replace(/-/g, " ").replace(/\b\w/g, c => c.toUpperCase());
 
   const r = {
     referrer_slug:  slug,
-    referrer_name:  clip(body.referrer_name || known?.name, 120),
+    source:         selfMode ? "link" : "introduction",
+    referrer_name:  clip(body.referrer_name || known?.name || (selfMode ? titleCase(slug) : ""), 120),
     referrer_org:   clip(body.referrer_org  || known?.org, 160),
-    referrer_email: clip(body.referrer_email, 160).toLowerCase(),
+    referrer_email: clip(selfMode ? (known?.email || body.referrer_email) : body.referrer_email, 160).toLowerCase(),
     first_name:     clip(body.first_name, 80),
     last_name:      clip(body.last_name, 80),
     email:          clip(body.email, 160).toLowerCase(),
@@ -57,11 +60,11 @@ export default async (req) => {
 
   const errors = [];
   if (!r.referrer_name) errors.push("Referrer name is required.");
-  if (!isEmail(r.referrer_email)) errors.push("A valid referrer email is required.");
+  if (selfMode ? (r.referrer_email && !isEmail(r.referrer_email)) : !isEmail(r.referrer_email)) errors.push("A valid referrer email is required.");
   if (!r.first_name) errors.push("Contact first name is required.");
   if (!isEmail(r.email)) errors.push("A valid contact email is required.");
   if (!r.organization) errors.push("Contact organization is required.");
-  if (!r.consent) errors.push("Please confirm the contact is expecting to hear from us.");
+  if (!r.consent) errors.push(selfMode ? "Please confirm you'd like us to reach out." : "Please confirm the contact is expecting to hear from us.");
   if (errors.length) return json({ ok: false, error: errors.join(" ") }, 422);
 
   const now = new Date();
@@ -103,11 +106,16 @@ async function sendEmails(rec) {
   const contact = `${rec.first_name} ${rec.last_name}`.trim();
   const row = (k, v) => v ? `<tr><td style="padding:6px 12px 6px 0;color:#6b7280;white-space:nowrap;vertical-align:top">${esc(k)}</td><td style="padding:6px 0;color:#111">${esc(v)}</td></tr>` : "";
 
+  const viaLink = rec.source === "link";
   const internal = {
-    from: FROM, to: NOTIFY_TO.split(",").map(s => s.trim()), reply_to: rec.referrer_email,
-    subject: `Referral — ${rec.referrer_name} → ${contact} (${rec.organization})`,
+    from: FROM, to: NOTIFY_TO.split(",").map(s => s.trim()), reply_to: viaLink ? rec.email : (rec.referrer_email || REPLY_TO),
+    subject: viaLink
+      ? `Referral via link — ${rec.referrer_name} → ${contact} (${rec.organization})`
+      : `Referral — ${rec.referrer_name} → ${contact} (${rec.organization})`,
     html: `<div style="font-family:-apple-system,Segoe UI,sans-serif;font-size:14px;line-height:1.5;color:#111;max-width:600px">
-      <p style="margin:0 0 16px"><strong>${esc(rec.referrer_name)}</strong>${rec.referrer_org ? " at " + esc(rec.referrer_org) : ""} referred a new contact.</p>
+      <p style="margin:0 0 16px">${viaLink
+        ? `<strong>${esc(contact)}</strong> came in through <strong>${esc(rec.referrer_name)}</strong>'s share link and asked to be contacted.`
+        : `<strong>${esc(rec.referrer_name)}</strong>${rec.referrer_org ? " at " + esc(rec.referrer_org) : ""} referred a new contact.`}</p>
       <table style="border-collapse:collapse">
         ${row("Contact", contact)}${row("Email", rec.email)}${row("Organization", rec.organization)}
         ${row("Role", rec.role)}${row("Program", rec.program)}${row("Households", rec.households)}
@@ -116,16 +124,18 @@ async function sendEmails(rec) {
         ${row("Source", [rec.utm_source, rec.utm_medium, rec.utm_campaign].filter(Boolean).join(" / "))}
         ${row("Record ID", rec.id)}
       </table>
-      <p style="margin:16px 0 0;color:#6b7280;font-size:12px">Reply to this email to reach the referrer. Export all referrals at ${SITE}/api/referrals.csv?token=…</p>
+      <p style="margin:16px 0 0;color:#6b7280;font-size:12px">Reply to this email to reach the ${viaLink ? "contact" : "referrer"}. Export all referrals at ${SITE}/api/referrals.csv?token=…</p>
     </div>`,
   };
 
   const toReferrer = {
     from: FROM, to: [rec.referrer_email], reply_to: REPLY_TO,
-    subject: `Thanks for referring ${contact} to Resonance`,
+    subject: viaLink ? `${contact} reached Resonance through your link` : `Thanks for referring ${contact} to Resonance`,
     html: `<div style="font-family:-apple-system,Segoe UI,sans-serif;font-size:15px;line-height:1.6;color:#111;max-width:560px">
       <p>Hi ${esc(rec.referrer_name.split(" ")[0])},</p>
-      <p>Thank you for introducing us to <strong>${esc(contact)}</strong> at ${esc(rec.organization)}. We'll reach out within one business day and keep you posted on how it goes.</p>
+      ${viaLink
+        ? `<p><strong>${esc(contact)}</strong> at ${esc(rec.organization)} just reached out to Resonance through your referral link. We'll follow up within one business day and keep you posted.</p>`
+        : `<p>Thank you for introducing us to <strong>${esc(contact)}</strong> at ${esc(rec.organization)}. We'll reach out within one business day and keep you posted on how it goes.</p>`}
       <p>Referrals from people who've run programs on Resonance are the best introductions we get. We appreciate it.</p>
       <p style="margin-top:24px">— The Resonance team<br><a href="${SITE}" style="color:#5B21B6">resonancehq.io</a></p>
     </div>`,
@@ -133,10 +143,12 @@ async function sendEmails(rec) {
 
   const toContact = {
     from: FROM, to: [rec.email], reply_to: REPLY_TO,
-    subject: `${rec.referrer_name} suggested we connect`,
+    subject: viaLink ? `Thanks for reaching out to Resonance` : `${rec.referrer_name} suggested we connect`,
     html: `<div style="font-family:-apple-system,Segoe UI,sans-serif;font-size:15px;line-height:1.6;color:#111;max-width:560px">
       <p>Hi ${esc(rec.first_name)},</p>
-      <p><strong>${esc(rec.referrer_name)}</strong>${rec.referrer_org ? " from " + esc(rec.referrer_org) : ""} thought Resonance might be useful for your work${rec.program ? " on " + esc(rec.program) : ""}.</p>
+      ${viaLink
+        ? `<p>Thanks for getting in touch through ${esc(rec.referrer_name)}'s link. We've got your details${rec.program ? " and a note that you're working on " + esc(rec.program) : ""}.</p>`
+        : `<p><strong>${esc(rec.referrer_name)}</strong>${rec.referrer_org ? " from " + esc(rec.referrer_org) : ""} thought Resonance might be useful for your work${rec.program ? " on " + esc(rec.program) : ""}.</p>`}
       <p>Resonance is purpose-built software for affordable housing relocation and redevelopment programs: household tracking, URA compliance, unit matching, and phase sequencing in one place.</p>
       <p>Someone from our team will follow up shortly. If you'd rather pick a time now, reply to this email.</p>
       <p style="margin-top:24px">— The Resonance team<br><a href="${SITE}" style="color:#5B21B6">resonancehq.io</a></p>
@@ -149,7 +161,9 @@ async function sendEmails(rec) {
     body: JSON.stringify(msg),
   }).then(async res => { if (!res.ok) throw new Error(`Resend ${res.status}: ${await res.text()}`); });
 
-  const out = await Promise.allSettled([send(internal), send(toReferrer), send(toContact)]);
+  const sends = [send(internal), send(toContact)];
+  if (isEmail(rec.referrer_email)) sends.push(send(toReferrer));
+  const out = await Promise.allSettled(sends);
   const failed = out.filter(x => x.status === "rejected");
   if (failed.length) throw new Error(failed.map(f => f.reason?.message).join("; "));
   return "ok";
