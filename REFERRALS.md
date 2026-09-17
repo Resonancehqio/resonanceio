@@ -23,7 +23,7 @@ Clients can see the status of their own referrals on the same page with a privat
 | `REFERRER_TOKEN_KALEL` | per client | Private key for the `kalel` slug. Pattern is `REFERRER_TOKEN_<SLUG>` upper-cased, dashes → underscores. |
 | `RESEND_API_KEY` | for email | From resend.com. Without it, emails are skipped and everything else still works. |
 | `RESEND_FROM` | no | Default `Resonance <referrals@resonancehq.io>`. Domain must be verified in Resend. |
-| `REFERRAL_NOTIFY_TO` | no | Who gets the internal alert. Default `ray@resonancehq.io`. Comma-separate for several. |
+| `REFERRAL_NOTIFY_TO` | no | Who gets the internal alert. Default `ray@resonancehq.io,sean@resonancehq.io`. Comma-separate for several. |
 | `REFERRAL_REPLY_TO` | no | Reply-to on the referrer / contact emails. Default `sean@resonancehq.io`. |
 | `SHEETS_WEBHOOK_URL` | for Sheet | Apps Script web app URL (below). Without it the mirror is skipped. |
 | `SHEETS_WEBHOOK_SECRET` | with Sheet | Any string; must match the one in the Apps Script. |

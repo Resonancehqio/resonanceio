@@ -7,7 +7,7 @@ import { getStore } from "@netlify/blobs";
 import referrers from "../../referrers.json" with { type: "json" };
 
 const ENV = (k, d = "") => (process.env[k] || d).trim();
-const NOTIFY_TO   = ENV("REFERRAL_NOTIFY_TO", "ray@resonancehq.io");
+const NOTIFY_TO   = ENV("REFERRAL_NOTIFY_TO", "ray@resonancehq.io,sean@resonancehq.io");
 const FROM        = ENV("RESEND_FROM", "Resonance <referrals@resonancehq.io>");
 const REPLY_TO    = ENV("REFERRAL_REPLY_TO", "sean@resonancehq.io");
 const SITE        = "https://resonancehq.io";
