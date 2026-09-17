@@ -41,7 +41,8 @@
   --ff-mono:'Nunito Sans',-apple-system,sans-serif;
   --r-sm:8px;--r-md:12px;--r-lg:18px;--r-xl:24px;
 }
-html{scroll-behavior:smooth;font-size:16px;}
+html{scroll-behavior:smooth;font-size:16px;-webkit-text-size-adjust:100%;}
+section[id]{scroll-margin-top:72px;}
 body{font-family:var(--ff-body);background:var(--dark);color:var(--text-1);overflow-x:hidden;-webkit-font-smoothing:antialiased;}
 ::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:var(--dark)}::-webkit-scrollbar-thumb{background:var(--dark-4);border-radius:3px}
 
@@ -65,7 +66,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;height:64px;display:flex;ali
 .btn-site:hover{color:var(--text-1);background:rgba(255,255,255,0.055);border-color:var(--border-hi);}
 .btn-demo-nav{font-family:var(--ff-body);font-size:13px;font-weight:600;color:#fff;background:var(--purple);border:none;border-radius:var(--r-md);padding:9px 20px;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:6px;transition:all 0.2s;box-shadow:0 0 0 1px rgba(124,58,237,0.4),0 4px 16px rgba(91,33,182,0.35);}
 .btn-demo-nav:hover{background:var(--purple-mid);transform:translateY(-1px);}
-@media(max-width:640px){nav{padding:0 16px;}.btn-site{display:none;}.conf-pill{font-size:9px;padding:4px 10px 4px 6px;gap:5px;}.btn-demo-nav{font-size:12px;padding:7px 13px;white-space:nowrap;}.logo-text{font-size:1rem;}}
+@media(max-width:640px){nav{padding:0 14px;height:58px;gap:8px;}.btn-site{display:none;}.conf-pill{font-size:9px;padding:4px 10px 4px 6px;gap:5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:38vw;}.btn-demo-nav{font-size:12px;padding:7px 12px;white-space:nowrap;}.logo-text{font-size:1rem;}}
+@media(max-width:400px){.conf-pill{display:none;}}
 
 /* LAYOUT */
 section{position:relative;z-index:1;}
@@ -74,7 +76,11 @@ section{position:relative;z-index:1;}
 @media(max-width:600px){.wrap,.wrap-tight{padding:0 16px;}}
 
 /* HERO */
-.hero{display:flex;flex-direction:column;align-items:center;text-align:center;padding:150px 24px 56px;}
+.hero{display:flex;flex-direction:column;align-items:center;text-align:center;padding:150px 24px 8px;}
+.steps-sec{padding:40px 0 0;}
+@media(max-width:640px){.hero{padding:104px 16px 4px;}.conf-badge{gap:8px;padding:6px 14px 6px 8px;margin-bottom:22px;max-width:100%;}.conf-badge-txt{font-size:12px;white-space:normal;text-align:left;}.hero-sub{font-size:0.98rem;margin-top:14px;}}
+body.has-tracker .hero{padding-bottom:0;}
+body.has-tracker .steps-sec{padding-top:40px;}
 .conf-badge{display:inline-flex;align-items:center;gap:10px;margin-bottom:28px;background:rgba(20,184,166,0.07);border:0.5px solid rgba(20,184,166,0.38);border-radius:100px;padding:7px 18px 7px 10px;animation:fadeUp 0.6s ease both;}
 .conf-badge-tag{background:var(--teal);color:var(--dark);font-family:var(--ff-mono);font-size:10px;font-weight:700;letter-spacing:0.06em;padding:3px 10px;border-radius:100px;text-transform:uppercase;}
 .conf-badge-txt{font-size:13px;color:var(--text-2);font-weight:500;}
@@ -83,13 +89,13 @@ section{position:relative;z-index:1;}
 .hero-sub{font-size:clamp(1rem,2vw,1.15rem);color:var(--text-2);line-height:1.78;max-width:600px;margin:18px auto 0;animation:fadeUp 0.6s 0.15s ease both;}
 
 /* STEPS */
-.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:900px;margin:44px auto 0;animation:fadeUp 0.6s 0.25s ease both;}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:900px;margin:0 auto;animation:fadeUp 0.6s 0.25s ease both;}
 .step{background:var(--dark-2);border:0.5px solid var(--border);border-radius:var(--r-lg);padding:22px 22px 20px;text-align:left;position:relative;}
 .step::before{content:'';position:absolute;left:0;top:16px;bottom:16px;width:2px;border-radius:0 1px 1px 0;background:linear-gradient(180deg,var(--purple-mid) 0%,var(--teal) 100%);}
 .step-n{font-family:var(--ff-mono);font-size:10px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--teal);margin-bottom:8px;}
 .step h3{font-family:var(--ff-display);font-size:1.08rem;font-weight:400;color:var(--text-1);margin-bottom:6px;letter-spacing:-0.01em;}
 .step p{font-size:0.86rem;color:var(--text-2);line-height:1.6;}
-@media(max-width:760px){.steps{grid-template-columns:1fr;}}
+@media(max-width:760px){.steps{grid-template-columns:1fr;gap:12px;}.step{padding:18px 18px 16px;}.steps-sec{padding-top:30px;}}
 
 /* SHARED */
 .eyebrow{display:inline-flex;align-items:center;gap:7px;font-family:var(--ff-mono);font-size:11px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--teal);}
@@ -133,10 +139,11 @@ section{position:relative;z-index:1;}
 .f-success .btn-again{display:inline-block;margin-top:22px;font-family:var(--ff-body);font-size:13.5px;font-weight:500;color:var(--teal);background:transparent;border:0.5px solid rgba(20,184,166,0.35);border-radius:var(--r-sm);padding:9px 16px;cursor:pointer;transition:all 0.2s;}
 .f-success .btn-again:hover{background:var(--teal-ghost);}
 .hp{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;}
-@media(max-width:560px){.f-row{grid-template-columns:1fr;}.form-card{padding:30px 20px;}}
+@media(max-width:560px){.f-row{grid-template-columns:1fr;gap:14px;margin-bottom:14px;}.form-card{padding:26px 18px;margin-top:28px;border-radius:18px;}.f-input,.f-select,.f-textarea{font-size:16px;}.f-submit{padding:15px;}.form-sec{padding-bottom:72px;}}
 
 /* TRACKER (client / admin view) */
-.track-sec{display:none;padding:0 0 100px;}
+.track-sec{display:none;padding:44px 0 0;}
+@media(max-width:640px){.track-sec{padding-top:32px;}}
 .track-card{max-width:900px;margin:0 auto;background:var(--dark-1);border:0.5px solid var(--border);border-radius:var(--r-xl);overflow:hidden;}
 .track-head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px;padding:32px 32px 24px;border-bottom:0.5px solid var(--border);}
 .track-head h2{font-family:var(--ff-display);font-weight:300;font-size:1.7rem;letter-spacing:-0.02em;color:var(--text-1);margin-top:12px;}
@@ -166,7 +173,25 @@ section{position:relative;z-index:1;}
 .track-foot{padding:16px 32px;border-top:0.5px solid var(--border);font-size:12px;color:var(--text-3);display:flex;flex-wrap:wrap;gap:8px 20px;justify-content:space-between;}
 .track-foot a{color:var(--teal);text-decoration:none;}
 .track-wrap{overflow-x:auto;}
-@media(max-width:640px){.track-head{padding:24px 20px 18px;}.track-stats{gap:18px;}.track-table th,.track-table td{padding:12px 14px;}.track-foot{padding:14px 20px;}}
+@media(max-width:640px){
+  .track-head{padding:22px 18px 16px;flex-direction:column;align-items:flex-start;gap:14px;}
+  .track-head h2{font-size:1.45rem;margin-top:8px;}
+  .track-stats{gap:0;width:100%;display:grid;grid-template-columns:repeat(3,1fr);border-top:0.5px solid var(--border);padding-top:14px;}
+  .ts{text-align:left;}
+  .ts-n{font-size:1.5rem;}
+  .track-foot{padding:14px 18px;flex-direction:column;}
+  /* table → stacked cards */
+  .track-table thead{display:none;}
+  .track-table,.track-table tbody,.track-table tr,.track-table td{display:block;width:100%;}
+  .track-table tr{padding:14px 18px 6px;border-bottom:0.5px solid rgba(120,100,220,0.12);}
+  .track-table tr:last-child{border-bottom:none;}
+  .track-table td{padding:0 0 10px;border:none;}
+  .track-table td[data-l]::before{content:attr(data-l);display:block;font-family:var(--ff-mono);font-size:9.5px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-3);margin-bottom:3px;}
+  .track-table td.dt{white-space:normal;}
+  .track-table td.status-cell{display:flex;align-items:center;justify-content:space-between;gap:12px;}
+  .track-table td.status-cell::before{margin-bottom:0;}
+  .status-sel{max-width:180px;}
+}
 
 /* FOOTER */
 footer{position:relative;z-index:1;border-top:0.5px solid var(--border);padding:40px 0 48px;text-align:center;}
@@ -219,10 +244,39 @@ footer{position:relative;z-index:1;border-top:0.5px solid var(--border);padding:
   <h1 id="heroH1">Know someone running a <em>relocation program</em>?</h1>
   <p class="hero-sub" id="heroSub">Tell us who they are and we'll take it from there. One focused conversation, no cold outreach, and you'll hear back from us on how it went.</p>
 
-  <div class="steps" id="steps">
+</section>
+
+<!-- TRACKER: appears only with a valid key -->
+<section class="track-sec" id="tracker">
+  <div class="wrap">
+    <div class="track-card">
+      <div class="track-head">
+        <div>
+          <div class="eyebrow" id="trackEyebrow">Your referrals</div>
+          <h2 id="trackTitle">Where things stand</h2>
+          <p id="trackSub">Every introduction you've made and its current status.</p>
+        </div>
+        <div class="track-stats">
+          <div class="ts"><div class="ts-n" id="tsTotal">0</div><div class="ts-l">Referred</div></div>
+          <div class="ts"><div class="ts-n" id="tsActive">0</div><div class="ts-l">In progress</div></div>
+          <div class="ts"><div class="ts-n" id="tsWon">0</div><div class="ts-l">Won</div></div>
+        </div>
+      </div>
+      <div class="track-wrap"><table class="track-table" id="trackTable"></table></div>
+      <div class="track-empty" id="trackEmpty" style="display:none;">No referrals yet. The first one you send will show up here.</div>
+      <div class="track-foot"><span id="trackFootL">Updated as we work each introduction.</span><span id="trackFootR"></span></div>
+    </div>
+  </div>
+</section>
+
+<!-- STEPS -->
+<section class="steps-sec">
+  <div class="wrap">
+    <div class="steps" id="steps">
     <div class="step"><div class="step-n">01 · You</div><h3>Share a name</h3><p>Two minutes. Who they are, where they work, and a line on what they're dealing with.</p></div>
     <div class="step"><div class="step-n">02 · Us</div><h3>We reach out</h3><p>Within one business day, mentioning you by name. A focused demo built around their program, not generic slides.</p></div>
     <div class="step"><div class="step-n">03 · Both</div><h3>You stay in the loop</h3><p>We confirm when we've connected and let you know how it's progressing.</p></div>
+  </div>
   </div>
 </section>
 
@@ -319,29 +373,6 @@ footer{position:relative;z-index:1;border-top:0.5px solid var(--border);padding:
         <p id="successMsg">We'll reach out within one business day and let you know when we've connected.</p>
         <button class="btn-again" type="button" id="againBtn" onclick="resetForm()">Refer someone else</button>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- TRACKER: appears only with a valid key -->
-<section class="track-sec" id="tracker">
-  <div class="wrap">
-    <div class="track-card">
-      <div class="track-head">
-        <div>
-          <div class="eyebrow" id="trackEyebrow">Your referrals</div>
-          <h2 id="trackTitle">Where things stand</h2>
-          <p id="trackSub">Every introduction you've made and its current status.</p>
-        </div>
-        <div class="track-stats">
-          <div class="ts"><div class="ts-n" id="tsTotal">0</div><div class="ts-l">Referred</div></div>
-          <div class="ts"><div class="ts-n" id="tsActive">0</div><div class="ts-l">In progress</div></div>
-          <div class="ts"><div class="ts-n" id="tsWon">0</div><div class="ts-l">Won</div></div>
-        </div>
-      </div>
-      <div class="track-wrap"><table class="track-table" id="trackTable"></table></div>
-      <div class="track-empty" id="trackEmpty" style="display:none;">No referrals yet. The first one you send will show up here.</div>
-      <div class="track-foot"><span id="trackFootL">Updated as we work each introduction.</span><span id="trackFootR"></span></div>
     </div>
   </div>
 </section>
@@ -508,7 +539,7 @@ footer{position:relative;z-index:1;border-top:0.5px solid var(--border);padding:
 
   function renderTracker(d){
     var sec = $('tracker'), tbl = $('trackTable'), recs = d.records || [];
-    sec.style.display = 'block';
+    sec.style.display = 'block'; document.body.classList.add('has-tracker');
     if(d.admin){
       $('trackEyebrow').textContent = 'Admin · all referrals' + (d.via ? ' · ' + d.via : '');
       $('trackTitle').textContent = 'Referral pipeline';
@@ -532,12 +563,12 @@ footer{position:relative;z-index:1;border-top:0.5px solid var(--border);padding:
         ? '<select class="status-sel" data-id="' + esc(r.id) + '">' + (d.statuses||Object.keys(BADGE)).map(function(s){ return '<option' + (s===status?' selected':'') + '>' + esc(s) + '</option>'; }).join('') + '</select>'
         : '<span class="badge ' + (BADGE[status]||'b-new') + '">' + esc(status) + '</span>';
       var src = r.source === 'link' ? ' <span class="badge b-contacted" style="margin-left:6px;vertical-align:middle">via link</span>' : '';
-      return '<tr><td><div class="nm">' + nm + src + '</div><div class="sub">' + esc(r.organization||'') + (r.role ? ' · ' + esc(r.role) : '') + (d.admin && r.email ? '<br>' + esc(r.email) : '') + '</div></td>'
-        + (d.admin ? '<td>' + esc(r.referrer_name||r.referrer_slug||'') + '<div class="sub">' + esc(r.referrer_email||'') + '</div></td>' : '')
-        + '<td>' + esc(r.program || '—') + (r.households ? '<div class="sub">' + esc(r.households) + ' households</div>' : '') + '</td>'
-        + '<td class="dt">' + fmtDate(r.submitted_at) + '</td><td>' + statusCell + '</td></tr>';
+      return '<tr><td data-l="Contact"><div class="nm">' + nm + src + '</div><div class="sub">' + esc(r.organization||'') + (r.role ? ' · ' + esc(r.role) : '') + (d.admin && r.email ? '<br>' + esc(r.email) : '') + '</div></td>'
+        + (d.admin ? '<td data-l="Referred by">' + esc(r.referrer_name||r.referrer_slug||'') + '<div class="sub">' + esc(r.referrer_email||'') + '</div></td>' : '')
+        + '<td data-l="Program">' + esc(r.program || '—') + (r.households ? '<div class="sub">' + esc(r.households) + ' households</div>' : '') + '</td>'
+        + '<td class="dt" data-l="Submitted">' + fmtDate(r.submitted_at) + '</td><td class="status-cell" data-l="Status">' + statusCell + '</td></tr>';
     }).join('');
-    tbl.innerHTML = head + rows;
+    tbl.innerHTML = '<thead>' + head + '</thead><tbody>' + rows + '</tbody>';
 
     if(d.admin){
       tbl.querySelectorAll('.status-sel').forEach(function(sel){
