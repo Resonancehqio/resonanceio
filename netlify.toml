@@ -89,6 +89,32 @@
   to   = "/refer.html"
   status = 200
 
+# ── Favicon filenames: HTML references dashed names, files on disk are undashed ──
+[[redirects]]
+  from = "/favicon-32x32.png"
+  to   = "/favicon32x32.png"
+  status = 200
+
+[[redirects]]
+  from = "/favicon-16x16.png"
+  to   = "/favicon16x16.png"
+  status = 200
+
+[[redirects]]
+  from = "/apple-touch-icon.png"
+  to   = "/appletouchicon.png"
+  status = 200
+
+[[redirects]]
+  from = "/android-chrome-192x192.png"
+  to   = "/androidchrome192x192.png"
+  status = 200
+
+[[redirects]]
+  from = "/android-chrome-512x512.png"
+  to   = "/androidchrome512x512.png"
+  status = 200
+
 # ── 404 fallback ──
 [[redirects]]
   from   = "/*"

@@ -12,4 +12,9 @@
 /refer/          /refer                301
 /refer/*         /refer.html           200
 /via/*           /refer.html           200
+/favicon-32x32.png           /favicon32x32.png           200
+/favicon-16x16.png           /favicon16x16.png           200
+/apple-touch-icon.png        /appletouchicon.png         200
+/android-chrome-192x192.png  /androidchrome192x192.png   200
+/android-chrome-512x512.png  /androidchrome512x512.png   200
 /*               /index.html           404
