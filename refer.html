@@ -395,8 +395,8 @@ footer{position:relative;z-index:1;border-top:0.5px solid var(--border);padding:
     if(selfMode) return personalizeSelf(name, org);
     $('navPill').textContent = 'Referred by ' + name;
     $('heroBadgeTxt').textContent = 'Referral link for ' + org;
-    $('heroH1').innerHTML = 'Thanks for the <em>introduction</em>, ' + esc(name) + '.';
-    $('heroSub').textContent = 'You know who\'s wrestling with a relocation program right now. Point us at them and we\'ll handle the rest, mentioning you by name.';
+    $('heroH1').innerHTML = 'Referral <em>tracker</em> and form';
+    $('heroSub').style.display = 'none';
     if(!$('referrer_org').value) $('referrer_org').value = org;
     document.title = 'Refer a colleague to Resonance · ' + name;
   }
