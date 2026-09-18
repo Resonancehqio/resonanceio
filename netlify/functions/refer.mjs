@@ -62,7 +62,7 @@ export default async (req) => {
   if (!r.referrer_name) errors.push("Referrer name is required.");
   if (selfMode ? (r.referrer_email && !isEmail(r.referrer_email)) : !isEmail(r.referrer_email)) errors.push("A valid referrer email is required.");
   if (!r.first_name) errors.push("Contact first name is required.");
-  if (!isEmail(r.email)) errors.push("A valid contact email is required.");
+  if (selfMode ? !isEmail(r.email) : (r.email && !isEmail(r.email))) errors.push(selfMode ? "A valid email is required." : "The contact email doesn't look valid.");
   if (!r.organization) errors.push("Contact organization is required.");
   if (!r.consent) errors.push(selfMode ? "Please confirm you'd like us to reach out." : "Please confirm the contact is expecting to hear from us.");
   if (errors.length) return json({ ok: false, error: errors.join(" ") }, 422);
@@ -161,7 +161,8 @@ async function sendEmails(rec) {
     body: JSON.stringify(msg),
   }).then(async res => { if (!res.ok) throw new Error(`Resend ${res.status}: ${await res.text()}`); });
 
-  const sends = [send(internal), send(toContact)];
+  const sends = [send(internal)];
+  if (isEmail(rec.email)) sends.push(send(toContact));
   if (isEmail(rec.referrer_email)) sends.push(send(toReferrer));
   const out = await Promise.allSettled(sends);
   const failed = out.filter(x => x.status === "rejected");

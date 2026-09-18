@@ -77,10 +77,8 @@ section{position:relative;z-index:1;}
 
 /* HERO */
 .hero{display:flex;flex-direction:column;align-items:center;text-align:center;padding:150px 24px 8px;}
-.steps-sec{padding:40px 0 0;}
 @media(max-width:640px){.hero{padding:104px 16px 4px;}.conf-badge{gap:8px;padding:6px 14px 6px 8px;margin-bottom:22px;max-width:100%;}.conf-badge-txt{font-size:12px;white-space:normal;text-align:left;}.hero-sub{font-size:0.98rem;margin-top:14px;}}
 body.has-tracker .hero{padding-bottom:0;}
-body.has-tracker .steps-sec{padding-top:40px;}
 .conf-badge{display:inline-flex;align-items:center;gap:10px;margin-bottom:28px;background:rgba(20,184,166,0.07);border:0.5px solid rgba(20,184,166,0.38);border-radius:100px;padding:7px 18px 7px 10px;animation:fadeUp 0.6s ease both;}
 .conf-badge-tag{background:var(--teal);color:var(--dark);font-family:var(--ff-mono);font-size:10px;font-weight:700;letter-spacing:0.06em;padding:3px 10px;border-radius:100px;text-transform:uppercase;}
 .conf-badge-txt{font-size:13px;color:var(--text-2);font-weight:500;}
@@ -88,14 +86,6 @@ body.has-tracker .steps-sec{padding-top:40px;}
 .hero h1 em{font-style:italic;color:var(--teal-bright);}
 .hero-sub{font-size:clamp(1rem,2vw,1.15rem);color:var(--text-2);line-height:1.78;max-width:600px;margin:18px auto 0;animation:fadeUp 0.6s 0.15s ease both;}
 
-/* STEPS */
-.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:900px;margin:0 auto;animation:fadeUp 0.6s 0.25s ease both;}
-.step{background:var(--dark-2);border:0.5px solid var(--border);border-radius:var(--r-lg);padding:22px 22px 20px;text-align:left;position:relative;}
-.step::before{content:'';position:absolute;left:0;top:16px;bottom:16px;width:2px;border-radius:0 1px 1px 0;background:linear-gradient(180deg,var(--purple-mid) 0%,var(--teal) 100%);}
-.step-n{font-family:var(--ff-mono);font-size:10px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--teal);margin-bottom:8px;}
-.step h3{font-family:var(--ff-display);font-size:1.08rem;font-weight:400;color:var(--text-1);margin-bottom:6px;letter-spacing:-0.01em;}
-.step p{font-size:0.86rem;color:var(--text-2);line-height:1.6;}
-@media(max-width:760px){.steps{grid-template-columns:1fr;gap:12px;}.step{padding:18px 18px 16px;}.steps-sec{padding-top:30px;}}
 
 /* SHARED */
 .eyebrow{display:inline-flex;align-items:center;gap:7px;font-family:var(--ff-mono);font-size:11px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--teal);}
@@ -105,8 +95,8 @@ body.has-tracker .steps-sec{padding-top:40px;}
 .section-lead{font-size:1rem;color:var(--text-2);line-height:1.72;max-width:600px;}
 
 /* FORM */
-.form-sec{padding:40px 0 100px;}
-.form-card{max-width:720px;margin:36px auto 0;background:var(--dark-1);border:0.5px solid var(--border-hi);border-radius:var(--r-xl);padding:44px 40px;position:relative;overflow:hidden;}
+.form-sec{padding:48px 0 100px;}
+.form-card{max-width:720px;margin:0 auto;background:var(--dark-1);border:0.5px solid var(--border-hi);border-radius:var(--r-xl);padding:44px 40px;position:relative;overflow:hidden;}
 .form-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(91,33,182,0.6),rgba(94,234,212,0.4),transparent);}
 .f-group{margin-bottom:8px;}
 .f-group-title{display:flex;align-items:center;gap:10px;font-family:var(--ff-mono);font-size:10.5px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--purple-bright);margin:0 0 18px;}
@@ -139,7 +129,7 @@ body.has-tracker .steps-sec{padding-top:40px;}
 .f-success .btn-again{display:inline-block;margin-top:22px;font-family:var(--ff-body);font-size:13.5px;font-weight:500;color:var(--teal);background:transparent;border:0.5px solid rgba(20,184,166,0.35);border-radius:var(--r-sm);padding:9px 16px;cursor:pointer;transition:all 0.2s;}
 .f-success .btn-again:hover{background:var(--teal-ghost);}
 .hp{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;}
-@media(max-width:560px){.f-row{grid-template-columns:1fr;gap:14px;margin-bottom:14px;}.form-card{padding:26px 18px;margin-top:28px;border-radius:18px;}.f-input,.f-select,.f-textarea{font-size:16px;}.f-submit{padding:15px;}.form-sec{padding-bottom:72px;}}
+@media(max-width:560px){.f-row{grid-template-columns:1fr;gap:14px;margin-bottom:14px;}.form-card{padding:26px 18px;border-radius:18px;}.f-input,.f-select,.f-textarea{font-size:16px;}.f-submit{padding:15px;}.form-sec{padding-bottom:72px;}}
 
 /* TRACKER (client / admin view) */
 .track-sec{display:none;padding:44px 0 0;}
@@ -269,26 +259,10 @@ footer{position:relative;z-index:1;border-top:0.5px solid var(--border);padding:
   </div>
 </section>
 
-<!-- STEPS -->
-<section class="steps-sec">
-  <div class="wrap">
-    <div class="steps" id="steps">
-    <div class="step"><div class="step-n">01 · You</div><h3>Share a name</h3><p>Two minutes. Who they are, where they work, and a line on what they're dealing with.</p></div>
-    <div class="step"><div class="step-n">02 · Us</div><h3>We reach out</h3><p>Within one business day, mentioning you by name. A focused demo built around their program, not generic slides.</p></div>
-    <div class="step"><div class="step-n">03 · Both</div><h3>You stay in the loop</h3><p>We confirm when we've connected and let you know how it's progressing.</p></div>
-  </div>
-  </div>
-</section>
 
 <!-- FORM -->
 <section class="form-sec" id="refer">
   <div class="wrap">
-    <div class="wrap-tight" style="text-align:center;">
-      <div class="eyebrow" style="margin-bottom:14px;justify-content:center;" id="formEyebrow">Make a referral</div>
-      <h2 class="section-h2" id="formH2">Who should we <em>talk to</em>?</h2>
-      <p class="section-lead" style="margin:0 auto;" id="formLead">Housing authorities, developers, relocation service providers, consultants. Anyone who has households to move and a deadline to hit.</p>
-    </div>
-
     <div class="form-card">
       <form id="referForm" novalidate>
         <div class="hp" aria-hidden="true"><label for="website">Website</label><input type="text" id="website" name="website" tabindex="-1" autocomplete="off"></div>
@@ -311,7 +285,7 @@ footer{position:relative;z-index:1;border-top:0.5px solid var(--border);padding:
             <div><label class="f-lbl" for="last_name">Last name</label><input class="f-input" type="text" id="last_name" placeholder="Last name"></div>
           </div>
           <div class="f-row">
-            <div><label class="f-lbl" for="email" id="lblEmail">Their email</label><input class="f-input" type="email" id="email" placeholder="them@theirorg.org" required></div>
+            <div><label class="f-lbl" for="email" id="lblEmail">Their email <span class="opt">(if you have it)</span></label><input class="f-input" type="email" id="email" placeholder="them@theirorg.org"></div>
             <div><label class="f-lbl" for="organization" id="lblOrg">Their organization</label><input class="f-input" type="text" id="organization" placeholder="Housing authority / developer…" required></div>
           </div>
           <div class="f-row">
@@ -433,16 +407,9 @@ footer{position:relative;z-index:1;border-top:0.5px solid var(--border);padding:
     $('heroBadgeTxt').textContent = org + ' suggested Resonance';
     $('heroH1').innerHTML = esc(name) + ' thinks we should <em>talk</em>.';
     $('heroSub').textContent = 'Resonance is purpose-built software for affordable housing relocation and redevelopment programs. Tell us a little about yours and we\'ll set up a focused conversation, no generic slides.';
-    $('steps').innerHTML =
-      '<div class="step"><div class="step-n">01 · You</div><h3>Tell us about your program</h3><p>Two minutes. Where you work, what you\'re running, and what\'s hard right now.</p></div>' +
-      '<div class="step"><div class="step-n">02 · Us</div><h3>We reach out</h3><p>Within one business day. A demo built around your program type and portfolio, not a pitch deck.</p></div>' +
-      '<div class="step"><div class="step-n">03 · ' + esc(name) + '</div><h3>Stays in the loop</h3><p>We let ' + esc(name) + ' know we connected. Nothing you share here goes further than that.</p></div>';
-    $('formEyebrow').textContent = 'Get in touch';
-    $('formH2').innerHTML = 'Tell us about <em>your program</em>';
-    $('formLead').textContent = 'Housing authority, developer, relocation provider, or consultant. Anyone with households to move and a deadline to hit.';
     $('referrerGroup').style.display = 'none';
     $('contactGroupTitle').textContent = 'About you';
-    $('lblEmail').textContent = 'Work email'; $('email').placeholder = 'you@yourorg.org';
+    $('lblEmail').textContent = 'Work email'; $('email').placeholder = 'you@yourorg.org'; $('email').required = true;
     $('lblOrg').textContent = 'Your organization'; $('organization').placeholder = 'Housing authority / developer…';
     $('lblRole').textContent = 'Your role';
     $('context').placeholder = 'What you\'re working on, what\'s painful right now, the best way to reach you…';
@@ -476,7 +443,7 @@ footer{position:relative;z-index:1;border-top:0.5px solid var(--border);padding:
     if(!selfMode && !v('referrer_name'))          { bad.push('referrer_name');  msgs.push('your name'); }
     if(!selfMode && !em.test(v('referrer_email'))){ bad.push('referrer_email'); msgs.push('your email'); }
     if(!v('first_name'))             { bad.push('first_name');     msgs.push(their + 'first name'); }
-    if(!em.test(v('email')))         { bad.push('email');          msgs.push(their + 'email'); }
+    if(selfMode ? !em.test(v('email')) : (v('email') && !em.test(v('email')))){ bad.push('email'); msgs.push(selfMode ? 'your email' : 'a valid email for them'); }
     if(!v('organization'))           { bad.push('organization');   msgs.push(their + 'organization'); }
     if(bad.length) return showErr('Please add ' + msgs.join(', ') + '.', bad);
     if(!$('consent').checked) return showErr(selfMode ? 'Please tick the box so we know you\'d like to hear from us.' : 'Please confirm they\'re expecting to hear from us. We don\'t cold-contact anyone.', []);
