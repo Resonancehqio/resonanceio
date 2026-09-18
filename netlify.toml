@@ -181,6 +181,11 @@
 
 # ── Cache favicons ──
 [[headers]]
+  for = "/favicon.svg"
+  [headers.values]
+    Cache-Control = "public, max-age=2592000"
+
+[[headers]]
   for = "/favicon.ico"
   [headers.values]
     Cache-Control = "public, max-age=2592000"
