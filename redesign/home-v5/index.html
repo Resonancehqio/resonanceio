@@ -1,0 +1,644 @@
+<title>Resonance Homepage</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap">
+<style>
+/* Layout: clean white product page. Text column left, live stage right. Two pinned scroll scenes (platform, how it works); everything else animates as it enters view. One 0 to 1 value per scene. */
+:root {
+  --bg: #FBFBFA; --paper: #FFFFFF; --ink: #121417; --ink-2: #3A4049; --mute: #6B7280; --rule: #DCE0E5; --faint: #F1F3F5;
+  --blue: #1F5FD1; --blue-soft: #E8EFFC; --amber: #C2570C; --amber-soft: #FDF0E6; --green: #15803D; --green-soft: #E7F4EC; --red: #B42318;
+  --sans: "Hanken Grotesk", system-ui, -apple-system, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+html, body { background: var(--bg); color: var(--ink); }
+body { font: 17px/1.6 var(--sans); -webkit-font-smoothing: antialiased; }
+h1, h2, h3, h4, p, ul, ol { margin: 0; }
+a { color: inherit; }
+.gutter { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.wrap { max-width: 1240px; margin: 0 auto; }
+.eyebrow { font: 500 12px/1 var(--mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--blue); }
+h2.big { font-size: clamp(30px, 4vw, 48px); line-height: 1.06; letter-spacing: -0.025em; font-weight: 700; text-wrap: balance; }
+.lead { font-size: 19px; color: var(--ink-2); max-width: 58ch; }
+.btn { display: inline-flex; align-items: center; gap: 8px; font: 600 15px/1 var(--sans); padding: 14px 18px; border-radius: 4px; text-decoration: none; border: 1px solid var(--ink); }
+.btn.primary { background: var(--ink); color: var(--paper); }
+.btn.primary:hover { background: var(--blue); border-color: var(--blue); }
+.btn.ghost { background: transparent; color: var(--ink); border-color: var(--rule); }
+.btn.ghost:hover { border-color: var(--ink); }
+.btn:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
+.sample { position: absolute; right: 14px; bottom: 12px; font: 500 11px/1 var(--mono); color: var(--mute); letter-spacing: 0.04em; }
+.stagebox { position: relative; width: 100%; max-width: 100%; }
+.stage { position: absolute; left: 0; top: 0; transform-origin: 0 0; background: var(--paper); border: 1px solid var(--rule); border-radius: 6px; overflow: hidden; }
+.mono { font-family: var(--mono); }
+
+/* nav */
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 30; background: rgba(251,251,250,0.92); }
+.nav { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: rgba(251,251,250,0.92); backdrop-filter: blur(10px); border-bottom: 1px solid var(--rule); }
+.nav .wrap { display: flex; align-items: center; gap: 28px; height: 64px; }
+.logo { font: 800 20px/1 var(--sans); letter-spacing: -0.03em; text-decoration: none; display: flex; align-items: center; gap: 9px; }
+.logo i { width: 14px; height: 14px; border: 2.5px solid var(--blue); border-radius: 50%; box-shadow: 4px 0 0 -1px var(--paper), 4px 0 0 1px var(--blue); }
+.nav nav { display: flex; gap: 24px; margin-left: 12px; }
+.nav nav a { font-size: 15px; text-decoration: none; color: var(--ink-2); }
+.nav nav a:hover { color: var(--ink); }
+.nav .btn { margin-left: auto; padding: 10px 14px; font-size: 14px; }
+
+/* hero */
+.hero .wrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); gap: 56px; align-items: center; padding-block: 72px 88px; }
+.hero h1 { font-size: clamp(40px, 5.6vw, 72px); line-height: 1.0; letter-spacing: -0.035em; font-weight: 800; text-wrap: balance; }
+.hero .lead { margin-top: 22px; }
+.hero .ctas { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+
+/* generic sections */
+.sec { padding-block: 112px; border-top: 1px solid var(--rule); }
+.split { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); gap: 64px; align-items: center; }
+.split.flip > :first-child { order: 2; }
+.textcol { display: grid; gap: 18px; align-content: start; }
+.textcol p { color: var(--ink-2); max-width: 54ch; }
+.ticks { list-style: none; padding: 0; display: grid; gap: 10px; margin-top: 6px; }
+.ticks li { display: grid; grid-template-columns: 18px minmax(0, 1fr); gap: 10px; font-size: 16px; color: var(--ink-2); }
+.ticks li::before { content: ""; width: 10px; height: 10px; margin-top: 8px; border: 2px solid var(--blue); border-radius: 50%; }
+
+/* pinned scenes */
+.pinned { height: 300vh; position: relative; border-top: 1px solid var(--rule); }
+.pin { position: sticky; top: 64px; height: calc(100vh - 64px); display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: 56px; align-items: center; max-width: 1240px; margin: 0 auto; padding-block: 24px; }
+.steps { list-style: none; padding: 0; display: grid; gap: 4px; margin-top: 18px; }
+.steps li { border-left: 2px solid var(--rule); padding: 12px 0 12px 18px; transition: border-color .25s, opacity .25s; opacity: 0.45; }
+.steps li.on { border-color: var(--blue); opacity: 1; }
+.steps b { display: block; font-size: 18px; font-weight: 700; letter-spacing: -0.01em; }
+.steps b span { font: 500 12px/1 var(--mono); color: var(--blue); margin-right: 8px; }
+.steps p { font-size: 15px; color: var(--ink-2); margin-top: 4px; }
+.progress { height: 2px; background: var(--rule); margin-top: 20px; position: relative; overflow: hidden; max-width: 320px; }
+.progress i { position: absolute; inset: 0; background: var(--blue); transform-origin: 0 50%; transform: scaleX(0); }
+
+/* why */
+.why-grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 16px; margin-top: 40px; }
+.why-card { background: var(--paper); border: 1px solid var(--rule); border-radius: 6px; padding: 18px; display: grid; gap: 14px; align-content: start; min-height: 168px; }
+.why-card svg { width: 44px; height: 44px; }
+.why-card p { font-size: 15px; line-height: 1.4; font-weight: 600; }
+
+/* industries */
+.ind { display: grid; gap: 96px; margin-top: 56px; }
+.ind h3 { font-size: clamp(26px, 3vw, 36px); line-height: 1.1; letter-spacing: -0.02em; font-weight: 700; text-wrap: balance; }
+.tag { font: 600 12px/1 var(--mono); letter-spacing: 0.06em; text-transform: uppercase; color: var(--mute); }
+
+/* philosophy */
+.phil { background: var(--ink); color: var(--paper); border-top: 0; }
+.phil h2.big { color: var(--paper); max-width: 18ch; }
+.phil p { color: #C5CAD1; max-width: 58ch; }
+.costbar { margin-top: 48px; display: grid; gap: 14px; }
+.costbar .bar { display: flex; height: 64px; border-radius: 4px; overflow: hidden; background: #22262B; }
+.costbar .seg { height: 100%; display: flex; align-items: flex-end; padding: 10px 12px; font: 500 12px/1.2 var(--mono); color: #0E1013; white-space: nowrap; overflow: hidden; transform-origin: 0 50%; }
+.costbar .legend { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px 24px; font: 500 12px/1.4 var(--mono); color: #9AA2AD; }
+.costbar .llm { display: flex; align-items: center; gap: 10px; font: 500 13px/1.3 var(--mono); color: var(--paper); }
+.costbar .llm i { width: 10px; height: 10px; background: #F4B860; border-radius: 2px; }
+
+/* proof */
+.proof-list { list-style: none; padding: 0; margin-top: 40px; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); border-top: 1px solid var(--ink); }
+.proof-list li { padding: 20px 18px 0 0; font-size: 17px; font-weight: 600; line-height: 1.3; border-right: 1px solid var(--rule); padding-left: 18px; }
+.proof-list li:first-child { padding-left: 0; }
+.proof-list li:last-child { border-right: 0; }
+.proof-list li span { display: block; font: 500 12px/1 var(--mono); color: var(--blue); margin-bottom: 14px; }
+
+/* cta */
+.cta { text-align: left; }
+.cta .box { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 32px; align-items: end; border: 1px solid var(--ink); border-radius: 8px; padding: 48px; background: var(--paper); }
+.foot { padding-block: 40px 56px; color: var(--mute); font-size: 14px; border-top: 1px solid var(--rule); }
+.foot .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; }
+
+/* stage atoms */
+.file { position: absolute; background: var(--paper); border: 1px solid var(--rule); border-radius: 4px; overflow: hidden; }
+.file .fh { font: 600 11px/1 var(--mono); padding: 9px 10px; border-bottom: 1px solid var(--rule); background: var(--faint); display: flex; justify-content: space-between; gap: 8px; color: var(--ink-2); }
+.file .fr { font: 400 11px/1 var(--mono); padding: 7px 10px; border-bottom: 1px solid var(--faint); color: var(--mute); white-space: nowrap; overflow: hidden; display: flex; gap: 14px; position: relative; }
+.file .fr.hit { color: var(--ink); }
+.file .fr.conf { background: var(--amber-soft); color: var(--amber); }
+.scan { position: absolute; left: 0; right: 0; height: 22px; background: linear-gradient(180deg, rgba(31,95,209,0), rgba(31,95,209,0.14), rgba(31,95,209,0)); pointer-events: none; }
+.ok { position: absolute; font: 600 11px/1 var(--mono); color: var(--green); }
+.note { position: absolute; font: 500 11px/1.35 var(--mono); }
+.card { position: absolute; background: var(--paper); border: 1px solid var(--ink); border-radius: 5px; }
+.card .ch { font: 600 11px/1 var(--mono); letter-spacing: 0.04em; color: var(--mute); padding: 12px 14px 0; text-transform: uppercase; }
+.card .ct { font-size: 17px; font-weight: 700; padding: 6px 14px 0; letter-spacing: -0.01em; }
+.orow { display: grid; grid-template-columns: minmax(0, 1fr) 96px 78px; gap: 10px; padding: 9px 14px; border-top: 1px solid var(--faint); font-size: 13px; align-items: center; }
+.orow .m { font: 500 12px/1 var(--mono); color: var(--ink-2); text-align: right; }
+.orow.out { color: var(--mute); }
+.orow.out .n { text-decoration: line-through; text-decoration-color: var(--red); }
+.orow.win { background: var(--green-soft); }
+.why-out { font: 500 11px/1.3 var(--mono); color: var(--red); padding: 0 14px 10px; }
+.stamp { position: absolute; border: 1.5px solid var(--green); color: var(--green); border-radius: 3px; font: 600 12px/1.35 var(--mono); padding: 8px 10px; background: var(--paper); }
+.evid { display: flex; flex-wrap: wrap; gap: 6px; padding: 10px 14px 12px; border-top: 1px solid var(--faint); }
+.evid span { font: 600 10px/1 var(--mono); color: var(--blue); background: var(--blue-soft); padding: 5px 6px; border-radius: 2px; }
+
+@media (max-width: 960px) {
+  .why-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .proof-list { grid-template-columns: minmax(0, 1fr); }
+  .proof-list li { border-right: 0; border-bottom: 1px solid var(--rule); padding: 16px 0; }
+}
+@media (max-width: 860px) {
+  .nav nav { display: none; }
+  .hero .wrap, .split, .cta .box { grid-template-columns: minmax(0, 1fr); gap: 36px; }
+  .split.flip > :first-child { order: 0; }
+  .hero .wrap { padding-block: 40px 56px; }
+  .sec { padding-block: 72px; }
+  .pin { grid-template-columns: minmax(0, 1fr); gap: 16px; align-content: center; }
+  .pin .lead, .pin .textcol > p { display: none; }
+  .steps li { padding: 6px 0 6px 12px; }
+  .steps li p { display: none; }
+  .steps li.on p { display: block; font-size: 14px; }
+  .cta .box { padding: 28px 20px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pinned { height: auto; }
+  .pin { position: static; height: auto; padding-block: 72px; }
+}
+</style>
+
+<header class="nav gutter">
+  <div class="wrap">
+    <a class="logo" href="#top"><i></i>Resonance</a>
+    <nav><a href="#product">Product</a><a href="#industries">Industries</a><a href="#how">Demo</a><a href="#about">About</a></nav>
+    <a class="btn primary" href="#book">Book a demo</a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero gutter" id="top">
+  <div class="wrap">
+    <div>
+      <h1>Make faster decisions in complex operations.</h1>
+      <p class="lead">Resonance turns messy ERP, Excel, and project data into clear, auditable decisions for EPC, data center, and supply chain teams.</p>
+      <div class="ctas"><a class="btn primary" href="#book">Book a demo</a><a class="btn ghost" href="#how">Watch the walkthrough</a></div>
+    </div>
+    <div class="stagebox" data-w="600" data-h="470"><div class="stage" id="hero-stage" style="width:600px;height:470px">
+      <div class="sample">Sample data · fictional company and project</div>
+    </div></div>
+  </div>
+</section>
+
+<!-- PLATFORM (pinned, three.js) -->
+<section class="pinned gutter" id="product" data-scene="platform">
+  <div class="pin">
+    <div class="textcol">
+      <div class="eyebrow">What it does</div>
+      <h2 class="big">One platform. Multiple decision apps.</h2>
+      <p class="lead">Resonance reads the data you already have, maps it to your business structure, and helps teams decide what to do next.</p>
+      <p>It is built for organizations where one delay can affect cost, delivery, compliance, and customer commitments.</p>
+      <div class="progress"><i></i></div>
+    </div>
+    <div class="stagebox" data-w="720" data-h="560"><div class="stage" id="plat-stage" style="width:720px;height:560px;background:var(--paper)">
+      <canvas id="plat-canvas" style="position:absolute;inset:0;width:100%;height:100%;display:block"></canvas>
+      <div class="sample">Illustration</div>
+    </div></div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS (pinned) -->
+<section class="pinned gutter" id="how" data-scene="how" style="height:420vh">
+  <div class="pin">
+    <div class="textcol">
+      <div class="eyebrow">How it works</div>
+      <h2 class="big">From raw data to action in three steps</h2>
+      <ol class="steps" id="steps">
+        <li><b><span>01</span>Connect your data</b><p>Bring in ERP exports, Excel sheets, and operational systems without rebuilding your stack.</p></li>
+        <li><b><span>02</span>Map the business reality</b><p>Resonance builds an ontology of your operation so the system understands your roles, objects, constraints, and workflows.</p></li>
+        <li><b><span>03</span>Generate decisions</b><p>The platform surfaces findings, recommends actions, and keeps evidence attached to every decision.</p></li>
+      </ol>
+      <div class="progress"><i></i></div>
+    </div>
+    <div class="stagebox" data-w="760" data-h="560"><div class="stage" id="how-stage" style="width:760px;height:560px">
+      <svg id="how-svg" width="760" height="560" viewBox="0 0 760 560" style="position:absolute;inset:0"></svg>
+      <div class="sample">Sample data · fictional company and project</div>
+    </div></div>
+  </div>
+</section>
+
+<!-- WHY TEAMS USE IT -->
+<section class="sec gutter" id="why">
+  <div class="wrap">
+    <div class="eyebrow">Why teams use it</div>
+    <h2 class="big" style="margin-top:14px;max-width:20ch">Built for the real work behind execution</h2>
+    <div class="why-grid" id="why-grid"></div>
+  </div>
+</section>
+
+<!-- INDUSTRIES -->
+<section class="sec gutter" id="industries">
+  <div class="wrap">
+    <div class="eyebrow">Industries</div>
+    <div class="ind">
+      <div class="split">
+        <div class="textcol">
+          <div class="tag">EPC / Construction</div>
+          <h3>Keep projects moving when everything shifts.</h3>
+          <p>Use Resonance to connect procurement, engineering, construction, commissioning, and finance around a shared view of project reality.</p>
+          <ul class="ticks"><li>identify schedule risk early</li><li>evaluate recovery options</li><li>protect milestones and handoffs</li><li>align every team on the same facts</li></ul>
+        </div>
+        <div class="stagebox inview" data-w="640" data-h="400" data-scene="epc"><div class="stage" style="width:640px;height:400px"><svg id="epc-svg" width="640" height="400" viewBox="0 0 640 400"></svg><div class="sample">Sample data · fictional</div></div></div>
+      </div>
+      <div class="split flip">
+        <div class="textcol">
+          <div class="tag">Data Centers</div>
+          <h3>See portfolio risk before it becomes delivery risk.</h3>
+          <p>Resonance helps data center teams manage supplier issues, readiness gates, commissioning blockers, and portfolio forecasts across multiple sites.</p>
+          <ul class="ticks"><li>trace delays to root cause</li><li>compare recovery actions</li><li>forecast impact on budget and delivery</li><li>support site-by-site execution</li></ul>
+        </div>
+        <div class="stagebox inview" data-w="640" data-h="400" data-scene="dc"><div class="stage" style="width:640px;height:400px"><svg id="dc-svg" width="640" height="400" viewBox="0 0 640 400"></svg><div class="sample">Sample data · fictional</div></div></div>
+      </div>
+      <div class="split">
+        <div class="textcol">
+          <div class="tag">Supply Chain</div>
+          <h3>Turn planning data into executable decisions.</h3>
+          <p>Resonance helps supply chain teams reconcile demand, inventory, logistics, and allocation without forcing a messy system migration.</p>
+          <ul class="ticks"><li>read ERP and workbook exports as-is</li><li>reconcile constraints across the network</li><li>optimize decisions under real-world limits</li><li>push results back into operations workflows</li></ul>
+        </div>
+        <div class="stagebox inview" data-w="640" data-h="400" data-scene="sc"><div class="stage" style="width:640px;height:400px"><svg id="sc-svg" width="640" height="400" viewBox="0 0 640 400"></svg><div class="sample">Sample data · fictional</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PHILOSOPHY -->
+<section class="sec phil gutter" id="about">
+  <div class="wrap">
+    <div class="eyebrow" style="color:#8DB0F0">Product philosophy</div>
+    <h2 class="big" style="margin-top:14px">The AI is not the product. The decision system is.</h2>
+    <p style="margin-top:20px">Large language models are useful for translation and interaction. But the real value comes from the underlying ontology, rules, constraints, and decision logic that make the output usable in production.</p>
+    <p style="margin-top:14px">Resonance is designed for hard problems where a good demo is not enough.</p>
+    <div class="costbar inview" data-scene="cost">
+      <div class="bar" id="costbar"></div>
+      <div class="legend"><span class="llm"><i></i>Language model: translation and interaction</span><span>Where the work goes in one decision. Illustrative, not to scale.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROOF -->
+<section class="sec gutter">
+  <div class="wrap">
+    <div class="eyebrow">Who it is for</div>
+    <h2 class="big" style="margin-top:14px;max-width:18ch">Made for teams that cannot afford guesswork</h2>
+    <ul class="proof-list">
+      <li><span>01</span>High-stakes operational workflows</li>
+      <li><span>02</span>Multi-step approval processes</li>
+      <li><span>03</span>Large teams with different roles and responsibilities</li>
+      <li><span>04</span>Existing systems that must stay in place</li>
+      <li><span>05</span>Decisions that need evidence, not just suggestions</li>
+    </ul>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="sec cta gutter" id="book">
+  <div class="wrap">
+    <div class="box">
+      <div class="textcol">
+        <h2 class="big">Ready to see it on your data?</h2>
+        <p class="lead">Book a demo and see how Resonance can help your team move from fragmented data to confident decisions.</p>
+      </div>
+      <a class="btn primary" href="#book">Book a demo</a>
+    </div>
+  </div>
+</section>
+
+<footer class="foot gutter">
+  <div class="wrap">
+    <span>Resonance helps operational teams make faster, better decisions with the data they already have.</span>
+    <span class="mono" style="font-size:12px">Sample data on this page is fictional.</span>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(() => {
+  const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
+  const ss = (a, b, x) => { const t = clamp((x - a) / (b - a)); return t * t * (3 - 2 * t); };
+  const lerp = (a, b, t) => a + (b - a) * t;
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const NS = 'http://www.w3.org/2000/svg';
+  const C = { ink: '#121417', ink2: '#3A4049', mute: '#6B7280', rule: '#DCE0E5', faint: '#F1F3F5', blue: '#1F5FD1', blueS: '#E8EFFC', amber: '#C2570C', amberS: '#FDF0E6', green: '#15803D', greenS: '#E7F4EC', red: '#B42318', paper: '#FFFFFF' };
+  const el = (tag, attrs = {}, parent, html) => { const e = document.createElement(tag); for (const k in attrs) e.setAttribute(k, attrs[k]); if (html != null) e.innerHTML = html; if (parent) parent.appendChild(e); return e; };
+  const sv = (tag, attrs = {}, parent) => { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); if (parent) parent.appendChild(e); return e; };
+  const txt = (parent, x, y, s, o = {}) => { const t = sv('text', { x, y, 'font-family': o.mono ? 'JetBrains Mono, monospace' : 'Hanken Grotesk, sans-serif', 'font-size': o.size || 13, 'font-weight': o.weight || 500, fill: o.fill || C.ink, 'text-anchor': o.anchor || 'start', 'letter-spacing': o.ls || 0 }, parent); t.textContent = s; return t; };
+  const op = (node, v) => { node.style.opacity = v; };
+
+  function fit() {
+    document.querySelectorAll('.stagebox').forEach(b => {
+      const w = +b.dataset.w, h = +b.dataset.h, k = b.clientWidth / w;
+      b.style.height = (h * k) + 'px';
+      b.firstElementChild.style.transform = `scale(${k})`;
+    });
+  }
+
+  // ===== HERO: messy exports to an approved decision, plays on a loop =====
+  const hs = document.getElementById('hero-stage');
+  const files = [
+    { x: 20, y: 22, w: 250, name: 'ME2N_export_0309.xlsx', tag: 'SAP', rows: ['PO 4500118 SG-B02 NORVALE', 'need-by 14/05/27  qty 1', 'PO 4500121 XFMR-B1 ...', 'PO 4500130 GEN-B2 ...'], hit: 0 },
+    { x: 20, y: 172, w: 250, name: 'longlead_tracker_v7.xlsx', tag: 'Excel', rows: ['SG-B02  ship 18-Jun  !!', 'XFMR-B1 on track', 'CDU-B lot 2 tbc', 'note: chase Norvale'], hit: 0 },
+    { x: 20, y: 322, w: 250, name: 'HeronB_rev03.xer', tag: 'P6', rows: ['A1420 Energize Hall B', 'A1460 IST L5', 'A1500 Handover  14May27', 'float: 0d'], hit: 2 },
+  ];
+  files.forEach(f => {
+    f.el = el('div', { class: 'file', style: `left:${f.x}px;top:${f.y}px;width:${f.w}px` }, hs, `<div class="fh"><span>${f.name}</span><span>${f.tag}</span></div>` + f.rows.map((r, i) => `<div class="fr${i === f.hit ? ' hit' : ''}">${r}</div>`).join(''));
+    f.scan = el('div', { class: 'scan', style: 'top:30px;opacity:0' }, f.el);
+    f.ok = el('div', { class: 'ok', style: `left:${f.x + f.w - 70}px;top:${f.y - 14}px;opacity:0` }, hs, 'read as-is');
+  });
+  const hLines = sv('svg', { width: 600, height: 470, style: 'position:absolute;inset:0;pointer-events:none' }, hs);
+  const hPaths = files.map((f, i) => { const y1 = f.y + 45 + f.hit * 26, d = `M${f.x + f.w} ${y1} C ${f.x + f.w + 40} ${y1}, 290 ${78 + i * 10}, 312 ${78 + i * 10}`; const p = sv('path', { d, fill: 'none', stroke: C.blue, 'stroke-width': 1.5 }, hLines); const L = p.getTotalLength(); p.style.strokeDasharray = L; p.dataset.l = L; return p; });
+  const finding = el('div', { class: 'card', style: 'left:312px;top:22px;width:268px' }, hs, `<div class="ch">Finding</div><div class="ct">SG-B02 arrives 35 days late</div><div style="padding:6px 14px 12px;font-size:13px;color:${C.ink2}">Handover moves 14 May to 18 Jun 2027. Owner: Procurement Director.</div><div class="evid"><span>REL-204</span><span>SCH-089</span></div>`);
+  const opts = el('div', { class: 'card', style: 'left:312px;top:186px;width:268px' }, hs, `<div class="ch">Recovery options</div>
+    <div class="orow" style="grid-template-columns:minmax(0,1fr) auto"><span class="n">Hold</span><span class="m">0 of 35 d</span></div>
+    <div class="orow" style="grid-template-columns:minmax(0,1fr) auto"><span class="n">Expedite</span><span class="m">14 of 35 d</span></div>
+    <div class="orow win" id="h-win" style="grid-template-columns:minmax(0,1fr) auto"><span class="n">Move lineup from Wren</span><span class="m">35 of 35 d</span></div>
+    <div class="orow out" style="grid-template-columns:minmax(0,1fr) auto"><span class="n">Air freight</span><span class="m" style="color:${C.red}">ruled out</span></div>`);
+  const hStamp = el('div', { class: 'stamp', style: 'left:312px;top:392px;width:268px' }, hs, 'Approved · Procurement Director · DR-3105');
+  const hWin = document.getElementById('h-win');
+  function hero(p) {
+    files.forEach((f, i) => {
+      const a = 0.02 + i * 0.05;
+      op(f.el, ss(a, a + 0.08, p));
+      const s = ss(0.12 + i * 0.06, 0.3 + i * 0.06, p);
+      f.scan.style.top = (30 + s * 104) + 'px'; op(f.scan, s > 0 && s < 1 ? 1 : 0);
+      op(f.ok, ss(0.3 + i * 0.06, 0.34 + i * 0.06, p));
+    });
+    hPaths.forEach((pth, i) => { pth.style.strokeDashoffset = pth.dataset.l * (1 - ss(0.38 + i * 0.03, 0.5 + i * 0.03, p)); });
+    const fi = ss(0.48, 0.58, p); op(finding, fi); finding.style.transform = `translateY(${(1 - fi) * 10}px)`;
+    const oi = ss(0.6, 0.7, p); op(opts, oi); opts.style.transform = `translateY(${(1 - oi) * 10}px)`;
+    hWin.style.background = ss(0.72, 0.76, p) > 0.5 ? C.greenS : 'transparent';
+    const st = ss(0.78, 0.86, p); hStamp.style.clipPath = `inset(0 ${100 - st * 100}% 0 0)`;
+    const out = ss(0.95, 1, p); hs.querySelectorAll('.file,.card,.stamp,.ok').forEach(n => { n.style.filter = out ? `opacity(${1 - out})` : ''; });
+  }
+
+  // ===== PLATFORM: three.js stack (systems, platform, apps) =====
+  let platRender = () => {};
+  function initPlatform() {
+    const canvas = document.getElementById('plat-canvas');
+    let renderer;
+    try { if (!window.THREE) throw 0; renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true }); }
+    catch (e) { el('div', { style: 'position:absolute;inset:0;display:grid;place-content:center;text-align:center;color:#6B7280;gap:6px' }, document.getElementById('plat-stage'), '<b style="color:#121417">Decision apps</b><span>EPC · Data centers · Supply chain</span><b style="color:#1F5FD1">Resonance platform</b><span>SAP · Oracle · P6 · Excel</span>'); return; }
+    renderer.setPixelRatio(Math.min(devicePixelRatio || 1, 2));
+    renderer.setSize(720, 560, false);
+    const scene = new THREE.Scene();
+    const aspect = 720 / 560, fh = 12.5;
+    const cam = new THREE.OrthographicCamera(-fh * aspect / 2, fh * aspect / 2, fh / 2, -fh / 2, 0.1, 100);
+    const label = (title, sub, bg, fg, subFg, w = 1024, h = 680, size = 150) => {
+      const c = document.createElement('canvas'); c.width = w; c.height = h;
+      const x = c.getContext('2d'); x.fillStyle = bg; x.fillRect(0, 0, w, h);
+      x.fillStyle = fg; x.font = `700 ${size}px "Hanken Grotesk", sans-serif`; x.fillText(title, w * 0.07, h * 0.74);
+      if (sub) { x.fillStyle = subFg; x.font = `500 ${Math.round(size * 0.4)}px "JetBrains Mono", monospace`; x.fillText(sub, w * 0.072, h * 0.9); }
+      const t = new THREE.CanvasTexture(c); t.anisotropy = 4; return t;
+    };
+    const mkSlab = (w, t, d, title, sub, top, s1, s2, fg, subFg, edge, size) => {
+      const g = new THREE.Group();
+      const mats = [s1, s1, top, s2, s2, s2].map(c => new THREE.MeshBasicMaterial({ color: c, transparent: true }));
+      mats[2] = new THREE.MeshBasicMaterial({ map: label(title, sub, top, fg, subFg, 1024, Math.round(1024 * d / w), size), transparent: true });
+      g.add(new THREE.Mesh(new THREE.BoxGeometry(w, t, d), mats));
+      const ln = new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.BoxGeometry(w, t, d)), new THREE.LineBasicMaterial({ color: edge, transparent: true }));
+      g.add(ln); g.userData.mats = [...mats, ln.material]; scene.add(g); return g;
+    };
+    const setOp = (g, o) => g.userData.mats.forEach(m => { m.opacity = o; m.visible = o > 0.01; });
+    const SW = 6.4, SD = 4.2, ST = 0.22;
+    const sys = [['Excel', 'workbooks'], ['P6', 'schedules'], ['Oracle', 'finance'], ['SAP', 'ERP exports']].map(([a, b]) => mkSlab(SW, ST, SD, a, b, '#FFFFFF', '#E4E7EB', '#CDD3DA', '#121417', '#6B7280', '#121417', 150));
+    const plat = mkSlab(SW, 0.34, SD, 'Resonance', 'ontology · rules · solvers', '#1F5FD1', '#1A4FB0', '#163F8C', '#FFFFFF', '#CFE0FF', '#0E2E6B', 150);
+    const apps = [['EPC', ''], ['Data centers', ''], ['Supply chain', '']].map(([a]) => mkSlab(1.9, 0.5, 2.2, a, 'app', '#FFFFFF', '#EEF3FD', '#DCE6F8', '#121417', '#1F5FD1', '#1F5FD1', a.length > 4 ? 150 : 220));
+    const threads = sys.map((_, i) => {
+      const ln = new THREE.Line(new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(), new THREE.Vector3()]), new THREE.LineBasicMaterial({ color: '#1F5FD1', transparent: true }));
+      scene.add(ln); return { ln, x: -2.4 + i * 1.6, z: SD / 2 - 0.3 };
+    });
+    platRender = p => {
+      const gap = 1.35;
+      sys.forEach((g, i) => { const inn = ss(0.02 + i * 0.05, 0.16 + i * 0.05, p); g.position.set(0, i * gap - (1 - inn) * 1.4, 0); setOp(g, inn); });
+      const topY = (sys.length - 1) * gap;
+      const d = ss(0.24, 0.46, p), py = lerp(topY + 6, topY + 1.35, d);
+      plat.position.set(0, py, 0); setOp(plat, ss(0.22, 0.32, p));
+      threads.forEach((t, i) => {
+        const g = ss(0.46 + i * 0.03, 0.58 + i * 0.03, p), y0 = py - 0.17, y1 = sys[i].position.y + ST / 2;
+        const pos = t.ln.geometry.attributes.position; pos.setXYZ(0, t.x, y0, t.z); pos.setXYZ(1, t.x, lerp(y0, y1, g), t.z); pos.needsUpdate = true;
+        t.ln.material.opacity = g > 0 ? 1 : 0;
+      });
+      apps.forEach((g, i) => { const a = ss(0.62 + i * 0.07, 0.8 + i * 0.07, p); g.position.set(-2.15 + i * 2.15, py + 0.42 + (1 - a) * -0.5, -0.9); g.scale.y = Math.max(0.01, a); setOp(g, a); });
+      const az = lerp(-0.5, -0.18, p) + Math.PI / 4;
+      cam.position.set(Math.sin(az) * 14, 9.5, Math.cos(az) * 14);
+      cam.lookAt(0, lerp(3.0, 3.8, p), 0);
+      renderer.render(scene, cam);
+    };
+    frame(true);
+  }
+
+  // ===== HOW IT WORKS: connect, map, generate =====
+  const how = document.getElementById('how-stage'), hsvg = document.getElementById('how-svg');
+  const steps = [...document.querySelectorAll('#steps li')];
+  // step 1: three exports, agents scan, one conflict resolved
+  const g1 = el('div', { style: 'position:absolute;inset:0' }, how);
+  const f1 = [
+    { x: 24, y: 40, name: 'SAP · ME2N export', rows: ['PO 4500118  SG-B02  need-by 14/05/27', 'PO 4500121  XFMR-B1  need-by 02/04/27', 'PO 4500130  GEN-B2   need-by 20/04/27'], conf: 0 },
+    { x: 24, y: 214, name: 'Excel · long-lead tracker', rows: ['SG-B02   ship 18 Jun   supplier email', 'XFMR-B1  on track', 'CDU-B    lot 2 tbc'], conf: 0 },
+    { x: 24, y: 388, name: 'P6 · Heron Hall B rev 03', rows: ['A1420  Energize Hall B    float 0d', 'A1460  IST level 5', 'A1500  Handover  14 May 2027'] },
+  ];
+  f1.forEach(f => {
+    f.el = el('div', { class: 'file', style: `left:${f.x}px;top:${f.y}px;width:340px` }, g1, `<div class="fh"><span>${f.name}</span><span>as-is</span></div>` + f.rows.map((r, i) => `<div class="fr" data-i="${i}">${r}</div>`).join(''));
+    f.scan = el('div', { class: 'scan', style: 'top:30px;opacity:0' }, f.el);
+    f.ok = el('div', { class: 'ok', style: `left:${f.x + 352}px;top:${f.y + 12}px;opacity:0` }, g1, '✓ mapped');
+  });
+  const conf = el('div', { class: 'note', style: 'left:400px;top:120px;width:330px;opacity:0;border:1px solid #F2C9A8;background:#FDF0E6;color:#C2570C;padding:12px 14px;border-radius:4px' }, g1, 'Conflict found: SG-B02 need-by is 14 May in SAP, ship date is 18 Jun in the tracker.<br><span style="color:#3A4049">Kept the supplier notice (REL-204) and flagged it to the owner.</span>');
+  // step 2: ontology nodes
+  const g2 = sv('g', {}, hsvg);
+  const N = [
+    { id: 'pkg', x: 300, y: 250, t: 'PACKAGE', v: 'SG-B02 switchgear', hot: 1 },
+    { id: 'sup', x: 60, y: 110, t: 'SUPPLIER', v: 'Norvale Electric' },
+    { id: 'hall', x: 540, y: 110, t: 'SPACE', v: 'Hall B · 32 MW' },
+    { id: 'own', x: 60, y: 390, t: 'ROLE', v: 'Procurement Director' },
+    { id: 'gate', x: 540, y: 250, t: 'MILESTONE', v: 'Handover 14 May 2027' },
+    { id: 'rule', x: 540, y: 390, t: 'CONSTRAINT', v: 'Protection design rev C' },
+    { id: 'crew', x: 300, y: 70, t: 'RESOURCE', v: 'Electrical crew' },
+  ];
+  const L2 = [['sup', 'pkg', 'supplies'], ['pkg', 'hall', 'installs in'], ['pkg', 'gate', 'gates'], ['own', 'pkg', 'owns'], ['rule', 'pkg', 'must match'], ['crew', 'pkg', 'waits on']];
+  const NW = 170, NH = 58, byId = {};
+  const gl = sv('g', {}, g2), gn = sv('g', {}, g2);
+  N.forEach((n, i) => {
+    byId[n.id] = n; n.i = i;
+    n.g = sv('g', {}, gn);
+    sv('rect', { x: n.x, y: n.y, width: NW, height: NH, rx: 4, fill: n.hot ? C.blueS : C.paper, stroke: n.hot ? C.blue : C.ink, 'stroke-width': 1.5 }, n.g);
+    txt(n.g, n.x + 12, n.y + 21, n.t, { mono: 1, size: 10, fill: n.hot ? C.blue : C.mute, ls: '0.06em' });
+    txt(n.g, n.x + 12, n.y + 42, n.v, { size: 14, weight: 700 });
+  });
+  const center = n => [n.x + NW / 2, n.y + NH / 2];
+  L2.forEach((l, i) => {
+    const [ax, ay] = center(byId[l[0]]), [bx, by] = center(byId[l[1]]);
+    const p = sv('path', { d: `M${ax} ${ay} L${bx} ${by}`, stroke: C.ink2, 'stroke-width': 1.2, fill: 'none' }, gl);
+    const len = Math.hypot(bx - ax, by - ay); p.style.strokeDasharray = len; l.p = p; l.len = len;
+    const lab = sv('g', {}, gl);
+    const mx = (ax + bx) / 2, my = (ay + by) / 2;
+    sv('rect', { x: mx - l[2].length * 3.6 - 6, y: my - 10, width: l[2].length * 7.2 + 12, height: 18, rx: 2, fill: C.bg || '#FBFBFA', stroke: C.rule }, lab);
+    txt(lab, mx, my + 3.5, l[2], { mono: 1, size: 11, fill: C.ink2, anchor: 'middle' });
+    l.lab = lab;
+  });
+  // step 3: decision with options and evidence
+  const g3 = el('div', { style: 'position:absolute;inset:0' }, how);
+  const fcard = el('div', { class: 'card', style: 'left:24px;top:28px;width:300px' }, g3, `<div class="ch">Finding</div><div class="ct">SG-B02 arrives 35 days late</div><div style="padding:6px 14px 14px;font-size:13px;color:${C.ink2};line-height:1.45">No float on the electrical path. Handover moves from 14 May to 18 Jun 2027. Crew standby costs $18,400 a day.</div><div class="evid"><span>REL-204</span><span>SCH-089</span></div>`);
+  const ocard = el('div', { class: 'card', style: 'left:344px;top:28px;width:392px' }, g3, `<div class="ch">Recommended actions, checked against the rules</div><div style="height:10px"></div>
+    <div class="orow"><span class="n">Hold and absorb the slip</span><span class="m">$0</span><span class="m">0 of 35 d</span></div>
+    <div class="orow"><span class="n">Expedite with the supplier</span><span class="m">$1,150,000</span><span class="m">14 of 35 d</span></div>
+    <div class="orow" id="w3"><span class="n">Move qualified lineup from Wren</span><span class="m">$410,000</span><span class="m">35 of 35 d</span></div>
+    <div class="orow out" id="o3"><span class="n">Air-freight from a second supplier</span><span class="m">n/a</span><span class="m">n/a</span></div>
+    <div class="why-out" id="r3">Ruled out: not qualified for the Hall B protection design</div>
+    <div class="evid"><span>ENG-117</span><span>LOG-061</span><span>COM-033</span></div>`);
+  const w3 = document.getElementById('w3'), o3 = document.getElementById('o3'), r3 = document.getElementById('r3');
+  const appr = el('div', { class: 'card', style: 'left:24px;top:300px;width:300px;padding-bottom:14px' }, g3, `<div class="ch">Decision owner</div><div class="ct">Procurement Director</div><div style="padding:4px 14px 0;font-size:13px;color:${C.ink2}">Reviews the options and the evidence, then approves one.</div>`);
+  const stamp3 = el('div', { class: 'stamp', style: 'left:344px;top:330px;width:392px;font-size:13px' }, g3, 'Approved: move the Wren lineup<br>Procurement Director · 10 Mar 2027 · record DR-3105');
+  const kept = el('div', { class: 'note', style: 'left:344px;top:410px;width:392px;color:#6B7280;opacity:0' }, g3, 'Every figure stays linked to its source. Results export back to SAP and the tracker.');
+  function howRender(p) {
+    const k = p < 0.34 ? 0 : p < 0.67 ? 1 : 2;
+    steps.forEach((li, i) => li.classList.toggle('on', i === k));
+    // step 1
+    const s1in = ss(0, 0.06, p), s1out = ss(0.3, 0.36, p);
+    op(g1, s1in * (1 - s1out));
+    f1.forEach((f, i) => {
+      const s = ss(0.05 + i * 0.05, 0.15 + i * 0.05, p);
+      f.scan.style.top = (30 + s * 84) + 'px'; op(f.scan, s > 0 && s < 1 ? 1 : 0);
+      op(f.ok, ss(0.15 + i * 0.05, 0.18 + i * 0.05, p));
+      const c = ss(0.22, 0.26, p);
+      if (f.conf === 0) f.el.querySelector('.fr[data-i="0"]').classList.toggle('conf', c > 0.5);
+    });
+    const ci = ss(0.22, 0.28, p); op(conf, ci); conf.style.transform = `translateY(${(1 - ci) * 8}px)`;
+    // step 2
+    const s2in = ss(0.33, 0.38, p), s2out = ss(0.63, 0.69, p);
+    g2.setAttribute('opacity', s2in * (1 - s2out));
+    N.forEach(n => { const a = ss(0.36 + n.i * 0.02, 0.42 + n.i * 0.02, p); n.g.setAttribute('opacity', a); n.g.setAttribute('transform', `translate(0 ${(1 - a) * 8})`); });
+    L2.forEach((l, i) => { const a = ss(0.44 + i * 0.025, 0.5 + i * 0.025, p); l.p.style.strokeDashoffset = l.len * (1 - a); l.lab.setAttribute('opacity', ss(0.48 + i * 0.025, 0.52 + i * 0.025, p)); });
+    // step 3
+    const s3in = ss(0.67, 0.72, p);
+    op(g3, s3in);
+    const fa = ss(0.68, 0.74, p); op(fcard, fa); fcard.style.transform = `translateY(${(1 - fa) * 10}px)`;
+    const oa = ss(0.72, 0.78, p); op(ocard, oa); ocard.style.transform = `translateY(${(1 - oa) * 10}px)`;
+    const ro = ss(0.79, 0.82, p); o3.style.opacity = 1; r3.style.opacity = ro; o3.querySelector('.n').style.textDecoration = ro > 0.5 ? 'line-through' : 'none';
+    w3.classList.toggle('win', ss(0.83, 0.86, p) > 0.5);
+    op(appr, ss(0.84, 0.88, p));
+    const sw = ss(0.88, 0.95, p); stamp3.style.clipPath = `inset(0 ${100 - sw * 100}% 0 0)`;
+    op(kept, ss(0.95, 0.99, p));
+  }
+
+  // ===== WHY: five small drawn icons that draw on view =====
+  const whyItems = [
+    ['Turn fragmented data into a single decision layer', 'M6 30 L18 18 M6 14 L18 18 M6 6 L18 18 M18 18 L38 18 M30 10 L38 18 L30 26'],
+    ['Track issues by owner, impact, and priority', 'M8 8 h28 M8 18 h20 M8 28 h12 M36 24 a4 4 0 1 0 0.1 0'],
+    ['Compare recovery options with cost and schedule tradeoffs', 'M6 36 L6 6 M6 36 L38 36 M12 28 h8 M12 20 h16 M12 12 h22'],
+    ['Keep humans in control with review, approval, and audit trails', 'M22 6 a7 7 0 1 0 0.1 0 M10 38 c0 -10 24 -10 24 0 M30 26 l4 4 l8 -8'],
+    ['Export outputs back into the tools teams already use', 'M8 8 h18 v28 h-18 z M24 22 h16 M34 16 l6 6 l-6 6'],
+  ];
+  const wg = document.getElementById('why-grid');
+  const whyPaths = whyItems.map(([t, d]) => {
+    const card = el('div', { class: 'why-card inview', 'data-scene': 'why' }, wg);
+    const s = sv('svg', { viewBox: '0 0 44 44' }, card);
+    const p = sv('path', { d, fill: 'none', stroke: C.blue, 'stroke-width': 2, 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }, s);
+    el('p', {}, card, t);
+    return { card, p };
+  });
+  whyPaths.forEach(w => { const L = w.p.getTotalLength(); w.p.style.strokeDasharray = L; w.L = L; });
+  function whyRender(p, card) { const w = whyPaths.find(x => x.card === card); if (w) w.p.style.strokeDashoffset = w.L * (1 - ss(0.1, 0.7, p)); }
+
+  // ===== EPC: the ripple =====
+  const epc = document.getElementById('epc-svg');
+  const EN = [
+    { x: 24, y: 160, t: 'PACKAGE', a: 'SG-B02 on time', b: '+35 days' },
+    { x: 178, y: 60, t: 'ENERGIZATION', a: 'On plan', b: '+35 days' },
+    { x: 178, y: 260, t: 'CREW', a: 'Working', b: 'Standby' },
+    { x: 332, y: 60, t: 'COMMISSIONING', a: 'On plan', b: '+35 days' },
+    { x: 486, y: 160, t: 'HANDOVER', a: '14 May 2027', b: '18 Jun 2027' },
+  ];
+  const EL = [[0, 1, 0.3], [0, 2, 0.3], [1, 3, 0.5], [3, 4, 0.7]];
+  const eg = sv('g', {}, epc), en = sv('g', {}, epc);
+  const EW = 130, EH = 64;
+  EL.forEach(l => { const A = EN[l[0]], B = EN[l[1]]; const x1 = A.x + EW, y1 = A.y + EH / 2, x2 = B.x, y2 = B.y + EH / 2; const d = `M${x1} ${y1} C${x1 + 24} ${y1}, ${x2 - 24} ${y2}, ${x2} ${y2}`; sv('path', { d, stroke: C.rule, 'stroke-width': 1.5, fill: 'none' }, eg); const h = sv('path', { d, stroke: C.amber, 'stroke-width': 2.5, fill: 'none' }, eg); const L = h.getTotalLength(); h.style.strokeDasharray = L; l.h = h; l.L = L; EN[l[1]].at = l[2] + 0.12; });
+  EN[0].at = 0.22;
+  EN.forEach(n => { n.g = sv('g', {}, en); n.r = sv('rect', { x: n.x, y: n.y, width: EW, height: EH, rx: 4, fill: C.paper, stroke: C.ink, 'stroke-width': 1.5 }, n.g); txt(n.g, n.x + 10, n.y + 20, n.t, { mono: 1, size: 10, fill: C.mute, ls: '0.05em' }); n.ta = txt(n.g, n.x + 10, n.y + 46, n.a, { size: 15, weight: 700 }); n.tb = txt(n.g, n.x + 10, n.y + 46, n.b, { size: 15, weight: 700, fill: C.amber }); });
+  const epcNote = txt(epc, 24, 372, 'One delivery slip, traced through every linked milestone.', { mono: 1, size: 11, fill: C.mute });
+  function epcRender(p) {
+    EL.forEach(l => { l.h.style.strokeDashoffset = l.L * (1 - ss(l[2], l[2] + 0.14, p)); });
+    EN.forEach(n => { const s = ss(n.at, n.at + 0.06, p); n.r.setAttribute('fill', s > 0.5 ? C.amberS : C.paper); n.r.setAttribute('stroke', s > 0.5 ? C.amber : C.ink); n.ta.setAttribute('opacity', 1 - s); n.tb.setAttribute('opacity', s); });
+  }
+
+  // ===== DATA CENTERS: portfolio =====
+  const dc = document.getElementById('dc-svg');
+  const sites = [{ n: 'Heron · Hall B', y: 60 }, { n: 'Wren · Phase 2', y: 170 }, { n: 'Ibis · Hall A', y: 280 }];
+  const X0 = 170, X1 = 600, mo = ['Jan', 'Mar', 'May', 'Jul', 'Sep'];
+  mo.forEach((m, i) => { const x = X0 + i * (X1 - X0) / 4; sv('line', { x1: x, y1: 36, x2: x, y2: 350, stroke: C.faint }, dc); txt(dc, x, 28, m + ' 27', { mono: 1, size: 10, fill: C.mute, anchor: 'middle' }); });
+  sites.forEach(s => { txt(dc, 20, s.y + 22, s.n, { size: 14, weight: 700 }); s.sub = txt(dc, 20, s.y + 42, 'On target', { mono: 1, size: 11, fill: C.green }); s.bar = sv('rect', { x: X0, y: s.y + 8, width: 0, height: 26, rx: 3, fill: C.ink }, dc); s.com = sv('line', { x1: 0, y1: s.y, x2: 0, y2: s.y + 42, stroke: C.blue, 'stroke-width': 2, 'stroke-dasharray': '3 3' }, dc); });
+  const sx = m => X0 + (m / 8) * (X1 - X0); // months from Jan
+  const H = sites[0], Wr = sites[1], Ib = sites[2];
+  const slip = sv('rect', { x: sx(4.45), y: H.y + 8, width: 0, height: 26, rx: 3, fill: C.amber }, dc);
+  const arc = sv('path', { d: `M${sx(3.2)} ${Wr.y + 8} C ${sx(3.2)} ${Wr.y - 40}, ${sx(3.6)} ${H.y + 80}, ${sx(3.7)} ${H.y + 34}`, stroke: C.green, 'stroke-width': 2, fill: 'none', 'marker-end': '' }, dc);
+  const arcL = arc.getTotalLength(); arc.style.strokeDasharray = arcL;
+  const arcLab = txt(dc, sx(3.7) + 10, H.y + 70, 'move qualified lineup', { mono: 1, size: 11, fill: C.green });
+  function dcRender(p) {
+    const grow = ss(0.05, 0.3, p);
+    [[H, 4.45], [Wr, 6.2], [Ib, 7.4]].forEach(([s, end]) => { s.bar.setAttribute('width', (sx(end) - X0) * grow); s.com.setAttribute('x1', sx(end)); s.com.setAttribute('x2', sx(end)); });
+    const sl = ss(0.35, 0.5, p) * (1 - ss(0.72, 0.85, p));
+    slip.setAttribute('width', (sx(5.6) - sx(4.45)) * sl);
+    H.sub.textContent = sl > 0.3 ? '+35 days, handover at risk' : (p > 0.8 ? 'Back on target' : 'On target');
+    H.sub.setAttribute('fill', sl > 0.3 ? C.amber : C.green);
+    arc.style.strokeDashoffset = arcL * (1 - ss(0.55, 0.72, p));
+    arcLab.setAttribute('opacity', ss(0.65, 0.72, p));
+    Wr.sub.textContent = p > 0.75 ? 'Keeps 38 days of float' : 'On target';
+  }
+
+  // ===== SUPPLY CHAIN: allocate under rules =====
+  const sc = document.getElementById('sc-svg');
+  const src = [{ n: 'Port A', x: 40, y: 110 }, { n: 'Port B', x: 40, y: 250 }];
+  const dcN = { n: 'DC North', x: 250, y: 180 };
+  const regs = [0, 1, 2, 3].map(i => ({ n: 'Region ' + (i + 1), x: 470, y: 50 + i * 82 }));
+  const box = (n, w = 120, h = 46, fill = C.paper, stroke = C.ink) => { const g = sv('g', {}, sc); n.r = sv('rect', { x: n.x, y: n.y, width: w, height: h, rx: 4, fill, stroke, 'stroke-width': 1.5 }, g); txt(g, n.x + 12, n.y + 28, n.n, { size: 14, weight: 700 }); return g; };
+  const flow = (a, b, w) => { const d = `M${a.x + 120} ${a.y + 23} C ${a.x + 170} ${a.y + 23}, ${b.x - 50} ${b.y + 23}, ${b.x} ${b.y + 23}`; const p = sv('path', { d, stroke: C.blue, 'stroke-width': w, fill: 'none', 'stroke-dasharray': '6 6', opacity: 0.85 }, sc); return p; };
+  const fl1 = src.map(s => flow(s, dcN, 3));
+  const fl2 = regs.map(r => flow(dcN, r, 3));
+  src.forEach(s => box(s)); box(dcN, 120, 46, C.blueS, C.blue);
+  regs.forEach(r => { box(r); r.fill = sv('rect', { x: r.x + 130, y: r.y + 14, width: 0, height: 18, rx: 2, fill: C.green }, sc); r.pct = txt(sc, r.x + 130, r.y + 10, '', { mono: 1, size: 10, fill: C.mute }); });
+  const delay = txt(sc, 40, 330, '', { mono: 1, size: 11, fill: C.amber });
+  const rule = sv('g', {}, sc); const ruleR = sv('rect', { x: 250, y: 300, width: 190, height: 40, rx: 3, fill: C.paper, stroke: C.rule }, rule); const ruleT = txt(rule, 262, 325, 'Rule: no region under 90%', { mono: 1, size: 11, fill: C.ink2 });
+  const before = [96, 94, 92, 84], after = [93, 92, 91, 91];
+  let dash = 0;
+  function scRender(p) {
+    const late = ss(0.25, 0.4, p), fix = ss(0.55, 0.8, p);
+    fl1[1].setAttribute('stroke-width', lerp(3, 1, late));
+    fl1[1].setAttribute('stroke', late > 0.5 ? C.amber : C.blue);
+    delay.textContent = late > 0.3 ? 'Port B container 9 days late' : '';
+    regs.forEach((r, i) => { const v = lerp(before[i], after[i], fix) * ss(0.02, 0.2, p); r.fill.setAttribute('width', Math.max(0, (v - 70) * 2.6)); r.fill.setAttribute('fill', v < 90 && p > 0.2 ? C.red : C.green); r.pct.textContent = p > 0.15 ? Math.round(v) + '% of demand' : ''; });
+    fl2.forEach((f, i) => f.setAttribute('stroke-width', lerp(3, i === 3 ? 4.5 : 2.5, fix)));
+    const broken = late > 0.5 && fix < 0.5;
+    ruleR.setAttribute('stroke', broken ? C.red : (fix > 0.5 ? C.green : C.rule));
+    ruleT.textContent = broken ? 'Rule broken: Region 4 at 84%' : (fix > 0.5 ? 'Rule met in all 4 regions' : 'Rule: no region under 90%');
+    ruleT.setAttribute('fill', broken ? C.red : (fix > 0.5 ? C.green : C.ink2));
+  }
+  // marching flow dashes (ambient)
+  function march() { if (!reduce) { dash = (dash - 0.6) % 12; sc.querySelectorAll('path[stroke-dasharray]').forEach(pth => pth.style.strokeDashoffset = dash); requestAnimationFrame(march); } }
+
+  // ===== COST BAR =====
+  const cb = document.getElementById('costbar');
+  const segs = [['Ontology', '#8DB0F0', 30], ['Rules and constraints', '#B7CDF5', 24], ['Solvers', '#DDE7FA', 26], ['Decision logic and evidence', '#F7F8FA', 19.4], ['', '#F4B860', 0.6]];
+  const segEls = segs.map(([n, c, w]) => el('div', { class: 'seg', style: `background:${c};width:${w}%` }, cb, n));
+  function costRender(p) { segEls.forEach((s, i) => { s.style.width = (segs[i][2] * ss(0.05 + i * 0.1, 0.35 + i * 0.1, p)) + '%'; }); }
+
+  // ===== scroll engine =====
+  const pinned = [...document.querySelectorAll('.pinned')].map(s => ({ s, bar: s.querySelector('.progress i'), last: -1, fn: s.dataset.scene === 'platform' ? p => platRender(p) : howRender }));
+  const views = [...document.querySelectorAll('.inview')].map(v => ({ v, last: -1, fn: { epc: epcRender, dc: dcRender, sc: scRender, cost: costRender, why: p => whyRender(p, v) }[v.dataset.scene] }));
+  function frame(force) {
+    const vh = innerHeight;
+    for (const o of pinned) {
+      const r = o.s.getBoundingClientRect(), span = o.s.offsetHeight - (vh - 64);
+      const p = reduce ? 1 : (span <= 0 ? 1 : clamp((64 - r.top) / span));
+      if (force || Math.abs(p - o.last) > 0.0004) { o.last = p; o.fn(p); if (o.bar) o.bar.style.transform = `scaleX(${p})`; }
+    }
+    for (const o of views) {
+      const r = o.v.getBoundingClientRect();
+      const p = reduce ? 1 : clamp((vh - r.top) / (vh * 0.75));
+      if (force || Math.abs(p - o.last) > 0.0004) { o.last = p; o.fn(p); }
+    }
+  }
+  // hero loop (time-driven)
+  const LOOP = 11000; let t0 = performance.now();
+  function heroTick(now) { const t = ((now - t0) % LOOP) / LOOP; hero(Math.min(1, t * 1.08)); requestAnimationFrame(heroTick); }
+
+  addEventListener('scroll', () => requestAnimationFrame(() => frame(false)), { passive: true });
+  addEventListener('resize', () => { fit(); frame(true); });
+  fit(); frame(true);
+  if (reduce) hero(0.9); else requestAnimationFrame(heroTick);
+  march();
+  (document.fonts ? document.fonts.ready : Promise.resolve()).then(initPlatform);
+})();
+</script>

@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Resonance for Data Centers</title>
+<meta name="description" content="The data center journey: a portfolio, one slip rippling through it, the options that pass the gates, the donor check and the signed record.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="corridor.css">
+<style>.hero { text-align: left; } .hero .in { max-width: 980px; } .hero h1 { font-size: clamp(38px, 5.6vw, 76px); } .hero .lead { margin-left: 0; } .hero .ctas { justify-content: flex-start; } .kicker { margin-bottom: 18px; opacity: 0; animation: wIn 1s .2s forwards; } .sec .in { max-width: 1180px; } .room .in { display: grid; grid-template-columns: minmax(0, 520px); gap: 18px; align-items: start; } .cta h2 { font-size: clamp(32px, 4.6vw, 60px); } .rec { background: rgba(17,20,27,.7); border: 1px solid var(--rule); border-radius: 8px; padding: 12px 14px; font: 400 12.5px/1.55 var(--mono); color: var(--bone-2); margin-top: 16px; } .rec b { color: var(--bone); font-weight: 500; } .rec .sig { color: var(--ok); } .rec .ln { display: block; overflow: hidden; white-space: nowrap; max-width: 0; } .note { font: 400 12px/1.4 var(--mono); color: var(--mute); margin-top: 10px; } .note b { color: var(--ember); font-weight: 500; }</style>
+</head>
+<body>
+<div id="veil" class="on"></div>
+<canvas id="gl" aria-hidden="true"></canvas>
+<div class="scrim" id="scrimL" aria-hidden="true"></div><div class="scrim" id="scrimC" aria-hidden="true"></div>
+<div class="tip" id="tip" aria-hidden="true"><div class="t"></div><div class="b"></div></div>
+<header class="nav"><div class="in">
+  <a class="logo" href="index.html" data-page><i></i>Resonance</a>
+  <nav><a href="index.html#product" data-page>Platform</a><a href="epc.html" data-page>EPC</a><a href="data-centers.html" data-page>Data centers</a><a href="supply-chain.html" data-page>Supply chain</a></nav>
+  <a class="btn primary mag" href="#" data-go="4">Book a working session</a>
+</div></header>
+<div class="scroller" aria-hidden="true" style="height: 1000vh"></div>
+<div class="stage">
+<section class="sec hero on" id="hero"><div class="in">
+  <div class="kicker layer">Data centers</div>
+  <h1 class="layer" id="h1"></h1>
+  <p class="lead layer">Resonance helps data center teams manage supplier issues, readiness gates, commissioning blockers, and portfolio forecasts across multiple sites.</p>
+  <div class="ctas layer"><a class="btn primary mag" href="#" data-go="4">Book a working session</a><a class="btn ghost mag" href="#" data-go="1">See the journey ↓</a></div>
+  <span class="sample layer">Sample data · fictional company and project · hover anything in the scene</span>
+</div></section>
+
+<section class="sec room" id="ripple"><div class="in">
+  <div class="eyebrow">The problem</div>
+  <h2>One date moves. Everything linked to it moves too.</h2>
+  <p class="lead">The slip arrives as an email; its effect on the handover arrives weeks later. Resonance holds the links, so the change travels down them the moment it lands, and every object recounts its new value in place.</p>
+  <div class="hint">Hover a node to see what it feeds, blocks or waits on.</div>
+</div></section>
+<section class="sec room" id="gates"><div class="in">
+  <div class="eyebrow">How it works</div>
+  <h2>Only options that pass the gates come out the other side.</h2>
+  <p class="lead">Gear that fits the design. A slot that exists. A crew that is free. The air-freight idea stops at the first gate, and its reason prints beside it. What comes through can actually be built.</p>
+  <div class="hint">Hover an option or a gate.</div>
+</div></section>
+<section class="sec room" id="donor"><div class="in">
+  <div class="eyebrow">The record</div>
+  <h2>Does the fix just move the problem? Then someone signs.</h2>
+  <p class="lead">Project Wren phase 2 has no customer commitment. After release it keeps 38 days of float, and the re-order lands inside it. The owner's role signs the record, with a timestamp, and the record is append-only from then on.</p>
+  <div class="rec" id="rec"><span class="ln"><b>DR-3105</b> · Reallocate qualified lineup from Project Wren, phase 2</span><span class="ln">Evidence <b>ENG-117 · REL-204 · LOG-061 · SCH-089 · COM-033</b></span><span class="ln sig">Approved 10 Mar 2027 08:14 · Procurement Director · append-only</span></div>
+  <div class="hint">Hover the float bar, the landing, or the signature.</div>
+</div></section>
+<section class="sec cta" id="book"><div class="in">
+  <div class="eyebrow">Bring us one late package</div>
+  <h2>Ninety minutes. Your data stays with you.</h2>
+  <div class="ccard" id="ccard">
+    <form class="form" onsubmit="return false">
+      <div class="row2"><div><label>Work email</label><input placeholder="you@company.com"></div><div><label>Company</label><input placeholder="Company"></div></div>
+      <div class="row2"><div><label>Role</label><input placeholder="Procurement Director"></div><div><label>The late package</label><input placeholder="e.g. a switchgear lineup, +35 d"></div></div>
+      <div class="ctas"><a class="btn primary mag" href="#">Book a working session</a><a class="btn ghost mag" href="index.html" data-page>Back to the platform</a></div>
+    </form>
+    <p>You leave with a sample decision record built on your package. The model never makes the call; a named owner signs.</p>
+  </div>
+  <div class="foot">Resonance helps operational teams make faster, better decisions with the data they already have.<span class="sample">Sample data on this page is fictional.</span></div>
+</div></section>
+</div>
+<div class="bar" id="bar"><span>Resonance</span><div class="prog"><i id="prog"></i></div><a class="btn primary mag" href="#" data-go="4">Book a working session</a></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.160.0/three.min.js"></script>
+<script src="corridor.js"></script>
+<script>
+(() => {
+const { ss, clamp, lerp, eo, snap, sub, vis, words, OX, OY, PH0, FINE } = Corridor;
+const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+const LX = PH0 ? 0 : -.6;
+words($('#h1'), "See portfolio risk before it becomes delivery risk.");
+const heroPeel = (q) => { const peel = ss(.25, .95, q); $$('.hero .layer').forEach((l, i) => { l.style.transform = `translateY(${-peel * (40 - i * 8)}px) scale(${1 + peel * (.5 - i * .1)})`; l.style.opacity = 1 - ss(.3, .75, q); l.style.filter = `blur(${peel * 6}px)`; }); };
+const CTA = { name: 'book', a: .88, b: 1, dom: '#book', selfDom: true, shift: 0, scrim: 'none', cam: [[0, OX, 0, 22, OX + LX + 1, OY, -16], [1, 0, 0, -6, 0, 0, -40]], build() {},
+  update(q, K, S, el) { K.fade = ss(.12, .55, q); const up = ss(.3, .6, q); $('#ccard').style.opacity = up; $('#ccard').style.transform = `translateY(${(1 - up) * 40}px) scale(${lerp(.97, 1, up)})`; el.style.opacity = ss(.18, .42, q); el.querySelector('.in').style.transform = `translateY(${(1 - ss(.18, .5, q)) * 30}px)`; } };
+
+function site(K, name, x, y, tip) { const n = new THREE.Group(); n.add(new THREE.Mesh(new THREE.OctahedronGeometry(.44, 0), K.solidMat(K.PAL.teal))); const r1 = K.ring(.72, K.C.bone, .5), r2 = K.ring(1.02, K.C.bone, .3); n.add(r1); n.add(r2); const l = K.label('Project ' + name, { px: 22 }); l.position.set(0, -1.4, 0); n.add(l); n.position.set(x, y, 0); n.userData.rings = [r1, r2]; n.userData.core = n.children[0]; K.hover(n, { w: 2.2, h: 2.2, dy: 1.1, meta: { id: 'site-' + name }, tip: () => ({ t: 'Project ' + name, b: tip }) }); return n; }
+const SECTIONS = [
+{ name: 'hero', a: 0, b: .14, dom: '#hero',
+  cam: [[0, 0, 0, 2, LX, 0, -30], [.5, 2.4, .6, -16, OX + LX, OY, -46], [1, -1.2, .8, -36, OX + LX + .5, OY + .3, -46]],
+  build(g, K, S) { const d = new THREE.Group(); S.sites = [site(K, 'Heron', 0, .4, 'Hall B · 32 MW IT · commitment 14 May 2027 · <code>+35 d</code> after SG-B02 slipped · 1,120 MW IT-days exposed'), site(K, 'Wren', -3.6, 1.6, 'Hall A · 20 MW IT · <code>+9 d</code> · phase 2 uncommitted with 38 d of float'), site(K, 'Ibis', 3.4, -1.3, 'Development gate · on target')]; S.sites.forEach(s => d.add(s)); S.nodes = []; d.add(K.haze(K.PAL.teal, 40, .09)); for (let i = 0; i < 18; i++) { const n = new THREE.Mesh(new THREE.OctahedronGeometry(.17, 0), K.solidMat(K.PAL.teal, .9)); n.position.set((K.R() - .5) * 10, (K.R() - .5) * 6, (K.R() - .5) * 3); d.add(n); S.nodes.push(n); } const sl = []; S.nodes.forEach(n => { const s = S.sites[Math.floor(K.R() * 3)]; sl.push(n.position.x, n.position.y, n.position.z, s.position.x, s.position.y, s.position.z); }); d.add(K.segs(sl, K.C.bone, .18)); S.amber = K.glow('#E2663A', 4, 0); S.amber.position.copy(S.sites[0].position); d.add(S.amber); d.scale.setScalar(1.25); K.place(g, d, OX, OY, -46); S.d = d; },
+  update(q, K, S) { const T = K.T, f = S.d.userData._f, am = ss(.45, .9, q); S.sites.forEach((s, i) => { const hot = s.userData.hot; s.rotation.y = T * .4 + i; s.userData.rings.forEach((r, j) => { r.rotation.z = T * (j ? -.3 : .5) * (1 + hot * 3); r.scale.setScalar(1 + hot * .25 * (j + 1)); }); s.scale.setScalar(1 + hot * .15 + (i === 0 ? am * .2 : 0)); s.userData.core.material.color.set(K.PAL.teal).lerp(K.C.ember, i === 0 ? am : 0); }); S.nodes.forEach((n, i) => { n.rotation.y = T * .5 + i; }); S.amber.material.opacity = am * (.5 + .3 * Math.sin(T * 3)) * f; heroPeel(q); } },
+{ name: 'ripple', a: .14, b: .4, dom: '#ripple', fade: [.04, .16, .88, .98],
+  cam: [[0, -1.2, .8, 24, OX + LX + .5, OY + .3, 14], [.35, OX - 6, 2.2, -28, OX + LX - 1.5, OY + .4, -44], [.7, OX + 5, -1.2, -30, OX + LX - 1.2, OY - .3, -44], [1, OX + 1, .2, -35, OX + LX + 3, OY, -44]],
+  build(g, K, S) { const w = new THREE.Group(); const N = [['SG-B02 lineup', -4, 1.6, 'arrival 28 Feb', 'arrival 4 Apr · +35 d'], ['Hall B electrical path', -1.4, .2, 'float 0 d', 'float −35 d'], ['Gate 13 · energisation', 1, 1.8, '13 of 18 next', 'waits on the lineup'], ['Electrical crew', 1.4, -1.5, 'booked', 'standby · $18,400 / day'], ['Customer handover', 4.2, 0, '14 May 2027', '18 Jun 2027 · 1,120 MW IT-days']]; const E = [[0, 1, 'moves'], [1, 2, 'blocks'], [1, 4, 'blocks'], [2, 3, 'waits on'], [2, 4, 'gates']];
+    w.add(K.haze(K.PAL.teal, 34, .08)); S.nodes = N.map((n, i) => { const o = new THREE.Group(); o.add(new THREE.Mesh(new THREE.OctahedronGeometry(.3, 0), K.solidMat([K.PAL.blue, K.PAL.teal, K.PAL.gold, K.PAL.plum, K.PAL.green][i]))); const l = K.label(n[0], { px: 18 }); l.position.set(0, .55, 0); o.add(l); const a = K.label(n[3], { px: 17, col: '#B8B2A6' }); a.position.set(0, -.5, 0); o.add(a); const b = K.label(n[4], { px: 17, col: '#E2663A' }); b.position.set(0, -.5, .02); b.scale.setScalar(0); o.add(b); o.userData.a = a; o.userData.b = b; o.position.set(n[1], n[2], 0); w.add(o); K.hover(o, { w: 2.2, h: 1.4, dy: .7, tip: () => ({ t: n[0], b: E.filter(e => e[0] === i || e[1] === i).map(e => e[0] === i ? `<code>${e[2]}</code> ${N[e[1]][0]}` : `${N[e[0]][0]} <code>${e[2]}</code> this`).join('<br>') + '<br><em>' + n[3] + ' → ' + n[4] + '</em>' }) }); return o; });
+    S.edges = E.map(e => { const a = S.nodes[e[0]].position, b = S.nodes[e[1]].position; const l = K.tube([a, b], .025, K.C.bone, .5); w.add(l); const v = K.label(e[2], { px: 15, col: '#B8B2A6' }); v.position.lerpVectors(a, b, .5).add(K.vec(0, .22, .02)); w.add(v); const dot = K.glow('#E2663A', .7, 0); w.add(dot); return { l, v, dot, a, b, e }; });
+    S.lead = K.glow('#E9E3D6', 1.6, 0); S.lead.position.set(4.2, 0, .1); w.add(S.lead); w.scale.setScalar(1.3); K.place(g, w, OX, OY, -44); S.w = w; },
+  update(q, K, S) { const T = K.T, f = S.w.userData._f; const hot = S.nodes.findIndex(n => n.userData.hot > .05); S.nodes.forEach((n, i) => { const reach = ss(.2 + i * .1, .3 + i * .1, q); n.userData.a.material.opacity = .9 * (1 - reach) * f; n.userData.b.scale.setScalar(snap(reach)); n.children[0].material.emissive.copy(n.children[0].material.userData.emBase).add(new THREE.Color(K.C.ember).multiplyScalar(reach * .5 + n.userData.hot * .3)); n.scale.setScalar(1 + n.userData.hot * .12 + reach * .1 * (1 - ss(.4 + i * .1, .5 + i * .1, q))); n.rotation.y = T * .4; }); S.edges.forEach((ed, k) => { const i = ed.e[0], j = ed.e[1]; const t = sub(q, .2 + i * .1 + .02, .3 + j * .1); const touch = hot >= 0 && (i === hot || j === hot) ? S.nodes[hot].userData.hot : 0; ed.l.material.opacity = (.5 - (hot >= 0 ? .3 * S.nodes[hot].userData.hot : 0) + touch * .5) * f; ed.l.material.color.copy(K.C.bone).lerp(K.C.ember, Math.max(touch, ss(.2 + i * .1, .3 + j * .1, q) * .6)); ed.v.material.opacity = (.9 * (hot >= 0 ? touch : .6)) * f; ed.dot.position.lerpVectors(ed.a, ed.b, t); ed.dot.material.opacity = (t > 0 && t < 1 ? 1 : 0) * f; }); S.lead.material.opacity = ss(.75, 1, q) * (.6 + .4 * Math.sin(T * 4)) * f; S.lead.scale.setScalar(1.6 + ss(.75, 1, q) * 2); } },
+{ name: 'gates', a: .4, b: .66, dom: '#gates', fade: [.04, .16, .88, .98],
+  cam: [[0, OX + 1, .2, 25, OX + LX + 3, OY, 16], [.3, OX - 5, 1.5, -27, OX + LX - 1.2, OY, -44], [.65, OX + 5, .5, -30, OX + LX - 1, OY, -44], [1, OX + 1, .2, -35, OX + LX + 3.5, OY + .5, -44]],
+  build(g, K, S) { const w = new THREE.Group(); const GN = [['qualified for this design', 'Ratings, protection, controls interfaces and physical fit, checked against the approved Hall B design. <code>ENG-117</code>'], ['slot exists', 'A receiving window and a place in the installation sequence. <code>LOG-061 · SCH-089</code>'], ['crew free', 'The electrical crew is available for the install dates. <em>No crew, no option.</em>']]; S.gates = GN.map((gn, i) => { const gt = new THREE.Group(); const fr = K.slab(1.1, 4.4, .25, '#1C2636', .9, .5); gt.add(fr.children[1]); gt.add(fr.children[0]); gt.userData.frame = gt.children[1]; const l = K.label(gn[0], { px: 16 }); l.position.set(0, 2.5, 0); gt.add(l); gt.position.set(-1.6 + i * 2.4, 0, 0); w.add(gt); K.hover(gt, { w: 1.2, h: 4.4, dy: 2.3, tip: () => ({ t: 'Gate ' + (i + 1) + ' · ' + gn[0], b: gn[1] }) }); return gt; });
+    const ON = [['Hold the original order', 'passes · handover 18 Jun 2027 · $0', 3], ['Expedite with Norvale', 'passes · handover 4 Jun 2027 · $1,150,000', 3], ['Reallocate from Wren, phase 2', 'passes · handover 14 May 2027 · $410,000 · recommended', 3], ['Air-freight a substitute lineup', 'stops at gate 1 · not qualified against the Hall B protection design · receiving window closed', 0]];
+    S.opts = ON.map((o, i) => { const t = new THREE.Group(); const box = K.slab(1.6, .44, .3, i === 3 ? K.PAL.ember : i === 2 ? K.PAL.green : K.PAL.blue, 1, .3); t.add(box); const fl = box.userData.body; const l = K.label(o[0], { px: 15 }); l.position.z = .2; t.add(l); t.position.set(-5.2, 1.5 - i * 1, 0); t.userData.y = 1.5 - i * 1; t.userData.pass = o[2]; w.add(t); K.hover(t, { w: 1.7, h: .5, dy: .3, tip: () => ({ t: o[0], b: o[1] }) }); return t; });
+    S.reason = K.label('not qualified · receiving window closed', { px: 15, col: '#E2663A' }); S.reason.position.set(-3.5, -1.95, .05); S.reason.scale.setScalar(0); w.add(S.reason); S.out = K.label('three buildable options', { px: 17, col: '#7FB58A' }); S.out.position.set(5.2, 2.6, 0); S.out.scale.setScalar(0); w.add(S.out); S.lead = K.glow('#7FB58A', 1.6, 0); w.add(S.lead); S.lead.position.set(5.2, -.5, .1);
+    w.scale.setScalar(1.3); K.place(g, w, OX, OY, -44); S.w = w; },
+  update(q, K, S) { const T = K.T, f = S.w.userData._f; S.opts.forEach((t, i) => { const tr = ss(.15 + i * .04, .72 + i * .04, q); const xEnd = i === 3 ? -2.4 : 5.2; t.position.x = lerp(-5.2, xEnd, i === 3 ? Math.min(1, tr * 1.3) : tr); t.position.y = t.userData.y + Math.sin(T * 1.2 + i) * .04; t.scale.setScalar(1 + t.userData.hot * .1); if (i === 2) t.children[0].userData.body.material.emissive.copy(t.children[0].userData.body.material.userData.emBase).add(new THREE.Color(K.PAL.green).multiplyScalar(ss(.8, .9, q) * .5 + t.userData.hot * .3)); }); S.reason.scale.setScalar(snap(sub(q, .48, .56))); S.gates.forEach((gt, i) => { const p = S.opts.filter(o => o.userData.pass > i).some(o => Math.abs(o.position.x - gt.position.x) < .3); gt.children[0].material.opacity = (.5 + (p ? .5 : 0) + gt.userData.hot * .3) * f; gt.children[0].material.color.copy(K.C.bone).lerp(K.C.ok, p ? 1 : 0); gt.userData.frame.material.emissive.copy(gt.userData.frame.material.userData.emBase).add(new THREE.Color(K.PAL.green).multiplyScalar(p ? .25 : 0)); }); S.out.scale.setScalar(snap(sub(q, .78, .88))); S.lead.material.opacity = ss(.82, 1, q) * (.6 + .4 * Math.sin(T * 4)) * f; S.lead.scale.setScalar(1.6 + ss(.82, 1, q) * 2); } },
+{ name: 'donor', a: .66, b: .88, dom: '#donor', fade: [.04, .16, .88, .98],
+  cam: [[0, OX + 1, .2, 25, OX + LX + 3.5, OY + .5, 16], [.35, OX - 4.5, 2, -28, OX + LX, OY, -44], [.7, OX + 4, -.5, -32, OX + LX, OY, -44], [1, OX, 0, -38, OX + LX + 1, OY - 1.6, -44]],
+  build(g, K, S) { const w = new THREE.Group(); const wl = K.label('Project Wren · phase 2 · uncommitted', { px: 18 }); wl.position.set(-.8, 2.2, 0); w.add(wl); const trk = K.slab(7, .5, .2, '#1C2636', .95, .35); trk.position.y = 1.4; w.add(trk); S.flt = new THREE.Mesh(new THREE.BoxGeometry(3.8, .5, .24), K.solidMat(K.PAL.green)); S.flt.position.set(-1.6, 1.4, 0); w.add(S.flt); w.add(K.haze(K.PAL.green, 26, .08)); const fl = K.label('38 days of float kept', { px: 16, col: '#7FB58A' }); fl.position.set(-1.6, .95, 0); w.add(fl); K.hover(S.flt, { w: 3.8, h: .5, dy: .3, tip: () => ({ t: 'Wren keeps 38 days of float', b: 'Phase 2 has no customer commitment. <em>Releasing the lineup does not move anyone else\'s date.</em> <code>REL-204</code>' }) });
+    S.land = new THREE.Mesh(new THREE.BoxGeometry(1.4, .5, .3), K.solidMat(K.PAL.gold)); S.land.position.set(-2.4, 4, .02); w.add(S.land); const ll = K.label('Norvale re-order lands here', { px: 15 }); ll.position.set(0, .45, 0); S.land.add(ll); K.hover(S.land, { w: 1.4, h: .5, dy: .3, tip: () => ({ t: 'The re-order lands inside the float', b: 'Norvale\'s replacement lineup for Wren arrives before Wren needs it. <em>The fix does not move the problem.</em>' }) });
+    S.card = K.card('decision', 'DR-3105 · decision record', 4.6); S.card.position.set(.2, -1.4, 0); w.add(S.card); S.sig = K.label('Procurement Director', { px: 24, mono: false, col: '#7FB58A' }); S.sig.position.set(-1.4, -2.7, .05); S.sig.scale.set(0, 1, 1); w.add(S.sig); S.ts = K.label('10 Mar 2027 · 08:14', { px: 16 }); S.ts.position.set(1.6, -2.7, .05); S.ts.scale.setScalar(0); w.add(S.ts); S.rule = K.line([K.vec(-2.2, -3.1, .05), K.vec(2.6, -3.1, .05)], K.C.bone, .8); S.rule.scale.x = 0; S.rule.position.x = -2.2 * 0; w.add(S.rule); S.app = K.label('append only', { px: 14, col: '#B8B2A6' }); S.app.position.set(2.0, -3.35, .05); S.app.scale.setScalar(0); w.add(S.app);
+    K.hover(S.sig, { w: 2.6, h: .5, dy: .3, tip: () => ({ t: 'The signature', b: 'A role, never a person\'s name. <em>Held and rejected decisions stay in the history too.</em>' }) }); S.lead = K.glow('#E9E3D6', 1.6, 0); S.lead.position.set(-1.4, -2.7, .1); w.add(S.lead);
+    w.scale.setScalar(1.3); K.place(g, w, OX, OY, -44); S.w = w; },
+  update(q, K, S) { const T = K.T, f = S.w.userData._f; const drop = eo(sub(q, .22, .42)); S.land.position.y = lerp(4, 1.4, drop); S.land.material.opacity = f; S.land.material.emissive.copy(S.land.material.userData.emBase).add(new THREE.Color(K.PAL.gold).multiplyScalar(S.land.userData.hot * .4)); S.flt.material.opacity = f; S.flt.material.emissive.copy(S.flt.material.userData.emBase).add(new THREE.Color(K.PAL.green).multiplyScalar(S.flt.userData.hot * .4)); const ink = ss(.52, .66, q); S.sig.scale.set(ink * (1 + S.sig.userData.hot * .08), 1, 1); S.sig.position.x = -2.5 + ink * 1.1; S.ts.scale.setScalar(snap(sub(q, .66, .74))); S.rule.scale.x = ss(.74, .84, q); S.rule.position.x = -2.2 * (1 - ss(.74, .84, q)); S.app.scale.setScalar(snap(sub(q, .82, .9))); S.lead.material.opacity = ss(.84, 1, q) * (.6 + .4 * Math.sin(T * 4)) * f; S.lead.scale.setScalar(1.6 + ss(.84, 1, q) * 2); $$('#rec .ln').forEach((l, i) => { l.style.maxWidth = ss(.5 + i * .12, .62 + i * .12, q) * 100 + '%'; }); } },
+];
+Corridor.start({ sections: SECTIONS.concat([CTA]), room: 60, hoverDefault: { industry: 'dc', go: 4, goLabel: 'Book a working session' } });
+})();
+</script>
+</body>
+</html>

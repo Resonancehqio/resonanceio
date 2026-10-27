@@ -1,0 +1,584 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Resonance Corridor</title>
+<meta name="description" content="The Resonance homepage as one continuous journey through a 3D decision space: scroll travels, hover explains.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="corridor.css">
+</head>
+<body class="home">
+<div id="veil" class="on"></div>
+<canvas id="gl" aria-hidden="true"></canvas>
+<div class="scrim" id="scrimL" aria-hidden="true"></div><div class="scrim" id="scrimC" aria-hidden="true"></div>
+<div class="tip" id="tip" aria-hidden="true"><div class="t"></div><div class="b"></div></div>
+
+<header class="nav"><div class="in">
+  <a class="logo" href="index.html"><i></i>Resonance</a>
+  <nav><a href="#" data-go="2">Platform</a><a href="epc.html" data-page>EPC</a><a href="data-centers.html" data-page>Data centers</a><a href="supply-chain.html" data-page>Supply chain</a><a href="#" data-go="6">Demo</a></nav>
+  <a class="btn primary mag" href="#" data-go="7">Book a demo</a>
+</div></header>
+
+<div class="scroller" aria-hidden="true"></div>
+
+<div class="stage">
+
+<section class="sec hero on" id="hero"><div class="in">
+  <h1 class="layer" id="h1"></h1>
+  <p class="lead layer">Resonance turns messy ERP, Excel, and project data into clear, auditable decisions for EPC, data center, and supply chain teams.</p>
+  <div class="ctas layer"><a class="btn primary mag" href="#" data-go="7">Book a demo</a><a class="btn ghost mag autobtn" href="#">▶ Play the journey</a></div>
+  <span class="sample layer">Sample data · fictional company and project · hover anything in the scene</span>
+</div></section>
+
+<section class="sec problem" id="problem"><div class="in">
+  <div class="eyebrow">The problem</div>
+  <h2 id="ph2"></h2>
+  <p class="lead"><span data-link="slip">The slip</span> arrives as an email. Its effect on the <span data-link="handover">handover</span> arrives weeks later, in a meeting, from a spreadsheet, with no record of what else it moved.</p>
+</div></section>
+
+<section class="sec unify" id="product"><div class="in">
+  <div>
+    <div class="eyebrow">What it does</div>
+    <div class="titlerow"><h2>One platform. Multiple decision apps.</h2><a class="quiet" href="#" data-go="3">See how it works →</a></div>
+    <p class="lead">Resonance reads the data you already have, maps it to your business structure, and helps teams decide what to do next.</p>
+    <p class="lead">It is built for organizations where one delay can affect cost, delivery, compliance, and customer commitments.</p>
+    <a class="recbtn" id="recbtn" href="#"><b>DR-3105</b><span>Open the decision record <i>· three options, one refused, a named owner</i></span><span>→</span></a>
+    <div class="hint">Linked here: <span data-link="package">package</span> · <span data-link="crew">crew</span> · <span data-link="gate">gate</span> · <span data-link="milestone">milestone</span> · <span data-link="supplier">supplier</span> · <span data-link="handover">handover</span>. Hover a word or a surface.</div>
+  <div class="dcard" id="dcard" title="Click to expand">
+    <div class="hd"><span>DR-3105 · Decision record</span><b>Recommended</b></div>
+    <h3>Reallocate the qualified switchgear lineup from Project Wren, phase 2.</h3>
+    <div class="rows">
+      <div><span>Modeled handover</span><span>14 May 2027 · held</span></div>
+      <div><span>Incremental cost</span><span>$410,000</span></div>
+      <div><span>Accountable owner</span><span>Procurement Director</span></div>
+    </div>
+    <div class="more" id="dmore">
+      <div class="t">
+        <b>Option</b><b>Handover</b><b>Cost</b>
+        <span>Hold the original order</span><span>18 Jun</span><span>$0</span>
+        <span>Expedite with Norvale</span><span>4 Jun</span><span>$1,150,000</span>
+        <span class="rec">Reallocate from Wren ph. 2</span><span class="rec">14 May</span><span class="rec">$410,000</span>
+        <span class="no">Air-freight substitute</span><span class="no">ineligible</span><span class="no">—</span>
+      </div>
+      <div class="ev"><i>ENG-117</i><i>REL-204</i><i>LOG-061</i><i>SCH-089</i><i>COM-033</i></div>
+      <div class="acts" id="acts"><button class="ok" data-d="approved">Approve</button><button data-d="held">Hold</button><button data-d="rejected">Reject</button></div>
+      <div class="hist" id="hist"></div>
+    </div>
+    <span class="sample">Sample data · fictional company and project</span>
+  </div>
+  </div>
+</div></section>
+
+<section class="sec how" id="how"><div class="in">
+  <div>
+    <div class="eyebrow">How it works</div>
+    <h2>From raw data to action in three steps</h2>
+    <div class="dots" id="dots"><i><b></b></i><i><b></b></i><i><b></b></i></div>
+  </div>
+  <div class="steps">
+    <div class="step"><div class="n">01</div><h3>Connect your data</h3><p>Bring in ERP exports, Excel sheets, and operational systems without rebuilding your stack.</p><div class="sub"></div><div class="hint">Hover a source to see what it carries.</div></div>
+    <div class="step"><div class="n">02</div><h3>Map the business reality</h3><p>Resonance builds an ontology of your operation so the system understands your roles, objects, constraints, and workflows.</p><div class="sub"></div><div class="hint">Hover a node to light its relationships.</div></div>
+    <div class="step"><div class="n">03</div><h3>Generate decisions</h3><p>The platform surfaces findings, recommends actions, and keeps evidence attached to every decision.</p><div class="sub"></div><span class="sample">Sample data · fictional company and project</span></div>
+  </div>
+</div></section>
+
+<section class="sec ind" id="industries"><div class="in">
+  <div>
+    <div class="eyebrow">Industries</div>
+    <h2>Built for the real work behind execution</h2>
+    <p class="lead">The same engine runs decision apps in each industry.</p>
+  </div>
+  <div class="zones">
+    <div class="zone"><div class="eyebrow"><b>EPC / Construction</b></div><h3>Keep projects moving when everything shifts.</h3><p>Use Resonance to connect procurement, engineering, construction, commissioning, and finance around a shared view of project reality.</p>
+      <ul class="ticks"><li>identify <span data-link="slip">schedule risk</span> early</li><li>evaluate recovery options</li><li>protect milestones and <span data-link="handover">handoffs</span></li><li>align every team on the same facts</li></ul><a class="btn ghost mag" href="epc.html" data-page>See the EPC journey →</a></div>
+    <div class="zone"><div class="eyebrow"><b>Data Centers</b></div><h3>See portfolio risk before it becomes delivery risk.</h3><p>Resonance helps data center teams manage supplier issues, readiness gates, commissioning blockers, and portfolio forecasts across multiple sites.</p>
+      <ul class="ticks"><li>trace delays to <span data-link="heron">root cause</span></li><li>compare recovery actions</li><li>forecast impact on budget and delivery</li><li>support site-by-site execution</li></ul><a class="btn ghost mag" href="data-centers.html" data-page>See the data center journey →</a></div>
+    <div class="zone"><div class="eyebrow"><b>Supply Chain</b></div><h3>Turn planning data into executable decisions.</h3><p>Resonance helps supply chain teams reconcile demand, inventory, logistics, and allocation without forcing a messy system migration.</p>
+      <ul class="ticks"><li>read ERP and workbook exports as-is</li><li>reconcile constraints across the network</li><li>optimize decisions under real-world limits</li><li>push results back into operations workflows</li></ul><a class="btn ghost mag" href="supply-chain.html" data-page>See the supply chain journey →</a></div>
+  </div>
+</div></section>
+
+<section class="sec phil" id="about"><div class="in">
+  <div class="base" id="philbase">
+    <div class="eyebrow">Product philosophy</div>
+    <h2>The AI is not the product. The decision system is.</h2>
+    <p class="lead">Large language models are useful for translation and interaction. But the real value comes from the underlying ontology, rules, constraints, and decision logic that make the output usable in production.</p>
+    <p class="lead">Resonance is designed for hard problems where a good demo is not enough.</p>
+    <div class="levels" id="levels">
+      <a class="lvl" href="#" data-l="0"><b>01</b><span>Language model</span><i>reads and writes plain English. It never decides.</i><em>Enter →</em></a>
+      <a class="lvl" href="#" data-l="1"><b>02</b><span>Ontology</span><i>your operation, named once. One change finds every date.</i><em>Enter →</em></a>
+      <a class="lvl" href="#" data-l="2"><b>03</b><span>Solvers</span><i>every option tried against your limits. Refusals explained.</i><em>Enter →</em></a>
+      <a class="lvl" href="#" data-l="3"><b>04</b><span>Data</span><i>your systems, read as they are. Every figure has a home.</i><em>Enter →</em></a>
+    </div>
+    <div class="hint">Click a level to go inside it.</div>
+  </div>
+  <div class="lvlpanel" id="level">
+    <a class="back" href="#" id="lvlback">← Back to the stack</a>
+    <div class="eyebrow" id="lvlEyebrow"></div>
+    <h2 id="lvlTitle"></h2>
+    <div class="beat" id="beat"></div>
+    <div class="lvlui" id="lvlui"></div>
+    <div class="lvlnav"><button class="opt" id="prevBeat">←</button><span id="beatDots"></span><button class="opt" id="nextBeat">Next →</button><button class="replay" id="replay" title="Replay this beat">↻</button><a class="quiet" href="#" id="nextLvl">Next level →</a></div>
+    <span class="sample">Sample data · fictional company and project · the model never makes the call</span>
+  </div>
+  <div></div>
+</div></section>
+
+<section class="sec proof" id="demo"><div class="in">
+  <div class="eyebrow">Who it is for</div>
+  <h2>Made for teams that cannot afford guesswork</h2>
+  <div class="dash" id="dash">
+    <div class="m" id="m0" data-tip="Handover|The date the customer was promised. Held because the Wren lineup lands inside the Hall B float."><div class="k">Handover</div><div class="v"><s>18 Jun</s>14 May 2027</div><div class="s">Hall B · 32 MW IT · held</div></div>
+    <div class="m" id="m1" data-tip="Delay days|35 calendar days of slip on SG-B02, absorbed by reallocating a qualified lineup."><div class="k">Delay days</div><div class="v"><span data-n="35" data-to="0">35</span> d</div><div class="s">SG-B02 slip absorbed</div></div>
+    <div class="m" id="m2" data-tip="Incremental cost|$410,000 to reallocate. Expediting would have cost $1,150,000. No revenue or damages assumed."><div class="k">Incremental cost</div><div class="v">$<span data-n="0" data-to="410000">0</span></div><div class="s">vs $1,150,000 to expedite</div></div>
+    <div class="m" id="m3" data-tip="Readiness gates|System-readiness gates on Hall B. The sequence to 18 of 18 is kept with the 2 Apr arrival."><div class="k">Readiness gates</div><div class="v"><span data-n="12" data-to="18">12</span> / 18</div><div class="s">system-readiness gates complete</div></div>
+  </div>
+  <div class="dash2">
+    <div class="panel">
+      <div class="k">Issue · SG-B02 delivery revision 03</div>
+      <div class="chips" id="chips"><span class="chip is">Open</span><span class="arr">→</span><span class="chip">In review</span><span class="arr">→</span><span class="chip ok">Approved</span></div>
+      <div class="sched" id="sched">
+        <div class="row"><span>Commitment</span><div class="trk"><i style="width:66%"></i><b></b></div><span>14 May 2027</span></div>
+        <div class="row"><span>Forecast</span><div class="trk"><i class="late" id="fc" style="width:88%"></i><b></b></div><span id="fcd">18 Jun 2027</span></div>
+      </div>
+    </div>
+    <div class="panel">
+      <div class="k">Evidence attached to DR-3105 · hover a record</div>
+      <div class="evid" id="evid">
+        <div data-for="m3"><span>ENG-117</span><span>Donor lineup qualified against the Hall B design</span></div>
+        <div data-for="m1"><span>REL-204</span><span>Signed donor release · Wren keeps 38 d of float</span></div>
+        <div data-for="m0"><span>LOG-061</span><span>Dispatch and receiving confirmed · arrival 2 Apr</span></div>
+        <div data-for="m0"><span>SCH-089</span><span>Arrival 2 Apr supports 14 May handover</span></div>
+        <div data-for="m2"><span>COM-033</span><span>$410,000 incremental · $740,000 under expedite</span></div>
+      </div>
+    </div>
+  </div>
+  <span class="sample">Sample data · fictional company and project · the model never makes the call; a named owner signs</span>
+</div></section>
+
+<section class="sec cta" id="book"><div class="in">
+  <div class="eyebrow">Ready to see it on your data?</div>
+  <h2>From fragmented data to confident decisions.</h2>
+  <div class="ccard" id="ccard">
+    <div class="ctas"><a class="btn primary mag" href="#">Book a demo</a><a class="btn ghost mag" href="#" data-go="6">Watch the walkthrough</a></div>
+    <p>Book a demo and see how Resonance can help your team move from fragmented data to confident decisions.</p>
+  </div>
+  <div class="foot">Resonance helps operational teams make faster, better decisions with the data they already have.<span class="sample">Sample data on this page is fictional.</span></div>
+</div></section>
+
+</div>
+
+<div class="bar" id="bar"><span>Resonance</span><div class="prog"><i id="prog"></i></div><div class="clock" id="clock"><small>HALL B HANDOVER</small>14 May 2027</div><a class="btn primary mag" href="#" data-go="7">Book a demo</a></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.160.0/three.min.js"></script>
+<script src="corridor.js"></script>
+<script>
+(() => {
+const { ss, clamp, lerp, eo, snap, sub, vis, words, OX, OY, PH0, FINE } = Corridor;
+const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+words($('#h1'), 'Make faster decisions in complex operations.');
+const PW = words($('#ph2'), 'Your data is not your decision.');
+const circ = (el, phrase) => { if (!el) return; el.innerHTML = el.innerHTML.replace(phrase, `<span class="circ">${phrase}<svg viewBox="0 0 100 40" preserveAspectRatio="none"><path pathLength="100" d="M 8 20 C 10 4, 60 2, 80 8 C 98 14, 96 32, 70 36 C 40 40, 6 36, 6 22 C 6 14, 20 8, 34 8"/></svg></span>`); };
+
+const LX = PH0 ? 0 : -.6;   // desktop: aim left of the subject so it sits right of the text column
+const fmt = n => Math.round(n).toLocaleString('en-US');
+// DOM tooltips (the proof dashboard) share the 3D tip element
+const tip = $('#tip');
+$$('[data-tip]').forEach(el => { const [t, b] = el.dataset.tip.split('|'); el.addEventListener('pointerenter', () => { tip.querySelector('.t').textContent = t; tip.querySelector('.b').textContent = b; const r = el.getBoundingClientRect(); tip.classList.add('on'); tip.style.left = Math.max(12, Math.min(innerWidth - 312, r.left)) + 'px'; tip.style.top = (r.top - 12 - tip.offsetHeight) + 'px'; }); el.addEventListener('pointerleave', () => tip.classList.remove('on')); });
+$$('#evid div').forEach(d => { d.addEventListener('pointerenter', () => $('#' + d.dataset.for).style.borderColor = 'var(--ok)'); d.addEventListener('pointerleave', () => $('#' + d.dataset.for).style.borderColor = ''); });
+let dOpen = false; $('#dcard').addEventListener('click', e => { if (e.target.closest('.acts')) return; dOpen = !dOpen; });
+let RECORD = null;   // a decision screen kept for the lightbox
+function openRecord() { if (!RECORD) return; const acts = [['approved', 'Approve', 'primary'], ['held', 'Hold', 'ghost'], ['rejected', 'Reject', 'ghost']].map(a => ({ label: a[1], cls: a[2] + (DEC.status === a[0] ? ' is' : ''), onClick: bb => { $(`#acts button[data-d="${a[0]}"]`).click(); [...bb.parentElement.children].forEach(x => x.classList.toggle('is', x === bb)); const rb = $('#recbtn'); rb.classList.add('decided'); rb.querySelector('b').textContent = 'DR-3105 · ' + a[1].replace('Approve', 'Approved').replace('Hold', 'Held').replace('Reject', 'Rejected'); } }));
+  Corridor.openModal({ obj: RECORD, meta: { industry: 'dc', key: ['$410,000', 'to hold 14 May 2027'], facts: ['Three eligible options; one refused, with its reason printed', '$410,000 to reallocate against $1,150,000 to expedite', 'Five records attached: ENG-117, REL-204, LOG-061, SCH-089, COM-033', 'Accountable owner: Procurement Director. The model never makes the call.'], actions: acts }, tip: () => ({ t: 'DR-3105 · Decision record', b: 'Reallocate the qualified switchgear lineup from Project Wren, phase 2. <em>Approve, hold or reject it here and watch the page respond: the beams, the schedule, the proof chips and the clock.</em>' }) }, null); }
+$('#recbtn').addEventListener('click', e => { e.preventDefault(); openRecord(); });
+// the live decision: one state read by the ring, the schedule, the proof and the record
+const DEC = { status: null };
+$$('#acts button').forEach(b => b.addEventListener('click', e => { e.stopPropagation(); DEC.status = b.dataset.d; document.body.classList.toggle('decided', DEC.status === 'approved'); $$('#acts button').forEach(x => x.classList.toggle('is', x === b)); const hd = $('#dcard .hd b'); const h = $('#hist'); h.className = 'hist on ' + DEC.status; if (DEC.status === 'approved') { hd.textContent = 'Approved'; hd.style.color = 'var(--ok)'; h.textContent = '10 Mar 2027 · Approved · Reallocate from Wren phase 2 · rationale recorded · 5 records attached'; } else if (DEC.status === 'held') { hd.textContent = 'Held'; hd.style.color = 'var(--bone-2)'; h.textContent = '10 Mar 2027 · Held · awaiting donor release REL-204 · stays in the history'; } else { hd.textContent = 'Rejected'; hd.style.color = 'var(--ember)'; h.textContent = '10 Mar 2027 · Rejected · rationale recorded · the slip stands at +35 d'; } dOpen = true; }));
+// the handover clock in the action bar
+const clockEl = $('#clock'), MON = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']; let clockDays = 0;
+function clock(pd) { const slip = ss(.13, .2, pd), fix = DEC.status === 'approved' ? 1 : DEC.status === 'rejected' ? 0 : ss(.355, .375, pd); const want = 35 * slip * (1 - fix); clockDays += (want - clockDays) * .12; const d = new Date(2027, 4, 14 + Math.round(clockDays)); clockEl.lastChild.textContent = `${d.getDate()} ${MON[d.getMonth()]} ${d.getFullYear()}`; clockEl.classList.toggle('late', clockDays > .5); clockEl.classList.toggle('held', clockDays <= .5 && slip > .5); }
+
+const SECTIONS = [
+// ---- 0 hero: the screens fly in from the depth and settle into near, mid and far layers; the camera eases back as they land;
+//      the headline assembles once they have; a beat later the slip happens on the screens themselves
+{ name: 'hero', a: 0, b: .115, dom: '#hero', shift: 0, scrim: 'center',
+  cam: [[0, 0, 0, 2, 0, 0, -30], [.5, 1.4, .3, -14, -1.5, .4, -40], [1, -1.6, 1, -42, -3.2, 1.2, -56]],
+  build(g, K, S) {
+    S.net = K.place(g, K.net(90, 30, 16, 26, 2, K.C.bone, .18), 0, 0, -38); K.place(g, K.haze(K.PAL.blue, 40, .1), 0, -2, -60);
+    S.dest = K.place(g, K.glow(K.PAL.gold, 7, 0), OX * .3, 0, -120); S.dest.userData.nofade = 1;   // the orb, already there, far down the corridor
+    //            kind, title, w, x, y, z, ry, rx, industry, room, link, tip title, tip body
+    const D = [['sheet', 'SG-B02_delivery_rev03.xlsx', 5.4, -7.3, 1.4, -9, .5, 0, 'dc', 'ripple', 'slip', 'SG-B02 · delivery revision 03', 'The switchgear lineup moves <code>+35 d</code>. It is owner-furnished, and it sits on a path with zero float. <em>Nobody downstream has seen it yet.</em>'],
+      ['mail', 'RE: busbar fabrication milestone missed', 5.2, 7.7, 2.3, -10, -.5, 0, 'dc', 'week', null, 'Email · Norvale Electric', 'The reason for the slip, in a thread four people are on. <em>None of them owns the handover date.</em>'],
+      ['dash', 'P6 · Hall B electrical path', 3.8, -6.6, -2.4, -22, .4, 0, 'epc', 'surgery', null, 'P6 · Hall B electrical path', 'The schedule still says 14 May. <em>It will be updated at the next monthly cycle.</em>'],
+      ['approve', 'Change order CO-221', 3.6, 7.4, -1.9, -21, -.4, 0, 'epc', 'surgery', null, 'Change order CO-221', 'An expedite quote waiting on two signatures. <em>Nobody has checked whether it fits the design.</em>'],
+      ['sheet', 'HallB_readiness_gates.xlsx', 3.0, 0, 5.0, -38, 0, -.3, 'dc', 'gates', null, 'Readiness · 12 of 18 gates', 'System-readiness gates on Hall B, kept by hand. <em>Gate 13 depends on the lineup that just slipped.</em>'],
+      ['sheet', 'Norvale_lineups_tracker.xlsx', 2.6, -9.5, 4.6, -42, .3, 0, 'sc', 'agents', null, 'Supplier tracker', 'Norvale\'s lineups, tracked by hand. <em>Three columns disagree with the ERP.</em>'],
+      ['dash', 'Portfolio forecast · Q2', 2.6, 9.8, 4.3, -44, -.3, 0, 'dc', 'ripple', null, 'Portfolio forecast', 'Green, because the schedule has not been rerun. <em>It will turn red in three weeks.</em>'],
+      ['decision', 'DR-3105 · decision record', 7.6, .8, -5.6, -7.5, 0, .4, 'dc', 'donor', null, 'DR-3105 · where this ends', 'The record this slip becomes: three options, one refused, a named owner, five records attached. <em>Scroll to see how it gets there.</em>']];
+    S.cards = D.map((d, i) => { const c = K.card(d[0], d[1], d[2], false, undefined, d[2] > 4 ? 1 : .6); c.rotation.y = d[6]; c.rotation.x = d[7]; c.userData.to = K.vec(d[3], d[4], d[5]); c.userData.from = K.vec(d[3] * 2.2, d[4] * 1.6 - 2, d[5] - 48); c.userData.slip = 0; c.userData.flash = 0; c.position.copy(c.userData.from); K.place(g, c, c.userData.from.x, c.userData.from.y, c.userData.from.z); K.hover(c, { w: c.userData.w, h: c.userData.h, dy: c.userData.h / 2, link: d[10] || undefined, meta: { industry: d[8], room: d[9] }, tip: () => ({ t: d[11], b: d[12] }) }); return c; });
+    S.lead = S.cards[0]; S.lead.userData.end = K.vec(-3.2, 1.2, -54); S.email = S.cards[1]; S.dash = S.cards[2];
+  },
+  update(q, K, S, el) {
+    const T = K.T, tIn = clamp((T - .25) / 2.2);
+    // arrival: deep to near, decelerating, staggered; the camera eases back as they land
+    S.cards.forEach((c, i) => { const e = 1 - Math.pow(1 - clamp((tIn - i * .07) / .75), 3); c.position.lerpVectors(c.userData.from, c.userData.to, e); if (c === S.lead) c.position.lerp(c.userData.end, ss(.35, 1, q)); c.position.y += Math.sin(T * .5 + i) * .12; const hot = c.userData.hot; c.userData.face.material.opacity = .97 * Math.min(1, e * 1.4) * c.userData._f; const sc = 1 + hot * .05; c.scale.setScalar(sc); if (c === S.lead) c.userData.tiltBase = [0, .55 - ss(.35, 1, q) * .55]; });
+    K.cam.position.z -= (1 - (1 - Math.pow(1 - clamp((T - .1) / 2.4), 3))) * 9 * (1 - ss(.04, .1, q));
+    // the slip beat: the email lights, the row flips to late, the float ticks to zero, the first pin ignites
+    const beat = ss(3.3, 4.3, T), flash = ss(3.1, 3.5, T) * (1 - ss(4.6, 5.6, T)); S.cards.forEach(c => { c.userData.slip = beat; }); S.email.userData.flash = flash; S.lead.userData.flash = ss(3.6, 3.9, T) * (1 - ss(4.8, 5.8, T)); S.dash.userData.flash = ss(3.9, 4.2, T) * (1 - ss(5, 6, T)); S.beat = flash; S.email.userData.glow.userData.base = .12 + flash * .4;
+    S.net.rotation.y = Math.sin(T * .08) * .12 + K.mouse.x * .08; S.net.rotation.x = K.mouse.y * .05; S.net.position.y = Math.sin(T * .3) * .4;
+    S.dest.material.opacity = .32 * ss(1.5, 3, T) * (1 - ss(.3, .7, q)) * (.85 + .15 * Math.sin(T * 1.4)); S.dest.scale.setScalar(7 + Math.sin(T * .7) * .6);
+    const peel = ss(.25, .95, q); $$('.hero .layer').forEach((l, i) => { l.style.transform = `translateY(${-peel * (40 - i * 8)}px) scale(${1 + peel * (.5 - i * .1)})`; l.style.opacity = 1 - ss(.3, .75, q); l.style.filter = `blur(${peel * 6}px)`; });
+  } },
+// ---- 1 problem: a tunnel of fragments; the camera weaves through, then they compress into one point ----------
+{ name: 'problem', a: .115, b: .265, dom: '#problem', selfDom: true, shift: 0, scrim: 'center',
+  cam: [[0, -1.6, 1, 18, -3.2, 1.2, 4], [.3, 2.4, -.6, -4, -1, 0, -28], [.6, -1.8, .9, -20, .5, 0, -42], [.8, 0, 0, -28, 0, 0, -46], [1, 0, 0, -40, OX, OY, -104]],
+  build(g, K, S) {
+    S.frags = [];
+    const kinds = [['sheet', 'Norvale_lineups_tracker.xlsx', 'A tracker', 'Updated weekly, by hand. <em>Three columns disagree with the ERP.</em>'], ['mail', 'FW: delivery revision 03 · SG-B02', 'A forward', 'The slip, forwarded. <em>Not linked to the date it moves.</em>'], ['dash', 'Portfolio forecast · Q2', 'A dashboard', 'Green, because the schedule has not been rerun. <em>It will turn red in three weeks.</em>'], ['approve', 'Approval needed: expedite quote', 'An approval', 'Waiting on two signatures. <em>Nobody checked whether the substitute fits the design.</em>'], ['sheet', 'Heron_C2_procurement_v7_FINAL.xlsx', 'A procurement sheet', 'v7_FINAL. <em>There is a v8.</em>'], ['mail', 'Standby crew · Hall B electrical', 'Crew standby', 'A crew booked for a lineup that is not coming. <em>$18,400 a day, illustrative.</em>'], ['dash', 'Readiness 12 / 18 gates', 'Readiness gates', 'Twelve of eighteen. <em>Gate 13 waits on the lineup.</em>'], ['sheet', 'float_calc (copy).xlsx', 'A float calculation', 'Someone\'s copy of someone\'s copy. <em>Zero float on the electrical path.</em>'], ['mail', 'RE: RE: RE: who owns this?', 'A thread', 'Eleven replies. <em>No owner.</em>'], ['approve', 'Change order CO-221 · pending', 'A change order', 'Pending. <em>For a fix that cannot be built.</em>']];
+    for (let i = 0; i < 34; i++) { const k = kinds[i % kinds.length], acc = i === 9; const c = K.card(k[0], k[1], 2.2 + K.R() * 1.4, acc); const a = K.R() * Math.PI * 2, r = 5 + K.R() * 6, lz = -8 - K.R() * 40; c.rotation.set((K.R() - .5) * .8, (K.R() - .5) * 1.2, (K.R() - .5) * .3); c.userData.home = K.vec(Math.cos(a) * r, Math.sin(a) * r * .6, lz); c.userData.ph = K.R() * 9; K.place(g, c, c.userData.home.x, c.userData.home.y, lz); S.frags.push(c);
+      K.hover(c, { w: c.userData.w, h: c.userData.h, dy: c.userData.h / 2, meta: { industry: k[0] === 'mail' || k[0] === 'approve' ? 'epc' : 'dc' }, tip: () => acc ? { t: 'Delivery revision 03 · the slip', b: 'SG-B02 moves <code>+35 d</code>. <em>Nobody downstream knows yet.</em>' } : { t: k[2], b: k[3] } });
+      if (acc) { S.pulse = K.glow('#E2663A', 5, .5); c.add(S.pulse); S.ring = new THREE.Mesh(new THREE.RingGeometry(1, 1.04, 64), K.fillMat(K.C.ember, .7)); c.add(S.ring); } }
+    K.place(g, K.grid(28, 70, 8, 14, K.C.bone, .07), 0, -7, -34); K.place(g, K.grid(28, 70, 8, 14, K.C.bone, .05), 0, 7, -34);
+    S.focus = K.place(g, K.glow('#E9E3D6', 3, 0), 0, 0, -46); K.place(g, K.haze(K.PAL.plum, 50, .07), 0, 0, -40);
+  },
+  update(q, K, S, el) {
+    const T = K.T, comp = ss(.5, .8, q), rec = ss(.84, 1, q);
+    const _p = new THREE.Vector3();
+    S.frags.forEach(c => { const h = c.userData.home, ph = c.userData.ph, hot = c.userData.hot; const jx = Math.sin(T * .7 + ph) * .22 * (1 - comp), jy = Math.cos(T * .5 + ph * 1.3) * .18 * (1 - comp);
+      // part around the pointer: push away in screen space, drift back when it leaves
+      const off = c.userData.off || (c.userData.off = new THREE.Vector2()); if (FINE && comp < .5 && c.userData._f > .05) { _p.copy(c.position); c.parent.localToWorld(_p); _p.project(K.cam); const dx = _p.x - K.mouse.nx, dy = _p.y - K.mouse.ny; const d = Math.hypot(dx * (innerWidth / innerHeight), dy); const push = Math.max(0, .34 - d) * 3.2; off.x += ((dx / (d + 1e-3)) * push - off.x) * (1 - Math.exp(-K.dt * 5)); off.y += ((dy / (d + 1e-3)) * push - off.y) * (1 - Math.exp(-K.dt * 5)); } else { off.multiplyScalar(Math.exp(-K.dt * 3)); }
+      c.position.set(lerp(h.x + jx, h.x * .1, comp) + off.x * (1 - comp), lerp(h.y + jy, h.y * .1, comp) + off.y * (1 - comp), h.z - rec * 14 + Math.sin(T * .4 + ph) * .3 * (1 - comp) + hot * 1.2); const s = lerp(1, .3, comp) * (1 - rec) * (1 + hot * .08); c.scale.set(s, s, s); c.rotation.z = Math.sin(T * .3 + ph) * .06 * (1 - comp); c.userData.face.material.opacity = .97 * c.userData._f; });
+    const pulse = ss(.22, .3, q) * (1 - ss(.5, .62, q)); const pr = (T * .9) % 1; S.ring.scale.set(1 + pr * 1.6, 1 + pr * 1.6, 1); S.ring.material.opacity = .7 * (1 - pr) * pulse; S.pulse.material.opacity = .5 * pulse * (.6 + .4 * Math.sin(T * 6));
+    S.focus.material.opacity = .5 * ss(.6, .85, q) * (1 - rec) * (.8 + .2 * Math.sin(T * 3)); S.focus.scale.setScalar(2 + ss(.6, .85, q) * 3);
+    PW.forEach((w, i) => { const a = snap(sub(q, .26 + i * .035, .4 + i * .035)); w.style.opacity = Math.min(1, a) * (1 - ss(.88, .97, q)); w.style.transform = `translateY(${(1 - a) * 26}px)`; });
+    el.style.opacity = vis(q, .04, .12, .88, .97); el.querySelector('.eyebrow').style.opacity = ss(.05, .15, q); el.querySelector('.lead').style.opacity = ss(.44, .56, q);
+  } },
+// ---- 2 unify: the core forms where the noise compressed; surfaces snap into a ring; links carry verbs -------------
+{ name: 'product', a: .265, b: .405, dom: '#product', fade: [.03, .14, .9, 1],
+  cam: [[0, 0, 0, 20, OX + LX, OY, -44], [.35, OX - 7, 1.2, -10, OX + LX, OY, -44], [.7, OX + 2.5, -.6, -28, OX + LX, OY + .3, -44], [1, OX + .5, .2, -36, OX + LX + 1.5, OY + .5, -44]],
+  build(g, K, S) {
+    const LZ = -44;
+    S.core = new THREE.Group(); const orbMat = new THREE.MeshPhysicalMaterial({ color: '#D9A85C', metalness: .55, roughness: .22, envMapIntensity: 1.6, clearcoat: 1, clearcoatRoughness: .12, emissive: new THREE.Color('#4A3414') }); S.orb = new THREE.Mesh(new THREE.SphereGeometry(.92, 64, 48), orbMat); S.core.add(S.orb);
+    S.rings = [0, 1].map(i => { const r = new THREE.Mesh(new THREE.TorusGeometry(1.32 + i * .22, .018, 10, 120), new THREE.MeshPhysicalMaterial({ color: i ? '#5BC0BE' : '#E9E3D6', metalness: .7, roughness: .3, envMapIntensity: 1.4, emissive: new THREE.Color(i ? '#0E3A3A' : '#2A2620') })); r.rotation.set(i ? 1.1 : .5, i ? .4 : 1.2, 0); S.core.add(r); return r; });
+    S.orbit = new THREE.Group(); for (let i = 0; i < 14; i++) { const n = new THREE.Mesh(new THREE.SphereGeometry(.05 + K.R() * .03, 12, 10), K.solidMat([K.PAL.blue, K.PAL.teal, K.PAL.plum, K.PAL.green, K.PAL.sand][i % 5])); const a = i / 14 * Math.PI * 2; n.position.set(Math.cos(a) * 1.75, Math.sin(a * 2) * .25, Math.sin(a) * 1.75); n.userData.a = a; S.orbit.add(n); } S.core.add(S.orbit);
+    S.core.add(K.glow(K.PAL.gold, 4.2, .22)); K.place(g, S.core, OX, OY, LZ); K.place(g, K.haze(K.PAL.gold, 46, .09), OX, OY, LZ - 8);
+    K.hover(S.core, { w: 2.4, h: 2.4, dy: 1.3, meta: { go: 3, goLabel: 'See how it works', facts: ['One model of your operation, shared by every decision app', 'Packages, crews, gates and milestones named once', 'The language model only helps you read it; it never decides'] }, tip: () => ({ t: 'The model of your operation', b: 'Packages, crews, gates and milestones, named once and linked to every date they touch. <em>The language model only helps you read it.</em>' }) });
+    S.ring = new THREE.Group(); K.place(g, S.ring, OX, OY, LZ);
+    const names = ['package', 'crew', 'gate', 'milestone', 'supplier', 'handover'], kinds = ['sheet', 'approve', 'dash', 'mail', 'sheet', 'dash'], titles = ['SG-B02 · switchgear lineup', 'Electrical crew · Hall B', 'Readiness gates 12 / 18', 'Delivery revision 03', 'Norvale Electric', 'Customer handover · 14 May'];
+    const REL = [[5, 'blocks'], [2, 'waits on'], [5, 'gates'], [0, 'moves'], [0, 'feeds'], [3, 'is moved by']];
+    const TIPS = ['The lineup SG-B02. <em>Owner-furnished, on the zero-float path.</em>', 'The crew booked for the install. <em>Waits on gate 13.</em>', 'Twelve of eighteen readiness gates. <em>Gate 13 waits on the package.</em>', 'Delivery revision 03, <code>+35 d</code>. <em>It moves the package, which moves the handover.</em>', 'Norvale Electric, the OEM. <em>Feeds the package; missed the busbar milestone.</em>', 'The customer handover, 14 May 2027. <em>Blocked by the package; the date every other thing is measured against.</em>'];
+    S.planes = names.map((n, i) => { const a = i / 6 * Math.PI * 2 + .4; const c = K.card(kinds[i], titles[i], 2.1); c.userData.far = K.vec(Math.cos(a) * 17, Math.sin(a) * 9, -4 + K.R() * 4); c.userData.near = K.vec(Math.cos(a) * 4.9, Math.sin(a) * 3.1, 0); c.position.copy(c.userData.far); S.ring.add(c);
+      const beam = K.tube([K.vec(), c.userData.near.clone()], .022, K.C.ember, .85); beam.material = new THREE.ShaderMaterial({ uniforms: { uT: { value: 0 }, uCol: { value: new THREE.Color(K.PAL.ember) }, uOp: { value: 0 }, uHot: { value: 0 } }, transparent: true, depthWrite: false, vertexShader: `varying float vU; varying vec3 vN; void main(){ vU = uv.x; vN = normalize(normalMatrix * normal); gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.); }`, fragmentShader: `uniform float uT, uOp, uHot; uniform vec3 uCol; varying float vU; varying vec3 vN; void main(){ float body = mix(1., .35, vU); float pulse = smoothstep(.0, .12, fract(vU * 1.5 - uT * .45)) * (1. - smoothstep(.12, .3, fract(vU * 1.5 - uT * .45))); float rim = .5 + .5 * max(vN.z, 0.); gl_FragColor = vec4(uCol * (1.1 + pulse * .9 + uHot * .6) * rim, (body * .75 + pulse * .35 + uHot * .25) * uOp); }` }); beam.scale.setScalar(0); S.ring.add(beam); c.userData.beam = beam; const dot = K.glow(K.PAL.ember, .5, .9); dot.position.copy(c.userData.near); S.ring.add(dot); c.userData.dot = dot;
+      const l = K.label(n, { px: 26 }); l.position.copy(c.userData.near).add(K.vec(0, -1, .4)); l.scale.setScalar(0); S.ring.add(l); c.userData.label = l;
+      K.hover(c, { w: c.userData.w, h: c.userData.h, dy: c.userData.h / 2, link: n, meta: { industry: ['dc', 'epc', 'dc', 'epc', 'sc', 'dc'][i], room: ['ripple', 'whose', 'gates', 'surgery', 'agents', 'ripple'][i] }, tip: () => ({ t: n + ' · ' + REL[i][1] + ' ' + names[REL[i][0]], b: TIPS[i] }) }); return c; });
+    S.planes.forEach((c, i) => { const o = S.planes[REL[i][0]]; const link = K.tube([c.userData.near.clone(), o.userData.near.clone()], .03, K.PAL.teal, .9); link.material.opacity = 0; S.ring.add(link); c.userData.link = link; const v = K.label(REL[i][1], { px: 22, col: '#E2663A' }); v.position.lerpVectors(c.userData.near, o.userData.near, .5).add(K.vec(0, .35, .3)); v.scale.setScalar(0); S.ring.add(v); c.userData.verb = v; c.userData.other = o; });
+    S.halo = K.place(g, K.tube(new THREE.EllipseCurve(0, 0, 5.6, 3.6).getPoints(96).map(p => K.vec(p.x, p.y, 0)), .02, K.PAL.teal, .45), OX, OY, LZ);
+    RECORD = K.card('decision', 'DR-3105 · decision record', 4.6); RECORD.visible = false; g.add(RECORD);
+  },
+  update(q, K, S, el) {
+    const T = K.T, cs = eo(sub(q, .02, .22)) * (1 + .03 * Math.sin(T * 1.3)) * (1 + S.core.userData.hot * .1); S.core.scale.setScalar(cs); S.orb.rotation.y = T * .18; S.rings[0].rotation.z = T * .22; S.rings[1].rotation.x = 1.1 + T * .16; S.orbit.rotation.y = -T * .3; S.orbit.children.forEach((n, i) => { n.position.y = Math.sin(T * .9 + i) * .22; }); S.orb.material.emissive.set('#4A3414').lerp(new THREE.Color('#9A6A20'), S.core.userData.hot);
+    S.ring.rotation.z = Math.sin(T * .12) * .06; S.halo.rotation.z = T * .04; S.halo.material.opacity = .25 * ss(.3, .5, q) * S.halo.userData._f;
+    const coreHot = S.core.userData.hot, anyHot = Math.max(coreHot, ...S.planes.map(c => c.userData.hot)); const okc = DEC.status === 'approved' ? 1 : 0, bad = DEC.status === 'rejected' ? 1 : 0; S.planes.forEach(c => { c.userData.beam.material.uniforms.uCol.value.set(K.PAL.ember).lerp(K.C.ok, okc).lerp(K.C.mute, bad); c.userData.dot.material.color.copy(c.userData.beam.material.uniforms.uCol.value); });
+    S.planes.forEach((c, i) => { const e = snap(sub(q, .1 + i * .035, .42 + i * .035)), hot = c.userData.hot, oh = Math.max(...S.planes.filter(o => o.userData.other === c).map(o => o.userData.hot), 0); c.position.lerpVectors(c.userData.far, c.userData.near, Math.min(e, 1.03)); c.position.y += Math.sin(T * .8 + i) * .08; c.position.z = hot * .6; c.rotation.y = (1 - Math.min(1, e)) * .9 * (c.userData.near.x < 0 ? 1 : -1); const b = eo(sub(q, .34 + i * .03, .5 + i * .03)); c.userData.beam.scale.setScalar(b); const bm = c.userData.beam.material; bm.uniforms.uT.value = T; bm.uniforms.uHot.value = hot; bm.uniforms.uOp.value = (.9 - coreHot * .5) * (1 - anyHot * .5 + hot * .5 + oh * .5) * S.ring.userData._f; c.userData.dot.material.opacity = (.5 + hot * .5) * Math.min(1, b) * (1 - coreHot * .6) * S.ring.userData._f; const l = snap(sub(q, .46 + i * .03, .6 + i * .03)); c.userData.label.scale.setScalar(l * (1 + hot * .15)); c.userData.face.material.opacity = (.97 - coreHot * .6) * (1 - anyHot * .45 + hot * .45 + oh * .45) * S.ring.userData._f; c.userData.link.material.opacity = hot * .95 * S.ring.userData._f; c.userData.verb.scale.setScalar(hot); const sc = 1 + hot * .08 + oh * .04; c.scale.setScalar(sc); });
+    const up = ss(.55, .72, q), ex = Math.max(ss(.78, .9, q), dOpen ? 1 : 0), out = ss(.9, 1, q), dc = $('#dcard'); dc.style.opacity = up * (1 - out); dc.style.transform = `translateY(${(1 - up) * 46 + out * -30}px) scale(${lerp(.96, 1, up)})`; $('#dmore').style.maxHeight = ex * 260 + 'px'; $('#dmore').style.opacity = ex;
+    el.querySelector('.in > div').style.transform = `translateY(${(1 - ss(.03, .16, q)) * 24}px)`;
+  } },
+// ---- 3 how: three open scenes down the corridor. Sources stream into the intake; the ontology assembles; the record forms with its options
+{ name: 'how', a: .395, b: .625, dom: '#how', fade: [0, .05, .95, 1], dwell: 12000, holdRange: [.05, .96],
+  cam: [[0, OX + .5, .2, 24, OX + LX + .5, OY + .5, -2], [.09, OX - 4.2, 1.2, -12, OX + LX, OY, -22], [.26, OX + 2.8, -.4, -12.5, OX + LX + .4, OY - .2, -22], [.33, OX + 3, 2, -24, OX + LX, OY - .4, -42], [.42, OX + 2.2, 4.6, -27.5, OX + LX + .6, OY - .6, -42], [.59, OX - 2.2, 4.0, -28.5, OX + LX + .4, OY - .5, -42], [.66, OX - 3.5, .4, -44, OX + LX, OY, -62], [.75, OX - 4.4, 1.6, -52, OX + LX, OY, -62], [.92, OX + 3.2, -.4, -52.5, OX + LX + .4, OY, -62], [1, OX + 1, .5, -58, OX + LX + 1.2, OY + .9, -62.3]],
+  build(g, K, S) {
+    S.scenes = []; const Z = [-22, -42, -62];
+    // 01 · sources stream into the intake
+    { const p = new THREE.Group(); p.add(K.haze(K.PAL.blue, 18, .1));
+      S.hub = new THREE.Mesh(new THREE.SphereGeometry(.34, 32, 24), new THREE.MeshPhysicalMaterial({ color: '#D9A85C', metalness: .55, roughness: .22, envMapIntensity: 1.6, clearcoat: 1, emissive: new THREE.Color('#4A3414') })); S.hub.position.set(0, 1.4, 0); p.add(S.hub); S.hubGlow = K.glow(K.PAL.gold, 2.6, .5); S.hubGlow.position.copy(S.hub.position); p.add(S.hubGlow);
+      const SRC = [['sheet', 'SAP export · open orders', 'sc', ['purchase orders · 212', 'SG-B02 · delivery revision 03', 'open deliveries · 48', 'exported 9 Mar 08:00'], 'Purchase orders and delivery revisions. <em>Read as an export, as it is.</em>'], ['sheet', 'planner_workbook_wk11.xlsx', 'sc', null, 'The tracker someone keeps by hand. <em>Read as it is, conflicts flagged.</em>'], ['dash', 'P6 · Hall B electrical path', 'epc', null, 'Activities, float and the critical path.'], ['approve', 'Procore · approvals', 'epc', null, 'RFIs, submittals and change orders.'], ['lines', 'Oracle · commitments', 'epc', ['commitments · $184.2M', 'change orders · 17', '!CO-221 · pending', '+synced 9 Mar'], 'Costs and commitments.']];
+      const SC = [K.PAL.blue, K.PAL.green, K.PAL.teal, K.PAL.plum, K.PAL.sand];
+      S.src = SRC.map((d, k) => { const c = K.card(d[0], d[1], 2.1, false, d[0] === 'lines' ? d[3] : undefined, .6); c.userData.to = K.vec(-4.6 + k * 2.3, -1.3, (k === 2 ? .3 : 0)); c.userData.from = K.vec(c.userData.to.x * 1.6, -3.5, 4 + K.R() * 3); c.rotation.y = (2 - k) * .12; c.position.copy(c.userData.from); p.add(c);
+        const top = c.userData.to.clone().add(K.vec(0, c.userData.h / 2, 0)); const cv = new THREE.QuadraticBezierCurve3(top, top.clone().lerp(S.hub.position, .5).add(K.vec(0, .9, .6)), S.hub.position.clone()); c.userData.cv = cv; const tube = K.tube(cv.getPoints(24), .012, SC[k], .45); tube.material.opacity = 0; p.add(tube); c.userData.tube = tube; c.userData.dots = [0, 1, 2, 3, 4].map(j => { const d2 = K.glow(SC[k], .26, 0); p.add(d2); return d2; });
+        K.hover(c, { w: c.userData.w, h: c.userData.h, dy: c.userData.h / 2, col: SC[k], meta: { industry: d[2], facts: (d[3] || ['Read as an export, nothing cleaned by hand', 'Conflicts are flagged, not hidden', 'Every row keeps its source ID']).map(r => String(r).replace(/^[!+]/, '')) }, tip: () => ({ t: d[1], b: d[4] }) }); return c; });
+      S.flag = K.label('2 conflicts flagged · not hidden', { px: 16, col: '#E2663A' }); S.flag.position.set(0, 2.6, .2); S.flag.scale.setScalar(0); p.add(S.flag); S.clean = K.label('212 clean records in the model', { px: 16, col: '#7FB58A' }); S.clean.position.set(0, 2.6, .2); S.clean.scale.setScalar(0); p.add(S.clean);
+      K.place(g, p, OX, OY, Z[0]); S.scenes.push(p); }
+    // 02 · the hall, drawn as a blueprint that annotates itself; beside it, the schema the software holds
+    { const p = new THREE.Group(); p.add(K.haze(K.PAL.teal, 18, .1));
+      const plane = new THREE.Group(); plane.rotation.set(-1.25, 0, .18); plane.position.set(-1.9, -1.8, 0);
+      const seg = (a2, b2) => [a2[0], a2[1], 0, b2[0], b2[1], 0]; const rect = (x0, y0, x1, y1) => [...seg([x0, y0], [x1, y0]), ...seg([x1, y0], [x1, y1]), ...seg([x1, y1], [x0, y1]), ...seg([x0, y1], [x0, y0])];
+      let L = []; L.push(...rect(-5, -3, 5, 3)); L.push(...rect(-4.6, -2.6, -2.6, -.6)); L.push(...rect(2.6, -2.6, 4.6, -1.4)); for (let r = 0; r < 6; r++) { const y = -2.3 + r * .55; L.push(...seg([-1.6, y], [2.0, y])); L.push(...seg([-1.6, y + .18], [2.0, y + .18])); } for (let k = 0; k < 5; k++) L.push(...seg([-5 + k * 2.5, 3], [-5 + k * 2.5, 3.25])); L.push(...seg([-1.8, 2.5], [-1.8, 1.9]), ...seg([-2.1, 2.2], [-1.5, 2.2]));
+      const circ = (cx, cy, r) => { const o = []; for (let i = 0; i < 24; i++) { const a0 = i / 24 * 6.283, a1 = (i + 1) / 24 * 6.283; o.push(...seg([cx + Math.cos(a0) * r, cy + Math.sin(a0) * r], [cx + Math.cos(a1) * r, cy + Math.sin(a1) * r])); } return o; }; L.push(...circ(4.2, 2.2, .3)); L.push(...circ(4.2, 2.2, .12));
+      const gl = new THREE.BufferGeometry(); gl.setAttribute('position', new THREE.Float32BufferAttribute(L, 3)); S.bp = new THREE.LineSegments(gl, K.lineMat(K.C.bone, .8)); S.bp.geometry.setDrawRange(0, 0); plane.add(S.bp); S.bpN = L.length / 3;
+      const PATH = [[-3.6, -1.6], [-3.6, 0], [-1.8, 0], [-1.8, 2.2], [4.2, 2.2]]; let E2 = []; for (let i = 0; i < PATH.length - 1; i++) E2.push(...seg(PATH[i], PATH[i + 1])); const ge = new THREE.BufferGeometry(); ge.setAttribute('position', new THREE.Float32BufferAttribute(E2, 3)); S.bpPath = new THREE.LineSegments(ge, K.lineMat(K.C.ember, .95)); S.bpPath.geometry.setDrawRange(0, 0); plane.add(S.bpPath); S.bpPathN = E2.length / 3;
+      const fill = new THREE.Mesh(new THREE.PlaneGeometry(10, 6), K.fillMat(K.PAL.blue, .05)); fill.position.z = -.01; plane.add(fill); const gridL = K.grid(10, 6, 20, 12, K.C.bone, .07); gridL.rotation.x = Math.PI / 2; plane.add(gridL);
+      const tl = K.label('Project Heron · Campus 2 · Hall B · 32 MW IT', { px: 16, col: '#B8B2A6' }); tl.position.set(-1.6, 3.6, 0); plane.add(tl); p.add(plane); S.plane = plane;
+      // label plates: small screens over the named things, with leader lines down to the drawing
+      const PL = [['package', [-3.6, -1.6], ['SG-B02 · switchgear lineup', '!need-by 4 Apr 2027 · +35 d', 'owner-furnished · OFCI'], 'dc'], ['path', [-1.8, 1.0], ['Hall B electrical path', '!float · 0 d', 'switchgear → gate 13 → handover'], 'epc'], ['gate', [-1.8, 2.2], ['Gate 13 · energisation', 'waits on the package', '12 of 18 complete'], 'dc'], ['crew', [3.6, -2.0], ['Electrical crew · Hall B', 'booked 2 Apr 2027', '!standby $18,400 / day'], 'epc'], ['handover', [4.2, 2.2], ['Customer handover', '+14 May 2027 · commitment', 'exposure 1,120 MW IT-days'], 'dc']];
+      S.plates = PL.map((d, k) => { const anchor = new THREE.Vector3(d[1][0], d[1][1], 0).applyEuler(plane.rotation).add(plane.position); const DEP = [[2.3, -5.2, 2.6, 1.9], [1.4, -2.9, 1.7, -1.6], [2.0, -.9, 2.3, .7], [1.3, 1.3, 1.55, -2.2], [2.6, 3.1, 2.9, 2.4]][k]; const c = K.card('lines', d[0], DEP[0], false, d[2], DEP[0] > 2 ? .8 : .6); c.position.set(DEP[1], DEP[2], DEP[3]); c.rotation.y = (-DEP[1]) * .04; c.scale.setScalar(0); p.add(c); const lead = K.tube([anchor, c.position.clone().add(K.vec(0, -c.userData.h / 2, 0))], .012, K.C.bone, .6); lead.material.opacity = 0; p.add(lead); c.userData.lead = lead; const dot = K.glow('#E9E3D6', .3, 0); dot.position.copy(anchor); p.add(dot); c.userData.dot = dot; K.hover(c, { w: c.userData.w, h: c.userData.h, dy: c.userData.h / 2, link: d[0] === 'path' ? undefined : d[0], meta: { industry: d[3], facts: d[2].map(r => r.replace(/^[!+]/, '')) }, tip: () => ({ t: d[0] + ' · ' + d[2][0], b: d[2].slice(1).map(r => r.replace(/^[!+]/, '')).join(' · ') + '. <em>Named once, linked to every date it touches.</em>' }) }); return c; });
+      // the schema: the same things as the software holds them
+      S.schema = K.card('schema', 'Model · Heron · Hall B', 4.2, false, undefined, 1); S.schema.position.set(4.3, -.3, .9); S.schema.rotation.set(-.3, -.42, 0); S.schema.userData.from = K.vec(8, -.3, -1.5); S.schema.userData.to = S.schema.position.clone(); S.schema.position.copy(S.schema.userData.from); p.add(S.schema);
+      K.hover(S.schema, { w: 4.2, h: S.schema.userData.h, dy: S.schema.userData.h / 2, meta: { industry: 'dc', facts: ['5 entities, 5 relationships, each with a verb', 'A base vocabulary every data center shares', 'This customer\'s two rules sit on top, in the accent colour'] }, tip: () => ({ t: 'The schema the software holds', b: 'Package, crew, gate, milestone, decision, and the verbs between them. <em>The drawing and the model are two views of one thing.</em>' }) });
+      S.midGlow = K.glow(K.PAL.teal, 6, .12); S.midGlow.position.set(-1, -1, -.5); p.add(S.midGlow); K.place(g, p, OX, OY, Z[1]); S.scenes.push(p); }
+    // 03 · the record forms, the options stack beside it
+    { const p = new THREE.Group(); p.add(K.haze(K.PAL.green, 18, .1)); S.rec = K.card('decision', 'DR-3105 · decision record', 4.6); S.rec.position.set(-1.2, .1, 0); p.add(S.rec); K.hover(S.rec, { w: 4.6, h: S.rec.userData.h, dy: S.rec.userData.h / 2, meta: { industry: 'dc' }, tip: () => ({ t: 'DR-3105 · five records attached', b: 'Every figure carries a record ID: <code>ENG-117 REL-204 LOG-061 SCH-089 COM-033</code>. <em>The owner signs; the model never makes the call.</em>' }) });
+      const OPT = [['Hold the original order', '18 Jun 2027 · 35 d late', '$0'], ['Expedite with Norvale', '4 Jun 2027 · 21 d late', '$1,150,000'], ['+Reallocate from Wren ph. 2', '+14 May 2027 · held', '+$410,000'], ['!Air-freight a substitute', '!not qualified · window closed', '!ineligible']];
+      S.opts = OPT.map((o, i) => { const c = K.card('lines', ['Option A', 'Option B', 'Option C · recommended', 'Option D · refused'][i], 2.2, i === 3, o, .6); c.userData.to = K.vec(2.6, 1.55 - i * 1.05, .2 + (i === 2 ? .35 : 0)); c.userData.from = K.vec(6.5, 1.55 - i * 1.05, -2); c.position.copy(c.userData.from); p.add(c); K.hover(c, { w: 2.2, h: c.userData.h, dy: c.userData.h / 2, meta: { industry: 'dc', facts: o.map(r => r.replace(/^[!+]/, '')) }, tip: () => ({ t: o[0].replace(/^[!+]/, ''), b: i === 2 ? 'Qualified against the Hall B design, a slot that exists, a crew that is free. <em>Recommended by rule ranking.</em>' : i === 3 ? 'Stops at the first gate. <em>Not qualified against the protection design; receiving window closed.</em>' : 'Eligible, but it moves the handover. <em>' + o[1] + '.</em>' }) }); return c; });
+      S.recGlow = K.glow(K.PAL.green, 3.2, 0); S.recGlow.position.set(2.6, 1.55 - 2 * 1.05, .3); p.add(S.recGlow); S.noGlow = K.glow(K.PAL.ember, 3, 0); S.noGlow.position.set(2.6, 1.55 - 3 * 1.05, .3); p.add(S.noGlow);
+      S.chips = ['ENG-117', 'REL-204', 'LOG-061', 'SCH-089', 'COM-033'].map((id, k) => { const l = K.label(id, { px: 15, col: '#7FB58A' }); l.position.set(-3.2 + k * 1.0, -1.8, .3); l.scale.setScalar(0); p.add(l); return l; }); S.sig = K.label('Procurement Director · 10 Mar 2027 08:14', { px: 16, mono: false, col: '#E9E3D6' }); S.sig.position.set(-1.2, -2.3, .3); S.sig.scale.set(0, 1, 1); p.add(S.sig);
+      S.lead = K.glow('#E9E3D6', 1.2, 0); S.lead.position.set(1.2, .9, .3); p.add(S.lead); K.place(g, p, OX, OY, Z[2]); S.scenes.push(p); }
+    K.place(g, K.grid(16, 80, 4, 20, K.C.bone, .07), OX, -4 + OY, -40);
+  },
+  update(q, K, S, el) {
+    const T = K.T, steps = $$('.step'), dots = $$('#dots b');
+    S.scenes.forEach((p, i) => { const a = i / 3, b = (i + 1) / 3; const s = sub(q, a - .05, b + .02); const f = p.userData._f; S.cap = undefined;
+      if (i === 0) { S.hub.rotation.y = T * .4; const hb = eo(sub(s, .05, .25)); S.hub.scale.setScalar(hb); const conflict = ss(.52, .58, s) * (1 - ss(.72, .78, s)), clean = ss(.76, .84, s); S.hubGlow.material.opacity = (.5 * hb + clean * .35) * (.8 + .2 * Math.sin(T * 2.5)) * f; S.src.forEach((c, k) => { const e = eo(sub(s, .06 + k * .05, .32 + k * .05)), hot = c.userData.hot; c.position.lerpVectors(c.userData.from, c.userData.to, e); c.position.y += Math.sin(T * .8 + k) * .05 + hot * .2; c.position.z += hot * .3; c.userData.face.material.opacity = .97 * e * f; const st = ss(.34 + k * .03, .48 + k * .03, s); const bad = (k === 0 || k === 1) ? conflict : 0; c.userData.flash = bad; c.userData.tube.material.opacity = (.45 + hot * .4 + bad * .4) * st * f; c.userData.tube.material.color.set([K.PAL.blue, K.PAL.green, K.PAL.teal, K.PAL.plum, K.PAL.sand][k]).lerp(K.C.ember, bad).lerp(K.C.ok, clean * .6); c.userData.dots.forEach((d, j) => { const u = (T * (.22 + clean * .12) + j / 5 + k * .13) % 1; d.position.copy(c.userData.cv.getPoint(u)); d.material.opacity = st * (.9 - u * .5) * (1 - bad * .7) * f; d.material.color.set([K.PAL.blue, K.PAL.green, K.PAL.teal, K.PAL.plum, K.PAL.sand][k]).lerp(K.C.ok, clean); d.scale.setScalar(.26 + hot * .1); }); }); S.flag.scale.setScalar(snap(conflict)); S.clean.scale.setScalar(snap(clean)); S.cap = s < .5 ? 'Reading 5 sources exactly as exported' : s < .76 ? '2 conflicts flagged, not hidden' : '212 clean records in the model'; }
+      if (i === 1) { const draw = ss(.04, .34, s), pathD = ss(.3, .46, s); S.bp.geometry.setDrawRange(0, Math.floor(S.bpN * draw)); S.bpPath.geometry.setDrawRange(0, Math.floor(S.bpPathN * pathD)); S.bp.material.opacity = .8 * f; S.bpPath.material.opacity = (.95 * (.85 + .15 * Math.sin(T * 3))) * f; S.plane.rotation.z = .3 + Math.sin(T * .15) * .02;
+        S.plates.forEach((c, k) => { const e = snap(sub(s, .42 + k * .05, .56 + k * .05)), hot = c.userData.hot; c.scale.setScalar(Math.min(1.03, e) * (1 + hot * .05)); c.position.z = .4 + hot * .3; c.userData.face.material.opacity = .97 * f; c.userData.lead.material.opacity = (.6 + hot * .4) * Math.min(1, e) * f; c.userData.lead.material.color.set(K.C.bone).lerp(K.C.ember, hot); c.userData.dot.material.opacity = Math.min(1, e) * (.7 + hot * .3) * f; c.userData.dot.scale.setScalar(.3 + hot * .2); });
+        const sc = eo(sub(s, .66, .86)); S.schema.position.lerpVectors(S.schema.userData.from, S.schema.userData.to, sc); S.schema.position.y += Math.sin(T * .7) * .04; S.schema.userData.face.material.opacity = .97 * sc * f; S.schema.userData.flash = ss(.86, .95, s) * (1 - ss(.98, 1, s)); S.midGlow.material.opacity = (.12 + .05 * Math.sin(T * 1.5)) * draw * f; S.cap = s < .42 ? 'The hall, drawn from the data' : s < .66 ? 'Named things, labelled in place' : 'The schema the software holds'; }
+      if (i === 2) { const e = eo(sub(s, .08, .32)), hot = S.rec.userData.hot; S.rec.position.y = .1 + (1 - e) * -1.4; S.rec.userData.face.material.opacity = .97 * e * f; S.rec.scale.setScalar(lerp(.94, 1, e) + hot * .03); S.opts.forEach((c, k) => { const eo2 = eo(sub(s, .28 + k * .06, .46 + k * .06)); c.position.lerpVectors(c.userData.from, c.userData.to, eo2); c.position.z += c.userData.hot * .3 + (k === 2 ? ss(.68, .76, s) * .3 : 0); c.userData.face.material.opacity = .97 * eo2 * (k === 3 ? 1 - ss(.62, .68, s) * .45 : 1) * f; c.userData.flash = k === 3 ? ss(.56, .6, s) * (1 - ss(.66, .72, s)) : k === 2 ? ss(.68, .74, s) : 0; }); S.noGlow.material.opacity = ss(.56, .6, s) * (1 - ss(.66, .74, s)) * .6 * f; S.recGlow.material.opacity = ss(.68, .76, s) * (.45 + .15 * Math.sin(T * 3)) * f; S.chips.forEach((l, k) => { l.scale.setScalar(snap(sub(s, .76 + k * .025, .84 + k * .025))); }); const ink = ss(.86, .94, s); S.sig.scale.set(ink, 1, 1); S.sig.position.x = -3.0 + ink * 1.8; S.lead.material.opacity = ss(.9, 1, s) * (.6 + .4 * Math.sin(T * 4)) * f; S.lead.scale.setScalar(1.2 + ss(.9, 1, s) * 1.5); S.cap = s < .55 ? '4 options computed' : s < .76 ? '1 refused, with its reason printed' : s < .9 ? '5 records attached' : 'The owner signs'; }
+      const sub2 = steps[i].querySelector('.sub'); if (sub2 && S.cap !== undefined && sub2.textContent !== S.cap) { sub2.textContent = S.cap; sub2.classList.remove('swap'); void sub2.offsetWidth; sub2.classList.add('swap'); }
+      steps[i].style.opacity = vis(s, .05, .2, .78, .92); steps[i].style.transform = `translateY(${(1 - ss(.05, .2, s)) * 26 - ss(.78, .92, s) * 26}px)`; dots[i].style.transform = `scaleX(${ss(0, 1, s)})`; });
+  } },
+// ---- 4 industries: three worlds along one hall, seen from the right, the left, then from above --------------
+{ name: 'industries', a: .625, b: .74, dom: '#industries', fade: [0, .06, .93, 1],
+  cam: [[0, OX + 1, .5, 2, OX + LX + 1.2, OY + .9, -20], [.25, OX + 4, 1.6, -11, OX + LX, OY, -22], [.4, OX + 5, 3.6, -29, OX + LX + .3, OY - .4, -42], [.52, OX - .5, 3.4, -28.5, OX + LX + .5, OY - .3, -42], [.64, OX - 5.5, 4.4, -31, OX + LX + .3, OY - .6, -42], [.8, OX + 3.5, 1.4, -48.5, OX + LX + 2.2, OY - .3, -62], [.9, OX - 1.5, .2, -49, OX + LX + 2.4, OY - .6, -62], [1, OX, 1.2, -58, OX + LX - .8, OY - 2.4, -64]],
+  build(g, K, S) {
+    // EPC: a floating schedule with dependencies
+    const e = new THREE.Group(); e.add(K.grid(9, 6, 9, 6, K.C.bone, .12).rotateX(Math.PI / 2)); S.bars = [];
+    const BARS = [['Busbar fabrication', [1]], ['Switchgear lineup SG-B02', [2, 3]], ['Switchgear install', [4]], ['Gate 13 · energisation', [5]], ['Commissioning', [5]], ['Hall B handover', []], ['Crew standby', []]];
+    for (let r = 0; r < 7; r++) { const w = 1.2 + K.R() * 2.2, late = r === 1; const b = new THREE.Group(); const sl = K.slab(w, .22, .16, late ? K.PAL.ember : r === 5 ? K.PAL.green : K.PAL.blue, 1, .25, .1); sl.position.x = w / 2; b.add(sl); const m = sl.userData.body, wp = sl.children[1]; const rl = K.label(BARS[r][0], { px: 18, col: '#B8B2A6' }); rl.position.set(-rl.userData.w / 2 - .15, 0, 0); b.add(rl); b.position.set(-3.6 + r * .55 + K.R() * .6, 2.2 - r * .72, 0); b.userData.w = w; b.userData.deps = BARS[r][1]; b.userData.fill = m; b.userData.wire = wp; e.add(b); S.bars.push(b);
+      K.hover(b, { w, h: .5, at: K.vec(w / 2, 0, 0), dy: .25, link: r === 5 ? 'handover' : r === 1 ? 'slip' : undefined, meta: { industry: 'epc', room: 'surgery', id: 'bar' + r, facts: ['Switchgear lineup SG-B02 slips +35 calendar days', 'Zero float: the handover moves by the same number of days', 'Reallocating from Wren holds 14 May for $410,000'] }, tip: () => ({ t: BARS[r][0], b: BARS[r][1].length ? `Feeds <code>${BARS[r][1].map(k => BARS[k][0]).join(' · ')}</code>. <em>A slip here moves everything lit downstream.</em>` : (r === 5 ? 'The customer date. <em>Zero float on the path that reaches it.</em>' : 'Booked for the install. <em>Illustrative standby $18,400 a day.</em>') }) }); }
+    const ms = K.label('Hall B handover · 14 May', { px: 22 }); ms.position.set(2.6, 2.85, 0); e.add(ms); S.mile = K.line([K.vec(2.6, 2.6, 0), K.vec(2.6, -2.6, 0)], K.C.bone, .6); e.add(S.mile); e.scale.setScalar(.78); K.place(g, e, OX + .6, OY, -22); S.epc = e; K.place(g, K.haze(K.PAL.blue, 36, .09), OX, OY, -30);
+    // Data centers: five halls hanging in an arc, the time wall on the floor beneath them, a glass plane at the commitment
+    const d = new THREE.Group(); d.add(K.haze(K.PAL.teal, 26, .035));
+    const HALLS = [['Heron', 'Hall B', '32 MW', '14 May 2027', '18 Jun 2027', 12, 'heron'], ['Wren', 'Hall A', '20 MW', '30 Jul 2027', '8 Aug 2027', 9, 'wren'], ['Ibis', 'development', '—', 'gate', 'on target', 3, 'other'], ['Kestrel', 'Hall C', '24 MW', '22 Sep 2027', '22 Sep 2027', 4, 'other'], ['Plover', 'Hall A', '16 MW', '11 Nov 2027', '11 Nov 2027', 1, 'other']];
+    S.halls = HALLS.map((hd, i) => { const c = K.card('hall', 'Project ' + hd[0], i === 0 ? 3.4 : 2.7, false, hd, .8); const ang = (i - 2) * .2; c.userData.home = K.vec(Math.sin(ang) * 6.4, 1.3 + Math.abs(i - 2) * .1, -Math.cos(ang) * 6.4 + 5.6 + (i === 0 ? 1.2 : 0)); c.position.copy(c.userData.home); c.rotation.y = -ang * 1.2; c.userData.slip = 0; c.userData.flash = 0; d.add(c);
+      K.hover(c, { w: c.userData.w, h: c.userData.h, dy: c.userData.h / 2, link: hd[6] === 'heron' ? 'heron' : undefined, meta: { industry: 'dc', room: hd[6] === 'wren' ? 'donor' : 'ripple', id: 'site-' + hd[0], facts: hd[6] === 'heron' ? ['Hall B · 32 MW IT · commitment 14 May 2027', 'SG-B02 slips +35 d: forecast 18 Jun, 1,120 MW IT-days exposed', 'Gate 13 waits on the lineup; recovered by the Wren transfer'] : hd[6] === 'wren' ? ['Hall A · 20 MW IT · +9 d', 'Phase 2 is uncommitted: 38 days of float', 'The donor: its lineup goes to Heron, its own date holds'] : [hd[1] + ' · ' + hd[2], 'On track · ' + hd[5] + ' of 18 gates', 'Watched on the same board as every other hall'] }, tip: () => ({ t: 'Project ' + hd[0] + ' · ' + hd[1], b: hd[6] === 'heron' ? 'The hall the slip lands on. <em>Watch the forecast, variance and gates rewrite, then recover.</em>' : hd[6] === 'wren' ? 'The donor. <em>Phase 2 is uncommitted, so its lineup can move to Heron without moving anyone\'s date.</em>' : 'On track. <em>On the board so the portfolio is seen whole.</em>' }) }); return c; });
+    // the time wall on the floor: Mar to Nov across x, one lane per hall in depth
+    const floor = new THREE.Group(); floor.position.y = -1.4; const TX = m => -6 + 12 * (m - 2) / 9;   // month index -> x
+    floor.add(K.grid(12.6, 5, 9, 5, K.C.bone, .05)); for (let m = 2; m < 12; m++) { const l = K.label(['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'][m], { px: 14, col: '#6C7280' }); l.rotation.x = -Math.PI / 2; l.position.set(TX(m) + .25, .01, 2.7); floor.add(l); }
+    const LANE = [[2, 4.45, 5.6], [2, 7, 7.25], [3, 5, null], [3.5, 8.7, null], [5, 10.35, null]];   // start, end, extension (in months, fractional)
+    S.lanes = LANE.map((ln, i) => { const z = -1.8 + i * .9; const w = TX(ln[1]) - TX(ln[0]); const bar = K.slab(w, .14, .34, i === 0 ? K.PAL.teal : i === 1 ? K.PAL.gold : K.PAL.blue, 1, 0, .07); bar.position.set(TX(ln[0]) + w / 2, .1, z); floor.add(bar); const nm = K.label(HALLS[i][0], { px: 14, col: '#B8B2A6' }); nm.rotation.x = -Math.PI / 2; nm.position.set(TX(ln[0]) - .9, .02, z); floor.add(nm); let ext = null; if (ln[2]) { const ew = TX(ln[2]) - TX(ln[1]); ext = K.slab(ew, .14, .34, i === 0 ? K.PAL.ember : K.PAL.gold, 1, 0, .07); ext.position.set(TX(ln[1]) + ew / 2, .1, z); ext.scale.x = i === 0 ? .001 : 1; ext.userData.ew = ew; floor.add(ext); } return { bar, ext, z }; });
+    // the commitment: a sheet of glass across the lanes at 14 May
+    S.glass = new THREE.Mesh(K.roundedBox(.06, 2.4, 5.2, .02), K.glassMat('#E9E3D6', .16)); S.glass.position.set(TX(4.45), -.2, 0); d.add(S.glass); const gl2 = K.label('commitment · 14 May 2027', { px: 14, col: '#B8B2A6' }); gl2.position.set(TX(4.45) + .9, 1.1, 2.4); d.add(gl2); S.glassHit = K.glow(K.PAL.ember, 2.2, 0); S.glassHit.position.set(TX(4.45), -1.3, -1.8); d.add(S.glassHit);
+    d.add(floor); S.floor = floor;
+    // the exposure, above the arc
+    S.expo = [K.label('Portfolio exposure · 0 MW IT-days', { px: 20 }), K.label('Portfolio exposure · 1,120 MW IT-days', { px: 20, col: '#E2663A' }), K.label('Portfolio exposure · 0 MW IT-days · recovered', { px: 20, col: '#7FB58A' })]; S.expo.forEach(l => { l.position.set(0, 3.5, 2); d.add(l); });
+    S.portLead = K.glow('#E9E3D6', 1.4, 0); S.portLead.position.set(0, 1.5, 3); d.add(S.portLead);
+    K.place(g, d, OX, OY, -42); S.dc = d;
+    // Supply chain: the allocation board, then the same plan in three views, sent back into the systems
+    const s = new THREE.Group(); s.add(K.haze(K.PAL.green, 26, .035));
+    S.alloc = K.card('alloc', 'Allocation · week 11 · Corvane Distribution', 5.2, false, undefined, 1); S.alloc.position.set(-1.6, .6, 0); S.alloc.rotation.y = .12; S.alloc.userData.slip = 0; s.add(S.alloc);
+    K.hover(S.alloc, { w: 5.2, h: S.alloc.userData.h, dy: S.alloc.userData.h / 2, meta: { industry: 'sc', room: 'relax', id: 'node4', key: ['$6,400', 'to make next week executable'], facts: ['Four depots, five store clusters, next week\'s allocation read from the ERP export and the workbook', 'Service target 98% blocks Depot North: 220 units short', 'The solver relaxes one rule for two days at $6,400 and the plan executes'] }, tip: () => ({ t: 'Allocation board · week 11', b: 'One cell is blocked by a service target. <em>The solver shows which rule to loosen, by how much, for how long, and what it costs.</em>' }) });
+    S.views = ['table', 'calendar', 'lanes'].map((w, i) => { const c = K.card('view', ['Plan · table', 'Plan · calendar', 'Plan · lanes'][i], 2.9, false, [w], .7); c.position.set(2.4 + i * .35, 1.9 - i * 1.25, .3 + i * .7); c.rotation.y = -.3; c.scale.setScalar(0); s.add(c); K.hover(c, { w: 2.9, h: c.userData.h, dy: c.userData.h / 2, meta: { industry: 'sc', room: 'views', facts: ['The same plan as a table, a calendar and lanes', 'Hover an order: it lights in every view', 'Approved, it exports back into the ERP and the workbook'] }, tip: () => ({ t: 'The same plan · ' + w, b: 'Hover an order and it lights in every view. <em>No one argues about which is right.</em>' }) }); return c; });
+    S.erp = K.slab(2.0, .5, .6, K.PAL.blue, 1, .3); S.erp.position.set(-.2, -2.4, .9); const el2 = K.label('ERP', { px: 16 }); el2.position.set(0, 0, .32); S.erp.add(el2); s.add(S.erp); S.wb = K.slab(2.0, .5, .6, K.PAL.green, 1, .3); S.wb.position.set(2.3, -2.4, .9); const wl2 = K.label('workbook', { px: 16 }); wl2.position.set(0, 0, .32); S.wb.add(wl2); s.add(S.wb);
+    S.fly = []; for (let i = 0; i < 10; i++) { const d2 = K.glow(K.PAL.green, .45, 0); s.add(d2); S.fly.push({ d: d2, from: K.vec(2.4 + (i % 3) * .35, 1.9 - (i % 3) * 1.25 - .5, .3), to: (i % 2 ? S.wb.position : S.erp.position).clone(), ph: i * .08 }); }
+    S.lead = K.glow('#E9E3D6', 1.5, 0); S.lead.position.set(1.0, -2.4, 1.3); s.add(S.lead); K.place(g, s, OX, OY - .4, -62); S.sc = s;
+  },
+  update(q, K, S, el) {
+    const T = K.T, zones = $$('.zone'), sE = sub(q, -.02, .36), sD = sub(q, .3, .7), sS = sub(q, .64, 1.02);
+    const fE = S.epc.userData._f, hotBar = S.bars.find(b => b.userData.hot > .05);
+    S.bars.forEach((b, i) => { const e = eo(sub(sE, .08 + i * .04, .36 + i * .04)); b.scale.x = Math.max(.001, e); if (i === 1) b.position.x = -2.2 + (DEC.status === 'approved' ? 0 : ss(.42, .55, sE) * 1.9 - ss(.68, .82, sE) * 1.9); const lit = hotBar ? (hotBar === b ? 1 : (hotBar.userData.deps.includes(i) ? .8 : 0)) * hotBar.userData.hot : 0; const dim = hotBar ? hotBar.userData.hot * .5 : 0; b.userData.fill.material.opacity = (1 - dim * .6) * fE; b.userData.wire.material.opacity = (.25 + lit * .6) * fE; b.userData.fill.material.emissive.copy(b.userData.fill.material.userData.emBase).add(new THREE.Color(K.C.ember).multiplyScalar(lit * .6)); b.position.z = lit * .3; });
+    { const f = S.dc.userData._f; const state = sD < .2 ? 0 : sD < .6 ? 1 : 2; const sweep1 = sub(sD, .2, .38), sweep2 = sub(sD, .6, .78);
+      S.halls.forEach((c, i) => { c.userData.slip = state; const w1 = ss(i / 5 - .05, i / 5 + .12, sweep1) * (1 - ss(i / 5 + .2, i / 5 + .35, sweep1)), w2 = ss(i / 5 - .05, i / 5 + .12, sweep2) * (1 - ss(i / 5 + .2, i / 5 + .35, sweep2)); c.userData.flash = Math.max(w1, w2); const fwd = i === 0 ? ss(.22, .3, sD) * (1 - ss(.62, .72, sD)) : 0; c.position.copy(c.userData.home); c.position.z += fwd * 1.2 + c.userData.hot * .3; c.position.y += Math.sin(T * .7 + i) * .05 + fwd * .3; c.userData.face.material.opacity = .97 * f; c.userData.glow.userData.base = .12 + fwd * .3; });
+      const ext0 = S.lanes[0].ext; const ex = ss(.24, .4, sD) * (1 - ss(.66, .8, sD)); ext0.scale.x = Math.max(.001, ex); ext0.position.x = ext0.position.x; ext0.userData.body.material.opacity = f; S.glass.material.color.set('#E9E3D6').lerp(K.C.ember, ex); S.glass.material.opacity = (.16 + ex * .16) * f; S.glassHit.material.opacity = ex * .7 * (.7 + .3 * Math.sin(T * 5)) * f;
+      S.expo.forEach((l, k) => { l.material.opacity = (k === state ? 1 : 0) * .95 * f; l.position.y = 3.5 + Math.sin(T * .8) * .05; });
+      S.portLead.material.opacity = ss(.84, 1, sD) * (.6 + .4 * Math.sin(T * 4)) * f; S.portLead.scale.setScalar(1.4 + ss(.84, 1, sD) * 1.5); }
+    { const f = S.sc.userData._f; const st = sS < .12 ? 0 : sS < .34 ? 1 : 2; S.alloc.userData.slip = st; S.alloc.userData.flash = ss(.34, .36, sS) * clamp((sS - .34) / .18) * (1 - ss(.5, .54, sS)); S.alloc.position.x = -1.6 - ss(.55, .75, sS) * .8; S.alloc.scale.setScalar(1 - ss(.55, .75, sS) * .1); S.alloc.position.y = .6 + Math.sin(T * .6) * .05;
+      const hotV = Math.max(...S.views.map(v => v.userData.hot)); S.views.forEach((v, i) => { const e = snap(sub(sS, .56 + i * .07, .7 + i * .07)); v.scale.setScalar(Math.min(1.03, e)); v.userData.flash = hotV; v.position.z = .4 + i * .9 + v.userData.hot * .3; });
+      const ex = sub(sS, .8, 1); S.fly.forEach(fl => { const t2 = clamp((ex - fl.ph) / .5); fl.d.position.lerpVectors(fl.from, fl.to, eo(t2)); fl.d.material.opacity = (t2 > 0 && t2 < 1 ? 1 : 0) * f; }); S.erp.userData.body.material.emissive.copy(S.erp.userData.body.material.userData.emBase).add(new THREE.Color(K.PAL.blue).multiplyScalar(ss(.85, 1, sS) * .5)); S.wb.userData.body.material.emissive.copy(S.wb.userData.body.material.userData.emBase).add(new THREE.Color(K.PAL.green).multiplyScalar(ss(.85, 1, sS) * .5));
+      S.lead.material.opacity = ss(.88, 1, sS) * (.6 + .4 * Math.sin(T * 4)) * f; S.lead.scale.setScalar(1.5 + ss(.88, 1, sS) * 1.5); }
+    [sE, sD, sS].forEach((s, i) => { zones[i].style.opacity = vis(s, .08, .22, .78, .92); zones[i].style.transform = `translateY(${(1 - ss(.08, .22, s)) * 26 - ss(.78, .92, s) * 26}px)`; });
+  } },
+// ---- 5 philosophy: a stack in section; the camera descends through it; a layer isolates on hover -------------
+{ name: 'about', a: .74, b: .84, dom: '#about', fade: [.04, .16, .88, .98],
+  cam: [[0, OX, 1.2, 2, OX + LX - .8, OY - 2.4, -20], [.18, OX - 4.5, 4.6, -16, OX + LX + 2.2, OY + 2.6, -44], [.5, OX + 5, .6, -27, OX + LX + 2.6, OY - .2, -44], [.85, OX - 2.5, -2.4, -34, OX + LX + 2.2, OY - 2.6, -44], [1, OX - 1.5, -2.2, -40, OX + LX - 2.5, OY - 2.6, -44.5]],
+  build(g, K, S) {
+    const LZ = -44; S.stack = new THREE.Group(); K.place(g, K.haze(K.PAL.blue, 44, .08), OX, OY, LZ - 6);
+    const Y = { top: 3.6, mid: 1.1, sol: -1.1, bot: -3.3 }; S.Y = Y; const GOLD = K.PAL.gold; S.LCOL = ['#B79CE8', GOLD, K.PAL.green, K.PAL.teal]; const noop = () => { S.beatT = K.T; };
+    // 01 · the glass membrane: the language model. In its level a transcript stands on the glass.
+    S.top = new THREE.Group(); const pane = new THREE.Mesh(K.roundedBox(10, 6, .08, .3), K.glassMat('#2A1748', .62)); pane.rotation.x = -Math.PI / 2; pane.position.y = .02; S.top.add(pane); const frame = new THREE.Mesh(K.roundedBox(10.3, 6.3, .06, .34), K.solidMat('#1A1228', 1)); frame.rotation.x = -Math.PI / 2; frame.position.y = -.16; S.top.add(frame);
+    const tl = K.label('01 · Language model · translation only', { px: 22, col: '#B79CE8' }); tl.position.set(0, .35, 3.4); S.top.add(tl); S.top.position.y = Y.top; S.stack.add(S.top);
+    K.hover(S.top, { w: 10, h: 6, rot: new THREE.Euler(-Math.PI / 2, 0, 0), dy: .6, click: () => S.enter(0), tip: () => ({ t: '01 · Language model · click to go inside', b: 'Reads and writes plain English. <em>It translates. It never decides.</em>' }) });
+    S.chat = K.card('chat', 'Resonance · transcript', 5.4, false, null, 1); S.chat.position.set(1.4, .3 + S.chat.userData.h / 2, .4); S.chat.rotation.x = -.2; S.chat.scale.setScalar(.001); S.top.add(S.chat); K.hover(S.chat, { w: 5.4, h: S.chat.userData.h, click: noop, tip: () => ({ t: 'The transcript · click to replay', b: 'What the model reads, extracts and drafts. <em>Then it passes down.</em>' }) });
+    S.mailP = K.card('mail', 'Norvale · delivery revision 03', 2.6, true); S.mailP.position.set(-3.3, 1.4, 1.2); S.mailP.rotation.set(-.25, .3, 0); S.top.add(S.mailP); K.hover(S.mailP, { w: 2.6, h: S.mailP.userData.h, meta: { industry: 'epc' }, tip: () => ({ t: 'The email that starts it', b: 'SG-B02 slips 35 days. <em>Four recipients, none of whom owns the handover date.</em>' }) });
+    S.q = K.label('"Why is Hall B late?"', { px: 28, col: '#F2EEE6' }); S.q.position.set(1.2, 1.0, 1.9); S.top.add(S.q);
+    // 02 · the ontology board with the lattice; in its level the object explorer stands on the board
+    S.mid = new THREE.Group(); S.board = K.slab(10, .5, 6, '#161C29', 1, 0, .14); S.board.position.y = -.45; S.mid.add(S.board);
+    const NCOL = [K.PAL.blue, K.PAL.teal, K.PAL.plum, K.PAL.green, K.PAL.sand, K.PAL.blue], NAMES = ['package', 'crew', 'gate', 'milestone', 'float', 'owner', 'supplier', 'handover'];
+    const P = []; S.midNodes = []; for (let i = 0; i < 36; i++) { const v = K.vec(-4.4 + (i % 9) * 1.1 + (K.R() - .5) * .5, .1 + K.R() * .8, -2.2 + Math.floor(i / 9) * 1.45 + (K.R() - .5) * .5); P.push(v); const key = i % 5 === 0; const n = new THREE.Mesh(new THREE.SphereGeometry(key ? .15 : .075, 16, 12), K.solidMat(key ? GOLD : NCOL[i % 6])); n.position.copy(v); n.userData.y0 = v.y; n.userData.lit = 0; S.mid.add(n); S.midNodes.push(n); if (key) { const l = K.label(NAMES[(i / 5) | 0], { px: 15 }); l.position.copy(v).add(K.vec(0, .32, 0)); S.mid.add(l); } }
+    S.traces = []; P.forEach((p, i) => { const near = P.map((q, j) => [p.distanceTo(q), j]).sort((x, y) => x[0] - y[0]).slice(1, 3); near.forEach(([d, j]) => { if (j > i) { const t = K.tube([p, P[j]], .012, K.PAL.teal, .55); S.mid.add(t); S.traces.push(t); } }); });
+    const ml = K.label('02 · Ontology · your operation, named once', { px: 22, col: GOLD }); ml.position.set(0, 1.5, 3.4); S.mid.add(ml); S.midGlow = K.glow(GOLD, 7, .16); S.midGlow.position.y = .5; S.mid.add(S.midGlow); S.mid.position.y = Y.mid; S.stack.add(S.mid);
+    K.hover(S.mid, { w: 10, h: 2.2, at: K.vec(0, .4, 0), dy: 1, click: () => S.enter(1), tip: () => ({ t: '02 · Ontology · click to go inside', b: 'Packages, crews, gates, suppliers, handover dates, named once and linked. <em>One change finds everything it touches.</em>' }) });
+    S.explorer = K.card('explorer', 'Ontology · object explorer', 5.4, false, null, 1); S.explorer.position.set(1.7, .3 + S.explorer.userData.h / 2, .3); S.explorer.rotation.x = -.18; S.explorer.scale.setScalar(.001); S.mid.add(S.explorer); K.hover(S.explorer, { w: 5.4, h: S.explorer.userData.h, click: noop, tip: () => ({ t: 'The object explorer · click to replay', b: 'Object types, properties, links with verbs. <em>Every property carries its source.</em>' }) });
+    const RN = [0, 10, 19, 28, 20]; S.vals = [['float · 0 d → −35 d', 10], ['gate 13 · waits', 19], ['crew · standby $18,400 / d', 28], ['handover · 14 May → 18 Jun', 20]].map(([t, k]) => { const l = K.label(t, { px: 15, col: '#E2663A' }); l.position.copy(S.midNodes[k].position).add(K.vec(0, .55, .1)); l.scale.setScalar(0); S.mid.add(l); return l; });
+    S.ripplePath = new THREE.CatmullRomCurve3(RN.map(k => S.midNodes[k].position.clone())); S.ripple = K.glow(K.PAL.ember, .9, 0); S.mid.add(S.ripple); S.RN = RN;
+    // 03 · the solver plate: three gates, four option tokens; in its level the search matrix stands at the right
+    S.sol = new THREE.Group(); const plate = K.slab(10, .3, 6, '#141A26', 1, 0, .14); plate.position.y = -.3; S.sol.add(plate); const sl2 = K.label('03 · Solvers · only options that can be built', { px: 22, col: K.PAL.green }); sl2.position.set(0, 1.35, 3.4); S.sol.add(sl2);
+    S.gates = [['fits design', -3.6], ['slot exists', -1.9], ['crew free', -.2]].map(gd => { const gt = new THREE.Group(); const fr = new THREE.Mesh(K.roundedBox(.12, 1.6, 4.4, .04), K.glassMat('#E9E3D6', .18)); gt.add(fr); const gl = K.label(gd[0], { px: 14, col: '#B8B2A6' }); gl.position.set(0, 1.0, 2.4); gt.add(gl); gt.position.set(gd[1], .65, 0); gt.userData.fr = fr; S.sol.add(gt); return gt; });
+    const OPTC = [K.PAL.dim, K.PAL.dim, K.PAL.green, K.PAL.ember]; S.tokens = ['Hold', 'Expedite', 'Reallocate · Wren', 'Air-freight'].map((n, i) => { const t = K.slab(1.3, .3, .5, OPTC[i], 1, .25, .15); const l = K.label(n, { px: 13, col: '#0B0D12' }); l.position.set(0, .16, 0); l.rotation.x = -Math.PI / 2; t.add(l); t.position.set(-4.6, .16, -1.5 + i * 1.0); t.userData.z = -1.5 + i * 1.0; S.sol.add(t); return t; });
+    S.donorLabel = K.label('Wren phase 2 · uncommitted · 38 d float kept', { px: 15, col: '#7FB58A' }); S.donorLabel.position.set(-1.8, 1.9, 1.2); S.donorLabel.scale.setScalar(0); S.sol.add(S.donorLabel);
+    S.sol.position.y = Y.sol; S.stack.add(S.sol);
+    K.hover(plate, { w: 10, h: 6, rot: new THREE.Euler(-Math.PI / 2, 0, 0), at: K.vec(0, .2, 0), dy: 1.2, click: () => S.enter(2), tip: () => ({ t: '03 · Solvers · click to go inside', b: 'Every option tried against your real limits. <em>Only the buildable ones reach you, with the reason for every refusal.</em>' }) });
+    S.solver = K.card('solver', 'Solver · SG-B02 recovery', 5.0, false, null, 1); S.solver.position.set(3.3, .3 + S.solver.userData.h / 2, .2); S.solver.rotation.x = -.15; S.solver.scale.setScalar(.001); S.sol.add(S.solver); K.hover(S.solver, { w: 5, h: S.solver.userData.h, click: noop, tip: () => ({ t: 'The search · click to replay', b: 'Options down, constraints across. <em>Pass, prune, rank.</em>' }) });
+    // 04 · five system modules; in its level the exports fan up and the mapping screen checks them
+    S.bot = new THREE.Group(); const SC = [K.PAL.teal, K.PAL.blue, K.PAL.ember, K.PAL.sand, K.PAL.green]; S.sysNames = ['P6', 'SAP', 'Oracle', 'Procore', 'Excel'];
+    const ROWS = [['activities · 1,284', 'critical path · Hall B electrical', 'float · 0 d', '+updated 9 Mar 08:00'], ['purchase orders · 212', '!SG-B02 · delivery revision 03', 'open deliveries · 48', '+exported 9 Mar 08:00'], ['commitments · $184.2M', 'change orders · 17', '!CO-221 · pending', '+synced 9 Mar'], ['RFIs · 64 open', 'submittals · 211', 'approvals · 2 of 4', '+synced 9 Mar'], ['HallB_readiness_gates.xlsx', 'gates · 12 / 18', '!3 columns disagree with SAP', '+read as-is']];
+    S.slabs = S.sysNames.map((n, i) => { const sl = new THREE.Group(); const body = K.slab(1.7, 1.05, 2.2, '#1A2130', 1, 0, .1); sl.add(body); const strip = K.slab(1.7, .07, 2.2, SC[i], 1, 0, .02); strip.position.y = .53; sl.add(strip); const face = K.card('lines', n, 1.5, false, ROWS[i], .5); face.position.set(0, 0, 1.12); sl.add(face); sl.position.x = -4 + i * 2; sl.userData.body = body.userData.body; sl.userData.face = face; sl.userData.lit = 0; const idl = K.label(['SCH-089', 'LOG-061', 'COM-033', 'ENG-117', 'REL-204'][i], { px: 15, col: '#7FB58A' }); idl.position.set(0, .95, 1.1); idl.scale.setScalar(0); sl.add(idl); sl.userData.idl = idl; S.bot.add(sl);
+      K.hover(sl, { w: 1.7, h: 1.05, at: K.vec(0, 0, 1.13), dy: .6, meta: { industry: ['epc', 'sc', 'epc', 'epc', 'sc'][i], facts: ROWS[i].map(r => r.replace(/^[!+]/, '')) }, tip: () => ({ t: n + ' stays ' + n, b: 'Nothing is replaced. <em>Read as it is; the plan is exported back into it.</em>' }) }); return sl; });
+    const base = K.slab(10.6, .18, 3, '#141A26', 1, 0, .1); base.position.y = -.62; S.bot.add(base); K.hover(base, { w: 10.6, h: 3, rot: new THREE.Euler(-Math.PI / 2, 0, 0), at: K.vec(0, .1, 0), dy: 1.4, click: () => S.enter(3), tip: () => ({ t: '04 · Data · click to go inside', b: 'Your systems, read as they are. <em>Every figure has a home.</em>' }) });
+    const bl = K.label('04 · Data · your systems, read as they are', { px: 22, col: K.PAL.teal }); bl.position.set(0, 1.5, 1.6); S.bot.add(bl); S.layerLabels = [tl, ml, sl2, bl];
+    const FILES = [['HallB_P6.xer', 'P6 · 9 Mar 08:00', ['activity_id', 'total_float', 'finish']], ['SG-B02_delivery_rev03.xlsx', 'SAP · 9 Mar 08:00', ['po_item', 'need_by_date', 'revision']], ['commitments.csv', 'Oracle · 9 Mar', ['commit_id', 'amount', 'status']], ['procore_rfis.csv', 'Procore · 9 Mar', ['rfi_id', 'rfi_status', 'due']], ['HallB_readiness_gates.xlsx', 'Excel · read as-is', ['gate', 'units', 'done']]];
+    S.files = FILES.map((fl, i) => { const c = K.card('file', S.sysNames[i], 1.3, false, fl, .6); c.userData.from = K.vec(-4 + i * 2, .3, 1.2); c.userData.to = K.vec(-4.9 + i * .95, 1.8 + (i % 2) * .55, 1.0 + i * .1); c.position.copy(c.userData.from); c.scale.setScalar(.001); S.bot.add(c); K.hover(c, { w: 1.3, h: c.userData.h, click: noop, tip: () => ({ t: fl[0], b: fl[1] + ' · columns: <em>' + fl[2].join(', ') + '</em>' }) }); return c; });
+    S.mapping = K.card('mapping', 'Data agents · mapping and checks', 5.2, false, null, 1); S.mapping.position.set(2.2, 1.3 + S.mapping.userData.h / 2, -.2); S.mapping.scale.setScalar(.001); S.bot.add(S.mapping); K.hover(S.mapping, { w: 5.2, h: S.mapping.userData.h, click: noop, tip: () => ({ t: 'The data agents · click to replay', b: 'Columns matched to properties, every mapping checked. <em>Conflicts flagged, not hidden.</em>' }) });
+    S.conflict = K.label('1,180 ≠ 1,200 · conflict flagged, not hidden', { px: 15, col: '#E2663A' }); S.conflict.position.set(-2.4, 1.25, 1.5); S.conflict.scale.setScalar(0); S.bot.add(S.conflict);
+    S.bot.position.y = Y.bot; S.stack.add(S.bot);
+    S.threads = [0, 1, 2, 3, 4].map(i => { const t = K.tube([K.vec(-4 + i * 2, Y.bot + .55, 0), K.vec(-4 + i * 2, Y.sol - .4, 0)], .014, K.C.bone, .35); S.stack.add(t); return t; });
+    S.pulse = K.glow('#F2EEE6', 1.6, 0); S.stack.add(S.pulse); S.pulse2 = K.glow('#E2663A', 3, 0); S.stack.add(S.pulse2);
+    S.anchor = K.vec(-.4, Y.bot + 1.4, 1.0); S.modTop = S.sysNames.map((n, i) => K.vec(-4 + i * 2, Y.bot + .6, 1.2)); S.tr = S.modTop.map(to => { const t = K.tube([K.vec(), to.clone().sub(S.anchor)], .02, K.PAL.green, .95); t.position.copy(S.anchor); t.scale.setScalar(.001); S.stack.add(t); return t; }); S.back = S.sysNames.map(() => { const s2 = K.glow(K.PAL.teal, .8, 0); S.stack.add(s2); return s2; });
+    // the record above the stack, one line per level, lit by the level that produced it
+    S.rec = K.card('record', 'Decision record · DR-3105', 6.6, true, null, 1); S.rec.position.set(0, Y.top + 1.0 + S.rec.userData.h / 2 + .6, 1.5); S.rec.scale.setScalar(.001); S.stack.add(S.rec); K.hover(S.rec, { w: 6.6, h: S.rec.userData.h, click: noop, tip: () => ({ t: 'DR-3105 · click to replay', b: 'The sum of the four levels. <em>The Procurement Director makes the call.</em>' }) });
+    S.ltubes = [0, 1, 2, 3].map(i => { const k = ['top', 'mid', 'sol', 'bot'][i]; const t = K.tube([K.vec(-2.4 + i * 1.6, Y[k] + .3, 3.2), K.vec(-2.4 + i * 1.6, Y.top + 1.2, 2.6), K.vec(-1.2 + i * .8, Y.top + 1.7, 1.6)], .02, S.LCOL[i], 0); S.stack.add(t); return t; });
+    S.stack.scale.setScalar(.82); K.place(g, S.stack, OX + .8, OY, LZ);
+    // ---- the levels: doors into the stack; each is its own short section
+    S.level = null; S.beat = 0; S.beatT = 0; S.mode = 'res'; S.rule = 5; S.ruleT = 0; S.traceOn = -1; S.traceT = 0; S.slide = 0; S.slid = false;
+    const SS = .82 * K.FIT, W = { stack: K.vec(OX + .8, OY, -300 - 44) }; const wv = (x, y, z) => K.vec(W.stack.x + x * SS, W.stack.y + y * SS, W.stack.z + z * SS);
+    const camFor = l => { const tg = [[1.4, Y.top + 1.9, .4], [1.7, Y.mid + 1.9, .3], [2.4, Y.sol + 1.9, .2], [.8, Y.bot + 2.5, -.2], [0, Y.top + .6, 0]][l], off = l === 4 ? [2.5, 5.0, 18] : [1.8, 2.4, 11.5]; return { pos: wv(tg[0] + off[0], tg[1] + off[1], tg[2] + off[2]), look: wv(tg[0] + (PH0 ? 0 : [3.0, 3.0, 2.6, 2.2, 1.8][l]), tg[1] - .3, tg[2]) }; };
+    const LEVELS = [
+      { eyebrow: '01 · The language model', title: 'It translates. It never decides.', beats: [
+        ['It reads', 'Give it the Norvale email. It finds the lineup, the revision and the new dates. No template.'],
+        ['It writes', 'It drafts the summary for the owner, and turns your question into the words the system holds.'],
+        ['It does not decide', 'It cannot check a design or compute an option. It passes the question down to the ontology and the solvers. Flip the switch to see a chatbot alone try the same question.', 'switch'],
+        ['It costs almost nothing', 'In one sample recovery plan the model cost <b>$1.17</b>. The rest of the stack cost about <b>$300</b>. <span class="note">Founder-reported, sample plan · to confirm.</span>', 'meter']] },
+      { eyebrow: '02 · The ontology', title: 'Your operation, named once.', beats: [
+        ['Object types', 'Packages, crews, gates, milestones, suppliers, handover dates. Each named once and linked to the dates it touches. Every data center project starts from this base.'],
+        ['Your rules on top', 'Zero float on the Hall B path. SG-B02 is owner-furnished. Gate 13 waits on the lineup. The base is shared. The rules are yours.'],
+        ['Open an object', 'Every property carries the record it came from. Every link carries a verb.'],
+        ['One change, every date', 'Slide the arrival. The float, the gate, the crew and the handover recount at once. Today that takes a meeting.', 'date']] },
+      { eyebrow: '03 · The solvers', title: 'Only options that can be built.', beats: [
+        ['Enumerate', 'Deterministic math, not a guess. First, every option your rules allow. For SG-B02 there are four.'],
+        ['Test and prune', 'Each option against each constraint. Break a rule and you are out, with the rule printed. The survivors are ranked. Same inputs, same answer, every run.'],
+        ['Relax a rule, see the cost', 'Nothing is loosened quietly. Close the receiving window and watch the recommendation and its price change.', 'slider'],
+        ['Does the fix move the problem?', 'Project Wren phase 2 has no customer commitment and keeps 38 days of float. Heron is held. Wren is unharmed.']] },
+      { eyebrow: '04 · The data', title: 'Your systems stay yours.', beats: [
+        ['Read as they are', 'P6, SAP, Oracle, Procore, Excel. The exports you already make. Nothing migrated, nothing replaced.'],
+        ['Matched and checked', 'Columns matched to properties, every mapping checked. What disagrees is flagged, not hidden: 1,180 in the workbook, 1,200 in SAP.'],
+        ['Every figure has a home', 'Pick a figure. It shows you the system and the file it lives in.', 'figs'],
+        ['Exported back', 'The approved plan goes back into the systems the team already uses. <span class="note">Founder to confirm the wording.</span>']] },
+      { eyebrow: 'The record', title: 'One late package, worked through.', beats: [
+        ['DR-3105', 'The question the model parsed. The objects the ontology linked. The options the solvers ranked and refused. The five records the data attached. The Procurement Director makes the call.', 'decide']] }];
+    const el = $('#level'), baseEl = $('#philbase'), ui = $('#lvlui'), MON = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'], dstr = (m, d0, n) => { const d = new Date(2027, m, d0 + n); return d.getDate() + ' ' + MON[d.getMonth()]; };
+    function renderBeat() { const L = LEVELS[S.level], bt = L.beats[S.beat]; $('#lvlEyebrow').textContent = L.eyebrow; $('#lvlEyebrow').style.color = S.LCOL[S.level] || '#E9E3D6'; $('#lvlTitle').textContent = L.title; $('#beat').innerHTML = `<div class="bk">${bt[0]}</div><p>${bt[1]}</p>`; $('#beat').classList.remove('in'); void $('#beat').offsetWidth; $('#beat').classList.add('in'); $('#beatDots').innerHTML = L.beats.map((x, i) => `<i class="${i === S.beat ? 'is' : ''}"></i>`).join(''); $('#prevBeat').disabled = S.beat === 0; const last = S.beat === L.beats.length - 1; $('#nextBeat').style.display = last ? 'none' : ''; $('#nextLvl').style.display = last && S.level < 4 ? '' : 'none'; $('#nextLvl').textContent = S.level === 3 ? 'The record →' : 'Next level →'; S.beatT = K.T; S.traceOn = S.level === 3 && S.beat === 2 ? 0 : -1; S.traceT = K.T; S.slid = false; S.slide = 0;
+      ui.innerHTML = ''; const kind = bt[2];
+      if (kind === 'switch') { ui.innerHTML = '<div class="modeline"><span class="ml">Chatbot alone</span><button class="sw" id="sw" aria-pressed="true"><i></i></button><span class="ml on">Through the stack</span></div>'; $('#sw').addEventListener('click', () => { S.mode = S.mode === 'res' ? 'chat' : 'res'; S.beatT = K.T; $('#sw').setAttribute('aria-pressed', S.mode === 'res'); $$('#lvlui .ml').forEach((m, i) => m.classList.toggle('on', (i === 1) === (S.mode === 'res'))); }); }
+      if (kind === 'meter') { ui.innerHTML = '<div class="meter"><div class="mrow"><span>Language model</span><b>$1.17</b></div><div class="mbar"><i class="lm"></i><i class="rest"></i></div><div class="mrow"><span>Ontology · solvers · evidence</span><b>≈ $300</b></div></div>'; }
+      if (kind === 'date') { ui.innerHTML = '<div class="rule"><label>SG-B02 arrives <b id="dv">28 Feb</b> <span class="muted">· was 28 Feb · revision 03 says 4 Apr</span></label><input type="range" id="dateR" min="0" max="35" value="0"></div>'; $('#dateR').addEventListener('input', ev => { S.slid = true; S.slide = +ev.target.value / 35; $('#dv').textContent = dstr(1, 28, +ev.target.value); }); }
+      if (kind === 'slider') { ui.innerHTML = '<div class="rule"><label>Receiving window closes <b id="rv">2 Apr</b></label><input type="range" id="rule" min="0" max="10" value="5"></div><div class="ans" id="ansbody"></div>'; const render = () => { $('#ansbody').innerHTML = S.rule >= 4 ? 'Recommended: <b>reallocate from Wren phase 2</b> · <span class="fig">14 May held</span> · <span class="fig">$410,000</span>' : 'The Wren lineup cannot land in time. Recommended: <b>expedite with Norvale</b> · <span class="fig">4 Jun · 21 d late</span> · <span class="fig">$1,150,000</span>'; }; $('#rule').value = S.rule; $('#rv').textContent = dstr(2, 28, S.rule); $('#rule').addEventListener('input', ev => { S.rule = +ev.target.value; S.ruleT = K.T; $('#rv').textContent = dstr(2, 28, S.rule); render(); }); render(); }
+      if (kind === 'figs') { ui.innerHTML = '<div class="figrow">' + ['$410,000', '38 d float', '14 May', 'SG-B02', '12 / 18 gates'].map((t, i) => `<button class="opt q ${i === 0 ? 'is' : ''}" data-i="${i}">${t}</button>`).join('') + '</div>'; $$('#lvlui .q').forEach(b2 => b2.addEventListener('click', () => { S.traceOn = +b2.dataset.i; S.traceT = K.T; $$('#lvlui .q').forEach(x => x.classList.toggle('is', x === b2)); })); }
+      if (kind === 'decide') { ui.innerHTML = '<div class="decide">' + [['approved', 'Approve', 'rec'], ['held', 'Hold', ''], ['rejected', 'Reject', '']].map(a => `<button class="opt ${a[2]} ${DEC.status === a[0] ? 'is' : ''}" data-d="${a[0]}">${a[1]}</button>`).join('') + '</div>'; $$('#lvlui .decide .opt').forEach(b2 => b2.addEventListener('click', () => { const src = $(`#acts button[data-d="${b2.dataset.d}"]`); if (src) src.click(); else DEC.status = b2.dataset.d; $$('#lvlui .decide .opt').forEach(x => x.classList.toggle('is', x === b2)); })); }
+    }
+    function enter(l) { S.level = l; S.beat = 0; K.camLock = camFor(l); K._wasLock = true; K.freeze = true; document.body.classList.add('inlevel'); baseEl.classList.add('off'); el.classList.add('on'); renderBeat(); }
+    function leave() { S.level = null; K.camLock = null; K.freeze = false; document.body.classList.remove('inlevel'); baseEl.classList.remove('off'); el.classList.remove('on'); ui.innerHTML = ''; S.traceOn = -1; }
+    S.enter = enter; S.leave = leave;
+    $$('#levels .lvl').forEach(a2 => a2.addEventListener('click', ev => { ev.preventDefault(); enter(+a2.dataset.l); }));
+    $('#lvlback').addEventListener('click', ev => { ev.preventDefault(); leave(); });
+    $('#nextBeat').addEventListener('click', () => { S.beat = Math.min(LEVELS[S.level].beats.length - 1, S.beat + 1); renderBeat(); });
+    $('#prevBeat').addEventListener('click', () => { S.beat = Math.max(0, S.beat - 1); renderBeat(); });
+    $('#replay').addEventListener('click', () => { S.beatT = K.T; });
+    $('#nextLvl').addEventListener('click', ev => { ev.preventDefault(); if (S.level < 4) enter(S.level + 1); });
+    addEventListener('keydown', ev => { if (S.level === null) return; if (ev.key === 'Escape') leave(); if (ev.key === 'ArrowRight') $('#nextBeat').click(); if (ev.key === 'ArrowLeft') $('#prevBeat').click(); });
+  },
+  update(q, K, S, el) {
+    const T = K.T, f = S.stack.userData._f, pulse = .5 + .5 * Math.sin(T * 1.6), L = S.level, ep = L === 4, bt = L === null ? -1 : S.beat, bT = T - S.beatT, pro = L === null ? 1 : 0;
+    const hT = pro * S.top.userData.hot, hM = pro * S.mid.userData.hot;
+    // layers part and dim around the open level
+    const KEY = ['top', 'mid', 'sol', 'bot'], dimOf = i => (pro || ep) ? 1 : (L === i ? 1 : .22), D = [0, 1, 2, 3].map(dimOf);
+    [S.top, S.mid, S.sol, S.bot].forEach((g, i) => { const want = (pro || ep) ? 0 : (L === i ? 0 : (i < L ? 1.4 : -1.4)); g.position.y += ((S.Y[KEY[i]] + want) - g.position.y) * (1 - Math.exp(-K.dt * 4)); });
+    // prologue: the email and the question hover on the glass; the four doors light in turn
+    const turn = Math.floor(T / 1.6) % 4; S.layerLabels.forEach((l, i) => { l.material.opacity = (pro ? (turn === i ? 1 : .55) : (L === i ? 0 : .3)) * D[i] * f; });
+    if (q > .02 && q < .98) $$('#levels .lvl').forEach((a2, i) => a2.classList.toggle('lit', !!pro && turn === i));
+    const show = (c, on, k = 6) => { const s = lerp(c.scale.x, on ? 1 : .001, 1 - Math.exp(-K.dt * k)); c.scale.setScalar(s); c.visible = s > .01; };
+    show(S.mailP, pro); S.mailP.position.y = 1.4 + Math.sin(T * .8) * .06; K.live(S.mailP, S.mailP.userData.hot, T); S.q.material.opacity = pro * (.6 + .4 * pulse) * f; S.q.scale.setScalar(pro ? 1 : .001);
+    S.top.children[0].material.opacity = (.62 + hT * .2 + (L === 0 ? .08 : 0)) * D[0] * f; S.top.children[1].material.opacity = (1 + hT * .5) * D[0] * f;
+    // the level screens: step = flag*100 + beat*10 + seconds into the beat
+    const stepFor = (l, flag = 0) => (L === l ? flag * 100 + bt * 10 + Math.min(9.99, bT) : 0);
+    if (L === 1 && bt === 3 && !S.slid) { S.slide = sub(bT, .6, 4.6); const r = $('#dateR'); if (r) { r.value = Math.round(S.slide * 35); $('#dv').textContent = (d => d.getDate() + ' ' + ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'][d.getMonth()])(new Date(2027, 1, 28 + Math.round(S.slide * 35))); } }
+    S.chat.userData.step = stepFor(0, S.mode === 'chat' ? 1 : 0); show(S.chat, L === 0); K.live(S.chat, S.chat.userData.hot, T);
+    S.explorer.userData.step = stepFor(1, bt === 3 ? Math.round(S.slide * 9) : 0); show(S.explorer, L === 1); K.live(S.explorer, S.explorer.userData.hot, T);
+    S.solver.userData.step = stepFor(2, bt === 2 ? S.rule : 0); show(S.solver, L === 2); K.live(S.solver, S.solver.userData.hot, T);
+    S.mapping.userData.step = stepFor(3, bt === 2 ? S.traceOn + 1 : 0); show(S.mapping, L === 3); K.live(S.mapping, S.mapping.userData.hot, T);
+    S.rec.userData.step = stepFor(4, Math.max(0, ['pending', 'approved', 'held', 'rejected'].indexOf(DEC.status || 'pending'))); show(S.rec, ep); K.live(S.rec, S.rec.userData.hot, T);
+    S.files.forEach((c, i) => { const on = L === 3; const u = on ? ss(.3 + i * .35, 1.1 + i * .35, bt === 0 ? bT : 9) : 0; c.position.lerpVectors(c.userData.from, c.userData.to, eo(u)); c.rotation.y = .3 * u; show(c, on && u > 0, 8); c.userData.flash = L === 3 && bt === 0 ? ss(.9 + i * .35, 1.2 + i * .35, bT) * (1 - ss(1.8 + i * .35, 2.4 + i * .35, bT)) : 0; K.live(c, c.userData.hot, T); });
+    // 01: the hand-off pulse drops through the stack
+    const hand = L === 0 && bt === 2 && S.mode !== 'chat' ? sub(bT, 1.0, 2.6) : 0; if (hand > 0 && hand < 1) { S.pulse.position.set(1.4, lerp(S.Y.top, S.Y.bot - 1.4, hand), 2.6); S.pulse2.position.copy(S.pulse.position); S.pulse.material.opacity = .9 * f; S.pulse2.material.opacity = .3 * f; } else { S.pulse.material.opacity = 0; S.pulse2.material.opacity = 0; }
+    // 02: the lattice goes grey for the base, lights where the rules sit, ripples with the slide
+    const grey = L === 1 && bt === 0 ? 1 : 0;
+    S.midNodes.forEach((n, i) => { const key = i % 5 === 0; let litWant = 0; if (L === 1 && bt >= 1 && S.RN.includes(i)) litWant = .8; if (L === 1 && bt === 2 && i === 0) litWant = 1.3; n.userData.lit += (litWant - n.userData.lit) * (1 - Math.exp(-K.dt * 5)); n.material.color.copy(n.material.userData.baseCol || (n.material.userData.baseCol = n.material.color.clone())).lerp(new THREE.Color('#8E96A6'), grey * .8); n.material.opacity = (1 + hM * .4) * D[1] * f; n.material.emissive.copy(n.material.userData.emBase).add(new THREE.Color(S.LCOL[1]).multiplyScalar(hM * .4 + (key ? .25 * pulse : 0) + n.userData.lit * 1.1)); n.scale.setScalar(1 + n.userData.lit * .6); n.position.y = n.userData.y0 + Math.sin(T * 1.1 + i) * .03; });
+    S.traces.forEach(t => { t.material.opacity = (.55 + hM * .45) * D[1] * f; }); S.board.userData.body.material.opacity = (1 + hM * .4) * D[1] * f; S.midGlow.material.opacity = (.16 + .1 * pulse + hM * .3) * D[1] * f;
+    const rip = L === 1 && bt === 3 ? S.slide : 0; S.ripple.position.copy(S.ripplePath.getPoint(clamp(rip))); S.ripple.material.opacity = (rip > 0 && rip < 1 ? 1 : 0) * f; S.vals.forEach((l, k) => { l.scale.setScalar(L === 1 && bt === 3 ? snap(sub(rip, .15 + k * .2, .3 + k * .2)) : 0); });
+    // 03: tokens run the gates with the matrix; the window rule stops Wren early; the donor label
+    const winOK = S.rule >= 4, runSol = L === 2 && (bt === 1 || bt === 2);
+    S.tokens.forEach((t, i) => { let u = 0; if (runSol) { const t0s = bt === 1 ? bT : Math.max(T - S.ruleT, 0) + .3; u = clamp((t0s - .3 - i * .15) / 1.3); } const stopAt = i === 3 ? .22 : (i === 2 && !winOK && bt === 2) ? .55 : 1, prog = Math.min(u, stopAt); t.position.x = -4.6 + prog * 5.4; t.position.z = t.userData.z; t.userData.body.material.emissive.copy(t.userData.body.material.userData.emBase).add(new THREE.Color(prog >= stopAt && stopAt < 1 ? K.PAL.ember : i === 2 ? K.PAL.green : K.PAL.dim).multiplyScalar(u > 0 ? .5 : 0)); t.userData.body.material.opacity = D[2] * f; t.children[1].material.opacity = .25 * D[2] * f; });
+    S.gates.forEach(gt => { gt.userData.fr.material.opacity = (.18 + (L === 2 ? .14 : 0)) * D[2] * f; }); S.donorLabel.scale.setScalar(L === 2 && bt === 3 ? snap(sub(bT, .3, .8)) : 0);
+    // 04: modules light in turn, the conflict flares, traces and the export back
+    S.slabs.forEach((sl, i) => { const h = pro * sl.userData.hot; let litWant = (S.traceOn === i && L === 3 && bt === 2) ? 1 : 0; if (L === 3 && bt === 0) litWant = ss(i * .35 + .2, i * .35 + .6, bT) * (1 - ss(i * .35 + 1.4, i * .35 + 1.9, bT)); if (L === 3 && bt === 1 && (i === 1 || i === 4)) litWant = ss(2.6, 3.0, bT); if (L === 3 && bt === 3) litWant = ss(.4 + i * .5, .9 + i * .5, bT); sl.userData.lit += (litWant - sl.userData.lit) * (1 - Math.exp(-K.dt * 6)); sl.userData.body.material.opacity = (1 + h * .5) * D[3] * f; sl.userData.body.material.emissive.copy(sl.userData.body.material.userData.emBase).add(new THREE.Color(L === 3 && bt === 1 ? K.PAL.ember : K.PAL.green).multiplyScalar(sl.userData.lit * .45)); sl.userData.face.userData.face.material.opacity = .97 * (1 + h * .5) * D[3] * f; sl.userData.face.userData.flash = sl.userData.lit; sl.position.z = h * .4 + sl.userData.lit * .3; sl.position.y = h * .25 + sl.userData.lit * .2; sl.userData.idl.scale.setScalar(L === 3 && bt >= 1 ? sl.userData.lit : 0); });
+    S.conflict.scale.setScalar(L === 3 && bt === 1 ? snap(sub(bT, 2.6, 3.1)) : 0); S.threads.forEach(t => { t.material.opacity = .35 * Math.min(D[2], D[3]) * f; });
+    S.tr.forEach((t, i) => { const on = S.traceOn === i && L === 3 && bt === 2; const e = on ? eo(clamp((T - S.traceT) / .6)) : 0; t.scale.setScalar(Math.max(.001, e)); t.material.opacity = .95 * D[3] * f; });
+    S.back.forEach((s2, i) => { const u = L === 3 && bt === 3 ? ss(.3 + i * .5, 1.3 + i * .5, bT) : 0; s2.position.lerpVectors(S.anchor, S.modTop[i], u); s2.material.opacity = (u > 0 && u < 1 ? .9 : 0) * f; });
+    // the record: one line per level, each lit from its layer
+    S.ltubes.forEach((t, i) => { t.material.opacity = (ep ? ss(.3 + i * .8, .8 + i * .8, bT) * .9 : 0) * f; });
+    el.querySelector('.in > div').style.transform = `translateY(${(1 - ss(.04, .18, q)) * 24 - ss(.88, .98, q) * 24}px)`;
+  } },
+// ---- 6 proof: a calm control room; the camera rises out of the stack toward the light ------------------------
+{ name: 'demo', a: .84, b: .925, dom: '#demo', fade: [.03, .14, .9, 1], shift: 0, scrim: 'center',
+  cam: [[0, OX - 1.5, -2.2, 20, OX + LX - 2.5, OY - 2.4, -4], [.3, -3, 1.4, 4, 0, 0, -30], [.7, 2.2, .6, -18, 0, 0, -50], [1, 0, 0, -40, 0, 0, -70]],
+  build(g, K, S) {
+    K.place(g, K.grid(60, 80, 24, 32, K.C.bone, .1), 0, -3.4, -40); S.pillars = new THREE.Group(); K.place(g, K.haze(K.PAL.blue, 60, .08), 0, 2, -60); for (let i = 0; i < 10; i++) { const b = K.slab(.3, 4 + K.R() * 4, .3, '#1C2636', 1, .2); b.position.set((K.R() - .5) * 40, -1, -K.R() * 60 - 6); S.pillars.add(b); } K.place(g, S.pillars, 0, 0, -30); K.place(g, new THREE.Mesh(new THREE.PlaneGeometry(90, 30), K.fillMat(K.C.bone, .025)), 0, 8, -70);
+    S.light = K.place(g, K.glow('#F2EEE6', 10, 0), 0, 0, -75); S.light.userData.nofade = 1;
+  },
+  update(q, K, S, el) {
+    const nums = $$('[data-n]'), chips = $$('#chips .chip'), evid = $$('#evid div');
+    nums.forEach(n => { const a = +n.dataset.n, b = +n.dataset.to; n.textContent = fmt(lerp(a, b, ss(.18, .5, q))); });
+    const st = DEC.status === 'approved' ? 2 : ss(.3, .38, q) + ss(.5, .58, q); chips.forEach((c, i) => c.classList.toggle('is', Math.round(st) === i)); const back = ss(.55, .75, q); $('#fc').style.width = lerp(88, 66, back) + '%'; $('#fc').classList.toggle('late', back < .5); $('#fcd').textContent = back < .5 ? '18 Jun 2027' : '14 May 2027';
+    evid.forEach((d, i) => { const e = ss(.62 + i * .035, .72 + i * .035, q) * (1 - ss(.9, .97, q)); d.style.maxHeight = e * 44 + 'px'; d.style.opacity = e; });
+    S.light.material.opacity = ss(.6, 1, q) * .9; S.light.scale.setScalar(10 + ss(.6, 1, q) * 30);
+  } },
+// ---- 7 cta: the corridor opens into light; the 3D hands off to the page --------------------------------------
+{ name: 'book', a: .925, b: 1, dom: '#book', selfDom: true, shift: 0, scrim: 'none',
+  cam: [[0, 0, 0, 20, 0, 0, -30], [1, 0, 0, -8, 0, 0, -40]],
+  build(g, K, S) {},
+  update(q, K, S, el) { K.fade = ss(.12, .55, q); const up = ss(.3, .6, q); $('#ccard').style.opacity = up; $('#ccard').style.transform = `translateY(${(1 - up) * 40}px) scale(${lerp(.97, 1, up)})`; el.style.opacity = ss(.18, .42, q); el.querySelector('.in').style.transform = `translateY(${(1 - ss(.18, .5, q)) * 30}px)`; } },
+];
+// ---- the red thread: one line strung from the Norvale email to the signed record, seen only near you (the first version, kept)
+let THREAD = null;
+function buildThread(K) {
+  const KEY = [[.04, 8.6, 3.1, -26], [.115, -3.2, 1.2, -54], [.16, 2, -1, -80], [.215, 0, 0, -106], [.30, OX, OY, -164], [.37, OX + 4.5, OY + 1.2, -163.5], [.43, OX, OY + 1.4, -202], [.51, OX, OY, -222], [.585, OX - 1.2, OY + .1, -242], [.66, OX - .6, OY + 1.15, -262], [.7, OX, OY + .4, -282], [.735, OX, OY - 1, -301.5], [.79, OX + .8, OY + .3, -404], [.87, 0, 0, -452], [.9, 0, 0, -468]];
+  const path = [0, 1, 2].map(ch => K.mono(KEY.map(k => [k[0], k[1 + ch]])));
+  const N = 260, P0 = .04, P1 = .9, pts = []; for (let i = 0; i < N; i++) { const p = P0 + (P1 - P0) * i / (N - 1); pts.push(K.vec(path[0](p), path[1](p), path[2](p))); }
+  const curve = new THREE.CatmullRomCurve3(pts, false, 'centripetal'); const lens = curve.getLengths(N - 1), total = lens[lens.length - 1], U = lens.map(l => l / total);
+  const uOf = p => { const t = clamp((p - P0) / (P1 - P0)) * (N - 1); const i = Math.floor(t), f = t - i; return i >= N - 1 ? 1 : U[i] * (1 - f) + U[i + 1] * f; };
+  const geo = new THREE.TubeGeometry(curve, 900, .03, 8, false);
+  const mat = new THREE.ShaderMaterial({ uniforms: { uP: { value: 0 }, uHead: { value: 0 }, uTail: { value: 0 }, uHot: { value: -1 }, uDec: { value: uOf(.36) }, uOk: { value: 0 }, uOn: { value: 1 }, uT: { value: 0 } }, transparent: true, depthWrite: false,
+    vertexShader: `uniform float uT; varying float vU; varying vec3 vN; varying float vD; void main(){ vU = uv.x; vN = normalize(normalMatrix * normal); vec3 p = position + vec3(sin(uT * .9 + uv.x * 40.), cos(uT * .7 + uv.x * 33.), sin(uT * .6 + uv.x * 21.)) * .02; vec4 mv = modelViewMatrix * vec4(p, 1.); vD = -mv.z; gl_Position = projectionMatrix * mv; }`,
+    fragmentShader: `uniform float uP, uHead, uTail, uHot, uDec, uOk, uOn, uT; varying float vU; varying vec3 vN; varying float vD;
+      void main(){ float d = abs(vU - uP); float win = (smoothstep(.2, .03, d) * .85 + smoothstep(.5, .2, d) * .1) * smoothstep(.9, 2.4, vD) * (1. - smoothstep(45., 90., vD));
+        float drawn = smoothstep(uTail, uTail + .03, vU) * (1. - smoothstep(uHead - .004, uHead, vU)); float headGlow = smoothstep(.035, 0., uHead - vU);
+        float hot = uHot < 0. ? 0. : smoothstep(.06, 0., abs(vU - uHot));
+        vec3 ember = vec3(.84, .22, .18), green = vec3(.498, .71, .541); vec3 col = mix(ember, green, step(uDec, vU) * uOk);
+        float rim = .7 + .3 * max(vN.z, 0.); float pulse = .9 + .1 * sin(uT * 2.6 - vU * 70.);
+        gl_FragColor = vec4(col * rim * (1. + headGlow * 1.1 + hot * .8) * pulse, (win * drawn + hot * .6) * uOn); }` });
+  const mesh = new THREE.Mesh(geo, mat); mesh.frustumCulled = false; K.scene.add(mesh);
+  const pins = KEY.slice(0, -2).map(k => { const g = K.glow('#D63A2F', .9, 0); g.userData.nofade = 1; g.position.set(k[1], k[2], k[3]); g.userData.u = uOf(k[0]); K.scene.add(g); return g; });
+  const touch = K.glow('#F2EEE6', 1.4, 0); touch.userData.nofade = 1; K.scene.add(touch);
+  const head = K.glow('#FF8A7A', 1.0, 0); head.userData.nofade = 1; K.scene.add(head); const head2 = K.glow('#D63A2F', 2.4, 0); head2.userData.nofade = 1; K.scene.add(head2);
+  return { mesh, mat, curve, pts, U, uOf, pins, touch, head, head2 };
+}
+const _w = new THREE.Vector3();
+function updateThread(K) { const t = THREAD, pd = K.pd, T = K.T; const u = t.uOf(pd); t.mat.uniforms.uP.value = u; t.mat.uniforms.uT.value = T; const uHead = t.uOf(pd + .02), uTail = t.uOf(pd - .16); t.mat.uniforms.uHead.value = uHead; t.mat.uniforms.uTail.value = uTail;
+  const hp = t.curve.getPointAt(Math.min(.9999, uHead)); t.head.position.copy(hp); t.head2.position.copy(hp); const on0 = (1 - K.fade) * ss(.02, .05, pd) * (1 - ss(.86, .9, pd)); t.head.material.opacity = on0 * (.75 + .15 * Math.sin(T * 4)); t.head.scale.setScalar(.8 + .15 * Math.sin(T * 4)); t.head2.material.opacity = on0 * .22; t.head2.scale.setScalar(2.2 + .25 * Math.sin(T * 2)); const okh = t.mat.uniforms.uOk.value > .5 && uHead > t.mat.uniforms.uDec.value; t.head.material.color.set(okh ? '#B8F0C0' : '#FF8A7A'); t.head2.material.color.set(okh ? '#7FB58A' : '#D63A2F'); t.mat.uniforms.uOk.value += ((DEC.status === 'approved' ? 1 : 0) - t.mat.uniforms.uOk.value) * .05; t.mat.uniforms.uOn.value = (1 - K.fade) * ss(.02, .05, pd);
+  const ok = t.mat.uniforms.uOk.value; t.pins.forEach((p, i) => { let near = Math.max(0, 1 - Math.abs(p.userData.u - u) / .05); if (i === 0) near = Math.max(near, (SECTIONS[0].state.beat || 0) * (1 - ss(.06, .1, pd))); p.material.opacity = near * .9 * (1 - K.fade); p.scale.setScalar(.9 + near * .5 + .15 * Math.sin(T * 4)); p.material.color.set(ok > .5 && p.userData.u > t.uOf(.36) ? '#7FB58A' : '#D63A2F'); });
+  let hot = -1; const hv = K.hovered; if (hv) { hv.getWorldPosition(_w); let best = 1e9, bi = -1; for (let i = 0; i < t.pts.length; i++) { const d = t.pts[i].distanceToSquared(_w); if (d < best) { best = d; bi = i; } } if (best < 9) { hot = t.U[bi]; t.touch.position.copy(t.pts[bi]); } }
+  t.mat.uniforms.uHot.value += (hot - t.mat.uniforms.uHot.value) * (hot < 0 ? .3 : .25); t.touch.material.opacity += ((hot >= 0 ? .9 : 0) - t.touch.material.opacity) * .2; t.touch.scale.setScalar(1.2 + .3 * Math.sin(T * 5)); }
+Corridor.start({ sections: SECTIONS, room: 60, after: K => { THREAD = buildThread(K); }, onFrame: K => { updateThread(K); clock(K.pd); } });
+})();
+</script>
+</body>
+</html>

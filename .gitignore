@@ -3,3 +3,13 @@
 .envrc
 node_modules/
 .netlify/
+# redesign: heavy or local-only
+redesign/corridor/shots/
+.DS_Store
+.agents/
+.codex/
+.impeccable/
+*.docx
+*.pdf
+*.zip
+ecm-branded-unpacked/

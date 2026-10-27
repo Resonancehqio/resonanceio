@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Resonance for EPC</title>
+<meta name="description" content="The EPC journey: a slip, the week it used to cost, the fixes you can build, and the record your claim needs.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="corridor.css">
+<style>.hero { text-align: left; } .hero .in { max-width: 980px; } .hero h1 { font-size: clamp(38px, 5.6vw, 76px); } .hero .lead { margin-left: 0; } .hero .ctas { justify-content: flex-start; } .kicker { margin-bottom: 18px; opacity: 0; animation: wIn 1s .2s forwards; } .sec .in { max-width: 1180px; } .room .in { display: grid; grid-template-columns: minmax(0, 520px); gap: 18px; align-items: start; } .cta h2 { font-size: clamp(32px, 4.6vw, 60px); } .rec { background: rgba(17,20,27,.7); border: 1px solid var(--rule); border-radius: 8px; padding: 12px 14px; font: 400 12.5px/1.55 var(--mono); color: var(--bone-2); margin-top: 16px; } .rec b { color: var(--bone); font-weight: 500; } .rec .sig { color: var(--ok); } .rec .ln { display: block; overflow: hidden; white-space: nowrap; max-width: 0; } .note { font: 400 12px/1.4 var(--mono); color: var(--mute); margin-top: 10px; } .note b { color: var(--ember); font-weight: 500; }</style>
+</head>
+<body>
+<div id="veil" class="on"></div>
+<canvas id="gl" aria-hidden="true"></canvas>
+<div class="scrim" id="scrimL" aria-hidden="true"></div><div class="scrim" id="scrimC" aria-hidden="true"></div>
+<div class="tip" id="tip" aria-hidden="true"><div class="t"></div><div class="b"></div></div>
+<header class="nav"><div class="in">
+  <a class="logo" href="index.html" data-page><i></i>Resonance</a>
+  <nav><a href="index.html#product" data-page>Platform</a><a href="epc.html" data-page>EPC</a><a href="data-centers.html" data-page>Data centers</a><a href="supply-chain.html" data-page>Supply chain</a></nav>
+  <a class="btn primary mag" href="#" data-go="4">Book a working session</a>
+</div></header>
+<div class="scroller" aria-hidden="true" style="height: 1000vh"></div>
+<div class="stage">
+<section class="sec hero on" id="hero"><div class="in">
+  <div class="kicker layer">EPC / Construction</div>
+  <h1 class="layer" id="h1"></h1>
+  <p class="lead layer">Use Resonance to connect procurement, engineering, construction, commissioning, and finance around a shared view of project reality.</p>
+  <div class="ctas layer"><a class="btn primary mag" href="#" data-go="4">Book a working session</a><a class="btn ghost mag" href="#" data-go="1">See the journey ↓</a></div>
+  <span class="sample layer">Sample data · fictional company and project · hover anything in the scene</span>
+</div></section>
+
+<section class="sec room" id="week"><div class="in">
+  <div class="eyebrow">The problem</div>
+  <h2>The slip arrives as an email. Its effect arrives weeks later.</h2>
+  <p class="lead">Whose delay it is decides who pays, and the record is rebuilt after the fact. The fix is chosen in a meeting, from a spreadsheet, with no record of what else it moved.</p>
+  <div class="hint">Hover a day on either calendar. <b>Then</b> is how it goes today. <b>Now</b> is the same slip, handled the day it lands.</div>
+  <div class="note">Illustrative timing, fictional project. <b>Founder to confirm</b> the same-day claim before publishing.</div>
+</div></section>
+<section class="sec room" id="surgery"><div class="in">
+  <div class="eyebrow">How it works</div>
+  <h2>Only fixes you can build.</h2>
+  <p class="lead">It connects the slip to the handover date and the float on the path. It computes only options that can execute: gear that fits, slots that exist, crews that are free.</p>
+  <div class="opts" id="opts"><button class="opt" data-o="0">Hold the order · 18 Jun</button><button class="opt" data-o="1">Expedite · 4 Jun · $1,150,000</button><button class="opt rec" data-o="2">Reallocate from Wren · 14 May · $410,000</button><button class="opt no" data-o="3">Air-freight a substitute · ineligible</button></div>
+  <div class="hint">Hover an option to try it on the schedule. Hover a bar to see what it feeds.</div>
+</div></section>
+<section class="sec room" id="whose"><div class="in">
+  <div class="eyebrow">The record</div>
+  <h2>The record your claim needs.</h2>
+  <p class="lead">What slipped, when you knew, the notice you issued, the options, who approved, on which evidence. Kept as it happens, not rebuilt after.</p>
+  <div class="rec" id="rec"><span class="ln"><b>SG-B02</b> · owner-furnished · delivery revision 03 · <b>+35 d</b></span><span class="ln">Known 9 Mar 2027 08:00 · notice <b>NTC-014</b> issued 9 Mar 2027</span><span class="ln">Crew standby <b>$18,400 / day</b> · illustrative rate</span><span class="ln">Options computed 9 Mar · 3 eligible · 1 refused</span><span class="ln sig">Approved 10 Mar 2027 · Procurement Director · 5 records attached</span></div>
+  <div class="note">Illustrative, not a legal guarantee. <b>Founder to confirm</b> the claims framing.</div>
+</div></section>
+<section class="sec cta" id="book"><div class="in">
+  <div class="eyebrow">Bring us one late package</div>
+  <h2>Ninety minutes. Your data stays with you.</h2>
+  <div class="ccard" id="ccard">
+    <form class="form" onsubmit="return false">
+      <div class="row2"><div><label>Work email</label><input placeholder="you@company.com"></div><div><label>Company</label><input placeholder="Company"></div></div>
+      <div class="row2"><div><label>Role</label><input placeholder="Project Director"></div><div><label>The late package</label><input placeholder="e.g. a switchgear lineup, +35 d"></div></div>
+      <div class="ctas"><a class="btn primary mag" href="#">Book a working session</a><a class="btn ghost mag" href="index.html" data-page>Back to the platform</a></div>
+    </form>
+    <p>You leave with a sample decision record built on your package. The model never makes the call; a named owner signs.</p>
+  </div>
+  <div class="foot">Resonance helps operational teams make faster, better decisions with the data they already have.<span class="sample">Sample data on this page is fictional.</span></div>
+</div></section>
+</div>
+<div class="bar" id="bar"><span>Resonance</span><div class="prog"><i id="prog"></i></div><a class="btn primary mag" href="#" data-go="4">Book a working session</a></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.160.0/three.min.js"></script>
+<script src="corridor.js"></script>
+<script>
+(() => {
+const { ss, clamp, lerp, eo, snap, sub, vis, words, OX, OY, PH0, FINE } = Corridor;
+const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+const LX = PH0 ? 0 : -.6;
+words($('#h1'), "Keep projects moving when everything shifts.");
+const heroPeel = (q) => { const peel = ss(.25, .95, q); $$('.hero .layer').forEach((l, i) => { l.style.transform = `translateY(${-peel * (40 - i * 8)}px) scale(${1 + peel * (.5 - i * .1)})`; l.style.opacity = 1 - ss(.3, .75, q); l.style.filter = `blur(${peel * 6}px)`; }); };
+const CTA = { name: 'book', a: .88, b: 1, dom: '#book', selfDom: true, shift: 0, scrim: 'none', cam: [[0, OX, 0, 22, OX + LX + 1, OY + 1, -16], [1, 0, 0, -6, 0, 0, -40]], build() {},
+  update(q, K, S, el) { K.fade = ss(.12, .55, q); const up = ss(.3, .6, q); $('#ccard').style.opacity = up; $('#ccard').style.transform = `translateY(${(1 - up) * 40}px) scale(${lerp(.97, 1, up)})`; el.style.opacity = ss(.18, .42, q); el.querySelector('.in').style.transform = `translateY(${(1 - ss(.18, .5, q)) * 30}px)`; } };
+
+const BARS = ['Busbar fabrication', 'SG-B02 delivery', 'Switchgear install', 'Gate 13 · energisation', 'Commissioning', 'Hall B handover'];
+function gantt(K, S, opts = {}) { const g = new THREE.Group(); g.add(K.grid(9, 5.2, 9, 6, K.C.bone, .1).rotateX(Math.PI / 2)); S.bars = BARS.map((n, r) => { const w = [1.6, 1.3, 1.5, .9, 1.4, .25][r], late = r === 1; const b = new THREE.Group(); const sl = K.slab(w, .22, .16, r === 5 ? K.PAL.green : K.PAL.blue, 1, .25, .1); sl.position.x = w / 2; b.add(sl); const fill = sl.userData.body, wire = sl.children[1]; const l = K.label(n, { px: 18, col: '#B8B2A6' }); l.position.set(-l.userData.w / 2 - .15, 0, 0); b.add(l); b.userData.x0 = -3.4 + [0, 1.6, 2.9, 4.4, 5.3, 6.7][r] * .95; b.position.set(b.userData.x0, 1.9 - r * .76, 0); b.userData.fill = fill; b.userData.wire = wire; b.userData.w = w; g.add(b); K.hover(b, { w, h: .5, at: K.vec(w / 2, 0, 0), dy: .25, meta: { id: 'bar' + r }, tip: () => ({ t: n, b: r < 5 ? `Feeds <code>${BARS[r + 1]}</code>. <em>Zero float on this path: a slip here moves the handover by the same number of days.</em>` : 'The customer date, 14 May 2027. <em>Every other bar is measured against it.</em>' }) }); return b; }); S.mile = K.line([K.vec(3.0, 2.3, 0), K.vec(3.0, -2.3, 0)], K.C.bone, .6); g.add(S.mile); const ml = K.label('14 May', { px: 18 }); ml.position.set(3.0, 2.55, 0); g.add(ml); S.glow = K.glow('#E2663A', 2, 0); g.add(S.glow); g.add(K.haze(K.PAL.blue, 30, .09)); return g; }
+const DAYS = 0.05;   // one calendar day in scene units
+function setShift(S, days, f, hot) { S.bars.forEach((b, r) => { const d = r >= 1 ? days : 0; b.position.x += (b.userData.x0 + d * DAYS - b.position.x) * .12; const late = d > 0; b.userData.fill.material.color.set(r === 5 ? K_.PAL.green : K_.PAL.blue).lerp(K_.C.ember, late ? .9 : 0); b.userData.fill.material.opacity = f; b.userData.fill.material.emissive.copy(b.userData.fill.material.userData.emBase).add(new THREE.Color(K_.C.ember).multiplyScalar(hot === b ? .4 : 0)); b.userData.wire.material.opacity = (.25 + (hot === b ? .6 : 0)) * f; }); }
+let K_ = null, optHover = null;
+$$('#opts .opt').forEach(o => { o.addEventListener('pointerenter', () => { optHover = +o.dataset.o; }); o.addEventListener('pointerleave', () => { optHover = null; }); o.addEventListener('click', () => { optHover = +o.dataset.o; }); });
+const SECTIONS = [
+{ name: 'hero', a: 0, b: .14, dom: '#hero',
+  cam: [[0, 0, 0, 2, LX, 0, -30], [.5, 2.2, .4, -16, OX + LX, OY, -46], [1, -1, .6, -36, OX + LX + 1, OY + 1.2, -46]],
+  build(g, K, S) { K_ = K; const sch = gantt(K, S); sch.scale.setScalar(1.3); K.place(g, sch, OX, OY, -46); S.sch = sch; S.net = K.place(g, K.net(70, 30, 16, 26, 2, K.C.bone, .18), 0, 0, -30); },
+  update(q, K, S) { const T = K.T, f = S.sch.userData._f, tIn = clamp((T - .6) / 1.8); S.bars.forEach((b, r) => { const e = eo(clamp((tIn - r * .1) / .5)); b.scale.x = Math.max(.001, e); }); const slip = ss(.45, .9, q); S.bars.forEach((b, r) => { const d = r >= 1 ? 35 * slip : 0; b.position.x = b.userData.x0 + d * DAYS; const late = slip > 0 && r >= 1; b.userData.fill.material.color.set(r === 5 ? K.PAL.green : K.PAL.blue).lerp(K.C.ember, late ? slip * .9 : 0); b.userData.fill.material.emissive.copy(b.userData.fill.material.userData.emBase).add(new THREE.Color(K.C.ember).multiplyScalar(b.userData.hot * .4)); b.userData.fill.material.opacity = f; }); S.glow.position.copy(S.bars[1].position).add(K.vec(S.bars[1].userData.w / 2 + 35 * slip * DAYS, 0, .1)); S.glow.material.opacity = slip * (.6 + .4 * Math.sin(T * 4)) * f; S.net.rotation.y = Math.sin(T * .08) * .1; heroPeel(q); } },
+{ name: 'week', a: .14, b: .4, dom: '#week', fade: [.04, .16, .88, .98],
+  cam: [[0, -1, .6, 24, OX + LX + 1, OY + 1.2, 14], [.35, OX - 6, 2.2, -28, OX + LX, OY + .8, -44], [.7, OX + 4.5, -1, -30, OX + LX, OY - .6, -44], [1, OX + .5, -.4, -35, OX + LX - 3, OY - 1.3, -44]],
+  build(g, K, S) {
+    const cal = new THREE.Group(); const DN = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri'];
+    const EV = { then: { 0: ['Monday · the slip lands', 'Norvale\'s revision 03 arrives in one inbox. <em>Read by one person.</em>'], 3: ['Thursday · the meeting', '"Who owns this?" Forty minutes, a spreadsheet, no float on screen.'], 7: ['Next Tuesday · the decision', 'An expedite quote is approved. <em>Nobody checked whether it fits the design. $740,000 more than the option that did.</em>'] }, now: { 0: ['Monday · the same slip', 'Read as it lands. Linked to the handover date. Three buildable options by 09:40. <em>Signed by the Procurement Director the same day.</em>'] } };
+    S.rows = ['then', 'now'].map((row, ri) => { const y = ri ? -1.3 : 1.3; const rl = K.label(ri ? 'Now' : 'Then', { px: 24, col: ri ? '#7FB58A' : '#B8B2A6' }); rl.position.set(-5.4, y, 0); cal.add(rl); return DN.map((d, i) => { const c = new THREE.Group(); c.add(K.slab(.82, .82, .08, ri ? '#15241C' : '#182030', .95, .25)); const dl = K.label(d, { px: 16, col: '#8E96A6' }); dl.position.set(0, .28, .01); c.add(dl); c.position.set(-4.05 + i * .9 + (i > 4 ? .3 : 0), y, 0); const ev = EV[row][i]; if (ev) { const m = K.glow(ri ? '#7FB58A' : '#E2663A', 1.4, 0); m.position.z = .1; c.add(m); c.userData.m = m; c.userData.cell = c.children[0].userData.body; c.userData.cell.userData.col = ri ? K.PAL.green : K.PAL.ember; const t = K.label(ev[0].split(' · ')[1], { px: 15, col: ri ? '#7FB58A' : '#E2663A' }); t.position.set(0, -.62, .02); t.scale.setScalar(0); c.add(t); c.userData.t = t; K.hover(c, { w: .9, h: .9, dy: .5, tip: () => ({ t: ev[0], b: ev[1] }) }); } else K.hover(c, { w: .9, h: .9, dy: .5, tip: () => ({ t: d, b: ri ? 'Nothing waiting. <em>The decision was made on Monday.</em>' : 'Waiting. <em>The handover date has already moved; nobody has told it.</em>' }) }); cal.add(c); return c; }); });
+    S.arrow = K.line([K.vec(-4.05, .85, 0), K.vec(-4.05, -.85, 0)], K.C.ok, .8); S.arrow.scale.y = 0; S.arrow.position.y = .85; cal.add(S.arrow);
+    cal.scale.setScalar(1.3); K.place(g, cal, OX, OY, -44); S.cal = cal;
+  },
+  update(q, K, S) { const T = K.T, f = S.cal.userData._f; const times = [[0, .15], [3, .35], [7, .55]]; times.forEach(([i, t0]) => { const c = S.rows[0][i], e = snap(sub(q, t0, t0 + .1)); c.userData.m.material.opacity = Math.min(1, e) * (.6 + .4 * Math.sin(T * 3)) * f; c.userData.t.scale.setScalar(Math.min(1, e)); c.scale.setScalar(1 + c.userData.hot * .1); c.userData.cell.material.color.set('#182030').lerp(new THREE.Color(K.PAL.ember), Math.min(1, e) * .8); }); const n = S.rows[1][0], e = snap(sub(q, .62, .74)); n.userData.m.material.opacity = Math.min(1, e) * (.7 + .3 * Math.sin(T * 2)) * f; n.userData.t.scale.setScalar(Math.min(1, e)); n.userData.cell.material.color.set('#15241C').lerp(new THREE.Color(K.PAL.green), Math.min(1, e) * .8); n.scale.setScalar(1 + n.userData.hot * .1 + ss(.8, 1, q) * .15); S.arrow.scale.y = ss(.56, .66, q); S.arrow.position.y = .85 - ss(.56, .66, q) * .85; } },
+{ name: 'surgery', a: .4, b: .66, dom: '#surgery', fade: [.04, .16, .88, .98],
+  cam: [[0, OX + .5, -.4, 25, OX + LX - 3, OY - 1.3, 16], [.3, OX - 5, 1.5, -27, OX + LX, OY, -44], [.65, OX + 5, .5, -30, OX + LX, OY, -44], [1, OX + 1, .2, -35, OX + LX + 2.5, OY - 1.6, -44]],
+  build(g, K, S) { const sch = gantt(K, S); S.no = K.label('cannot be built · not qualified for the Hall B design · receiving window closed', { px: 16, col: '#E2663A' }); S.no.position.set(0, -2.9, .1); S.no.scale.setScalar(0); sch.add(S.no); S.ok = K.label('handover held · 14 May 2027 · Wren keeps 38 d of float', { px: 16, col: '#7FB58A' }); S.ok.position.set(0, -2.9, .1); S.ok.scale.setScalar(0); sch.add(S.ok); sch.scale.setScalar(1.25); K.place(g, sch, OX, OY, -44); S.sch = sch; },
+  update(q, K, S) { const T = K.T, f = S.sch.userData._f; const seq = q < .15 ? -1 : q < .3 ? 0 : q < .45 ? 1 : q < .6 ? 2 : q < .72 ? 3 : 2; const o = optHover ?? seq; const days = o === -1 ? 35 * ss(.05, .15, q) : [35, 21, 0, 35][o]; const hot = S.bars.find(b => b.userData.hot > .05); setShift(S, days, f, hot); $$('#opts .opt').forEach(b => b.classList.toggle('is', +b.dataset.o === o)); S.no.scale.setScalar(o === 3 ? 1 : 0); S.ok.scale.setScalar(o === 2 ? 1 : 0); S.glow.position.copy(S.bars[5].position).add(K.vec(S.bars[5].userData.w / 2, 0, .1)); S.glow.material.opacity = (o === 2 ? .9 : 0) * (.6 + .4 * Math.sin(T * 4)) * f; S.glow.material.color.set(o === 2 ? '#7FB58A' : '#E2663A'); } },
+{ name: 'whose', a: .66, b: .88, dom: '#whose', fade: [.04, .16, .88, .98],
+  cam: [[0, OX + 1, .2, 25, OX + LX + 2.5, OY - 1.6, 16], [.35, OX - 4.5, 2, -28, OX + LX - 1.2, OY, -44], [.7, OX + 4, -.5, -32, OX + LX - 1, OY, -44], [1, OX, 0, -38, OX + LX + 1, OY + 1, -44]],
+  build(g, K, S) { const w = new THREE.Group(); w.add(K.tube([K.vec(-5, 0, 0), K.vec(-1.5, 0, 0)], .03, K.C.bone, .7)); w.add(K.tube([K.vec(-1.5, 0, 0), K.vec(-.5, 1, 0), K.vec(5, 1, 0)], .03, K.PAL.ember, .8)); w.add(K.tube([K.vec(-1.5, 0, 0), K.vec(-.5, -1, 0), K.vec(5, -1, 0)], .03, K.PAL.green, .8)); w.add(K.haze(K.PAL.ember, 24, .08)); const lo = K.label('Owner · Kessrow Digital · owner-furnished equipment', { px: 17, col: '#B8B2A6' }); lo.position.set(2.2, 1.45, 0); w.add(lo); const lc = K.label('Contractor · Tamberlane Constructors', { px: 17, col: '#B8B2A6' }); lc.position.set(1.6, -1.45, 0); w.add(lc); const l0 = K.label('9 Mar 2027 · revision 03 lands', { px: 16, col: '#B8B2A6' }); l0.position.set(-3.3, .35, 0); w.add(l0);
+    S.ticks = []; for (let i = 0; i < 35; i++) { const t = new THREE.Mesh(new THREE.BoxGeometry(.1, .4, .1), K.solidMat(K.PAL.ember)); t.position.set(-.3 + i * .15, 1 + 2.2, 0); t.userData.y0 = 1; w.add(t); S.ticks.push(t); if (i % 7 === 0) K.hover(t, { w: 1, h: .6, dy: .3, tip: () => ({ t: `Delay days ${i + 1}–${Math.min(35, i + 7)} · owner's lane`, b: 'The lineup is owner-furnished, so the slip is the owner\'s equipment, not the contractor\'s work. <em>Each day carries its reason and notice NTC-014.</em>' }) }); }
+    S.ntc = K.label('NTC-014 · notice issued 9 Mar 2027', { px: 17, col: '#E2663A' }); S.ntc.position.set(1.9, .55, .05); S.ntc.scale.setScalar(0); w.add(S.ntc); S.lead = K.glow('#E9E3D6', 1.6, 0); S.lead.position.set(1.9, .55, .1); w.add(S.lead); K.hover(S.ntc, { w: 4, h: .4, dy: .2, tip: () => ({ t: 'NTC-014', b: 'Delay notice, issued the same day the revision landed. <em>The record your claim needs starts here.</em>' }) });
+    w.scale.setScalar(1.3); K.place(g, w, OX, OY, -44); S.w = w; },
+  update(q, K, S) { const T = K.T, f = S.w.userData._f; S.ticks.forEach((t, i) => { const e = eo(sub(q, .25 + i * .012, .33 + i * .012)); t.position.y = t.userData.y0 + (1 - e) * 2.2; t.material.opacity = e * f; t.material.emissive.copy(t.material.userData.emBase).add(new THREE.Color(K.C.ember).multiplyScalar((t.userData.hot || 0) * .5)); t.scale.y = 1 + (t.userData.hot || 0) * .4; }); const n = snap(sub(q, .28, .4)); S.ntc.scale.setScalar(n * (1 + S.ntc.userData.hot * .1)); S.lead.material.opacity = ss(.8, 1, q) * (.6 + .4 * Math.sin(T * 4)) * f; S.lead.scale.setScalar(1.6 + ss(.8, 1, q) * 2); $$('#rec .ln').forEach((l, i) => { l.style.maxWidth = ss(.3 + i * .09, .42 + i * .09, q) * 100 + '%'; }); } },
+];
+Corridor.start({ sections: SECTIONS.concat([CTA]), room: 60, hoverDefault: { industry: 'epc', go: 4, goLabel: 'Book a working session' } });
+})();
+</script>
+</body>
+</html>

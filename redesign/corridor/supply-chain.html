@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Resonance for Supply Chain</title>
+<meta name="description" content="The supply chain journey: exports read as they are, the rule you can relax, one plan in three views, exported back.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="corridor.css">
+<style>.hero { text-align: left; } .hero .in { max-width: 980px; } .hero h1 { font-size: clamp(38px, 5.6vw, 76px); } .hero .lead { margin-left: 0; } .hero .ctas { justify-content: flex-start; } .kicker { margin-bottom: 18px; opacity: 0; animation: wIn 1s .2s forwards; } .sec .in { max-width: 1180px; } .room .in { display: grid; grid-template-columns: minmax(0, 520px); gap: 18px; align-items: start; } .cta h2 { font-size: clamp(32px, 4.6vw, 60px); } .rec { background: rgba(17,20,27,.7); border: 1px solid var(--rule); border-radius: 8px; padding: 12px 14px; font: 400 12.5px/1.55 var(--mono); color: var(--bone-2); margin-top: 16px; } .rec b { color: var(--bone); font-weight: 500; } .rec .sig { color: var(--ok); } .rec .ln { display: block; overflow: hidden; white-space: nowrap; max-width: 0; } .note { font: 400 12px/1.4 var(--mono); color: var(--mute); margin-top: 10px; } .note b { color: var(--ember); font-weight: 500; }</style>
+</head>
+<body>
+<div id="veil" class="on"></div>
+<canvas id="gl" aria-hidden="true"></canvas>
+<div class="scrim" id="scrimL" aria-hidden="true"></div><div class="scrim" id="scrimC" aria-hidden="true"></div>
+<div class="tip" id="tip" aria-hidden="true"><div class="t"></div><div class="b"></div></div>
+<header class="nav"><div class="in">
+  <a class="logo" href="index.html" data-page><i></i>Resonance</a>
+  <nav><a href="index.html#product" data-page>Platform</a><a href="epc.html" data-page>EPC</a><a href="data-centers.html" data-page>Data centers</a><a href="supply-chain.html" data-page>Supply chain</a></nav>
+  <a class="btn primary mag" href="#" data-go="4">Book a working session</a>
+</div></header>
+<div class="scroller" aria-hidden="true" style="height: 1000vh"></div>
+<div class="stage">
+<section class="sec hero on" id="hero"><div class="in">
+  <div class="kicker layer">Supply chain & distribution</div>
+  <h1 class="layer" id="h1"></h1>
+  <p class="lead layer">Resonance helps supply chain teams reconcile demand, inventory, logistics, and allocation without forcing a messy system migration.</p>
+  <div class="ctas layer"><a class="btn primary mag" href="#" data-go="4">Book a working session</a><a class="btn ghost mag" href="#" data-go="1">See the journey ↓</a></div>
+  <span class="sample layer">Sample data · fictional company and project · hover anything in the scene</span>
+</div></section>
+
+<section class="sec room" id="agents"><div class="in">
+  <div class="eyebrow">How it works</div>
+  <h2>It reads your exports as they are.</h2>
+  <p class="lead">An ERP export and the planner's workbook, matched column by column. Conflicts are flagged, not hidden. Each check is ticked, and only the clean records drop into the model.</p>
+  <div class="hint">Hover a match line, or one of the two conflicts.</div>
+</div></section>
+<section class="sec room" id="relax"><div class="in">
+  <div class="eyebrow">The decision</div>
+  <h2>The rule you can relax.</h2>
+  <p class="lead">A service target blocks next week's plan at one depot. The solver does not quietly break a rule. It shows which one to loosen, by how much, for how long, and what it costs.</p>
+  <div class="opts" id="rules"><button class="opt rec" data-r="0">Service target 98% → 96% for 2 days · $6,400</button><button class="opt" data-r="1">Truck capacity +1 load · $9,800</button><button class="opt" data-r="2">Delivery window +1 day · 14 orders late</button><button class="opt no" data-r="3">Minimum order · cannot relax</button></div>
+  <div class="hint">Hover a rule to see what relaxing it does to the plan.</div>
+</div></section>
+<section class="sec room" id="views"><div class="in">
+  <div class="eyebrow">The plan</div>
+  <h2>One plan, three views. Exported back.</h2>
+  <p class="lead">The table, the map and the calendar show the same plan, so no one argues about which is right. When it is approved, the results go back into the ERP and the workbook the team already uses.</p>
+  <div class="hint">Hover an order to find it in every view.</div>
+  <div class="note">Fictional distributor and depots. <b>Founder to confirm</b> the export-back capability wording.</div>
+</div></section>
+<section class="sec cta" id="book"><div class="in">
+  <div class="eyebrow">Bring us one blocked plan</div>
+  <h2>Ninety minutes. Your data stays with you.</h2>
+  <div class="ccard" id="ccard">
+    <form class="form" onsubmit="return false">
+      <div class="row2"><div><label>Work email</label><input placeholder="you@company.com"></div><div><label>Company</label><input placeholder="Company"></div></div>
+      <div class="row2"><div><label>Role</label><input placeholder="Head of Planning"></div><div><label>The blocked plan</label><input placeholder="e.g. next week's allocation, one depot short"></div></div>
+      <div class="ctas"><a class="btn primary mag" href="#">Book a working session</a><a class="btn ghost mag" href="index.html" data-page>Back to the platform</a></div>
+    </form>
+    <p>You leave with a sample plan and the rule it had to relax, exported back into your workbook. The model never makes the call; a named owner signs.</p>
+  </div>
+  <div class="foot">Resonance helps operational teams make faster, better decisions with the data they already have.<span class="sample">Sample data on this page is fictional.</span></div>
+</div></section>
+</div>
+<div class="bar" id="bar"><span>Resonance</span><div class="prog"><i id="prog"></i></div><a class="btn primary mag" href="#" data-go="4">Book a working session</a></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.160.0/three.min.js"></script>
+<script src="corridor.js"></script>
+<script>
+(() => {
+const { ss, clamp, lerp, eo, snap, sub, vis, words, OX, OY, PH0, FINE } = Corridor;
+const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+const LX = PH0 ? 0 : -.6;
+words($('#h1'), "Turn planning data into executable decisions.");
+const heroPeel = (q) => { const peel = ss(.25, .95, q); $$('.hero .layer').forEach((l, i) => { l.style.transform = `translateY(${-peel * (40 - i * 8)}px) scale(${1 + peel * (.5 - i * .1)})`; l.style.opacity = 1 - ss(.3, .75, q); l.style.filter = `blur(${peel * 6}px)`; }); };
+const CTA = { name: 'book', a: .88, b: 1, dom: '#book', selfDom: true, shift: 0, scrim: 'none', cam: [[0, OX, 0, 22, OX + LX, OY, -16], [1, 0, 0, -6, 0, 0, -40]], build() {},
+  update(q, K, S, el) { K.fade = ss(.12, .55, q); const up = ss(.3, .6, q); $('#ccard').style.opacity = up; $('#ccard').style.transform = `translateY(${(1 - up) * 40}px) scale(${lerp(.97, 1, up)})`; el.style.opacity = ss(.18, .42, q); el.querySelector('.in').style.transform = `translateY(${(1 - ss(.18, .5, q)) * 30}px)`; } };
+
+const NN = ['Depot North', 'Plant 2', 'Depot South', 'Cross-dock', 'Hub', 'Store cluster A', 'Store cluster B', 'Port', 'Supplier'];
+function mapScene(K, S) { const s = new THREE.Group(); s.add(K.grid(12, 8, 12, 8, K.C.bone, .1).rotateX(Math.PI / 2)); const NP = []; for (let i = 0; i < 9; i++) { const v = K.vec((K.R() - .5) * 10, (K.R() - .5) * 6, 0); NP.push(v); const n = new THREE.Group(); n.add(new THREE.Mesh(new THREE.CylinderGeometry(.2, .2, .1, 16), K.solidMat(i === 4 ? K.PAL.ember : K.PAL.green))); n.children[0].rotation.x = Math.PI / 2; const l = K.label(NN[i], { px: 14, col: '#B8B2A6' }); l.position.set(0, -.35, .01); n.add(l); n.position.copy(v); s.add(n); K.hover(n, { w: .9, h: .9, dy: .4, meta: { id: 'node' + i }, tip: () => ({ t: NN[i], b: i === 4 ? 'The constrained node. <em>Service target 98% blocks next week\'s plan here.</em>' : 'Inventory and open orders, read from the ERP export.' }) }); } S.routes = []; for (let i = 0; i < 9; i++) for (let j = i + 1; j < 9; j++) if (K.R() < .28) { const a = NP[i], b = NP[j]; const mid = a.clone().add(b).multiplyScalar(.5).add(K.vec((K.R() - .5) * 2, (K.R() - .5) * 2, .6)); const cv = new THREE.QuadraticBezierCurve3(a, mid, b); const l = K.tube(cv.getPoints(24), .022, K.PAL.green, .55); s.add(l); const dot = K.glow(K.PAL.green, .6, .9); s.add(dot); const hh = new THREE.Group(); hh.position.copy(cv.getPoint(.5)); s.add(hh); const at = S.routes.length; K.hover(hh, { w: 1.2, h: .6, dy: .3, col: K.PAL.green, tip: () => ({ t: `${NN[i]} → ${NN[j]}`, b: at % 3 === 0 ? '<code>3</code> orders at risk on this lane. <em>Inventory at the far end is under its service target.</em>' : 'Flowing within limits.' }) }); S.routes.push({ cv, dot, ph: K.R(), l, hh }); } s.add(K.haze(K.PAL.green, 36, .08)); S.hot = K.glow('#E2663A', 2.4, 0); S.hot.position.copy(NP[4]); s.add(S.hot); s.rotation.x = -.55; return s; }
+let ruleHover = null; $$('#rules .opt').forEach(o => { o.addEventListener('pointerenter', () => { ruleHover = +o.dataset.r; }); o.addEventListener('pointerleave', () => { ruleHover = null; }); });
+const SECTIONS = [
+{ name: 'hero', a: 0, b: .14, dom: '#hero',
+  cam: [[0, 0, 0, 2, LX, 0, -30], [.5, 2.4, 1.6, -16, OX + LX, OY - 1, -46], [1, -1.2, 2.2, -36, OX + LX + .5, OY - 1.2, -46]],
+  build(g, K, S) { const s = mapScene(K, S); s.scale.setScalar(1.25); K.place(g, s, OX, OY - 1.2, -46); S.s = s; },
+  update(q, K, S) { const T = K.T, f = S.s.userData._f, tIn = clamp((T - .5) / 1.5); S.routes.forEach((r, i) => { const u = (T * .12 + r.ph) % 1, hot = r.hh.userData.hot; r.dot.position.copy(r.cv.getPoint(u)); r.dot.material.opacity = .9 * eo(clamp((tIn - i * .05) / .5)) * f; r.l.material.opacity = (.55 + hot * .45) * eo(clamp((tIn - i * .05) / .5)) * f; r.l.material.color.set(K.PAL.green).lerp(K.C.ember, hot); }); S.hot.material.opacity = ss(.45, .9, q) * (.6 + .4 * Math.sin(T * 4)) * f; heroPeel(q); } },
+{ name: 'agents', a: .14, b: .4, dom: '#agents', fade: [.04, .16, .88, .98],
+  cam: [[0, -1.2, 2.2, 24, OX + LX + .5, OY - 1.2, 14], [.35, OX - 6, 1.8, -28, OX + LX, OY + .2, -44], [.7, OX + 5, -1, -30, OX + LX, OY - .4, -44], [1, OX + 1, -.6, -35, OX + LX + 1, OY - 2, -44]],
+  build(g, K, S) { const w = new THREE.Group(); S.sap = K.card('sheet', 'SAP export · open orders', 3.4, false, ['OB-2140', 'Depot N', '1,200', '12 Mar', 'OB-2141', 'Depot S', '640', '13 Mar', 'OB-2144', 'Hub', '380', '12 Mar', 'OB-2150', 'Depot N', '900', '15 Mar']); S.sap.position.set(-2.4, .6, 0); w.add(S.sap); S.xl = K.card('sheet', 'planner_workbook_wk11.xlsx', 3.4, false, ['OB-2140', 'North', '1,180', '14 Mar', 'OB-2141', 'South', '640', '13 Mar', 'OB-2144', 'Hub', '380', '12 Mar', 'OB-2150', 'North', '900', '15 Mar']); S.xl.position.set(2.4, .6, 0); w.add(S.xl);
+    const M = [['order id', 'OB-2140 ↔ OB-2140', false], ['depot', 'Depot N ↔ North · matched by the depot alias table', false], ['quantity', '!1,200 ↔ 1,180 · the workbook was edited after the export', true], ['need-by date', '!12 Mar ↔ 14 Mar · two dates for one order', true], ['carrier', 'matched', false], ['status', 'open ↔ open', false]];
+    S.lines = M.map((m, i) => { const y = .95 - i * .3; const l = K.tube([K.vec(-.7, y + .05 * (i % 2), 0), K.vec(.7, y - .05 * (i % 2), 0)], .025, m[2] ? K.PAL.ember : K.PAL.teal, .9); l.scale.x = 0; w.add(l); const hh = new THREE.Group(); hh.position.set(0, y, 0); w.add(hh); K.hover(hh, { w: 1.4, h: .28, dy: .15, tip: () => ({ t: 'Agent check · ' + m[0], b: m[1].replace('!', '') + (m[2] ? ' <em>Flagged, not hidden.</em>' : '') }) }); const tk = K.label(m[2] ? '!' : '✓', { px: 18, col: m[2] ? '#E2663A' : '#7FB58A' }); tk.position.set(0, y + .14, .02); tk.scale.setScalar(0); w.add(tk); return { l, tk, hh, conflict: m[2] }; });
+    S.model = new THREE.Group(); S.model.add(K.slab(5, .9, 1.2, '#1C2636', .95, .45)); S.model.add(K.haze(K.PAL.gold, 14, .14)); const ml = K.label('the model · clean records', { px: 16 }); ml.position.set(0, .0, .62); S.model.add(ml); S.model.position.set(0, -2.1, 0); w.add(S.model); S.recs = []; for (let i = 0; i < 4; i++) { const r = new THREE.Mesh(new THREE.BoxGeometry(.9, .14, .14), K.solidMat(K.PAL.green)); r.position.set(-1.8 + i * 1.2, -1.2, .1); w.add(r); S.recs.push(r); } S.lead = K.glow('#E9E3D6', 1.6, 0); S.lead.position.set(0, -2.1, .7); w.add(S.lead); w.scale.setScalar(1.3); K.place(g, w, OX, OY, -44); S.w = w; },
+  update(q, K, S) { const T = K.T, f = S.w.userData._f; S.sap.position.x = -2.4 - (1 - eo(sub(q, .05, .25))) * 4; S.xl.position.x = 2.4 + (1 - eo(sub(q, .08, .28))) * 4; S.lines.forEach((ln, i) => { const d = ss(.25 + i * .04, .35 + i * .04, q), hot = ln.hh.userData.hot; ln.l.scale.x = d; ln.l.material.opacity = (.8 + hot * .2) * f; ln.tk.scale.setScalar(snap(sub(q, .5 + i * .03, .58 + i * .03)) * (1 + hot * .3)); }); S.recs.forEach((r, i) => { const e = eo(sub(q, .66 + i * .05, .78 + i * .05)); r.position.y = lerp(-.4, -2.1, e); r.material.opacity = .8 * ss(.66 + i * .05, .7 + i * .05, q) * (1 - ss(.9, .98, q) * 0) * f; }); S.lead.material.opacity = ss(.82, 1, q) * (.6 + .4 * Math.sin(T * 4)) * f; S.lead.scale.setScalar(1.6 + ss(.82, 1, q) * 2); } },
+{ name: 'relax', a: .4, b: .66, dom: '#relax', fade: [.04, .16, .88, .98],
+  cam: [[0, OX + 1, -.6, 25, OX + LX + 1, OY - 2, 16], [.3, OX - 5, 1.5, -27, OX + LX, OY, -44], [.65, OX + 5, .5, -30, OX + LX, OY, -44], [1, OX + 1, .2, -35, OX + LX + 2, OY + 1.2, -44]],
+  build(g, K, S) { const w = new THREE.Group(); w.add(K.grid(9, 5, 9, 5, K.C.bone, .1).rotateX(Math.PI / 2)); w.add(K.haze(K.PAL.blue, 30, .08)); const LN = ['Depot North', 'Depot South', 'Hub', 'Cross-dock', 'Store cluster A']; S.lanes = LN.map((n, i) => { const y = 1.6 - i * .8; const l = K.label(n, { px: 16, col: '#B8B2A6' }); l.position.set(-4.4 + l.userData.w / 2, y, 0); w.add(l); const segs = []; let x = -2.4; for (let k = 0; k < 4; k++) { const wdt = .6 + K.R() * 1.2; const sl = K.slab(wdt, .3, .18, K.PAL.blue, 1, .25); sl.position.set(x + wdt / 2, y, 0); w.add(sl); const m = sl.userData.body, wp = sl.children[1]; m.userData.sl = sl; segs.push({ m, wp, w: wdt, x0: x }); x += wdt + .15; } return segs; }); S.blk = S.lanes[0][2]; S.blkLabel = K.label('blocked · service target 98% · Depot North', { px: 15, col: '#E2663A' }); S.blkLabel.position.set(S.blk.m.position.x, 1.6 + .4, .02); S.blkLabel.scale.setScalar(0); w.add(S.blkLabel); K.hover(S.blk.m, { w: S.blk.w, h: .4, dy: .2, tip: () => ({ t: 'Blocked segment · Depot North', b: 'Next week\'s allocation cannot meet the 98% service target with the stock on hand. <em>The solver shows the rule to relax, and what each relaxation costs.</em>' }) });
+    S.cost = K.label('$6,400 · 2 days · 0 orders late', { px: 16, col: '#7FB58A' }); S.cost.position.set(1.2, -2.3, .02); S.cost.scale.setScalar(0); w.add(S.cost); S.lead = K.glow('#7FB58A', 1.6, 0); S.lead.position.set(S.blk.m.position.x, 1.6, .1); w.add(S.lead); w.scale.setScalar(1.3); K.place(g, w, OX, OY, -44); S.w = w; },
+  update(q, K, S) { const T = K.T, f = S.w.userData._f; const blocked = ss(.12, .22, q), solved = ss(.55, .68, q); const r = ruleHover ?? (solved > .5 ? 0 : -1); S.lanes.forEach((segs, li) => segs.forEach((sg, k) => { const isB = sg === S.blk; let col = K.C.bone, op = .25; if (isB) { col = r === 0 ? K.C.ok : blocked > 0 ? K.C.ember : K.C.bone; op = .25 + blocked * .3; } if (r === 1 && li === 2) { col = K.C.ok; op = .5; } if (r === 2 && li === 4) { col = K.C.ember; op = .5; } if (r === 3 && isB) { col = K.C.ember; op = .6; } const base = col === K.C.bone ? new THREE.Color(K.PAL.blue) : col; sg.m.material.color.copy(base); sg.m.material.emissive.copy(base).multiplyScalar((op - .25) * .8 + (sg.m.userData.hot || 0) * .4); sg.m.material.opacity = f; sg.wp.material.opacity = .25 * f; sg.m.userData.sl.position.x = sg.x0 + sg.w / 2 + (r === 2 && li === 4 ? .8 : 0) * .2; })); S.blkLabel.scale.setScalar(snap(sub(q, .2, .3)) * (r === 0 ? 0 : 1)); S.cost.scale.setScalar(r === 0 ? 1 : 0); S.lead.material.opacity = (r === 0 ? 1 : 0) * ss(.6, .8, q) * (.6 + .4 * Math.sin(T * 4)) * f; S.lead.scale.setScalar(1.6 + ss(.8, 1, q) * 2); } },
+{ name: 'views', a: .66, b: .88, dom: '#views', fade: [.04, .16, .88, .98],
+  cam: [[0, OX + 1, .2, 25, OX + LX + 2, OY + 1.2, 16], [.35, OX - 4.5, 2, -28, OX + LX, OY, -44], [.7, OX + 4, -.5, -32, OX + LX, OY, -44], [1, OX, 0, -38, OX + LX + 1, OY - 1.8, -44]],
+  build(g, K, S) { const w = new THREE.Group(); const ORD = ['OB-2140', 'OB-2141', 'OB-2144', 'OB-2150']; S.panels = ['Table', 'Map', 'Calendar'].map((n, i) => { const p = new THREE.Group(); const pb = K.slab(3, 2.6, .1, '#182030', .9, .35); pb.position.z = -.06; p.add(pb); p.userData.pb = pb; const hd = K.slab(3, .36, .12, [K.PAL.blue, K.PAL.green, K.PAL.sand][i], 1, 0); hd.position.set(0, 1.12, -.04); p.add(hd); const l = K.label(n, { px: 18, col: '#0B0D12' }); l.position.set(-1.5 + l.userData.w / 2, 1.12, .02); p.add(l); p.userData.marks = ORD.map((o, k) => { let m; if (i === 0) { m = new THREE.Mesh(new THREE.BoxGeometry(2.4, .18, .06), K.solidMat(K.PAL.blue)); m.position.set(0, .6 - k * .4, .04); } else if (i === 1) { m = new THREE.Mesh(new THREE.CylinderGeometry(.16, .16, .08, 16), K.solidMat(K.PAL.green)); m.rotation.x = Math.PI / 2; m.position.set(-.9 + k * .6, .4 - (k % 2) * 1.1, .04); } else { m = new THREE.Mesh(new THREE.BoxGeometry(.5, .5, .06), K.solidMat(K.PAL.sand)); m.position.set(-.9 + k * .6, .2 - (k % 2) * .7, .04); } p.add(m); K.hover(m, { w: i === 0 ? 2.4 : .6, h: i === 0 ? .25 : .6, dy: .2, tip: () => ({ t: o + ' · ' + n.toLowerCase() + ' view', b: ['Depot North · 1,200 units · 12 Mar · service target relaxed to 96%', 'Depot South · 640 units · 13 Mar', 'Hub · 380 units · 12 Mar', 'Depot North · 900 units · 15 Mar'][k] + ' <em>The same order, highlighted in all three views.</em>' }) }); m.userData.k = k; return m; }); p.position.set(-3.5 + i * 3.5, .4, 0); w.add(p); return p; }); S.erp = new THREE.Group(); S.erp.add(K.slab(2.2, .6, .6, K.PAL.blue, 1, .3)); const el = K.label('ERP', { px: 18 }); el.position.z = .35; S.erp.add(el); S.erp.position.set(-1.6, -2.4, 0); w.add(S.erp); S.wb = new THREE.Group(); S.wb.add(K.slab(2.2, .6, .6, K.PAL.green, 1, .3)); const wl = K.label('workbook', { px: 18 }); wl.position.z = .35; S.wb.add(wl); S.wb.position.set(1.6, -2.4, 0); w.add(S.wb); S.fly = []; for (let i = 0; i < 8; i++) { const d = K.glow('#7FB58A', .5, 0); w.add(d); S.fly.push({ d, from: K.vec(-3.5 + (i % 3) * 3.5, .4 - .6, 0), to: i % 2 ? S.wb.position.clone() : S.erp.position.clone(), ph: i * .1 }); } S.lead = K.glow('#E9E3D6', 1.6, 0); S.lead.position.set(0, -2.4, .4); w.add(S.lead); w.scale.setScalar(1.3); K.place(g, w, OX, OY, -44); S.w = w; },
+  update(q, K, S) { const T = K.T, f = S.w.userData._f; const hotK = (() => { for (const p of S.panels) for (const m of p.userData.marks) if (m.userData.hot > .05) return m.userData.k; return -1; })(); S.panels.forEach((p, i) => { const e = eo(sub(q, .1 + i * .08, .3 + i * .08)); p.scale.setScalar(.6 + .4 * e); p.userData.marks.forEach(m => { const on = m.userData.k === hotK ? 1 : hotK >= 0 ? .45 : 1; m.material.opacity = on * e * f; m.material.emissive.copy(m.material.userData.emBase).add(new THREE.Color(K.PAL.gold).multiplyScalar(m.userData.k === hotK ? .6 : 0)); }); }); const ex = sub(q, .62, .9); S.fly.forEach(fl => { const t = clamp((ex - fl.ph) / .5); fl.d.position.lerpVectors(fl.from, fl.to, eo(t)); fl.d.material.opacity = (t > 0 && t < 1 ? 1 : 0) * f; }); S.erp.children[0].userData.body.material.emissive.copy(S.erp.children[0].userData.body.material.userData.emBase).add(new THREE.Color(K.PAL.blue).multiplyScalar(ss(.75, .9, q) * .4)); S.wb.children[0].userData.body.material.emissive.copy(S.wb.children[0].userData.body.material.userData.emBase).add(new THREE.Color(K.PAL.green).multiplyScalar(ss(.75, .9, q) * .4)); S.lead.material.opacity = ss(.85, 1, q) * (.6 + .4 * Math.sin(T * 4)) * f; S.lead.scale.setScalar(1.6 + ss(.85, 1, q) * 2); } },
+];
+Corridor.start({ sections: SECTIONS.concat([CTA]), room: 60, hoverDefault: { industry: 'sc', go: 4, goLabel: 'Book a working session' } });
+})();
+</script>
+</body>
+</html>
