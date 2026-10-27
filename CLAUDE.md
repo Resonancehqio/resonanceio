@@ -25,6 +25,13 @@ Folders:
 
 The earlier workshop folder `~/Desktop/Datacenter Decision OS` holds brand rounds, old mockups and 300 MB of shot sheets; it is archive only now.
 
+## Housing integration (Ray, 27 Oct 2026)
+The live site's affordable-housing content is not a separate pitch and not dropped. It is woven in:
+- The main hero keeps the platform / data-center thrust in the copy, but names housing intelligently as one of the worlds the engine runs (not a second headline).
+- Housing shows up mainly as **examples inside the product screens** (a relocation plan, a right-to-return roster, a unit-readiness board) alongside the data-center screens, in the fictional CONTENT.md world.
+- A few explanation paragraphs mention housing where it genuinely fits the section (e.g. "when plans change", constraints, audit-ready record). Do not bolt a housing paragraph onto every section.
+- The old housing pages (case studies, calculators) become the housing solutions page and proof, not the home.
+
 ## Hard rules (from Ray)
 - Fictional sample data only (`redesign/copy/CONTENT.md` world); no real customers or places in product screens.
 - No published prices. No unsourced stats. Hide Sushanth's identity (open conflict: live About page names him; see inventory).
