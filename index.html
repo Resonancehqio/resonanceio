@@ -2182,6 +2182,32 @@ y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
   #mobile-nav { display: flex; }
   #mobile-nav-overlay { display: none; }
 }
+
+/* ── Mobile overflow fixes (16 Nov 2026) ──
+   Nothing may widen the page past the screen: iOS Safari otherwise lets the whole page pan sideways. */
+@supports (overflow: clip) { html, body { overflow-x: clip; } }
+.faq-layout > * { min-width: 0; }
+@media (max-width: 768px) {
+  .faq-a table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .step-visual { overflow-x: clip; }
+  /* hero copy and the product preview kept off the screen edges */
+  .hero { padding-left: 20px; padding-right: 20px; }
+  .hero-announce { max-width: 100%; border-radius: 16px; text-align: left; font-size: 12px; line-height: 1.45; }
+  .platform-preview { padding: 0 16px; }
+  /* the dashboard mock's single column could grow to its widest row and push the button and cards out of the frame */
+  .dashboard-body { grid-template-columns: minmax(0, 1fr); }
+  .main-content { min-width: 0; }
+  .dash-header { flex-wrap: wrap; }
+  .table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .table-wrap .table-head, .table-wrap .table-row { min-width: 560px; }
+}
+@media (max-width: 480px) {
+  /* four headline stats: one per row on a phone, the two-up grid squeezed the labels into narrow columns */
+  .stats-four { grid-template-columns: 1fr !important; }
+  .stats-four .stat-block { border-right: none !important; border-bottom: 0.5px solid var(--border); }
+  .stats-four .stat-block:last-child { border-bottom: none; }
+  .stats-four .sb-label { max-width: 300px !important; margin-left: auto; margin-right: auto; }
+}
 </style>
 
 <!-- Schema: FAQPage (enables rich snippet accordion in Google) -->
@@ -4850,12 +4876,12 @@ function updateCalc4() {
 // Initialize all page calculators on load
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', function() {
-    updateCalc1();
-    updateCalc4();
+    if (document.getElementById('c1-hh')) updateCalc1();
+    if (document.getElementById('c4-hh')) updateCalc4();
   });
 } else {
-  updateCalc1();
-  updateCalc4();
+  if (document.getElementById('c1-hh')) updateCalc1();
+  if (document.getElementById('c4-hh')) updateCalc4();
 }
 </script>
 <script>

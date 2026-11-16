@@ -301,6 +301,14 @@ footer{position:relative;z-index:1;border-top:0.5px solid var(--border);padding:
 .diff-card h3 em{font-style:italic;color:var(--purple-bright);}
 .diff-card p{font-size:0.88rem;color:var(--text-2);line-height:1.68;}
 @media(max-width:860px){.diff-cards{grid-template-columns:1fr;}}
+/* ── Mobile fixes (16 Nov 2026): the dashboard table swipes sideways instead of squeezing into tall rows ── */
+@supports (overflow: clip) { html, body { overflow-x: clip; } }
+@media (max-width: 768px) {
+  .dashboard-body { grid-template-columns: minmax(0, 1fr); }
+  .main-content { min-width: 0; }
+  .table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .table-wrap .table-head, .table-wrap .table-row { min-width: 560px; }
+}
 </style>
 </head>
 <body>

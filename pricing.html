@@ -483,6 +483,21 @@ html[data-theme="light"] .footer-bottom{color:#7B5EA7!important;border-top-color
 .compare-table .resonance-col{transition:background .18s;}
 .compare-table tbody tr:hover td{background:rgba(255,255,255,0.025);}
 .compare-table tbody tr:hover td.resonance-col{background:rgba(91,33,182,0.18);}
+
+/* ── Mobile overflow fixes (16 Nov 2026) ── */
+body { overflow-x: hidden; }
+@supports (overflow: clip) { html, body { overflow-x: clip; } }
+@media (max-width: 700px) {
+  .pricing-panel > div { grid-template-columns: 1fr !important; }
+  .pricing-panel-left, .pricing-panel-right { padding: 28px 22px !important; }
+  .pricing-panel-divider { height: 48px; background: var(--dark-2) !important; }
+  .pricing-panel-divider > div:first-child { top: 50% !important; bottom: auto !important; left: 0 !important; right: 0 !important; width: auto !important; height: 1px; transform: none !important; }
+  .compare-table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .faq-grid { grid-template-columns: minmax(0, 1fr) !important; gap: 32px !important; }
+  .faq-intro { position: static !important; }
+  .enterprise-card { padding: 32px 22px !important; gap: 24px !important; }
+  .enterprise-card > button { width: 100%; white-space: normal !important; padding: 14px 18px !important; }
+}
 </style>
 </head>
 <body>
@@ -882,7 +897,7 @@ html[data-theme="light"] .footer-bottom{color:#7B5EA7!important;border-top-color
 <!-- ENTERPRISE SECTION -->
 <section style="padding:0 0 80px;border-top:none;">
   <div class="wrap">
-    <div style="max-width:760px;margin:0 auto;background:linear-gradient(135deg,rgba(91,33,182,0.12) 0%,rgba(20,184,166,0.08) 100%);border:0.5px solid var(--border-hi);border-radius:20px;padding:48px 52px;display:flex;align-items:center;justify-content:space-between;gap:40px;flex-wrap:wrap;">
+    <div class="enterprise-card" style="max-width:760px;margin:0 auto;background:linear-gradient(135deg,rgba(91,33,182,0.12) 0%,rgba(20,184,166,0.08) 100%);border:0.5px solid var(--border-hi);border-radius:20px;padding:48px 52px;display:flex;align-items:center;justify-content:space-between;gap:40px;flex-wrap:wrap;">
       <div>
         <div class="eyebrow" style="margin-bottom:14px;">Enterprise pricing</div>
         <h2 style="font-family:var(--ff-display);font-size:clamp(1.6rem,3vw,2.2rem);font-weight:300;color:var(--text-1);margin:0 0 12px;letter-spacing:-0.02em;line-height:1.15;">Managing 1,000+ units?</h2>
@@ -1062,8 +1077,8 @@ html[data-theme="light"] .footer-bottom{color:#7B5EA7!important;border-top-color
 <!-- FAQ -->
 <section>
   <div class="wrap">
-    <div style="display:grid;grid-template-columns:1fr 2fr;gap:80px;align-items:start;">
-      <div style="position:sticky;top:80px;">
+    <div class="faq-grid" style="display:grid;grid-template-columns:1fr 2fr;gap:80px;align-items:start;">
+      <div class="faq-intro" style="position:sticky;top:80px;">
         <div class="eyebrow" style="margin-bottom:16px;">FAQ</div>
         <h2 class="section-title" style="font-size:1.8rem;">Pricing questions, answered.</h2>
         <p class="section-sub" style="margin-top:12px;">Still have questions? We'd rather talk through your program than send a PDF.</p>

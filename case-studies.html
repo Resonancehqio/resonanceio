@@ -691,55 +691,6 @@ nav {
 }
 .study-cta-btn:hover { background: var(--purple-mid); transform: translateY(-1px); }
 
-/* Mobile overrides */
-@media(max-width:780px){
-  .study-hero { padding: 32px 20px 28px; }
-  .study-meta-grid { grid-template-columns: 1fr 1fr; }
-  .study-meta-val { font-size: 13px; word-break: break-word; }
-  .drawer-nav { padding: 12px 18px; }
-  .drawer-back-context { display: none; }
-  .drawer-back-sep { display: none; }
-  .csh-roster-head { grid-template-columns: 1fr 60px 72px; }
-  .csh-roster-row { grid-template-columns: 1fr 60px 72px; }
-  .csh-roster-head span:nth-child(3), .csh-roster-row > .csh-rr-phase { display: none; }
-  .csh-audit-time { width: 72px; font-size: 11px; }
-  .csh-comp-track { width: 80px; }
-  .csh-comp-name { font-size: 13px; }
-  .stakeholder-grid { grid-template-columns: 1fr 1fr; }
-  .dev-grid { grid-template-columns: 1fr 1fr; }
-  .constraint-grid { grid-template-columns: 1fr; }
-  .study-results { grid-template-columns: 1fr 1fr !important; }
-  .study-deploy { flex-direction: column; gap: 10px; }
-  .study-quote { padding: 20px 20px; }
-  .study-cta { padding: 28px 20px; }
-  .match-hh { flex-direction: column; }
-  .csh-widget-body { padding: 14px; }
-  .ba-title { margin-bottom: 24px; }
-  .ba-section, .pt-section, .qual-section, .closing-cta { padding-left: 20px; padding-right: 20px; padding-bottom: 56px; }
-  .closing-inner { padding: 40px 28px; }
-  .closing-trust { gap: 14px; }
-  .closing-sub { font-size: 15px; }
-  .closing-btn-primary, .closing-btn-secondary { font-size: 14px; padding: 12px 22px; }
-  .pt-head-sub { font-size: 15px; }
-}
-@media(max-width:500px){
-  .page-hero { padding: 100px 18px 24px; }
-  .card-grid { padding: 0 18px 48px; }
-  .cs-card-metrics { grid-template-columns: 1fr 1fr; }
-  .cs-metric-val { font-size: 16px; }
-  .study-meta-grid { grid-template-columns: 1fr; }
-  .prog-summary { grid-template-columns: 1fr 1fr 1fr; }
-  .study-result-val { font-size: 22px; }
-  .closing-actions { flex-direction: column; width: 100%; }
-  .closing-btn-primary, .closing-btn-secondary { width: 100%; justify-content: center; }
-  .closing-trust-item { font-size: 12px; }
-  .qual-inner { padding: 24px 18px; }
-  .ba-section, .pt-section, .qual-section, .closing-cta { padding-left: 16px; padding-right: 16px; padding-bottom: 44px; }
-  .closing-inner { padding: 32px 18px; }
-  .csh-comp-track { width: 60px; }
-  .csh-comp-name { font-size: 12px; }
-  .csh-comp-status { font-size: 11px; width: 46px; }
-}
 
 /* ══════════════════════════════════════
    BEFORE / AFTER COMPARISON
@@ -1022,6 +973,60 @@ nav {
 .closing-trust-item { font-size: 13px; color: var(--text-3); display: flex; align-items: center; gap: 7px; }
 .closing-trust-item::before { content: '✓'; color: var(--teal); font-size: 12px; font-weight: 700; }
 /* ══ end styles ══ */
+
+/* Mobile overrides (moved to the end of the stylesheet 16 Nov 2026: above the section styles they were overridden and never applied) */
+@media(max-width:780px){
+  .study-hero { padding: 32px 20px 28px; }
+  .study-meta-grid { grid-template-columns: 1fr 1fr; }
+  .study-meta-val { font-size: 13px; word-break: break-word; }
+  .drawer-nav { padding: 12px 18px; }
+  .drawer-back-context { display: none; }
+  .drawer-back-sep { display: none; }
+  .csh-roster-head { grid-template-columns: 1fr 60px 72px; }
+  .csh-roster-row { grid-template-columns: 1fr 60px 72px; }
+  .csh-roster-head span:nth-child(3), .csh-roster-row > .csh-rr-phase { display: none; }
+  .csh-audit-time { width: 72px; font-size: 11px; }
+  .csh-comp-track { width: 80px; }
+  .csh-comp-name { font-size: 13px; }
+  .stakeholder-grid { grid-template-columns: 1fr 1fr; }
+  .dev-grid { grid-template-columns: 1fr 1fr; }
+  .constraint-grid { grid-template-columns: 1fr; }
+  .study-results { grid-template-columns: 1fr 1fr !important; }
+  .study-deploy { flex-direction: column; gap: 10px; }
+  .study-quote { padding: 20px 20px; }
+  .study-cta { padding: 28px 20px; }
+  .match-hh { flex-direction: column; }
+  .csh-widget-body { padding: 14px; }
+  .ba-title { margin-bottom: 24px; }
+  .ba-section, .pt-section, .qual-section, .closing-cta { padding-left: 20px; padding-right: 20px; padding-bottom: 56px; }
+  .closing-inner { padding: 40px 28px; }
+  .closing-trust { gap: 14px; }
+  .closing-sub { font-size: 15px; }
+  .closing-btn-primary, .closing-btn-secondary { font-size: 14px; padding: 12px 22px; }
+  .pt-head-sub { font-size: 15px; }
+}
+@media(max-width:500px){
+  .page-hero { padding: 100px 18px 24px; }
+  .card-grid { padding: 0 18px 48px; }
+  .cs-card-metrics { grid-template-columns: 1fr 1fr; }
+  .cs-metric-val { font-size: 16px; }
+  .study-meta-grid { grid-template-columns: 1fr; }
+  .prog-summary { grid-template-columns: 1fr 1fr 1fr; }
+  .study-result-val { font-size: 22px; }
+  .closing-actions { flex-direction: column; width: 100%; }
+  .closing-btn-primary, .closing-btn-secondary { width: 100%; justify-content: center; }
+  .closing-trust-item { font-size: 12px; }
+  .qual-inner { padding: 24px 18px; }
+  .ba-section, .pt-section, .qual-section, .closing-cta { padding-left: 16px; padding-right: 16px; padding-bottom: 44px; }
+  .closing-inner { padding: 32px 18px; }
+  .csh-comp-track { width: 60px; }
+  .csh-comp-name { font-size: 12px; }
+  .csh-comp-status { font-size: 11px; width: 46px; }
+}
+@media(max-width:500px){
+  /* header: keep the demo button on one line beside the logo */
+  .btn-demo { white-space: nowrap; font-size: 12.5px; padding: 8px 12px; }
+}
 </style>
 
 <!-- Schema: FAQPage -->
