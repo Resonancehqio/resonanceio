@@ -95,24 +95,9 @@ scrollTo(0, 0);
   };
   document.fonts.ready.then(() => { lay(); requestAnimationFrame(() => requestAnimationFrame(() => setTimeout(() => { document.documentElement.classList.add('go'); tell({ t: 'ready' }); runEnd(); }, 120))); });
 }
-// the end: the centre screen comes forward, square to the camera, and hands its screen rect to the page,
-// which grows its live console out of that exact rect while this layer dissolves
-let HAND = null;
-function runEnd() { HAND = { t0: performance.now() + 2150, dur: 650, sent: false }; }
-const _f = new THREE.Vector3(), _tg = new THREE.Vector3(), _q = new THREE.Quaternion();
-function handFrame(K) {
-  if (!HAND) return; const c = SECTIONS[0].state.cards && SECTIONS[0].state.cards[7]; if (!c) return;
-  const e0 = clamp((performance.now() - HAND.t0) / HAND.dur); if (e0 <= 0) return; const e = 1 - Math.pow(1 - e0, 3);
-  const cam = K.cam; cam.getWorldDirection(_f);
-  const dist = 7.4; _tg.copy(cam.position).addScaledVector(_f, dist); _tg.y -= .5;
-  c.position.lerp(_tg, e); c.quaternion.slerp(cam.quaternion, e);
-  c.userData.face.material.opacity = Math.max(c.userData.face.material.opacity, e);
-  if (e0 >= 1 && !HAND.sent) { HAND.sent = true; c.updateMatrixWorld(true);
-    const bx = new THREE.Box3().setFromObject(c.userData.face), pts = []; for (let i = 0; i < 8; i++) pts.push(new THREE.Vector3(i & 1 ? bx.max.x : bx.min.x, i & 2 ? bx.max.y : bx.min.y, i & 4 ? bx.max.z : bx.min.z).project(cam));
-    const xs = pts.map(v => (v.x + 1) / 2 * innerWidth), ys = pts.map(v => (1 - v.y) / 2 * innerHeight);
-    const r = { x: Math.min(...xs), y: Math.min(...ys), w: Math.max(...xs) - Math.min(...xs), h: Math.max(...ys) - Math.min(...ys) };
-    tell({ t: 'done', rect: r }); }
-}
+// the end: once the logo has landed, the page takes over (it brings its own console in from the depth of this corridor)
+function runEnd() { setTimeout(() => tell({ t: 'done' }), 2050); }
+function handFrame() {}
 ['pointerdown', 'keydown', 'wheel', 'touchstart'].forEach(ev => addEventListener(ev, () => tell({ t: 'skip' }), { passive: true }));
 
 const SECTIONS = [
