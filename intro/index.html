@@ -96,7 +96,7 @@ scrollTo(0, 0);
   document.fonts.ready.then(() => { lay(); requestAnimationFrame(() => requestAnimationFrame(() => setTimeout(() => { document.documentElement.classList.add('go'); tell({ t: 'ready' }); runEnd(); }, 120))); });
 }
 // the end: once the logo has landed, the page takes over (it brings its own console in from the depth of this corridor)
-function runEnd() { setTimeout(() => tell({ t: 'title' }), 1850); setTimeout(() => tell({ t: 'done' }), 2050); }
+function runEnd() { setTimeout(() => tell({ t: 'title' }), 1750); setTimeout(() => tell({ t: 'done' }), 2050); }
 function handFrame() {}
 ['pointerdown', 'keydown', 'wheel', 'touchstart'].forEach(ev => addEventListener(ev, () => tell({ t: 'skip' }), { passive: true }));
 
