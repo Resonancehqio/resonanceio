@@ -742,7 +742,8 @@ section[id],div[id="replan"]{scroll-margin-top:68px;}
 .x-ans.calm mark{background:transparent;color:inherit;}
 
 /* swimlane live status + chip */
-.x-node-h{display:flex;align-items:baseline;justify-content:space-between;gap:8px;}
+.x-node-h{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:2px 8px;min-width:0;}
+.x-node{min-width:0;overflow:hidden;}
 .x-live{font-family:var(--ff-data);font-size:10.5px;color:var(--c,var(--teal-bright));white-space:nowrap;opacity:var(--on,0);}
 .x-wchip{position:absolute;left:0;top:0;z-index:4;pointer-events:none;padding:3px 9px;border-radius:999px;font-family:var(--ff-data);font-size:10.5px;white-space:nowrap;color:#0B0918;background:var(--teal-bright);box-shadow:0 6px 16px -6px rgba(0,0,0,0.9);transform:translate(-50%,-150%);opacity:0;}
 @media(max-width:980px){.x-wchip{display:none;}}
@@ -773,6 +774,80 @@ section[id],div[id="replan"]{scroll-margin-top:68px;}
 /* start: bars fill */
 .x-tl-scale i{transform-origin:left center;transform:scaleX(var(--f,1));}
 
+/* Sim: watch full screen */
+.x-watch{display:flex;align-items:center;gap:14px 18px;flex-wrap:wrap;margin-top:26px;}
+.x-watch span{font-size:13px;color:var(--text-3);}
+#replan .tbtn .ic-col{display:none;}
+#replan .console.is-full .tbtn .ic-col{display:block;}
+#replan .console.is-full .tbtn .ic-exp{display:none;}
+#replan .tbtn svg path[fill="none"]{fill:none;}
+#replan .console:fullscreen{width:100vw;height:100vh;max-width:none;border-radius:0;border:0;overflow:auto;background:var(--dark-1);}
+#replan .console.x-full{position:fixed;inset:0;z-index:1000;width:100vw;height:100dvh;max-width:none;border-radius:0;border:0;overflow:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;}
+#replan .console.is-full .transport{top:0;}
+#replan .console:fullscreen::backdrop{background:var(--dark);}
+#replan .console.is-full .topbar,#replan .console.is-full .transport,#replan .console.is-full .body,#replan .console.is-full .foot{max-width:1400px;margin-left:auto;margin-right:auto;width:100%;}
+html.x-lock,html.x-lock body{overflow:hidden;}
+/* Decision screens: compute-on-show */
+.x-scr-top{position:relative;}
+.x-scan{position:absolute;left:0;bottom:-1px;height:2px;width:100%;transform:scaleX(0);transform-origin:left;background:linear-gradient(90deg,transparent,var(--teal-bright),var(--purple-bright));opacity:0;pointer-events:none;}
+.x-scan.run{animation:xScan 1.3s cubic-bezier(.4,0,.2,1) both;}
+@keyframes xScan{0%{transform:scaleX(0);opacity:1}80%{transform:scaleX(1);opacity:1}100%{transform:scaleX(1);opacity:0}}
+.x-pill.busy i{animation:xhBlink .9s steps(2) infinite;}
+.x-tbl tbody tr{will-change:transform;}
+.x-score,.x-sc dd{font-variant-numeric:tabular-nums;}
+/* Where it fits: same question, three tools */
+.x-fit{margin-top:clamp(48px,6vw,80px);border-radius:18px;background:var(--dark-1);box-shadow:inset 0 0 0 0.5px var(--border-hi);overflow:hidden;}
+.x-fit-q{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:20px 22px;border-bottom:0.5px solid var(--border);}
+.x-fit-k{display:block;font-size:13px;color:var(--text-3);margin-bottom:4px;}
+.x-fit-q b{font-family:var(--ff-display);font-weight:400;font-size:clamp(20px,2.2vw,26px);letter-spacing:-0.01em;}
+.x-fit-q .x-btn{height:40px;font-size:14px;}
+.x-fit-cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));}
+.x-fc{display:flex;flex-direction:column;padding:18px 20px 20px;min-width:0;}
+.x-fc + .x-fc{border-left:0.5px solid var(--border);}
+.x-fc.us{background:linear-gradient(180deg,rgba(124,58,237,0.12),rgba(20,184,166,0.04));box-shadow:inset 0 2px 0 var(--purple-bright);}
+.x-fc-h{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:14px;}
+.x-fc-h b{font-size:15px;font-weight:600;}
+.x-fc-h span{font-size:12px;color:var(--text-3);}
+.x-fc-body{display:flex;flex-direction:column;gap:7px;flex:1;}
+.x-fl{display:flex;justify-content:space-between;gap:12px;padding:9px 11px;border-radius:9px;background:rgba(255,255,255,0.03);box-shadow:inset 0 0 0 0.5px var(--border);font-size:13px;color:var(--text-2);}
+.x-fl b{font-family:var(--ff-data);font-size:12px;font-weight:500;color:var(--text-1);white-space:nowrap;}
+.x-fl b.g{color:var(--green);}
+.x-fl b.t{color:var(--teal-bright);}
+.x-chat{padding:10px 11px;border-radius:9px;background:rgba(255,255,255,0.03);box-shadow:inset 0 0 0 0.5px var(--border);font-size:13px;line-height:1.5;color:var(--text-2);min-height:62px;}
+.x-fl-k{display:block;font-family:var(--ff-data);font-size:10.5px;color:var(--text-3);margin-bottom:4px;}
+.x-chat .x-dots{display:none;}
+.x-chat.typing .x-dots{display:inline-flex;}
+.x-chat.typing .x-txt,.x-chat.wait .x-txt{display:none;}
+.x-chat mark{background:transparent;color:inherit;border-radius:3px;padding:0 2px;transition:background .4s,color .4s;}
+.x-fit.clash .x-chat mark{background:rgba(248,113,113,0.16);color:var(--text-1);}
+.x-fc-res{margin-top:12px;padding:10px 12px;border-radius:10px;font-size:13px;font-weight:500;line-height:1.45;}
+.x-fc-res.n{color:var(--text-2);background:rgba(255,255,255,0.03);box-shadow:inset 0 0 0 0.5px var(--border);}
+.x-fc-res.r{color:#FCA5A5;background:rgba(248,113,113,0.08);box-shadow:inset 0 0 0 0.5px rgba(248,113,113,0.4);}
+.x-fc-res.g{color:var(--green);background:rgba(52,211,153,0.08);box-shadow:inset 0 0 0 0.5px rgba(52,211,153,0.45);}
+.x-fit-grid{border-top:0.5px solid var(--border);}
+.x-fg-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));position:relative;padding-top:30px;border-bottom:0.5px solid rgba(120,100,220,0.1);}
+.x-fg-row:last-child{border-bottom:0;}
+.x-fg-l{position:absolute;left:20px;top:10px;font-size:12px;font-weight:500;color:var(--text-3);}
+.x-fg-row > span[role="cell"]{padding:2px 20px 12px;font-size:14px;color:var(--text-2);}
+.x-fg-row > span + span{border-left:0.5px solid var(--border);}
+.x-fg-row .ok{color:var(--text-1);}
+.x-fg-row .no{color:#FCA5A5;}
+.x-fg-row .mid{color:#FBBF5A;}
+.x-fg-row .na{color:var(--text-3);}
+.x-fg-row .us{color:var(--text-1);font-weight:500;background:rgba(124,58,237,0.07);}
+.x-fg-row > span[role="cell"]:first-of-type{border-left:0;}
+@media(max-width:860px){
+  .x-fit-cols{grid-template-columns:minmax(0,1fr);}
+  .x-fc + .x-fc{border-left:0;border-top:0.5px solid var(--border);}
+  .x-fg-row{grid-template-columns:minmax(0,1fr);padding:10px 16px 12px;}
+  .x-fg-l{position:static;display:block;margin-bottom:6px;color:var(--text-1);font-size:13.5px;}
+  .x-fg-row > span[role="cell"]{padding:3px 0;border-left:0 !important;background:none;display:flex;justify-content:space-between;gap:12px;}
+  .x-fg-row > span[role="cell"]::before{color:var(--text-3);font-weight:400;}
+  .x-fg-row > span[role="cell"]:nth-of-type(2)::before{content:'System of record';}
+  .x-fg-row > span[role="cell"]:nth-of-type(3)::before{content:'AI chat tool';}
+  .x-fg-row > span[role="cell"]:nth-of-type(4)::before{content:'DecisionOS';}
+}
+@media(min-width:861px){.x-fg-row > span[role="cell"]:nth-of-type(2){border-left:0;}}
 /* Footer */
 .x-foot{border-top:0.5px solid var(--border);padding:36px 0 44px;}
 .x-foot .x-wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:13px;color:var(--text-3);}
@@ -966,6 +1041,10 @@ section[id],div[id="replan"]{scroll-margin-top:68px;}
     <header class="head">
       <h2 id="sim-h">A start date slips. Nine households move. Thirty-seven stay put.</h2>
       <p>DecisionOS re-plans only what a change touches, shows the rule behind every move, and returns the same plan for the same inputs every time.</p>
+      <div class="x-watch">
+        <button class="x-btn x-btn-p" type="button" id="xFullCta"><svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor"><path d="M3.5 1.8v10.4a.6.6 0 0 0 .9.5l8-5.2a.6.6 0 0 0 0-1L4.4 1.3a.6.6 0 0 0-.9.5z"/></svg>Watch it full screen</button>
+        <span>16 seconds · no sound · pause or step through anytime</span>
+      </div>
     </header>
 
     <div class="console" id="console" role="group" aria-label="Rehousing re-plan simulation with fictional data">
@@ -982,6 +1061,10 @@ section[id],div[id="replan"]{scroll-margin-top:68px;}
           </button>
           <button class="tbtn" id="bStep" type="button" aria-label="Play the next stage, then stop" title="Next stage">
             <svg viewBox="0 0 14 14"><path d="M2 1.8v10.4a.6.6 0 0 0 .9.5l6.6-5.2a.6.6 0 0 0 0-1L2.9 1.3a.6.6 0 0 0-.9.5z"/><rect x="10.3" y="1.5" width="2.2" height="11" rx="1"/></svg>
+          </button>
+          <button class="tbtn" id="bFull" type="button" aria-label="Watch full screen" title="Full screen">
+            <svg class="ic-exp" viewBox="0 0 14 14"><path d="M2 5V2h3M9 2h3v3M12 9v3H9M5 12H2V9" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <svg class="ic-col" viewBox="0 0 14 14"><path d="M5 2v3H2M12 5H9V2M9 12V9h3M2 9h3v3" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </button>
           <button class="tbtn" id="bReplay" type="button" aria-label="Replay from the start" title="Replay">
             <svg viewBox="0 0 14 14"><path d="M7 2.2a4.8 4.8 0 1 0 4.6 6.2.75.75 0 0 0-1.43-.44A3.3 3.3 0 1 1 7 3.7c.8 0 1.5.27 2.1.73L7.9 5.6a.4.4 0 0 0 .28.68h3.02a.4.4 0 0 0 .4-.4V2.86a.4.4 0 0 0-.68-.28l-.76.76A4.8 4.8 0 0 0 7 2.2z"/></svg>
@@ -1263,17 +1346,46 @@ section[id],div[id="replan"]{scroll-margin-top:68px;}
       </div>
     </div>
 
-    <div class="x-cmp">
-      <h3 class="x-cmp-h">Where it fits</h3>
-      <table class="x-cmp-t">
-        <thead><tr><th scope="col"><span class="sr-only">Question</span></th><th scope="col">System of record (Yardi, Procore)</th><th scope="col">AI chat tool</th><th scope="col" class="us">DecisionOS</th></tr></thead>
-        <tbody>
-          <tr><td>Stores your data</td><td data-h="System of record">Yes</td><td data-h="AI chat tool" class="no">No</td><td data-h="DecisionOS" class="us">Reads from your systems</td></tr>
-          <tr><td>Recommends what to do</td><td data-h="System of record" class="no">No</td><td data-h="AI chat tool">Yes, but answers vary</td><td data-h="DecisionOS" class="us">Yes, by your rules</td></tr>
-          <tr><td>Same answer every time</td><td data-h="System of record" class="no">n/a</td><td data-h="AI chat tool" class="no">No</td><td data-h="DecisionOS" class="us">Yes</td></tr>
-          <tr><td>Shows its reasoning</td><td data-h="System of record" class="no">n/a</td><td data-h="AI chat tool">Partly</td><td data-h="DecisionOS" class="us">Rules and numbers, every time</td></tr>
-        </tbody>
-      </table>
+    <div class="x-fit" id="xFit">
+      <div class="x-fit-q">
+        <div><span class="x-fit-k">Same question, three tools</span><b>Building C slips two weeks. Who moves where?</b></div>
+        <button class="x-btn x-btn-g" type="button" id="xFitAgain"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg>Ask again</button>
+      </div>
+      <div class="x-fit-cols">
+        <div class="x-fc">
+          <div class="x-fc-h"><b>System of record</b><span>Yardi, Procore</span></div>
+          <div class="x-fc-body">
+            <div class="x-fl" data-f="0.08"><span>Building C start</span><b>Mar 23</b></div>
+            <div class="x-fl" data-f="0.15"><span>Hollis St. lease ends</span><b>Aug 31</b></div>
+            <div class="x-fl" data-f="0.22"><span>Households · temp units</span><b>46 · 56</b></div>
+          </div>
+          <div class="x-fc-res n" data-f="0.34">No recommendation. It stores the facts.</div>
+        </div>
+        <div class="x-fc">
+          <div class="x-fc-h"><b>AI chat tool</b><span>general purpose</span></div>
+          <div class="x-fc-body">
+            <div class="x-chat" data-t0="0.08" data-t1="0.24"><span class="x-fl-k">Asked at 10:02</span><span class="x-dots"><i></i><i></i><i></i></span><span class="x-txt">Move the <mark>larger families</mark> first. Bigger units are scarce.</span></div>
+            <div class="x-chat" data-t0="0.36" data-t1="0.52"><span class="x-fl-k">Asked again at 10:03</span><span class="x-dots"><i></i><i></i><i></i></span><span class="x-txt">Move <mark>seniors and accessible-unit households</mark> first.</span></div>
+          </div>
+          <div class="x-fc-res r" data-f="0.6">The answer changed. No rules shown.</div>
+        </div>
+        <div class="x-fc us">
+          <div class="x-fc-h"><b>DecisionOS</b><span>your rules</span></div>
+          <div class="x-fc-body">
+            <div class="x-fl" data-f="0.1"><span>Reads Procore, Yardi, Resonance</span><b class="g">✓</b></div>
+            <div class="x-fl" data-f="0.2"><span>Checks 5 rules</span><b class="g" id="xFitRules">5 of 5</b></div>
+            <div class="x-fl" data-f="0.32"><span>Re-plans only who is affected</span><b>9 moves</b></div>
+            <div class="x-fl" data-f="0.46"><span>Runs it again</span><b class="t">identical</b></div>
+          </div>
+          <div class="x-fc-res g" data-f="0.6">Plan v15 · 0 violations · sent for approval.</div>
+        </div>
+      </div>
+      <div class="x-fit-grid" role="table" aria-label="Comparison of a system of record, an AI chat tool and DecisionOS">
+        <div class="x-fg-row" role="row" data-f="0.7"><span class="x-fg-l" role="rowheader">Stores your data</span><span role="cell" class="ok">✓ Yes</span><span role="cell" class="no">✕ No</span><span role="cell" class="us">Reads from your systems</span></div>
+        <div class="x-fg-row" role="row" data-f="0.76"><span class="x-fg-l" role="rowheader">Recommends what to do</span><span role="cell" class="no">✕ No</span><span role="cell" class="mid">Yes, but answers vary</span><span role="cell" class="us">✓ Yes, by your rules</span></div>
+        <div class="x-fg-row" role="row" data-f="0.82"><span class="x-fg-l" role="rowheader">Same answer every time</span><span role="cell" class="na">n/a</span><span role="cell" class="no">✕ No</span><span role="cell" class="us">✓ Yes</span></div>
+        <div class="x-fg-row" role="row" data-f="0.88"><span class="x-fg-l" role="rowheader">Shows its reasoning</span><span role="cell" class="na">n/a</span><span role="cell" class="mid">Partly</span><span role="cell" class="us">✓ Rules and numbers, every time</span></div>
+      </div>
     </div>
   </div>
 </section>
@@ -1705,7 +1817,7 @@ el.track.addEventListener('keydown',function(e){
 
 /* pause while someone is reading the board */
 if(window.matchMedia('(hover:hover)').matches){
-  el.body.addEventListener('mouseenter',function(){hoverPaused=true;sync()});
+  el.body.addEventListener('mouseenter',function(){if(window.__xFull)return;hoverPaused=true;sync()});
   el.body.addEventListener('mouseleave',function(){hoverPaused=false;sync()});
 }
 el.body.addEventListener('focusin',function(){focusPaused=true;sync()});
@@ -1905,9 +2017,75 @@ if(document.fonts&&document.fonts.ready)document.fonts.ready.then(relayout);
     why.setAttribute('aria-live','polite');
   });
 
+  /* Where it fits: the same question goes to three tools */
+  var fit=document.getElementById('xFit');
+  if(fit){
+    var fF=[].slice.call(fit.querySelectorAll('[data-f]')),chats=[].slice.call(fit.querySelectorAll('.x-chat')),fr=document.getElementById('xFitRules');
+    var renderFit=function(t){
+      fF.forEach(function(e){var a=parseFloat(e.dataset.f);av(e,S(t,a,a+0.07));});
+      chats.forEach(function(c){var t0=+c.dataset.t0,t1=+c.dataset.t1;c.classList.toggle('wait',t<t0);c.classList.toggle('typing',t>=t0&&t<t1);av(c,t<t0-0.02?0.35:1);});
+      fit.classList.toggle('clash',t>0.56);
+      fr.textContent=Math.round(5*S(t,0.2,0.32))+' of 5';
+    };
+    var playFit=function(){if(REDUCED){renderFit(1);return;}var t0=null;(function f(now){if(t0===null)t0=now;var t=Math.min(1,(now-t0)/7000);renderFit(t);if(t<1)requestAnimationFrame(f);})(performance.now());};
+    once(fit,1,function(t){if(t===0)renderFit(0);});
+    if(!REDUCED&&'IntersectionObserver' in window){var io3=new IntersectionObserver(function(e){if(e[0].isIntersecting){io3.disconnect();requestAnimationFrame(playFit);}},{threshold:0.35});io3.observe(fit);}
+    document.getElementById('xFitAgain').addEventListener('click',function(){renderFit(0);requestAnimationFrame(playFit);});
+  }
+
   /* Decision tabs */
   var tabs=[].slice.call(document.querySelectorAll('.x-dtab')),panes=[].slice.call(document.querySelectorAll('.x-scr'));
-  function pick(i,focus){tabs.forEach(function(t,j){var on=j===i;t.setAttribute('aria-selected',on);t.tabIndex=on?0:-1;if(on&&focus)t.focus();});panes.forEach(function(p,j){p.classList.toggle('on',j===i);});}
+  /* Each screen computes when shown: scan, rows arrive, numbers count, ranked rows sort into place, then the why. */
+  var SORT={xs1:[2,4,0,3,1],xs2:[3,0,2,1]};
+  var EASE='cubic-bezier(.2,.8,.2,1)';
+  function fmt(tpl,v){return tpl.replace(/-?\d+(?:\.\d+)?/,function(m){var d=(m.split('.')[1]||'').length;return v.toFixed(d);});}
+  function playPanel(pane){
+    var token=(pane._tok=(pane._tok||0)+1);
+    var alive=function(){return pane._tok===token;};
+    var pill=pane.querySelector('.x-scr-top .x-pill'),bar=pane.querySelector('.x-scan');
+    if(!pill.dataset.final){pill.dataset.final=pill.innerHTML;pill.dataset.cls=pill.className;}
+    var rows=[].slice.call(pane.querySelectorAll('.x-tbl tbody tr:not(.x-cutline)'));
+    var cols=[].slice.call(pane.querySelectorAll('.x-sc > div'));
+    var cut=pane.querySelector('.x-cutline'),why=pane.querySelector('.x-why');
+    var nums=[].slice.call(pane.querySelectorAll('.x-score, .x-sc dd'));
+    nums.forEach(function(n){if(!n.dataset.final)n.dataset.final=n.textContent;});
+    if(REDUCED){return;}
+    pill.className='x-pill p busy';pill.innerHTML='<i></i>Computing…';
+    if(bar){bar.classList.remove('run');void bar.offsetWidth;bar.classList.add('run');}
+    why.style.transition='none';why.style.opacity='0';
+    if(cut){cut.style.transition='none';cut.style.opacity='0';}
+    nums.forEach(function(n){n.textContent=fmt(n.dataset.final,0);});
+    var items=rows.length?rows:cols;
+    // start unsorted for ranked screens
+    var perm=SORT[pane.id];
+    var tops=rows.map(function(r){return r.offsetTop;});
+    items.forEach(function(it,i){
+      it.style.transition='none';
+      var dy=perm?(tops[perm[i]]-tops[i]):0;
+      it.style.transform='translateY('+(dy+8)+'px)';it.style.opacity='0';
+    });
+    void pane.offsetWidth;
+    items.forEach(function(it,i){setTimeout(function(){if(!alive())return;it.style.transition='opacity .35s ease, transform .35s '+EASE;var dy=perm?(tops[perm[i]]-tops[i]):0;it.style.transform='translateY('+dy+'px)';it.style.opacity=(it.classList.contains('cut')?'1':'1');},80+i*70);});
+    // count numbers
+    var t0=null,DUR=700,START=380;
+    function count(now){if(!alive())return;if(t0===null)t0=now;var t=Math.min(1,(now-t0)/DUR),e=1-Math.pow(1-t,3);
+      nums.forEach(function(n){var target=parseFloat((n.dataset.final.match(/-?\d+(?:\.\d+)?/)||['0'])[0]);n.textContent=fmt(n.dataset.final,target*e);});
+      if(t<1)requestAnimationFrame(count);else nums.forEach(function(n){n.textContent=n.dataset.final;});}
+    setTimeout(function(){if(alive())requestAnimationFrame(count);},START);
+    // sort into rank
+    var SORT_AT=perm?1150:900;
+    setTimeout(function(){if(!alive())return;items.forEach(function(it){it.style.transition='transform .6s '+EASE+', opacity .3s ease';it.style.transform='';});},SORT_AT);
+    var DONE=SORT_AT+(perm?650:150);
+    setTimeout(function(){if(!alive())return;
+      if(cut){cut.style.transition='opacity .4s ease';cut.style.opacity='1';}
+      pill.className=pill.dataset.cls;pill.innerHTML=pill.dataset.final;
+      why.style.transition='opacity .45s ease';why.style.opacity='1';why.classList.remove('flash');void why.offsetWidth;why.classList.add('flash');
+    },DONE);
+  }
+  function pick(i,focus){tabs.forEach(function(t,j){var on=j===i;t.setAttribute('aria-selected',on);t.tabIndex=on?0:-1;if(on&&focus)t.focus();});panes.forEach(function(p,j){var was=p.classList.contains('on');p.classList.toggle('on',j===i);if(j===i&&!was)playPanel(p);});}
+  // add scan bars, and play the first screen when the section comes into view
+  panes.forEach(function(p){var top=p.querySelector('.x-scr-top');var b=document.createElement('i');b.className='x-scan';b.setAttribute('aria-hidden','true');top.appendChild(b);});
+  if('IntersectionObserver' in window&&panes[0]){var io2=new IntersectionObserver(function(e){if(e[0].isIntersecting){io2.disconnect();var cur=panes.filter(function(p){return p.classList.contains('on');})[0];if(cur)playPanel(cur);}},{threshold:0.4});io2.observe(panes[0].parentNode);}
   tabs.forEach(function(t,i){
     t.addEventListener('click',function(){pick(i);});
     t.addEventListener('keydown',function(e){var n=tabs.length;if(e.key==='ArrowDown'||e.key==='ArrowRight'){e.preventDefault();pick((i+1)%n,true);}if(e.key==='ArrowUp'||e.key==='ArrowLeft'){e.preventDefault();pick((i-1+n)%n,true);}});
@@ -1938,6 +2116,32 @@ if(document.fonts&&document.fonts.ready)document.fonts.ready.then(relayout);
       .then(function(res){if(res.ok&&res.d.ok!==false){form.style.display='none';document.getElementById('dosDone').style.display='block';}else fail();})
       .catch(fail);
   });
+})();
+</script>
+
+<script>
+/* Sim: watch it full screen. Real fullscreen where supported; fixed overlay on iPhone. Restarts from the beginning. */
+(function(){
+  var con=document.getElementById('console'),cta=document.getElementById('xFullCta'),btn=document.getElementById('bFull');
+  if(!con)return;
+  var canFS=!!(con.requestFullscreen||con.webkitRequestFullscreen);
+  function isFull(){return con.classList.contains('is-full');}
+  function restart(){var rp=document.getElementById('bReplay');if(rp)rp.click();setTimeout(function(){if(con.classList.contains('paused-user')){var pl=document.getElementById('bPlay');if(pl)pl.click();}},30);}
+  function mark(on){window.__xFull=on;con.classList.toggle('is-full',on);btn.setAttribute('aria-label',on?'Exit full screen':'Watch full screen');}
+  function enter(){
+    restart();
+    if(canFS){var rq=con.requestFullscreen||con.webkitRequestFullscreen;try{var pr=rq.call(con);if(pr&&pr.catch)pr.catch(overlay);}catch(e){overlay();}}
+    else overlay();
+  }
+  function overlay(){con.classList.add('x-full');document.documentElement.classList.add('x-lock');mark(true);con.scrollTop=0;}
+  function exit(){
+    if(document.fullscreenElement||document.webkitFullscreenElement){(document.exitFullscreen||document.webkitExitFullscreen).call(document);}
+    con.classList.remove('x-full');document.documentElement.classList.remove('x-lock');mark(false);
+  }
+  ['fullscreenchange','webkitfullscreenchange'].forEach(function(ev){document.addEventListener(ev,function(){var fe=document.fullscreenElement||document.webkitFullscreenElement;mark(fe===con);});});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&con.classList.contains('x-full'))exit();});
+  btn.addEventListener('click',function(){isFull()?exit():enter();});
+  cta.addEventListener('click',function(){enter();});
 })();
 </script>
 </body>
