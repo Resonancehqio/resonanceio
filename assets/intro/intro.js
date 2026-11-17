@@ -2,8 +2,27 @@
    The lockup lands on the nav logo, the camera pushes down the red thread, then the overlay dissolves into the hero. */
 (function () {
   var h = document.documentElement, done = false, f = null;
+  // the homepage headline rises over the corridor as the logo lifts off, so the page is already arriving
+  var tDone = false;
+  function title() {
+    if (tDone || done) return; tDone = true;
+    var h1 = document.querySelector('.hero h1'); if (!h1 || !h1.animate) return;
+    var b = h1.getBoundingClientRect(); if (!b.width) return;
+    var w = document.createElement('div'); w.className = 'hero'; w.setAttribute('aria-hidden', 'true');
+    w.style.cssText = 'position:fixed;inset:0;margin:0;padding:0;min-height:0;height:auto;background:none;z-index:10001;pointer-events:none;';
+    var c = h1.cloneNode(true); c.removeAttribute('id');
+    var cs = getComputedStyle(h1);
+    c.style.cssText = 'position:absolute;margin:0;left:' + b.left + 'px;top:' + b.top + 'px;width:' + b.width + 'px;font-size:' + cs.fontSize + ';line-height:' + cs.lineHeight + ';text-align:' + cs.textAlign + ';animation:none;';
+    w.appendChild(c); document.body.appendChild(w); h1.style.visibility = 'hidden';
+    var lines = c.children.length ? [].slice.call(c.children) : [c];
+    c.animate([{ opacity: 0, transform: 'translateY(22px)', filter: 'blur(10px)' }, { opacity: 1, transform: 'none', filter: 'none' }], { duration: 1150, easing: 'cubic-bezier(.2,.8,.2,1)', fill: 'both' });
+    var end = function () { h1.style.visibility = ''; if (w.parentNode) w.remove(); };
+    setTimeout(end, 2900);
+    window.__xTitleEnd = end;
+  }
   function finish(fast, rect) {
     if (done) return; done = true; window.__xIntroOn = false;
+    if (fast && window.__xTitleEnd) window.__xTitleEnd();
     h.classList.remove('x-intro');
     if (!f) return;
     // the new console arrives from deep in the corridor: small, far and faintly tilted, it glides to its place
@@ -39,6 +58,7 @@
     window.addEventListener('message', function (e) {
       if (e.origin !== location.origin || !e.data || e.data.src !== 'xintro') return;
       if (e.data.t === 'ready') ready = true;
+      if (e.data.t === 'title') title();
       if (e.data.t === 'done') finish(false);
       if (e.data.t === 'skip') finish(true);
     });
