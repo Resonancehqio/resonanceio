@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- Intro: decide before first paint. Plays once per session, never with a #hash, Reduce Motion, or inside a frame. ?intro=1 forces, ?intro=0 disables. -->
+<script>(function(){try{var q=location.search,h=document.documentElement;if(/[?&]intro=0/.test(q))return;var force=/[?&]intro=1/.test(q);if(!force){if(location.hash)return;if(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches)return;if(window.top!==window.self)return;if(sessionStorage.getItem('xIntro'+location.pathname))return;}sessionStorage.setItem('xIntro'+location.pathname,'1');h.classList.add('x-intro');var off=function(){if(!window.__xIntroOn)h.classList.remove('x-intro');};var s=document.createElement('script');s.src='/assets/intro/intro.js';s.async=true;s.onerror=off;document.head.appendChild(s);setTimeout(off,4500);}catch(e){}})();</script>
+<style>html.x-intro{overflow:hidden;}html.x-intro body::after{content:'';position:fixed;inset:0;z-index:9998;background:#09080F;}</style>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-D655YVSZ1V"></script>
 <script>
@@ -33,7 +36,7 @@
 <link rel="manifest" href="/site.webmanifest">
 <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&family=Hanken+Grotesk:wght@700;800&display=swap" rel="stylesheet">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -340,7 +343,7 @@ section[id],div[id="replan"]{scroll-margin-top:68px;}
 .x-nav{position:fixed;top:0;left:0;right:0;z-index:100;height:64px;background:rgba(9,8,15,0.82);backdrop-filter:blur(18px) saturate(140%);-webkit-backdrop-filter:blur(18px) saturate(140%);border-bottom:0.5px solid var(--border);}
 .x-nav .x-wrap{height:100%;display:flex;align-items:center;gap:20px;}
 .x-brand{display:flex;align-items:center;gap:8px;text-decoration:none;}
-.x-brand-t{font-family:var(--ff-display);font-size:19px;font-weight:400;letter-spacing:-0.01em;}
+.x-brand-t{font-family:'Hanken Grotesk',system-ui,sans-serif;font-size:19px;font-weight:700;letter-spacing:-0.025em;}
 .x-brand-sep{width:1px;height:18px;background:var(--border-hi);margin:0 4px;}
 .x-brand-p{font-size:14px;font-weight:600;color:var(--text-1);}
 .x-tag{font-family:var(--ff-data);font-size:11px;font-weight:500;letter-spacing:0.04em;color:var(--teal-bright);padding:3px 8px;border-radius:6px;background:rgba(20,184,166,0.1);box-shadow:inset 0 0 0 0.5px rgba(94,234,212,0.4);white-space:nowrap;}

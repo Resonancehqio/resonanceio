@@ -17,11 +17,21 @@
     cleanups.push(function () { if (w.parentNode) w.remove(); });
     return { c: c, b: b };
   }
+  var DOS = false;   // the DecisionOS page: the corridor line resolves onto its headline
+  function handoffDos() {
+    var h1 = document.getElementById('x-h1'), card = document.getElementById('xStack');
+    if (h1 && h1.animate) {
+      h1.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 900, delay: 500, easing: INOUT, fill: 'backwards' });
+      [].forEach.call(h1.parentNode.children, function (n) { if (n === h1 || !n.animate) return;
+        n.animate([{ opacity: 0, transform: 'translate3d(0,10px,0)' }, { opacity: 1, transform: 'none' }], { duration: 800, delay: 850, easing: EASE, fill: 'backwards' }); }); }
+    if (card && card.animate) card.animate([{ opacity: 0, transform: 'translate3d(0,' + Math.round(innerHeight * .45) + 'px,0) scale(.82)' }, { offset: .25, opacity: 1 }, { opacity: 1, transform: 'none' }], { duration: 1900, delay: 300, easing: EASE, fill: 'backwards' });
+  }
   function handoff() {
     if (handed || done) return; handed = true;
     h.classList.remove('x-intro');
     // 1. the space gives way to the page's own background
     if (f) { f.style.transition = 'opacity 1.1s ' + INOUT; f.style.opacity = '0'; }
+    if (DOS) { handoffDos(); return; }
     var hero = document.querySelector('.hero'), h1 = hero && hero.querySelector('h1'), xl = hero && hero.querySelector('.xl');
     var last = 0;
     // 2. the headline rises from the bottom of the screen
@@ -50,8 +60,9 @@
   }
   function main() {
     window.__xIntroOn = true;
+    DOS = !!document.querySelector('.x-hero #x-h1');
     f = document.createElement('iframe');
-    f.src = '/intro/';
+    f.src = DOS ? '/intro/?line=1' : '/intro/';
     f.title = 'Intro'; f.setAttribute('aria-hidden', 'true'); f.tabIndex = -1;
     f.style.cssText = 'position:fixed;inset:0;width:100%;height:100%;border:0;z-index:9999;background:#09080F;opacity:1;will-change:opacity;';
     document.body.appendChild(f);
