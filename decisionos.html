@@ -41,9 +41,10 @@
   "@type": "FAQPage",
   "mainEntity": [
     {"@type": "Question", "name": "Do we have to replace our current systems?", "acceptedAnswer": {"@type": "Answer", "text": "No. DecisionOS reads from the systems and files you already use."}},
-    {"@type": "Question", "name": "What if the plan is wrong?", "acceptedAnswer": {"@type": "Answer", "text": "A plan is only as good as its rules and data, so DecisionOS makes both visible. If something looks off, your team can see why, fix the rule or the data, and re-plan in minutes. Nothing goes ahead without approval."}},
-    {"@type": "Question", "name": "How is this different from ChatGPT?", "acceptedAnswer": {"@type": "Answer", "text": "AI models are good at reading messy data, but they can give a different answer each time. DecisionOS uses AI to understand your data and planning engines to make the decision, so the result is repeatable and auditable."}},
-    {"@type": "Question", "name": "What does it cost?", "acceptedAnswer": {"@type": "Answer", "text": "Pricing is scoped to the decision and the portfolio. Every engagement starts with a short pilot on your own data."}}
+    {"@type": "Question", "name": "Do we need Resonance to use DecisionOS?", "acceptedAnswer": {"@type": "Answer", "text": "No. DecisionOS works on its own, on top of the systems you have now. If you use Resonance, DecisionOS reads from it like any other source."}},
+    {"@type": "Question", "name": "What if the plan is wrong?", "acceptedAnswer": {"@type": "Answer", "text": "A plan is only as good as its rules and data, so DecisionOS makes both visible. If something looks off, your team can see why. Fix the rule or the data, and re-plan in minutes. Nothing goes ahead without approval."}},
+    {"@type": "Question", "name": "How is this different from ChatGPT?", "acceptedAnswer": {"@type": "Answer", "text": "AI models are good at reading messy data, but they can give a different answer each time. DecisionOS uses AI to understand your data and planning engines to make the decision. The result is repeatable and auditable."}},
+    {"@type": "Question", "name": "What does it cost?", "acceptedAnswer": {"@type": "Answer", "text": "Pricing depends on the decision and the portfolio. Every engagement starts with a short pilot on your own data."}}
   ]
 }
 </script>
@@ -123,18 +124,98 @@ section{position:relative;z-index:1;}
 .btn-outline:hover{background:rgba(255,255,255,0.055);border-color:var(--text-3);}
 
 /* HERO */
-.hero{padding:136px 0 96px;}
-.hero-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:56px;align-items:center;}
-.preview-badge{display:inline-flex;align-items:center;gap:10px;margin-bottom:28px;background:rgba(20,184,166,0.07);border:0.5px solid rgba(20,184,166,0.38);border-radius:100px;padding:7px 18px 7px 8px;animation:fadeUp 0.6s ease both;max-width:100%;}
+.hero{padding:132px 0 88px;}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:64px;align-items:center;}
+.preview-badge{display:inline-flex;align-items:center;gap:10px;margin-bottom:28px;background:rgba(20,184,166,0.07);border:0.5px solid rgba(20,184,166,0.38);border-radius:100px;padding:6px 16px 6px 6px;animation:fadeUp 0.6s ease both;max-width:100%;}
 .preview-badge-tag{background:var(--teal);color:var(--dark);font-family:var(--ff-mono);font-size:10px;font-weight:700;letter-spacing:0.06em;padding:3px 10px;border-radius:100px;text-transform:uppercase;flex-shrink:0;}
 .preview-badge-txt{font-size:13px;color:var(--text-2);font-weight:500;}
-.hero h1{font-family:var(--ff-display);font-weight:300;font-size:clamp(2.5rem,5.4vw,4.4rem);line-height:1.05;letter-spacing:-0.025em;color:var(--text-1);margin-bottom:24px;animation:fadeUp 0.6s 0.08s ease both;}
+.hero h1{font-family:var(--ff-display);font-weight:300;font-size:clamp(2.5rem,5.2vw,4.3rem);line-height:1.04;letter-spacing:-0.028em;color:var(--text-1);margin-bottom:24px;animation:fadeUp 0.6s 0.08s ease both;}
 .hero h1 em{font-style:italic;color:var(--teal-bright);}
-.hero-sub{font-size:clamp(1rem,1.6vw,1.12rem);color:var(--text-2);line-height:1.75;max-width:560px;margin-bottom:36px;animation:fadeUp 0.6s 0.14s ease both;}
+.hero-sub{font-size:clamp(1rem,1.6vw,1.12rem);color:var(--text-2);line-height:1.75;max-width:540px;margin-bottom:36px;animation:fadeUp 0.6s 0.14s ease both;}
 .hero-cta{display:flex;gap:12px;flex-wrap:wrap;animation:fadeUp 0.6s 0.2s ease both;}
 .hero-vis{animation:fadeUp 0.7s 0.25s ease both;min-width:0;}
-@media(max-width:900px){.hero{padding:112px 0 72px;}.hero-grid{grid-template-columns:minmax(0,1fr);gap:44px;}}
+@media(max-width:900px){.hero{padding:108px 0 64px;}.hero-grid{grid-template-columns:minmax(0,1fr);gap:48px;}}
 
+/* LAYER STACK (hero diagram) */
+.stack{max-width:460px;margin:0 auto;display:flex;flex-direction:column;align-items:stretch;}
+.tier{border-radius:16px;padding:16px 18px;background:rgba(26,22,48,0.72);border:0.5px solid var(--border);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);}
+.tier-label{display:flex;align-items:center;gap:8px;font-family:var(--ff-mono);font-size:9.5px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-3);margin-bottom:12px;}
+.tier-team{display:flex;align-items:center;justify-content:space-between;gap:12px;}
+.tier-team .tier-label{margin:0;}
+.team-state{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text-2);}
+.ok-badge{display:inline-flex;align-items:center;gap:5px;font-size:10px;font-weight:600;padding:3px 9px;border-radius:100px;background:rgba(52,211,153,0.12);color:var(--green);border:0.5px solid rgba(52,211,153,0.3);opacity:var(--on,0);transform:scale(calc(0.9 + var(--on,0)*0.1));}
+.tier-dos{position:relative;padding:18px;border:0;background:linear-gradient(var(--dark-2),var(--dark-2)) padding-box,linear-gradient(135deg,rgba(167,139,250,0.75),rgba(94,234,212,0.6)) border-box;border:1px solid transparent;box-shadow:0 18px 60px rgba(91,33,182,0.28);}
+.tier-dos .tier-label{color:var(--teal-bright);}
+.tier-dos .tier-label::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--teal);box-shadow:0 0 10px var(--teal);}
+.tier-dos .tier-label small{margin-left:auto;font-size:9px;color:var(--text-3);letter-spacing:0.08em;}
+.dos-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px;}
+.dos-chip{border-radius:10px;padding:10px 12px;font-size:11.5px;line-height:1.4;color:var(--text-3);background:rgba(255,255,255,0.03);border:0.5px solid var(--border);transition:none;}
+.dos-chip b{display:block;font-size:12px;font-weight:600;color:var(--text-2);margin-bottom:2px;}
+.dos-chip.c-ai{background:rgba(20,184,166,calc(0.03 + var(--on,0)*0.12));border-color:rgba(20,184,166,calc(0.15 + var(--on,0)*0.4));}
+.dos-chip.c-ai b{color:color-mix(in srgb,var(--teal-bright) calc(var(--on,0)*100%),var(--text-2));}
+.dos-chip.c-eng{background:rgba(167,139,250,calc(0.03 + var(--on,0)*0.14));border-color:rgba(167,139,250,calc(0.15 + var(--on,0)*0.45));}
+.dos-chip.c-eng b{color:color-mix(in srgb,var(--purple-bright) calc(var(--on,0)*100%),var(--text-2));}
+.dos-plan{margin-top:10px;display:flex;align-items:center;justify-content:space-between;gap:8px;padding:9px 12px;border-radius:10px;background:rgba(255,255,255,0.04);border:0.5px solid var(--border-hi);font-size:11.5px;color:var(--text-1);opacity:var(--on,0);transform:translateY(calc((1 - var(--on,0))*6px));}
+.dos-plan span{font-family:var(--ff-mono);font-size:10px;color:var(--green);white-space:nowrap;}
+.sor-row{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;}
+.sor{font-size:11px;font-weight:500;text-align:center;padding:8px 4px;border-radius:8px;color:color-mix(in srgb,var(--text-1) calc(var(--on,0)*100%),var(--text-3));background:rgba(255,255,255,calc(0.025 + var(--on,0)*0.04));border:0.5px solid rgba(120,100,220,calc(0.18 + var(--on,0)*0.3));white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.wire{position:relative;height:34px;display:grid;grid-template-columns:repeat(4,1fr);}
+.wire.single{grid-template-columns:1fr;}
+.wire i{position:relative;display:block;}
+.wire i::before{content:'';position:absolute;left:50%;top:0;bottom:0;width:1px;background:linear-gradient(180deg,rgba(120,100,220,0.35),rgba(120,100,220,0.12));}
+.wire i::after{content:'';position:absolute;left:50%;width:7px;height:7px;margin-left:-3px;border-radius:50%;background:var(--teal-bright);box-shadow:0 0 12px var(--teal);top:calc((1 - var(--p,0))*100% - 3px);opacity:var(--a,0);}
+.wire.single i::after{background:var(--purple-bright);box-shadow:0 0 12px var(--purple-mid);}
+.stack-caption{text-align:center;font-size:12.5px;color:var(--text-3);margin-top:18px;line-height:1.6;}
+.stack-caption b{color:var(--text-2);font-weight:600;}
+@media(max-width:420px){.sor{font-size:10px;}.dos-chip{font-size:10.5px;padding:9px 10px;}}
+
+/* SECTION BASICS */
+.sec{padding:104px 0;border-top:0.5px solid var(--border);}
+.sec-first{border-top:0;padding-top:72px;}
+@media(max-width:600px){.sec{padding:76px 0;}}
+
+/* WORKFLOW (animated how-it-works) */
+.flow{display:grid;grid-template-columns:minmax(0,0.9fr) minmax(0,1.1fr);gap:56px;align-items:center;margin-top:48px;}
+.flow-steps{display:flex;flex-direction:column;gap:8px;}
+.flow-step{all:unset;box-sizing:border-box;display:block;cursor:pointer;padding:16px 18px;border-radius:14px;border:0.5px solid transparent;transition:background 0.25s,border-color 0.25s;}
+.flow-step:hover{background:rgba(255,255,255,0.03);}
+.flow-step.on{background:var(--dark-2);border-color:var(--border-hi);}
+.flow-step:focus-visible{outline:2px solid var(--teal);outline-offset:2px;}
+.fs-top{display:flex;align-items:center;gap:12px;}
+.fs-num{font-family:var(--ff-mono);font-size:10px;font-weight:700;color:var(--text-3);width:22px;}
+.fs-name{font-family:var(--ff-display);font-size:1.3rem;font-weight:400;color:var(--text-3);transition:color 0.25s;}
+.flow-step.on .fs-name{color:var(--text-1);}
+.fs-who{margin-left:auto;font-family:var(--ff-mono);font-size:9px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;padding:3px 8px;border-radius:4px;}
+.fs-who.ai{background:rgba(20,184,166,0.1);color:var(--teal);}
+.fs-who.rules{background:rgba(167,139,250,0.12);color:var(--purple-bright);}
+.fs-who.people{background:rgba(245,158,11,0.12);color:var(--amber);}
+.fs-body{font-size:0.92rem;color:var(--text-2);line-height:1.65;margin:8px 0 0 34px;max-height:0;overflow:hidden;opacity:0;transition:max-height 0.35s ease,opacity 0.35s ease;}
+.flow-step.on .fs-body{max-height:140px;opacity:1;}
+.fs-bar{margin:12px 0 0 34px;height:2px;border-radius:2px;background:rgba(255,255,255,0.06);overflow:hidden;display:none;}
+.flow-step.on .fs-bar{display:block;}
+.fs-bar i{display:block;height:100%;width:calc(var(--l,0)*100%);background:linear-gradient(90deg,var(--purple-mid),var(--teal));}
+.flow-vis{min-width:0;}
+.flow-vis .fcat-screen{max-width:520px;}
+.panes{position:relative;min-height:320px;}
+.pane{position:absolute;inset:0;padding:16px;display:flex;flex-direction:column;gap:9px;opacity:0;visibility:hidden;transition:opacity 0.35s ease,visibility 0s linear 0.35s;}
+.pane.on{opacity:1;visibility:visible;transition:opacity 0.35s ease;}
+.rv{opacity:var(--r,0);transform:translateY(calc((1 - var(--r,0))*6px));}
+.src-row{display:flex;align-items:center;gap:10px;padding:9px 10px;border-radius:8px;background:rgba(255,255,255,0.03);font-size:11px;color:var(--text-2);}
+.src-ic{width:24px;height:24px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-family:var(--ff-mono);font-size:8.5px;font-weight:700;flex-shrink:0;}
+.src-ic.x{background:rgba(52,211,153,0.14);color:var(--green);}
+.src-ic.r{background:rgba(167,139,250,0.18);color:var(--purple-bright);}
+.src-ic.p{background:rgba(245,158,11,0.14);color:var(--amber);}
+.src-name{flex:1;min-width:0;}
+.src-name b{display:block;color:var(--text-1);font-weight:600;}
+.map-row{display:grid;grid-template-columns:minmax(0,0.9fr) 16px minmax(0,1.2fr) auto;align-items:center;gap:8px;font-size:10.5px;padding:7px 4px;border-bottom:0.5px solid rgba(255,255,255,0.04);}
+.map-from{font-family:var(--ff-mono);color:var(--text-3);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.map-arrow{color:var(--teal);text-align:center;}
+.map-to{color:var(--text-1);}
+.log-row{display:flex;gap:10px;font-size:10.5px;color:var(--text-2);padding:5px 0;line-height:1.45;}
+.log-time{font-family:var(--ff-mono);color:var(--text-3);flex-shrink:0;width:38px;}
+@media(max-width:900px){.flow{grid-template-columns:minmax(0,1fr);gap:28px;}.flow-vis{order:-1;}}
+
+@media (prefers-reduced-motion: reduce){.fs-bar{display:none!important;}}
 /* SCREEN MOCKUPS (same as homepage feature carousel) */
 .fcat-screen{width:100%;max-width:460px;margin:0 auto;background:var(--dark-2);border:0.5px solid var(--border-hi);border-radius:14px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,0.5),0 0 0 0.5px rgba(255,255,255,0.06);}
 .fcat-screen.wide{max-width:520px;}
@@ -234,26 +315,6 @@ section{position:relative;z-index:1;}
 .prob-card p{font-size:0.92rem;color:var(--text-2);line-height:1.65;}
 @media(max-width:860px){.prob-cards{grid-template-columns:minmax(0,1fr);}}
 
-/* HOW IT WORKS */
-.how-sec{padding:96px 0;border-top:0.5px solid var(--border);}
-.steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-top:48px;position:relative;}
-.step{background:var(--dark-2);border:0.5px solid var(--border);border-radius:var(--r-lg);padding:24px 22px;position:relative;}
-.step-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;}
-.step-num{font-family:var(--ff-mono);font-size:10px;font-weight:700;letter-spacing:0.1em;color:var(--text-3);}
-.step-ic{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;}
-.step-ic.t{background:rgba(20,184,166,0.14);color:var(--teal);}
-.step-ic.p{background:rgba(91,33,182,0.25);color:var(--purple-bright);}
-.step-ic.a{background:rgba(245,158,11,0.14);color:var(--amber);}
-.step h3{font-family:var(--ff-display);font-size:1.25rem;font-weight:400;color:var(--text-1);margin-bottom:8px;}
-.step p{font-size:0.88rem;color:var(--text-2);line-height:1.65;}
-.step-tag{display:inline-block;margin-top:14px;font-family:var(--ff-mono);font-size:9px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;padding:3px 9px;border-radius:4px;}
-.step-tag.ai{background:rgba(20,184,166,0.1);color:var(--teal);}
-.step-tag.rules{background:rgba(167,139,250,0.12);color:var(--purple-bright);}
-.step-tag.people{background:rgba(245,158,11,0.12);color:var(--amber);}
-.step:not(:last-child)::after{content:'';position:absolute;top:43px;right:-13px;width:10px;height:10px;border-top:1.5px solid var(--border-hi);border-right:1.5px solid var(--border-hi);transform:rotate(45deg);z-index:2;}
-@media(max-width:980px){.steps{grid-template-columns:repeat(2,minmax(0,1fr));}.step::after{display:none;}}
-@media(max-width:560px){.steps{grid-template-columns:minmax(0,1fr);}}
-
 /* FEATURE CAROUSEL (same pattern as homepage) */
 .feat-sec{padding:96px 0;border-top:0.5px solid var(--border);}
 .fcat-tabs{display:flex;gap:6px;flex-wrap:nowrap;overflow-x:auto;padding-bottom:2px;margin:44px 0 32px;scrollbar-width:none;-webkit-overflow-scrolling:touch;}
@@ -283,19 +344,6 @@ section{position:relative;z-index:1;}
 .trust-card p{font-size:0.88rem;color:var(--text-2);line-height:1.65;}
 @media(max-width:980px){.trust-cards{grid-template-columns:repeat(2,minmax(0,1fr));}}
 @media(max-width:560px){.trust-cards{grid-template-columns:minmax(0,1fr);}}
-
-.compare-wrap{margin-top:40px;background:var(--dark-1);border:0.5px solid var(--border-hi);border-radius:var(--r-lg);overflow-x:auto;-webkit-overflow-scrolling:touch;}
-.compare{width:100%;min-width:620px;border-collapse:collapse;font-size:14px;}
-.compare th,.compare td{padding:16px 20px;text-align:left;border-bottom:0.5px solid var(--border);vertical-align:top;}
-.compare tr:last-child td{border-bottom:none;}
-.compare thead th{font-family:var(--ff-mono);font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-3);background:rgba(255,255,255,0.02);}
-.compare thead th.us{color:var(--teal);background:rgba(20,184,166,0.08);}
-.compare td{color:var(--text-2);}
-.compare td:first-child{color:var(--text-1);font-weight:500;}
-.compare td.us{color:var(--text-1);background:rgba(20,184,166,0.05);font-weight:500;}
-.compare .no{color:var(--text-3);}
-.compare-hint{display:none;font-size:11px;color:var(--text-3);margin-top:10px;}
-@media(max-width:680px){.compare-hint{display:block;}}
 
 /* START */
 .start-sec{padding:96px 0;border-top:0.5px solid var(--border);}
@@ -393,81 +441,70 @@ footer{position:relative;z-index:1;border-top:0.5px solid var(--border);padding:
   </a>
   <div class="conf-pill">DecisionOS · Product preview</div>
   <div class="nav-right">
-    <a href="/" class="btn-site">Main site</a>
+    <a href="/" class="btn-site">Resonance platform</a>
     <a href="#contact" class="btn-demo-nav">Talk to us</a>
   </div>
 </nav>
 
-<!-- 1. HERO -->
+<!-- HERO -->
 <section class="hero">
   <div class="wrap">
     <div class="hero-grid">
       <div>
-        <div class="preview-badge"><span class="preview-badge-tag">Preview</span><span class="preview-badge-txt">DecisionOS by Resonance</span></div>
+        <div class="preview-badge"><span class="preview-badge-tag">New</span><span class="preview-badge-txt">DecisionOS by Resonance · product preview</span></div>
         <h1>Decisions you can defend, <em>re&#8209;planned in minutes.</em></h1>
-        <p class="hero-sub">DecisionOS works on top of the systems you already use and turns your data into a plan: which households move where, which units to rehab first, and which buildings fit your portfolio. Every recommendation shows the rules and numbers behind it.</p>
+        <p class="hero-sub">DecisionOS is an intelligence layer on top of the systems you already use. It turns your data into a plan: which households move where, which units to rehab first, and which buildings fit your portfolio. Every recommendation shows the rules and numbers behind it.</p>
         <div class="hero-cta">
           <a href="#contact" class="btn-primary">Talk to us
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8m-4-4 4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
-          <a href="#how" class="btn-outline">How it works</a>
+          <a href="#how" class="btn-outline">See how it works</a>
         </div>
       </div>
 
-      <!-- Hero screen: a re-plan decision record -->
-      <div class="hero-vis" aria-hidden="true">
-        <div class="fcat-screen wide">
-          <div class="fcat-screen-bar">
-            <div class="fcat-screen-dots"><span></span><span></span><span></span></div>
-            <div class="fcat-screen-url">app.resonancehq.io / decisionos / relocation / re-plan-14</div>
+      <!-- Layer diagram: systems of record → DecisionOS → your team -->
+      <div class="hero-vis">
+        <div class="stack" id="stack" role="img" aria-label="Diagram: your systems of record, such as Resonance, Yardi, Procore and spreadsheets, feed DecisionOS. AI reads the data, a planning engine applies your rules, and your team approves the plan.">
+          <div class="tier tier-team">
+            <div class="tier-label">Your team</div>
+            <div class="team-state">Reviews and approves <span class="ok-badge" data-k="approved">✓ Approved</span></div>
           </div>
-          <div class="scr-body">
-            <div class="scr-head">
-              <div class="scr-title">Re-plan: Building C start moved 2 weeks</div>
-              <span class="badge badge-amber">Awaiting approval</span>
+          <div class="wire single"><i data-k="up"></i></div>
+          <div class="tier tier-dos">
+            <div class="tier-label">DecisionOS <small>Intelligence layer</small></div>
+            <div class="dos-row">
+              <div class="dos-chip c-ai" data-k="ai"><b>AI</b>reads and cleans your data</div>
+              <div class="dos-chip c-eng" data-k="eng"><b>Planning engine</b>applies your rules</div>
             </div>
-            <div class="scr-sub">Inputs: construction schedule v14 · rent roll (Oct) · 212 households · 44 temporary units</div>
-
-            <div class="kv">
-              <div class="kv-cell"><div class="kv-label">Households re-assigned</div><div class="kv-val">17 <small>of 212</small></div></div>
-              <div class="kv-cell"><div class="kv-label">Temp units used</div><div class="kv-val">41 <small>of 44</small></div></div>
-              <div class="kv-cell"><div class="kv-label">Rule violations</div><div class="kv-val" style="color:var(--green)">0</div></div>
+            <div class="dos-plan" data-k="plan">Plan ready · 212 households <span>0 rule violations</span></div>
+          </div>
+          <div class="wire"><i data-k="w0"></i><i data-k="w1"></i><i data-k="w2"></i><i data-k="w3"></i></div>
+          <div class="tier tier-sor">
+            <div class="tier-label">Your systems of record</div>
+            <div class="sor-row">
+              <span class="sor" data-k="s0">Resonance</span><span class="sor" data-k="s1">Yardi</span><span class="sor" data-k="s2">Procore</span><span class="sor" data-k="s3">Spreadsheets</span>
             </div>
-
-            <div class="scr-label">Rules followed</div>
-            <div class="chk-row"><span class="chk-box">✓</span>Bedroom count matches household size</div>
-            <div class="chk-row"><span class="chk-box">✓</span>9 households needing accessible units placed in accessible units</div>
-            <div class="chk-row"><span class="chk-box">✓</span>No move before the household's notice period ends</div>
-            <div class="chk-row"><span class="chk-box">✓</span>Every household stays within its school district</div>
-
-            <div class="approval">
-              <span class="ic"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 3h5v5"/><path d="M21 3 14 10"/><path d="M8 21H3v-5"/><path d="m3 21 7-7"/></svg></span>
-              <div>Moving costs <b>+$18,400</b> exceed the relocation manager's <b>$10,000</b> limit. Routed to <b>Director of Development</b>.
-                <div class="approval-btns"><span class="mini-btn go">Approve</span><span class="mini-btn">Send back</span><span class="mini-btn">View numbers</span></div>
-              </div>
-            </div>
-
-            <div class="scr-foot"><span>Re-run check: <b>same plan as run #1</b></span><span>Logged · 11:42 AM</span></div>
           </div>
         </div>
+        <p class="stack-caption"><b>Works with Resonance or on its own.</b> You keep your current systems.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- 2. THE PROBLEM -->
-<section class="prob-sec">
+<!-- THE PROBLEM -->
+<section class="sec sec-first">
   <div class="wrap">
     <div class="eyebrow">The problem</div>
     <h2 class="section-h2">Your systems tell you what's true. <em>They don't tell you what to do.</em></h2>
     <div class="prob-cards">
       <div class="prob-card c1">
         <h3>Plans break when the schedule moves.</h3>
-        <p>The contractor slips two weeks, and someone spends a week rebuilding the move plan in a spreadsheet.</p>
+        <p>The contractor slips two weeks. Someone then spends a week rebuilding the move plan in a spreadsheet.</p>
       </div>
       <div class="prob-card c2">
         <h3>The reasoning lives in people's heads.</h3>
-        <p>Decisions get made over email and in meetings, and six months later no one can show why.</p>
+        <p>Teams make decisions over email and in meetings. Six months later, no one can show why.</p>
       </div>
       <div class="prob-card c3">
         <h3>AI chat tools aren't built for this.</h3>
@@ -477,45 +514,101 @@ footer{position:relative;z-index:1;border-top:0.5px solid var(--border);padding:
   </div>
 </section>
 
-<!-- 3. HOW IT WORKS -->
-<section class="how-sec" id="how">
+<!-- HOW IT WORKS (animated workflow) -->
+<section class="sec" id="how">
   <div class="wrap">
     <div class="eyebrow">How it works</div>
     <h2 class="section-h2">AI reads your data. <em>Your rules make the decision.</em></h2>
-    <div class="steps">
-      <div class="step">
-        <div class="step-top"><span class="step-num">01</span>
-          <span class="step-ic t"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 17H7A5 5 0 0 1 7 7h2"/><path d="M15 7h2a5 5 0 1 1 0 10h-2"/><line x1="8" x2="16" y1="12" y2="12"/></svg></span></div>
-        <h3>Connect</h3>
-        <p>Use integrations with your systems of record, or upload files such as rent rolls, construction schedules and budgets.</p>
-        <span class="step-tag ai">Your data</span>
+
+    <div class="flow" id="flow">
+      <div class="flow-steps" role="tablist" aria-label="DecisionOS workflow">
+        <button class="flow-step on" role="tab" aria-selected="true" data-step="0">
+          <span class="fs-top"><span class="fs-num">01</span><span class="fs-name">Connect</span><span class="fs-who ai">Your data</span></span>
+          <span class="fs-body" style="display:block">Use integrations with your systems of record, or upload files such as rent rolls, construction schedules and budgets.</span>
+          <span class="fs-bar"><i></i></span>
+        </button>
+        <button class="flow-step" role="tab" aria-selected="false" data-step="1">
+          <span class="fs-top"><span class="fs-num">02</span><span class="fs-name">Understand</span><span class="fs-who ai">AI</span></span>
+          <span class="fs-body" style="display:block">AI cleans and organizes messy data. It maps each field and flags anything missing.</span>
+          <span class="fs-bar"><i></i></span>
+        </button>
+        <button class="flow-step" role="tab" aria-selected="false" data-step="2">
+          <span class="fs-top"><span class="fs-num">03</span><span class="fs-name">Decide</span><span class="fs-who rules">Your rules</span></span>
+          <span class="fs-body" style="display:block">Planning engines build a recommendation that follows your rules and constraints. The same inputs give the same plan every time.</span>
+          <span class="fs-bar"><i></i></span>
+        </button>
+        <button class="flow-step" role="tab" aria-selected="false" data-step="3">
+          <span class="fs-top"><span class="fs-num">04</span><span class="fs-name">Approve</span><span class="fs-who people">Your people</span></span>
+          <span class="fs-body" style="display:block">Your team reviews and approves the plan. Anything above a person's approval limit goes to the next approver. DecisionOS logs every step.</span>
+          <span class="fs-bar"><i></i></span>
+        </button>
       </div>
-      <div class="step">
-        <div class="step-top"><span class="step-num">02</span>
-          <span class="step-ic t"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M7 12h10"/><path d="M10 18h4"/></svg></span></div>
-        <h3>Understand</h3>
-        <p>AI cleans and organizes messy data, maps it to the right fields and flags anything missing.</p>
-        <span class="step-tag ai">AI</span>
-      </div>
-      <div class="step">
-        <div class="step-top"><span class="step-num">03</span>
-          <span class="step-ic p"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></span></div>
-        <h3>Decide</h3>
-        <p>Purpose-built planning engines produce a recommendation that follows your rules and constraints. The same inputs give the same plan every time.</p>
-        <span class="step-tag rules">Your rules</span>
-      </div>
-      <div class="step">
-        <div class="step-top"><span class="step-num">04</span>
-          <span class="step-ic a"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg></span></div>
-        <h3>Approve</h3>
-        <p>Your team reviews the recommendation and approves it. Anything above a person's approval limit goes to the next approver. Every step is logged.</p>
-        <span class="step-tag people">Your people</span>
+
+      <div class="flow-vis" aria-hidden="true">
+        <div class="fcat-screen">
+          <div class="fcat-screen-bar">
+            <div class="fcat-screen-dots"><span></span><span></span><span></span></div>
+            <div class="fcat-screen-url" id="flowUrl">app.resonancehq.io / decisionos / sources</div>
+          </div>
+          <div class="panes">
+
+            <!-- 0 Connect -->
+            <div class="pane on" data-pane="0" data-url="app.resonancehq.io / decisionos / sources">
+              <div class="scr-head"><div class="scr-title">Sources · Phase 2 relocation</div><div class="scr-meta">4 connected</div></div>
+              <div class="src-row rv"><span class="src-ic r">RES</span><span class="src-name"><b>Households and units</b>Resonance · 212 households</span><span class="badge badge-green">Synced</span></div>
+              <div class="src-row rv"><span class="src-ic p">PRO</span><span class="src-name"><b>Construction schedule v14</b>Procore · 6 buildings</span><span class="badge badge-green">Synced</span></div>
+              <div class="src-row rv"><span class="src-ic x">XLS</span><span class="src-name"><b>Rent roll, October</b>Upload · 1 file</span><span class="badge badge-green">Uploaded</span></div>
+              <div class="src-row rv"><span class="src-ic x">XLS</span><span class="src-name"><b>Relocation budget FY27</b>Upload · 1 file</span><span class="badge badge-green">Uploaded</span></div>
+            </div>
+
+            <!-- 1 Understand -->
+            <div class="pane" data-pane="1" data-url="app.resonancehq.io / decisionos / data-review">
+              <div class="scr-head"><div class="scr-title">Data review</div><div class="scr-meta">46 of 49 fields mapped</div></div>
+              <div class="map-row rv"><span class="map-from">HH_SIZE</span><span class="map-arrow">→</span><span class="map-to">Household size</span><span class="badge badge-teal">Mapped</span></div>
+              <div class="map-row rv"><span class="map-from">ADA_REQ</span><span class="map-arrow">→</span><span class="map-to">Needs accessible unit</span><span class="badge badge-teal">Mapped</span></div>
+              <div class="map-row rv"><span class="map-from">BR / Bdrms</span><span class="map-arrow">→</span><span class="map-to">Bedrooms (2 formats merged)</span><span class="badge badge-teal">Cleaned</span></div>
+              <div class="map-row rv"><span class="map-from">School_ID</span><span class="map-arrow">→</span><span class="map-to">School district</span><span class="badge badge-teal">Mapped</span></div>
+              <div class="chk-row rv" style="margin-top:4px;"><span class="chk-box warn">!</span>3 households have no move-out date. Add them before planning.</div>
+            </div>
+
+            <!-- 2 Decide -->
+            <div class="pane" data-pane="2" data-url="app.resonancehq.io / decisionos / relocation / plan-2">
+              <div class="scr-head"><div class="scr-title">Recommended plan · Phase 2</div><span class="badge badge-purple">Recommended</span></div>
+              <div class="kv rv">
+                <div class="kv-cell"><div class="kv-label">Households placed</div><div class="kv-val">212 <small>of 212</small></div></div>
+                <div class="kv-cell"><div class="kv-label">Temp units used</div><div class="kv-val">41 <small>of 44</small></div></div>
+                <div class="kv-cell"><div class="kv-label">Rule violations</div><div class="kv-val" style="color:var(--green)">0</div></div>
+              </div>
+              <div class="scr-label rv">Rules followed</div>
+              <div class="chk-row rv"><span class="chk-box">✓</span>Bedroom count matches household size</div>
+              <div class="chk-row rv"><span class="chk-box">✓</span>Households that need accessible units get accessible units</div>
+              <div class="chk-row rv"><span class="chk-box">✓</span>No move before the notice period ends</div>
+              <div class="chk-row rv"><span class="chk-box">✓</span>Each household stays in its school district</div>
+              <div class="scr-foot rv"><span>Re-run check: <b>same plan as run #1</b></span></div>
+            </div>
+
+            <!-- 3 Approve -->
+            <div class="pane" data-pane="3" data-url="app.resonancehq.io / decisionos / relocation / plan-2 / approval">
+              <div class="scr-head"><div class="scr-title">Approval · Phase 2 plan</div><span class="badge badge-amber" id="apState">Awaiting approval</span></div>
+              <div class="approval rv">
+                <span class="ic"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 3h5v5"/><path d="M21 3 14 10"/></svg></span>
+                <div>Moving costs of <b>$18,400</b> are above the relocation manager's <b>$10,000</b> limit. The plan goes to the <b>Director of Development</b>.</div>
+              </div>
+              <div class="scr-label rv">Log</div>
+              <div class="log-row rv"><span class="log-time">11:42</span>Plan built from sources v14</div>
+              <div class="log-row rv"><span class="log-time">11:44</span>Relocation manager reviewed the plan</div>
+              <div class="log-row rv"><span class="log-time">11:45</span>Sent to Director of Development (over limit)</div>
+              <div class="log-row rv"><span class="log-time">11:58</span><span style="color:var(--green)">Director of Development approved</span></div>
+            </div>
+
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- 4. WHAT IT HANDLES TODAY -->
+<!-- WHAT IT HANDLES TODAY -->
 <section class="feat-sec" id="handles">
   <div class="wrap">
     <div class="eyebrow">What it handles today</div>
@@ -535,12 +628,7 @@ footer{position:relative;z-index:1;border-top:0.5px solid var(--border);padding:
         <div class="fcat-copy">
           <div class="fcat-eyebrow">Relocation planning</div>
           <h3 class="fcat-title">Match hundreds of households to temporary units.</h3>
-          <p class="fcat-desc">Match households to temporary units while respecting their needs and the construction schedule. When dates change, re-plan in minutes.</p>
-          <ul class="fcat-list">
-            <li>Bedroom size, accessibility and other household needs are rules, not reminders</li>
-            <li>Moves follow the construction schedule, building by building</li>
-            <li>When a date moves, you see which households change and why</li>
-          </ul>
+          <p class="fcat-desc">The plan respects each household's needs and the construction schedule. When a date changes, you re-plan in minutes and see which households change.</p>
         </div>
         <div class="fcat-vis" aria-hidden="true">
           <div class="fcat-screen">
@@ -585,12 +673,7 @@ footer{position:relative;z-index:1;border-top:0.5px solid var(--border);padding:
         <div class="fcat-copy">
           <div class="fcat-eyebrow">Rehab prioritization</div>
           <h3 class="fcat-title">When the budget is cut, see what gets done first.</h3>
-          <p class="fcat-desc">See which units to rehab first and what gets deferred, with a score you can explain.</p>
-          <ul class="fcat-list">
-            <li>Every unit's score breaks down into the factors behind it</li>
-            <li>The budget line shows exactly what is funded and what waits</li>
-            <li>Change a weight or a cost, and the ranking updates</li>
-          </ul>
+          <p class="fcat-desc">See which units to rehab first and what gets deferred. Each unit gets a score you can explain, factor by factor.</p>
         </div>
         <div class="fcat-vis" aria-hidden="true">
           <div class="fcat-screen">
@@ -622,12 +705,7 @@ footer{position:relative;z-index:1;border-top:0.5px solid var(--border);padding:
         <div class="fcat-copy">
           <div class="fcat-eyebrow">Acquisition fit</div>
           <h3 class="fcat-title">A ranked shortlist your investment committee can inspect.</h3>
-          <p class="fcat-desc">Score candidate buildings against your criteria: rent headroom under affordability caps, units per million dollars and red flags.</p>
-          <ul class="fcat-list">
-            <li>Your criteria and weights, written down and applied the same way to every building</li>
-            <li>Red flags show the record that raised them</li>
-            <li>Every rank can be traced back to its numbers</li>
-          </ul>
+          <p class="fcat-desc">Score candidate buildings against your criteria: rent headroom under affordability caps, units per million dollars and red flags. Each rank traces back to its numbers.</p>
         </div>
         <div class="fcat-vis" aria-hidden="true">
           <div class="fcat-screen">
@@ -660,12 +738,7 @@ footer{position:relative;z-index:1;border-top:0.5px solid var(--border);padding:
         <div class="fcat-copy">
           <div class="fcat-eyebrow">What-if scenarios</div>
           <h3 class="fcat-title">Test a change before it happens.</h3>
-          <p class="fcat-desc">Test a slipped date, a higher quote or a tighter deadline, and see how the recommendation changes and why.</p>
-          <ul class="fcat-list">
-            <li>Run scenarios side by side on the same data</li>
-            <li>Each result explains what changed and which rule caused it</li>
-            <li>Save a scenario and bring it to the next meeting</li>
-          </ul>
+          <p class="fcat-desc">Try a slipped date, a higher quote or a tighter deadline. See how the recommendation changes, and why.</p>
         </div>
         <div class="fcat-vis" aria-hidden="true">
           <div class="fcat-screen">
@@ -696,7 +769,7 @@ footer{position:relative;z-index:1;border-top:0.5px solid var(--border);padding:
                     <div class="sc-metric"><div class="sc-m-label">Move budget</div><div class="sc-m-val bad">$461K</div></div>
                   </div>
                 </div>
-                <div class="sc-why"><b>Why it changed:</b> the slip pushes 17 households past their temporary-unit end dates. 3 more units are needed in Building B to keep accessible placements.</div>
+                <div class="sc-why"><b>Why it changed:</b> the slip pushes 17 households past their temporary-unit end dates. Building B needs 3 more units to keep accessible placements.</div>
               </div>
             </div>
           </div>
@@ -707,37 +780,23 @@ footer{position:relative;z-index:1;border-top:0.5px solid var(--border);padding:
   </div>
 </section>
 
-<!-- 5. WHY TEAMS TRUST IT -->
-<section class="trust-sec" id="trust">
+
+<!-- WHY TEAMS TRUST IT -->
+<section class="sec" id="trust">
   <div class="wrap">
     <div class="eyebrow">Why teams trust it</div>
     <h2 class="section-h2">Built to be <em>checked.</em></h2>
     <div class="trust-cards">
-      <div class="trust-card"><h3><em>Repeatable.</em></h3><p>Planning engines, not guesswork, compute the plan. Run it again and you get the same answer.</p></div>
+      <div class="trust-card"><h3><em>Repeatable.</em></h3><p>Planning engines compute the plan. Run it again with the same inputs and you get the same answer.</p></div>
       <div class="trust-card"><h3><em>Explained.</em></h3><p>Every recommendation shows the constraints it followed and the numbers it used.</p></div>
-      <div class="trust-card"><h3><em>Human-approved.</em></h3><p>Nothing executes on its own. Your people approve, and approval limits are enforced.</p></div>
-      <div class="trust-card"><h3><em>No rip-and-replace.</em></h3><p>Keep Yardi, Procore and your spreadsheets. DecisionOS sits on top of them.</p></div>
+      <div class="trust-card"><h3><em>Human-approved.</em></h3><p>Nothing runs on its own. Your people approve, and DecisionOS enforces approval limits.</p></div>
+      <div class="trust-card"><h3><em>No rip-and-replace.</em></h3><p>Keep Yardi, Procore, Resonance and your spreadsheets. DecisionOS sits on top of them.</p></div>
     </div>
-
-    <div class="compare-wrap">
-      <table class="compare">
-        <thead>
-          <tr><th></th><th>System of record<br>(Yardi, Procore)</th><th>AI chat tool</th><th class="us">DecisionOS</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>Stores your data</td><td>Yes</td><td class="no">No</td><td class="us">Reads from your systems</td></tr>
-          <tr><td>Recommends what to do</td><td class="no">No</td><td>Yes, but answers vary</td><td class="us">Yes, by your rules</td></tr>
-          <tr><td>Same answer every time</td><td class="no">n/a</td><td class="no">No</td><td class="us">Yes</td></tr>
-          <tr><td>Shows its reasoning</td><td class="no">n/a</td><td>Partly</td><td class="us">Rules and numbers, every time</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <p class="compare-hint">Swipe the table to see all columns →</p>
   </div>
 </section>
 
-<!-- 6. HOW TO START -->
-<section class="start-sec" id="start">
+<!-- HOW TO START -->
+<section class="sec" id="start">
   <div class="wrap">
     <div class="eyebrow">How to start</div>
     <h2 class="section-h2">Start with <em>one decision.</em></h2>
@@ -746,7 +805,7 @@ footer{position:relative;z-index:1;border-top:0.5px solid var(--border);padding:
         <div class="phase-bar"></div>
         <div class="phase-when">A few weeks</div>
         <h3>Try</h3>
-        <p>Choose one decision, such as your next relocation, a budget scenario or an acquisition pipeline. Send us an export, and within a few weeks you'll see a real plan built on your own data.</p>
+        <p>Choose one decision, such as your next relocation, a budget scenario or an acquisition pipeline. Send us an export. Within a few weeks, you'll see a real plan built on your own data.</p>
       </div>
       <div class="phase">
         <div class="phase-bar"></div>
@@ -761,42 +820,37 @@ footer{position:relative;z-index:1;border-top:0.5px solid var(--border);padding:
         <p>DecisionOS becomes part of how your team plans, re-plans and reports.</p>
       </div>
     </div>
-  </div>
-</section>
 
-<!-- 7. FROM THE TEAM BEHIND RESONANCE -->
-<section class="team-sec">
-  <div class="wrap">
-    <div class="team-band">
-      <p>DecisionOS is built by <strong>Resonance</strong>, the platform relocation and development teams use to run RAD, PACT and rehab programs.</p>
-      <a href="/">About Resonance →</a>
+    <div class="team-band" style="margin-top:40px;">
+      <p>DecisionOS comes from <strong>Resonance</strong>, the platform relocation and development teams use to run RAD, PACT and rehab programs.</p>
+      <a href="/">See the Resonance platform →</a>
     </div>
   </div>
 </section>
 
-<!-- 8. FAQ -->
-<section class="faq-sec" id="faq">
+<!-- FAQ -->
+<section class="sec" id="faq">
   <div class="wrap-tight">
     <div class="eyebrow">FAQ</div>
     <h2 class="section-h2">Questions teams <em>ask first.</em></h2>
     <div class="faq-list">
       <details class="faq-item"><summary>Do we have to replace our current systems?</summary><p>No. DecisionOS reads from the systems and files you already use.</p></details>
-      <details class="faq-item"><summary>What if the plan is wrong?</summary><p>A plan is only as good as its rules and data, so DecisionOS makes both visible. If something looks off, your team can see why, fix the rule or the data, and re-plan in minutes. Nothing goes ahead without approval.</p></details>
-      <details class="faq-item"><summary>How is this different from ChatGPT?</summary><p>AI models are good at reading messy data, but they can give a different answer each time. DecisionOS uses AI to understand your data and planning engines to make the decision, so the result is repeatable and auditable.</p></details>
-      <details class="faq-item"><summary>What does it cost?</summary><p>Pricing is scoped to the decision and the portfolio. Every engagement starts with a short pilot on your own data.</p></details>
+      <details class="faq-item"><summary>Do we need Resonance to use DecisionOS?</summary><p>No. DecisionOS works on its own, on top of the systems you have now. If you use Resonance, DecisionOS reads from it like any other source.</p></details>
+      <details class="faq-item"><summary>What if the plan is wrong?</summary><p>A plan is only as good as its rules and data, so DecisionOS makes both visible. If something looks off, your team can see why. Fix the rule or the data, and re-plan in minutes. Nothing goes ahead without approval.</p></details>
+      <details class="faq-item"><summary>How is this different from ChatGPT?</summary><p>AI models are good at reading messy data, but they can give a different answer each time. DecisionOS uses AI to understand your data and planning engines to make the decision. The result is repeatable and auditable.</p></details>
+      <details class="faq-item"><summary>What does it cost?</summary><p>Pricing depends on the decision and the portfolio. Every engagement starts with a short pilot on your own data.</p></details>
     </div>
   </div>
 </section>
 
-<!-- 9. CONTACT -->
+<!-- CONTACT -->
 <section class="demo-sec" id="contact">
   <div class="wrap">
     <div class="center">
       <div class="eyebrow">Contact</div>
       <h2 class="section-h2">Bring us <em>one decision.</em></h2>
-      <p class="section-lead">Tell us what you're trying to plan, and we'll show you what it looks like in DecisionOS.</p>
+      <p class="section-lead">Tell us what you're trying to plan. We'll show you what it looks like in DecisionOS.</p>
     </div>
-
     <div class="form-card">
       <form id="dosForm" novalidate>
         <div class="f-row">
@@ -842,6 +896,7 @@ footer{position:relative;z-index:1;border-top:0.5px solid var(--border);padding:
         <p>The Resonance team will reply within one business day to set up a conversation about your decision.</p>
       </div>
     </div>
+
   </div>
 </section>
 
@@ -861,6 +916,7 @@ footer{position:relative;z-index:1;border-top:0.5px solid var(--border);padding:
     </p>
   </div>
 </footer>
+
 
 <script>
 /* UTM */
@@ -883,6 +939,99 @@ function fcatSwitch(idx){
     p.classList.toggle('active', i===idx);
   });
 }
+
+/* ── MOTION ──
+   One 0–1 progress value drives each animation. Each stage reads its own
+   slice through smoothstep, so stages retime by changing their slices and
+   any progress value renders the same frame. Reduce Motion gets a still. */
+var REDUCED = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+function clamp01(x){ return x < 0 ? 0 : x > 1 ? 1 : x; }
+function stage(t, a, b){ var x = clamp01((t - a) / (b - a)); return x * x * (3 - 2 * x); }
+function inView(el, cb){
+  if (!('IntersectionObserver' in window)) { cb(true); return; }
+  new IntersectionObserver(function(es){ cb(es[0].isIntersecting); }, {threshold:0.15}).observe(el);
+}
+
+/* Hero: systems of record → DecisionOS → your team (9 s loop) */
+(function(){
+  var root = document.getElementById('stack'); if (!root) return;
+  var k = {}; root.querySelectorAll('[data-k]').forEach(function(e){ k[e.dataset.k] = e; });
+  function set(el, name, v){ el.style.setProperty(name, v.toFixed(3)); }
+  function render(t){
+    var fade = 1 - stage(t, 0.93, 1);                         // soft reset at loop end
+    for (var i = 0; i < 4; i++){
+      var s = stage(t, 0.02 + i*0.04, 0.12 + i*0.04);         // sources light in turn
+      set(k['s'+i], '--on', s * fade);
+      var p = stage(t, 0.10 + i*0.03, 0.28 + i*0.03);         // pulses rise into DecisionOS
+      set(k['w'+i], '--p', p);
+      set(k['w'+i], '--a', Math.sin(Math.PI * p));
+    }
+    set(k.ai,   '--on', (stage(t, 0.28, 0.38) - stage(t, 0.52, 0.62) * 0.55) * fade);
+    set(k.eng,  '--on', (stage(t, 0.44, 0.54) - stage(t, 0.70, 0.80) * 0.45) * fade);
+    set(k.plan, '--on', stage(t, 0.56, 0.64) * fade);
+    var u = stage(t, 0.64, 0.78);                             // plan rises to the team
+    set(k.up, '--p', u); set(k.up, '--a', Math.sin(Math.PI * u));
+    set(k.approved, '--on', stage(t, 0.78, 0.84) * fade);
+  }
+  if (REDUCED) { render(0.86); return; }
+  var LOOP = 9000, t0 = null, visible = true, raf = null, held = 0;
+  function frame(now){
+    if (t0 === null) t0 = now - held;
+    held = (now - t0) % LOOP;
+    render(held / LOOP);
+    raf = visible ? requestAnimationFrame(frame) : null;
+  }
+  inView(root, function(v){ visible = v; if (v && !raf){ t0 = null; raf = requestAnimationFrame(frame); } });
+  render(0);
+})();
+
+/* How it works: four stages, 4.5 s each, click to jump */
+(function(){
+  var flow = document.getElementById('flow'); if (!flow) return;
+  var steps = [].slice.call(flow.querySelectorAll('.flow-step'));
+  var panes = [].slice.call(flow.querySelectorAll('.pane'));
+  var url = document.getElementById('flowUrl');
+  var ap = document.getElementById('apState');
+  var N = steps.length, STEP_MS = 4500, LOOP = N * STEP_MS, cur = -1;
+  function show(i){
+    if (i === cur) return; cur = i;
+    steps.forEach(function(s, j){ s.classList.toggle('on', j === i); s.setAttribute('aria-selected', j === i ? 'true' : 'false'); });
+    panes.forEach(function(p, j){ p.classList.toggle('on', j === i); });
+    url.textContent = panes[i].dataset.url;
+  }
+  function render(t){                                         // t: 0–1 across all four stages
+    var i = Math.min(N - 1, Math.floor(t * N));
+    var local = t * N - i;                                    // 0–1 inside the active stage
+    show(i);
+    steps[i].style.setProperty('--l', local.toFixed(3));
+    var rows = panes[i].querySelectorAll('.rv'), n = rows.length;
+    for (var r = 0; r < n; r++){
+      var a = 0.04 + r * (0.5 / n);
+      rows[r].style.setProperty('--r', stage(local, a, a + 0.12).toFixed(3));
+    }
+    if (i === 3) {
+      var done = local > 0.62;
+      ap.textContent = done ? 'Approved' : 'Awaiting approval';
+      ap.className = 'badge ' + (done ? 'badge-green' : 'badge-amber');
+    }
+  }
+  var pos = 0, last = null, visible = false, raf = null;
+  function frame(now){
+    if (last !== null) pos = (pos + (now - last)) % LOOP;
+    last = now;
+    render(pos / LOOP);
+    raf = visible ? requestAnimationFrame(frame) : null;
+  }
+  steps.forEach(function(s, j){
+    s.addEventListener('click', function(){
+      pos = j * STEP_MS + (REDUCED ? STEP_MS * 0.999 : 0);
+      render(pos / LOOP);
+    });
+  });
+  if (REDUCED) { render(0.999 / N); return; }                 // still: step 1, fully drawn
+  render(0);
+  inView(flow, function(v){ visible = v; if (v && !raf){ last = null; raf = requestAnimationFrame(frame); } });
+})();
 
 /* CONTACT FORM */
 (function(){
@@ -941,6 +1090,7 @@ function fcatSwitch(idx){
     .catch(fail);
   });
 })();
+
 </script>
 </body>
 </html>
