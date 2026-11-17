@@ -6292,12 +6292,9 @@ html[data-theme="light"] .x-ftoast{background:#fff;}
 (function(){var f=document.getElementById('xDosSim');if(!f)return;addEventListener('message',function(e){if(e.source!==f.contentWindow)return;var d=e.data;if(d&&d.type==='xsim-h'&&d.h>200)f.style.height=d.h+'px';});})();
 </script>
 <style id="x-hanken">
-/* the corridor site's typeface, Hanken Grotesk, across the homepage */
-:root{--ff-display:'Hanken Grotesk',system-ui,-apple-system,sans-serif;--ff-body:'Hanken Grotesk',system-ui,-apple-system,sans-serif;}
+/* body text in the corridor site's typeface; titles stay in Fraunces */
+:root{--ff-body:'Hanken Grotesk',system-ui,-apple-system,sans-serif;}
 body{font-family:var(--ff-body);}
-h1,h2,h3{font-family:var(--ff-display)!important;font-weight:700!important;letter-spacing:-.03em!important;}
-h1{font-weight:800!important;letter-spacing:-.035em!important;}
-h1 em,h2 em,h3 em{font-style:normal!important;}
 .logo-text{font-family:'Hanken Grotesk',system-ui,sans-serif!important;font-weight:700!important;letter-spacing:-.025em!important;}
 </style>
 </body>
