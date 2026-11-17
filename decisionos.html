@@ -55,7 +55,7 @@
   --teal:#14B8A6;--teal-bright:#5EEAD4;
   --dark:#09080F;--dark-1:#110E1E;--dark-2:#1A1630;--dark-3:#231E3E;--dark-4:#2D2754;
   --border:rgba(120,100,220,0.18);--border-hi:rgba(120,100,220,0.38);
-  --text-1:#F1EEFF;--text-2:#B8AAEE;--text-3:#8A7FC4;
+  --text-1:#F1EEFF;--text-2:#CFC7EA;--text-3:#A39BC9;
   --amber:#F59E0B;--green:#34D399;--red:#F87171;
   --ff-display:'Fraunces',Georgia,'Times New Roman',serif;
   --ff-body:'Instrument Sans',-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
@@ -299,7 +299,7 @@
   --teal:#14B8A6;--teal-bright:#5EEAD4;
   --dark:#09080F;--dark-1:#110E1E;--dark-2:#1A1630;--dark-3:#231E3E;--dark-4:#2D2754;
   --border:rgba(120,100,220,0.18);--border-hi:rgba(120,100,220,0.38);
-  --text-1:#F1EEFF;--text-2:#B8AAEE;--text-3:#8A7FC4;
+  --text-1:#F1EEFF;--text-2:#D3CCEC;--text-3:#A39BC9;
   --amber:#F59E0B;--green:#34D399;--red:#F87171;
   --ff-display:'Fraunces',Georgia,'Times New Roman',serif;
   --ff-body:'Instrument Sans',-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
@@ -704,7 +704,7 @@ section[id],div[id="replan"]{scroll-margin-top:68px;}
 .x-lbl{display:block;font-size:13px;font-weight:500;color:var(--text-2);margin-bottom:7px;}
 .x-in,.x-sel,.x-ta{width:100%;font:400 16px/1.4 var(--ff-body);color:var(--text-1);background:rgba(255,255,255,0.035);border:0;border-radius:10px;box-shadow:inset 0 0 0 0.5px rgba(255,255,255,0.16);padding:12px 14px;outline:none;transition:box-shadow .2s,background .2s;-webkit-appearance:none;appearance:none;}
 .x-in:focus,.x-sel:focus,.x-ta:focus{box-shadow:inset 0 0 0 1.5px var(--purple-bright);background:rgba(255,255,255,0.05);}
-.x-in::placeholder,.x-ta::placeholder{color:#8A7FC4;}
+.x-in::placeholder,.x-ta::placeholder{color:#9E96C4;}
 .x-in[aria-invalid="true"]{box-shadow:inset 0 0 0 1.5px var(--red);}
 .x-ta{min-height:112px;resize:vertical;}
 .x-sel{cursor:pointer;padding-right:40px;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M4 6l4 4 4-4' stroke='%238A7FC4' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 13px center;background-size:16px;}
@@ -1022,6 +1022,36 @@ html.x-lock,html.x-lock body{overflow:hidden;}
 .x-role-line{flex-basis:100%;margin-top:6px;font-family:var(--ff-display);font-weight:300;font-size:clamp(18px,1.8vw,22px);color:var(--text-1);min-height:1.4em;}
 
 
+/* Legibility pass */
+.x-no{color:var(--text-1);}
+.x-no-list p{font-size:16px;color:var(--text-2);}
+.x-lane-desc p{font-size:14.5px;}
+.x-node p{font-size:14px;}
+.x-node code{font-size:11.5px;color:var(--text-2);}
+.x-scr-sub{font-size:13px;}
+.x-tbl{font-size:13.5px;}
+.x-tbl td small{font-size:12px;}
+.x-why{font-size:14px;}
+.x-ev{font-size:12.5px;}
+.x-proof p{font-size:16px;}
+.x-fl{font-size:14px;}
+.x-fl b{font-size:13px;}
+.x-chat{font-size:14px;}
+.x-fc-res{font-size:14px;}
+.x-fg-l{font-size:13px;color:var(--text-2);}
+.x-to span{font-size:13px;color:var(--text-2);}
+.x-dlegend,.legend{font-size:12.5px;}
+.x-try-foot{font-size:13px;}
+.x-tt-l{font-size:13px;}
+.x-need-list button > span{font-size:14px;}
+.x-files .nm{font-size:12.5px;}
+.x-thread .msg{font-size:14.5px;}
+.x-ans > div{font-size:14px;}
+.x-lanes-foot{font-size:14px;}
+.x-stack-foot,.xh-foot{font-size:13px;}
+.xh-col-h small,.xh-who small{color:var(--text-3);}
+.x-sc dt{font-size:12px;}
+.x-faq details p{color:var(--text-2);}
 /* Footer */
 .x-foot{border-top:0.5px solid var(--border);padding:36px 0 44px;}
 .x-foot .x-wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:13px;color:var(--text-3);}
