@@ -481,7 +481,7 @@ section[id],div[id="replan"]{scroll-margin-top:68px;}
 .x-files li.live{background:rgba(245,158,11,0.07);}
 .x-files li.live .nm{color:var(--text-1);}
 .x-files li.live .tm{color:var(--amber);}
-.x-files li.dim{opacity:0.5;}
+.x-files li.dim .nm,.x-files li.dim .tm,.x-files li.dim .ic{opacity:0.5;}
 /* thread */
 .x-thread li{padding:11px 14px;border-bottom:0.5px solid rgba(120,100,220,0.1);}
 .x-thread li:last-child{border-bottom:0;background:rgba(248,113,113,0.06);}
@@ -609,6 +609,8 @@ section[id],div[id="replan"]{scroll-margin-top:68px;}
 .x-proof p{font-size:15.5px;line-height:1.6;color:var(--text-2);}
 .x-ev{border-radius:12px;padding:12px 14px;background:var(--dark-1);box-shadow:inset 0 0 0 0.5px var(--border-hi);font-family:var(--ff-data);font-size:11.5px;line-height:1.7;color:var(--text-2);}
 .x-ev .row{display:flex;justify-content:space-between;gap:12px;}
+.x-ev .row > span{min-width:0;}
+.x-ev .row > span:last-child{text-align:right;}
 .x-ev .k{color:var(--text-3);}
 .x-ev .g{color:var(--green);}
 .x-ev .t{color:var(--teal-bright);}
@@ -718,6 +720,58 @@ section[id],div[id="replan"]{scroll-margin-top:68px;}
 .x-done .ic{width:52px;height:52px;margin:0 auto 18px;border-radius:50%;display:grid;place-items:center;color:var(--teal-bright);background:rgba(20,184,166,0.14);}
 .x-done h3{font-family:var(--ff-display);font-weight:300;font-size:30px;}
 .x-done p{margin-top:10px;font-size:15.5px;line-height:1.65;color:var(--text-2);}
+
+/* ═══ Section motion (pass 2) ═══ */
+.x-av{opacity:var(--v,1);transform:translateY(calc((1 - var(--v,1))*7px));}
+.x-thread li.hot{background:rgba(248,113,113,0.06);}
+.x-thread li.hot .msg{color:var(--text-1);}
+.x-thread li:last-child{background:none;}
+.x-thread li.hot:last-child{background:rgba(248,113,113,0.06);}
+.x-diff{opacity:var(--v,1);}
+#xpLost{border-top:0.5px solid var(--border);}
+.x-files li.live .tm{font-variant-numeric:tabular-nums;}
+.x-files li.live .ic{animation:none;}
+.x-dots{display:none;gap:3px;align-items:center;height:18px;}
+.x-dots i{width:5px;height:5px;border-radius:50%;background:var(--text-3);animation:xDot 1s infinite ease-in-out;}
+.x-dots i:nth-child(2){animation-delay:.15s}.x-dots i:nth-child(3){animation-delay:.3s}
+@keyframes xDot{0%,80%,100%{opacity:.25;transform:translateY(0)}40%{opacity:1;transform:translateY(-2px)}}
+.x-ans .typing .x-dots{display:inline-flex;}
+.x-ans .typing .x-txt{display:none;}
+.x-ans .x-txt{display:block;opacity:var(--v,1);}
+.x-ans mark{transition:background .4s,color .4s;}
+.x-ans.calm mark{background:transparent;color:inherit;}
+
+/* swimlane live status + chip */
+.x-node-h{display:flex;align-items:baseline;justify-content:space-between;gap:8px;}
+.x-live{font-family:var(--ff-data);font-size:10.5px;color:var(--c,var(--teal-bright));white-space:nowrap;opacity:var(--on,0);}
+.x-wchip{position:absolute;left:0;top:0;z-index:4;pointer-events:none;padding:3px 9px;border-radius:999px;font-family:var(--ff-data);font-size:10.5px;white-space:nowrap;color:#0B0918;background:var(--teal-bright);box-shadow:0 6px 16px -6px rgba(0,0,0,0.9);transform:translate(-50%,-150%);opacity:0;}
+@media(max-width:980px){.x-wchip{display:none;}}
+
+/* decisions: selectable rows */
+.x-tbl tbody tr[data-i]{cursor:pointer;transition:background .2s;}
+.x-tbl tbody tr[data-i]:hover td{background:rgba(255,255,255,0.03);}
+.x-tbl tbody tr[data-i]:focus-visible{outline:2px solid var(--teal-bright);outline-offset:-2px;}
+.x-tbl tbody tr.sel td{background:rgba(20,184,166,0.08);}
+.x-tbl tbody tr.sel td:first-child{box-shadow:inset 2px 0 0 var(--teal-bright);}
+.x-tbl tr.top td{background:none;}
+.x-sc > div[data-i]{cursor:pointer;transition:background .2s;}
+.x-sc > div[data-i]:hover{background:rgba(255,255,255,0.03);}
+.x-sc > div.sel{background:rgba(167,139,250,0.09);box-shadow:inset 0 2px 0 var(--purple-bright);}
+.x-sc .on{background:none;}
+.x-why{transition:background .25s,box-shadow .25s;}
+.x-why.flash{animation:xFlash .5s ease;}
+@keyframes xFlash{from{background:rgba(94,234,212,0.16)}to{}}
+
+/* trust: approval meter */
+.x-meter{position:relative;height:6px;margin:10px 0 22px;border-radius:6px;background:rgba(255,255,255,0.07);}
+.x-meter i{position:absolute;left:0;top:0;bottom:0;border-radius:6px;width:calc(var(--f,0.71)*100%);background:linear-gradient(90deg,var(--teal) 0,var(--teal) calc(50%/var(--f,0.71)),var(--amber) calc(50%/var(--f,0.71)));}
+.x-meter .lim{position:absolute;left:50%;top:-4px;bottom:-4px;border-left:1.5px dashed var(--text-2);}
+.x-meter .lim em{position:absolute;top:15px;left:50%;transform:translateX(-50%);font-style:normal;font-size:10px;color:var(--text-3);white-space:nowrap;}
+.x-chain span{transition:all .3s;}
+.x-chain span.amber{color:var(--amber);background:rgba(245,158,11,0.1);box-shadow:inset 0 0 0 0.5px rgba(245,158,11,0.5);}
+
+/* start: bars fill */
+.x-tl-scale i{transform-origin:left center;transform:scaleX(var(--f,1));}
 
 /* Footer */
 .x-foot{border-top:0.5px solid var(--border);padding:36px 0 44px;}
@@ -863,11 +917,11 @@ section[id],div[id="replan"]{scroll-margin-top:68px;}
         </div>
         <div class="x-art" aria-hidden="true">
           <div class="x-art-bar"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z"/></svg>Shared drive / Phase 2 / Relocation</div>
-          <ul class="x-files">
+          <ul class="x-files" id="xpFiles">
             <li class="dim"><span class="ic">XLS</span><span class="nm">Move plan v7 FINAL.xlsx</span><span class="tm">Jan 12</span></li>
             <li class="dim"><span class="ic">XLS</span><span class="nm">Move plan v7 FINAL (2).xlsx</span><span class="tm">Jan 19</span></li>
             <li><span class="ic">XLS</span><span class="nm">Move plan v8 USE THIS ONE.xlsx</span><span class="tm">Feb 2</span></li>
-            <li class="live"><span class="ic">XLS</span><span class="nm">Move plan v9 Bldg C slip DRAFT.xlsx</span><span class="tm">editing, day 5</span></li>
+            <li class="live"><span class="ic">XLS</span><span class="nm">Move plan v9 Bldg C slip DRAFT.xlsx</span><span class="tm" id="xpDays">editing, day 5</span></li>
           </ul>
         </div>
       </article>
@@ -878,12 +932,13 @@ section[id],div[id="replan"]{scroll-margin-top:68px;}
         </div>
         <div class="x-art" aria-hidden="true">
           <div class="x-art-bar"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>RE: RE: RE: Unit for #1147?</div>
-          <ul class="x-thread">
+          <ul class="x-thread" id="xpThread">
             <li><div class="who"><b>Relocation coordinator</b><span>Mar 2</span></div><div class="msg">Can we put 1147 in A-102? Talked to the PM, should be fine.</div></li>
             <li><div class="who"><b>Development manager</b><span>Mar 2</span></div><div class="msg">ok per our call</div></li>
             <li class="gap">6 months later</li>
-            <li><div class="who"><b>Asset manager</b><span>Sep 14</span></div><div class="msg">HUD is asking why 1147 went to A-102 and not B-104. Does anyone remember?</div></li>
+            <li class="hot"><div class="who"><b>Asset manager</b><span>Sep 14</span></div><div class="msg">HUD is asking why 1147 went to A-102 and not B-104. Does anyone remember?</div></li>
           </ul>
+          <div class="x-diff" id="xpLost"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg>No reply. The reason was never written down.</div>
         </div>
       </article>
       <article class="x-prob">
@@ -892,12 +947,12 @@ section[id],div[id="replan"]{scroll-margin-top:68px;}
           <p>Ask twice and you may get two different answers. You can't take that to a board or to HUD.</p>
         </div>
         <div class="x-art" aria-hidden="true">
-          <div class="x-ask"><span>Asked twice</span>Which Building C households should move first?</div>
+          <div class="x-ask" id="xpAsk"><span>Asked twice</span>Which Building C households should move first?</div>
           <div class="x-ans">
-            <div><span class="t">Answer 1 · 10:02</span>Start with the <mark>larger families</mark>, since 3BR and 4BR units are hardest to find.</div>
-            <div><span class="t">Answer 2 · 10:03</span>Prioritize <mark>seniors and households with accessibility needs</mark>, then the rest.</div>
+            <div class="x-a1"><span class="t">Answer 1 · 10:02</span><span class="x-dots"><i></i><i></i><i></i></span><span class="x-txt">Start with the <mark>larger families</mark>, since 3BR and 4BR units are hardest to find.</span></div>
+            <div class="x-a2"><span class="t">Answer 2 · 10:03</span><span class="x-dots"><i></i><i></i><i></i></span><span class="x-txt">Prioritize <mark>seniors and households with accessibility needs</mark>, then the rest.</span></div>
           </div>
-          <div class="x-diff"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg>Same question, same data, different plan.</div>
+          <div class="x-diff" id="xpDiff"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg>Same question, same data, different plan.</div>
         </div>
       </article>
     </div>
@@ -1030,28 +1085,28 @@ section[id],div[id="replan"]{scroll-margin-top:68px;}
 
     <div class="x-lanes" id="xLanes">
       <div class="x-lane-grid" id="xLaneGrid">
-        <svg class="x-wire" id="xWire" aria-hidden="true"><defs><linearGradient id="xLaneGrad" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#5EEAD4"/><stop offset="1" stop-color="#A78BFA"/></linearGradient></defs><path id="xWireBase"/><path id="xWireLit" class="lit"/><circle id="xWireDot" r="4"/></svg>
+        <svg class="x-wire" id="xWire" aria-hidden="true"><defs><linearGradient id="xLaneGrad" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#5EEAD4"/><stop offset="1" stop-color="#A78BFA"/></linearGradient></defs><path id="xWireBase"/><path id="xWireLit" class="lit"/><circle id="xWireDot" r="4"/></svg><div class="x-wchip" id="xWchip" aria-hidden="true">rent roll</div>
         <div class="x-lane-row">
           <div class="x-lane-l">Your data<small>systems and files</small></div>
-          <div class="x-cell"><div class="x-node" data-lane="Your data" style="--c:#5EEAD4" data-step="0"><h3>Connect</h3><p>Use integrations with your systems of record, or upload files such as rent rolls, construction schedules and budgets.</p><code><b>4 sources</b> · rent roll · schedule v14 · budget FY27 · households</code></div></div>
+          <div class="x-cell"><div class="x-node" data-lane="Your data" style="--c:#5EEAD4" data-step="0"><div class="x-node-h"><h3>Connect</h3><span class="x-live" data-live="0"></span></div><p>Use integrations with your systems of record, or upload files such as rent rolls, construction schedules and budgets.</p><code><b>4 sources</b> · rent roll · schedule v14 · budget FY27 · households</code></div></div>
           <div class="x-cell x-empty"></div><div class="x-cell x-empty"></div><div class="x-cell x-empty"></div>
         </div>
         <div class="x-lane-row">
           <div class="x-lane-l">AI<small>reads, never decides</small></div>
           <div class="x-cell x-empty"></div>
-          <div class="x-cell"><div class="x-node" data-lane="AI" style="--c:#5EEAD4" data-step="1"><h3>Understand</h3><p>AI cleans and organizes messy data. It maps each field and flags anything missing.</p><code>ADA_REQ → <b>needs accessible unit</b> · 3 move-out dates missing</code></div></div>
+          <div class="x-cell"><div class="x-node" data-lane="AI" style="--c:#5EEAD4" data-step="1"><div class="x-node-h"><h3>Understand</h3><span class="x-live" data-live="1"></span></div><p>AI cleans and organizes messy data. It maps each field and flags anything missing.</p><code>ADA_REQ → <b>needs accessible unit</b> · 3 move-out dates missing</code></div></div>
           <div class="x-cell x-empty"></div><div class="x-cell x-empty"></div>
         </div>
         <div class="x-lane-row">
           <div class="x-lane-l">Planning engine<small>your rules</small></div>
           <div class="x-cell x-empty"></div><div class="x-cell x-empty"></div>
-          <div class="x-cell"><div class="x-node" data-lane="Planning engine" style="--c:#A78BFA" data-step="2"><h3>Decide</h3><p>Planning engines build a recommendation that follows your rules and constraints. The same inputs give the same plan every time.</p><code>5 rules · <b>0 violations</b> · run 2 = run 1</code></div></div>
+          <div class="x-cell"><div class="x-node" data-lane="Planning engine" style="--c:#A78BFA" data-step="2"><div class="x-node-h"><h3>Decide</h3><span class="x-live" data-live="2"></span></div><p>Planning engines build a recommendation that follows your rules and constraints. The same inputs give the same plan every time.</p><code>5 rules · <b>0 violations</b> · run 2 = run 1</code></div></div>
           <div class="x-cell x-empty"></div>
         </div>
         <div class="x-lane-row">
           <div class="x-lane-l">Your team<small>approval limits</small></div>
           <div class="x-cell x-empty"></div><div class="x-cell x-empty"></div><div class="x-cell x-empty"></div>
-          <div class="x-cell"><div class="x-node" data-lane="Your team" style="--c:#F59E0B" data-step="3"><h3>Approve</h3><p>Your team reviews and approves the plan. Anything above a person's approval limit goes to the next approver. DecisionOS logs every step.</p><code>$14,200 &gt; $10,000 → <b>Director of Development</b></code></div></div>
+          <div class="x-cell"><div class="x-node" data-lane="Your team" style="--c:#F59E0B" data-step="3"><div class="x-node-h"><h3>Approve</h3><span class="x-live" data-live="3"></span></div><p>Your team reviews and approves the plan. Anything above a person's approval limit goes to the next approver. DecisionOS logs every step.</p><code>$14,200 &gt; $10,000 → <b>Director of Development</b></code></div></div>
         </div>
       </div>
       <div class="x-lane-desc" aria-hidden="true">
@@ -1085,7 +1140,7 @@ section[id],div[id="replan"]{scroll-margin-top:68px;}
         <div class="x-scr on" role="tabpanel" id="xs0" aria-labelledby="xt0">
           <div class="x-scr-top"><div><strong>Phase 2 move plan</strong> <span>example program</span></div><span class="x-pill g"><i></i>212 of 212 placed</span></div>
           <div class="x-scr-body">
-            <p class="x-scr-sub">Each household's match, and the rules it satisfies</p>
+            <p class="x-scr-sub">Each household's match. Select a row to see why.</p>
             <table class="x-tbl">
               <thead><tr><th>Household</th><th>Temp unit</th><th class="hide-s">Move date</th><th>Rules</th></tr></thead>
               <tbody>
@@ -1102,7 +1157,7 @@ section[id],div[id="replan"]{scroll-margin-top:68px;}
         <div class="x-scr" role="tabpanel" id="xs1" aria-labelledby="xt1">
           <div class="x-scr-top"><div><strong>Rehab priority</strong> <span>budget cut $4.2M → $3.6M</span></div><span class="x-pill a"><i></i>14 deferred</span></div>
           <div class="x-scr-body">
-            <p class="x-scr-sub">Score = life safety 40% · occupied 25% · system age 20% · cost per unit 15%</p>
+            <p class="x-scr-sub">Score = life safety 40 · occupied 25 · system age 20 · cost per unit 15. Select a row.</p>
             <table class="x-tbl">
               <thead><tr><th>Unit</th><th class="hide-s">Main issue</th><th class="r">Cost</th><th class="r">Score</th></tr></thead>
               <tbody>
@@ -1121,6 +1176,7 @@ section[id],div[id="replan"]{scroll-margin-top:68px;}
         <div class="x-scr" role="tabpanel" id="xs2" aria-labelledby="xt2">
           <div class="x-scr-top"><div><strong>Acquisition shortlist</strong> <span>9 buildings screened</span></div><span class="x-pill p"><i></i>Criteria v3</span></div>
           <div class="x-scr-body">
+            <p class="x-scr-sub">Ranked against criteria v3. Select a building.</p>
             <table class="x-tbl">
               <thead><tr><th>Building</th><th class="r">Rent headroom</th><th class="r hide-s">Units / $M</th><th class="r">Flags</th></tr></thead>
               <tbody>
@@ -1137,6 +1193,7 @@ section[id],div[id="replan"]{scroll-margin-top:68px;}
         <div class="x-scr" role="tabpanel" id="xs3" aria-labelledby="xt3">
           <div class="x-scr-top"><div><strong>Scenario compare</strong> <span>Alder Court, same data</span></div><span class="x-pill p"><i></i>3 runs</span></div>
           <div class="x-scr-body">
+            <p class="x-scr-sub">Same data, three runs. Select a scenario.</p>
             <div class="x-sc">
               <div><div class="x-sch">Current plan</div><dl><div><dt>Re-assigned</dt><dd>0</dd></div><div><dt>Temp units</dt><dd>46</dd></div><div><dt>Move budget</dt><dd>$412K</dd></div></dl></div>
               <div class="on"><div class="x-sch">Bldg C slips 2 weeks</div><dl><div><dt>Re-assigned</dt><dd class="up">9</dd></div><div><dt>Temp units</dt><dd class="same">46</dd></div><div><dt>Move budget</dt><dd class="up">$426K</dd></div></dl></div>
@@ -1161,42 +1218,47 @@ section[id],div[id="replan"]{scroll-margin-top:68px;}
       <div class="x-proof">
         <h3>Repeatable.</h3>
         <p>Planning engines compute the plan. Run it again with the same inputs and you get the same answer.</p>
-        <div class="x-ev" aria-label="Example: two runs with the same inputs produce the same plan">
-          <div class="row"><span class="k">run 1 · 09:15</span><span>inputs 8d03·5be2 → plan <span class="t">c7e1·0a4d</span></span></div>
-          <div class="row"><span class="k">run 2 · 16:40</span><span>inputs 8d03·5be2 → plan <span class="t">c7e1·0a4d</span></span></div>
+        <div class="x-ev" id="xeRep" aria-label="Example: two runs with the same inputs produce the same plan">
+          <div class="row"><span class="k">inputs</span><span>8d03·5be2</span></div>
+          <div class="row" data-a><span class="k">run 1 · 09:15</span><span>plan <span class="t">c7e1·0a4d</span></span></div>
+          <div class="row" data-a><span class="k">run 2 · 16:40</span><span>plan <span class="t" id="xeHash">c7e1·0a4d</span></span></div>
           <div class="hr"></div>
-          <div class="row"><span class="k">result</span><span class="g">identical</span></div>
+          <div class="row" data-a><span class="k">result</span><span class="g">✓ identical plan</span></div>
         </div>
       </div>
       <div class="x-proof">
         <h3>Explained.</h3>
         <p>Every recommendation shows the constraints it followed and the numbers it used.</p>
-        <div class="x-ev" aria-label="Example: the rules behind one placement">
-          <div class="row"><span>C-02 · Hollis 102 → Ward 106</span><span class="g">5 of 5 rules</span></div>
+        <div class="x-ev" id="xeExp" aria-label="Example: the rules behind one placement">
+          <div class="row"><span>Hollis 102 → Ward 106</span><span class="g"><span id="xeN">5</span> of 5</span></div>
           <div class="hr"></div>
-          <div class="row"><span class="k">accessible unit</span><span class="g">✓ step-free, roll-in shower</span></div>
-          <div class="row"><span class="k">bedroom size</span><span class="g">✓ fits household</span></div>
-          <div class="row"><span class="k">lease dates</span><span class="g">✓ out before Aug 31</span></div>
+          <div class="row" data-a><span class="k">accessible unit</span><span class="g">✓ step-free</span></div>
+          <div class="row" data-a><span class="k">bedroom size</span><span class="g">✓ 3BR for 4 people</span></div>
+          <div class="row" data-a><span class="k">notice period</span><span class="g">✓ after notice ends</span></div>
+          <div class="row" data-a><span class="k">school district</span><span class="g">✓ same school zone</span></div>
+          <div class="row" data-a><span class="k">lease dates</span><span class="g">✓ out by Aug 31</span></div>
         </div>
       </div>
       <div class="x-proof">
         <h3>Human-approved.</h3>
         <p>Nothing runs on its own. Your people approve, and DecisionOS enforces approval limits.</p>
-        <div class="x-ev" aria-label="Example: an approval routed above a manager's limit">
-          <div class="row"><span class="k">added cost</span><span class="a">$14,200</span></div>
-          <div class="row"><span class="k">manager limit</span><span>$10,000</span></div>
+        <div class="x-ev" id="xeApp" aria-label="Example: an approval routed above a manager's limit">
+          <div class="row"><span class="k">added cost</span><span class="a" id="xeCost">$14,200</span></div>
+          <div class="x-meter" aria-hidden="true"><i id="xeFill"></i><span class="lim"><em>manager limit $10,000</em></span></div>
           <div class="hr"></div>
-          <div class="x-chain"><span>Relocation manager</span><i>→</i><span class="on">✓ Director of Development</span></div>
+          <div class="x-chain"><span id="xeW1">Relocation manager</span><i>→</i><span id="xeW2" class="on">✓ Director of Development</span></div>
         </div>
       </div>
       <div class="x-proof">
         <h3>No rip-and-replace.</h3>
         <p>Keep Yardi, Procore, Resonance and your spreadsheets. DecisionOS sits on top of them.</p>
-        <div class="x-ev" aria-label="Example: sources DecisionOS reads from">
-          <div class="row"><span class="k">Yardi</span><span>rent roll</span></div>
-          <div class="row"><span class="k">Procore</span><span>construction schedule</span></div>
-          <div class="row"><span class="k">Resonance</span><span>households and units</span></div>
-          <div class="row"><span class="k">Excel</span><span>budget FY27</span></div>
+        <div class="x-ev" id="xeSrc" aria-label="Example: sources DecisionOS reads from">
+          <div class="row" data-a><span class="k">Yardi</span><span>rent roll <span class="g">✓</span></span></div>
+          <div class="row" data-a><span class="k">Procore</span><span>construction schedule <span class="g">✓</span></span></div>
+          <div class="row" data-a><span class="k">Resonance</span><span>households and units <span class="g">✓</span></span></div>
+          <div class="row" data-a><span class="k">Excel</span><span>budget FY27 <span class="g">✓</span></span></div>
+          <div class="hr"></div>
+          <div class="row" data-a><span class="k">replaced</span><span>nothing</span></div>
         </div>
       </div>
     </div>
@@ -1224,7 +1286,7 @@ section[id],div[id="replan"]{scroll-margin-top:68px;}
       <p class="x-lede">Your next relocation, a budget scenario or an acquisition pipeline. Pick one, and see a real plan on your own data.</p>
     </div>
     <div class="x-tl">
-      <div class="x-tl-scale" aria-hidden="true"><i></i><i></i><i></i></div>
+      <div class="x-tl-scale" id="xTl" aria-hidden="true"><i></i><i></i><i></i></div>
       <div class="x-tl-cols">
         <div class="x-ph"><div class="when">A few weeks</div><h3>Try</h3><p>Choose one decision. Send us an export. Within a few weeks, you'll see a real plan built on your own data.</p></div>
         <div class="x-ph"><div class="when">About three months</div><h3>Implement</h3><p>We set up the guardrails, approval rules and integrations your team needs.</p></div>
@@ -1717,38 +1779,131 @@ if(document.fonts&&document.fonts.ready)document.fonts.ready.then(relayout);
     loop(hx,12000,hero,0.9);
   }
 
-  /* How it works: a dot walks the swimlanes Connect → Understand → Decide → Approve. 10 s. */
+  /* How it works: a labelled chip walks the swimlanes Connect → Understand → Decide → Approve (10 s). */
   var lanes=document.getElementById('xLanes'),grid=document.getElementById('xLaneGrid');
   if(lanes){
-    var nodes=[].slice.call(lanes.querySelectorAll('.x-node'));
-    var base=document.getElementById('xWireBase'),lit=document.getElementById('xWireLit'),dot=document.getElementById('xWireDot');
-    var pts=[],len=0,segs=[];
+    var nodes=[].slice.call(lanes.querySelectorAll('.x-node')),lives=[].slice.call(lanes.querySelectorAll('.x-live'));
+    var base=document.getElementById('xWireBase'),lit=document.getElementById('xWireLit'),dot=document.getElementById('xWireDot'),chip=document.getElementById('xWchip');
+    var len=0,segs=[0,1/3,2/3,1];
+    var CHIP=[['rent roll','#5EEAD4'],['facts','#5EEAD4'],['plan v15','#A78BFA'],['approved','#34D399']];
+    var mq=matchMedia('(max-width:980px)');
     function geom(){
-      var g=grid.getBoundingClientRect();pts=nodes.map(function(n){var r=n.getBoundingClientRect();return [r.left-g.left+r.width/2,r.top-g.top+r.height/2,r];});
-      var d='';segs=[0];len=0;
-      for(var i=0;i<pts.length;i++){
-        if(i===0){d='M'+pts[0][0]+' '+pts[0][1];continue;}
-        var a=pts[i-1],b=pts[i],mx=b[0];
-        d+=' L'+mx+' '+a[1]+' L'+b[0]+' '+b[1];
-      }
-      base.setAttribute('d',d);lit.setAttribute('d',d);
-      len=base.getTotalLength();lit.style.strokeDasharray=len;
-      // cumulative length at each node
-      var acc=0;segs=[0];for(var j=1;j<pts.length;j++){acc+=Math.abs(pts[j][0]-pts[j-1][0])+Math.abs(pts[j][1]-pts[j-1][1]);segs.push(acc);}
-      var tot=acc||1;segs=segs.map(function(v){return v/tot;});
+      if(mq.matches){len=0;segs=[0,1/3,2/3,1];return;}
+      var g=grid.getBoundingClientRect();
+      var pts=nodes.map(function(n){var r=n.getBoundingClientRect();return [r.left-g.left+r.width/2,r.top-g.top+r.height/2];});
+      var d='M'+pts[0][0]+' '+pts[0][1],acc=0;segs=[0];
+      for(var i=1;i<pts.length;i++){d+=' L'+pts[i][0]+' '+pts[i-1][1]+' L'+pts[i][0]+' '+pts[i][1];acc+=Math.abs(pts[i][0]-pts[i-1][0])+Math.abs(pts[i][1]-pts[i-1][1]);segs.push(acc);}
+      segs=segs.map(function(v){return v/(acc||1);});
+      base.setAttribute('d',d);lit.setAttribute('d',d);len=base.getTotalLength();lit.style.strokeDasharray=len;
+    }
+    function liveText(i,l){
+      if(i===0)return Math.round(4*l)+' of 4 synced';
+      if(i===1)return Math.round(46*l)+' of 49 mapped';
+      if(i===2)return l<1?'checking '+Math.round(5*l)+' of 5 rules':'0 violations';
+      return l<1?'routing':'approved';
     }
     function render(t){
-      var travel=S(t,0.05,0.8),fade=1-S(t,0.92,1);
-      if(len){lit.style.strokeDashoffset=len*(1-travel*fade);var p=base.getPointAtLength(len*travel);dot.setAttribute('cx',p.x);dot.setAttribute('cy',p.y);dot.style.opacity=fade;}
-      nodes.forEach(function(n,i){var on=S(t,0.05+segs[i]*0.75-0.02,0.05+segs[i]*0.75+0.04)*fade;n.style.setProperty('--on',on.toFixed(3));n.classList.toggle('on',on>0.5);});
+      var travel=S(t,0.05,0.8),fade=1-S(t,0.93,1);
+      if(len){
+        lit.style.strokeDashoffset=len*(1-travel*fade);
+        var pt=base.getPointAtLength(len*travel);dot.setAttribute('cx',pt.x);dot.setAttribute('cy',pt.y);dot.style.opacity=fade;
+        var k=0;for(var s2=0;s2<segs.length;s2++)if(travel>=segs[s2]-0.001)k=s2;
+        chip.textContent=CHIP[k][0];chip.style.background=CHIP[k][1];
+        chip.style.left=pt.x+'px';chip.style.top=pt.y+'px';chip.style.opacity=fade*(t>0.04?1:0);
+      }
+      nodes.forEach(function(n,i){
+        var at=0.05+segs[i]*0.75;
+        var on=S(t,at-0.02,at+0.04)*fade;n.style.setProperty('--on',on.toFixed(3));n.classList.toggle('on',on>0.5);
+        var nxt=i<3?0.05+segs[i+1]*0.75:Math.min(0.9,at+0.1);
+        var l=S(t,at,nxt-0.01);lives[i].textContent=on>0.02?liveText(i,l):'';
+      });
     }
-    var mq=matchMedia('(max-width:980px)');
-    function setup(){if(mq.matches){nodes.forEach(function(n){n.style.setProperty('--on',1);n.classList.add('on');});return false;}geom();return true;}
     (document.fonts&&document.fonts.ready?document.fonts.ready:Promise.resolve()).then(function(){
-      if(setup()) loop(lanes,10000,function(t){if(!mq.matches)render(t);},0.85);
-      var rz;addEventListener('resize',function(){clearTimeout(rz);rz=setTimeout(function(){if(!setup())return;geom();},80);});
+      geom();loop(lanes,10000,render,0.9);
+      var rz;addEventListener('resize',function(){clearTimeout(rz);rz=setTimeout(geom,80);});
     });
   }
+
+  /* Play-once timelines for section artifacts: one 0–1 progress, starts when the artifact is in view. */
+  function once(el,dur,render){
+    if(!el)return;
+    if(REDUCED){render(1);return;}
+    render(0);
+    var go=function(){var t0=null;function f(now){if(t0===null)t0=now;var t=Math.min(1,(now-t0)/dur);render(t);if(t<1)requestAnimationFrame(f);}requestAnimationFrame(f);};
+    if(!('IntersectionObserver' in window)){go();return;}
+    var io=new IntersectionObserver(function(e){if(e[0].isIntersecting){io.disconnect();go();}},{threshold:0.45});io.observe(el);
+  }
+  var av=function(e,v){e.classList.add('x-av');e.style.setProperty('--v',v.toFixed(3));};
+
+  // Problem 1: versions pile up, the draft keeps going
+  var files=document.getElementById('xpFiles');
+  if(files){var fl=[].slice.call(files.children),days=document.getElementById('xpDays');
+    once(files,3200,function(t){fl.forEach(function(li,i){av(li,S(t,i*0.13,i*0.13+0.14));});days.textContent='editing, day '+(1+Math.round(4*S(t,0.55,0.98)));});}
+  // Problem 2: the thread, then silence
+  var th=document.getElementById('xpThread');
+  if(th){var tl=[].slice.call(th.children),lost=document.getElementById('xpLost');
+    once(th,3600,function(t){tl.forEach(function(li,i){av(li,S(t,i*0.17,i*0.17+0.12));});lost.style.setProperty('--v',S(t,0.82,0.95).toFixed(3));});}
+  // Problem 3: ask twice, get two plans
+  var ask=document.getElementById('xpAsk');
+  if(ask){var art=ask.parentNode,ans=art.querySelector('.x-ans'),a1=art.querySelector('.x-a1'),a2=art.querySelector('.x-a2'),diff=document.getElementById('xpDiff');
+    once(art,4200,function(t){
+      a1.classList.toggle('typing',t>0.06&&t<0.26);a1.querySelector('.x-txt').style.setProperty('--v',S(t,0.26,0.34).toFixed(3));a1.style.opacity=t<0.06?0.35:1;
+      a2.classList.toggle('typing',t>0.42&&t<0.62);a2.querySelector('.x-txt').style.setProperty('--v',S(t,0.62,0.7).toFixed(3));a2.style.opacity=t<0.42?0.35:1;
+      ans.classList.toggle('calm',t<0.76);diff.style.setProperty('--v',S(t,0.84,0.96).toFixed(3));
+    });}
+
+  // Trust: repeatable
+  var rep=document.getElementById('xeRep');
+  if(rep){var rr=[].slice.call(rep.querySelectorAll('[data-a]')),hash=document.getElementById('xeHash'),HX='0123456789abcdef';
+    var rnd=function(){var o='';for(var i=0;i<8;i++){o+=HX[Math.floor(Math.random()*16)];if(i===3)o+='·';}return o;};
+    once(rep,3000,function(t){av(rr[0],S(t,0,0.12));av(rr[1],S(t,0.2,0.32));hash.textContent=(t>0.2&&t<0.7)?rnd():'c7e1·0a4d';av(rr[2],S(t,0.74,0.86));});}
+  // Trust: explained
+  var exp=document.getElementById('xeExp');
+  if(exp){var er=[].slice.call(exp.querySelectorAll('[data-a]')),en=document.getElementById('xeN');
+    once(exp,2800,function(t){var c=0;er.forEach(function(r,i){var v=S(t,0.1+i*0.16,0.22+i*0.16);av(r,v);if(v>0.5)c++;});en.textContent=c;});}
+  // Trust: human-approved
+  var app=document.getElementById('xeApp');
+  if(app){var fill=document.getElementById('xeFill'),cost=document.getElementById('xeCost'),ew1=document.getElementById('xeW1'),ew2=document.getElementById('xeW2');
+    once(app,3200,function(t){var f=S(t,0.05,0.5);fill.style.width=(f*71)+'%';cost.textContent='$'+(Math.round(14200*f/100)*100).toLocaleString('en-US');
+      var over=t>0.36;ew1.className=over&&t<0.78?'amber':'';ew2.className=t>0.78?'on':(over?'':'');ew2.textContent=t>0.78?'✓ Director of Development':'Director of Development';});}
+  // Trust: sources
+  var srcEv=document.getElementById('xeSrc');
+  if(srcEv){var sr=[].slice.call(srcEv.querySelectorAll('[data-a]'));once(srcEv,2600,function(t){sr.forEach(function(r,i){av(r,S(t,i*0.15,i*0.15+0.15));});});}
+  // Start: phases fill left to right
+  var tlEl=document.getElementById('xTl');
+  if(tlEl){var bars=[].slice.call(tlEl.children);once(tlEl,2200,function(t){bars.forEach(function(b,i){b.style.setProperty('--f',S(t,i*0.3,i*0.3+0.35).toFixed(3));});});}
+
+  // Decisions: select a row to see why
+  var WHY={
+    xs0:['<b>Why #1147 → A-102:</b> needs an accessible unit and 3 bedrooms, and the notice period ends Mar 2. A-102 is the only open unit that meets all three.',
+         '<b>Why #0614 → A-106:</b> two children at Lincoln Elementary. A-106 keeps them in the same school district, and it has 2 bedrooms.',
+         '<b>Why #1023 → D-108:</b> a household of 6 needs 4 bedrooms. D-108 is the only open 4BR, and it is free from Mar 30.',
+         '<b>Why #0875 → D-103:</b> a senior who needs step-free access. D-103 is a 1BR on an elevator floor.'],
+    xs1:['<b>Why 4B scores 92:</b> life safety 40 of 40, occupied 25 of 25, system age 14 of 20, cost per unit 13 of 15.',
+         '<b>Why 2A scores 88:</b> life safety 40 of 40 for the panel, occupied 25 of 25, system age 12 of 20, cost per unit 11 of 15.',
+         '<b>Why 6C scores 81:</b> life safety 32 of 40, occupied 25 of 25, system age 18 of 20, cost per unit 6 of 15 because the boiler is costly.',
+         '<b>Why 1D is deferred:</b> life safety 24 of 40, vacant 0 of 25, system age 18 of 20, cost per unit 12 of 15. Score 54 falls below the $3.6M line.',
+         '<b>Why 5A is deferred:</b> cosmetic only. Life safety 16 of 40, vacant 0 of 25, system age 10 of 20, cost per unit 15 of 15. Score 41.'],
+    xs2:['<b>Why Maple Court ranks first:</b> 11% rent headroom under the affordability cap, 6.2 units per $1M, and no red flags.',
+         '<b>Flag on Elm Terrace:</b> 2 open code violations. Source: city code-enforcement record.',
+         '<b>Flag on Harbor View:</b> roof last replaced in 1998. Source: property condition report.',
+         '<b>Why Linden Place ranks last:</b> 2% rent headroom and 3 flags: deferred maintenance, a tax lien and an open inspection finding.'],
+    xs3:['<b>Current plan:</b> 46 households in 46 temporary units. Move budget $412K.',
+         '<b>Why the slip changes the plan:</b> 9 Hollis St. households would stay past the lease end on Aug 31. DecisionOS moves only those 9. The other 37 keep their units.',
+         '<b>Why the quote changes only the budget:</b> no dates move, so no household is re-assigned. The move budget rises 12%, from $412K to $461K.']
+  };
+  var WARN={xs2:[1,2,3]};
+  Object.keys(WHY).forEach(function(id){
+    var pane=document.getElementById(id);if(!pane)return;
+    var why=pane.querySelector('.x-why');
+    var items=id==='xs3'?[].slice.call(pane.querySelectorAll('.x-sc > div')):[].slice.call(pane.querySelectorAll('.x-tbl tbody tr:not(.x-cutline)'));
+    function sel(i,flash){items.forEach(function(it,j){it.classList.toggle('sel',j===i);it.setAttribute('aria-pressed',j===i);});why.innerHTML=WHY[id][i];why.classList.toggle('warn',(WARN[id]||[]).indexOf(i)>-1);if(flash){why.classList.remove('flash');void why.offsetWidth;why.classList.add('flash');}}
+    items.forEach(function(it,i){it.dataset.i=i;it.tabIndex=0;it.setAttribute('role','button');
+      it.addEventListener('click',function(){sel(i,true);});
+      it.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();sel(i,true);}});});
+    sel(id==='xs3'?1:(id==='xs2'?0:0),false);
+    why.setAttribute('aria-live','polite');
+  });
 
   /* Decision tabs */
   var tabs=[].slice.call(document.querySelectorAll('.x-dtab')),panes=[].slice.call(document.querySelectorAll('.x-scr'));
