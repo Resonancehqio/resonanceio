@@ -5267,7 +5267,18 @@ function toggleTheme() {
 
 
 <!-- ═══ Presentation layer: motion + legibility (no copy or function changes) ═══ -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300&family=JetBrains+Mono:wght@400;500;600&display=swap">
 <style id="x-enh">
+/* Type: one-voice headlines, display optical size, real mono for data */
+:root,html[data-theme="light"]{--ff-mono:'JetBrains Mono','SF Mono',ui-monospace,Menlo,monospace;}
+.hero h1,h2.section-title,.section-title,.cta-h{font-variation-settings:'opsz' 144;letter-spacing:-0.028em;}
+.step-title,.fcat-title,.ld-title,.p-title,.uc-title{font-optical-sizing:auto;letter-spacing:-0.012em;}
+:is(.hero h1,h2.section-title,.section-title,.step-title,.fcat-title,.cta-h,.ld-title) em{font-style:normal !important;color:inherit !important;font-weight:500;}
+.hero h1{letter-spacing:-0.035em;}
+/* No kickers above headings, no 01/03 counters */
+.eyebrow,.fcat-eyebrow,.step-label,.p-num{display:none !important;}
+.section-header .section-title{margin-top:0 !important;}
+
 /* Legibility in dark theme only */
 html:not([data-theme="light"]){--text-2:#D3CCEC;--text-3:#A39BC9;}
 
