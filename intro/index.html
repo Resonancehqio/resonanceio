@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Resonance intro</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Fraunces:opsz,wght@9..144,400&display=swap">
+<link rel="stylesheet" href="corridor.css">
+<style>
+:root{--bg:#09080F;}
+html,body{background:#09080F;}
+.scroller{height:1200vh;}
+#rail,#secnav,#bar,#veil{display:none!important;}
+html{scrollbar-width:none;} html::-webkit-scrollbar{display:none;}
+/* the lockup: laid out large at the centre, lands on the homepage nav logo */
+#lock{position:fixed;inset:0;z-index:5;pointer-events:none;text-align:left;}
+#lock .hlin{position:absolute;left:0;top:0;display:flex;align-items:center;gap:var(--gap,20px);opacity:0;transform-origin:50% 50%;}
+#lock .hlin svg{width:var(--sw,76px);height:var(--sh,90px);flex:none;}
+#lock .hlin .hlword{font-family:'Fraunces',Georgia,serif;font-weight:400;font-size:var(--fs,56px);letter-spacing:-.01em;color:#F1EEFF;line-height:1;}
+html.go #lock .hlin{animation:lockLand 3.6s cubic-bezier(.65,0,.2,1) .1s both;}
+@keyframes lockLand{0%{opacity:1;transform:scale(.89);}66%{opacity:1;transform:scale(1);}100%{opacity:1;transform:translate(var(--tx),var(--ty)) scale(var(--k));}}
+</style>
+</head>
+<body class="home">
+<canvas id="gl" aria-hidden="true"></canvas>
+<div class="tip" id="tip" aria-hidden="true"><div class="t"></div><div class="b"></div></div>
+<div class="scroller" aria-hidden="true"></div>
+<div class="stage"><section class="sec hero on" id="hero0"><div class="in"></div></section></div>
+<div class="hero" id="lock" aria-hidden="true"><div class="hlin"><svg width="76" height="90" aria-hidden="true" viewBox="0 0 154 182" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M153.032 120.267C151.562 120.775 150.1 121.263 148.595 121.797C122.192 131.345 96.6636 144.643 77.0527 163.76C76.1612 164.641 75.2855 165.535 74.4268 166.442C74.8954 167.697 75.1533 169.054 75.1533 170.473C75.1533 176.839 69.9929 181.999 63.627 181.999C57.2609 181.999 52.0996 176.839 52.0996 170.473C52.0997 164.107 57.261 158.947 63.627 158.947C65.3899 158.947 67.0597 159.343 68.5537 160.051C69.5224 159.205 70.5035 158.377 71.4951 157.565C94.2724 139.231 121.208 128.493 148.469 121.378C150.02 120.983 151.523 120.635 153.032 120.267Z" fill="#9BE2E4"/>
+<path d="M11.9873 59.3557C18.6078 59.3557 23.9754 64.6194 23.9756 71.1125C23.9756 73.5466 23.2204 75.8077 21.9287 77.6838C22.5991 78.8025 23.2939 79.8907 24.0283 80.967C42.696 108.284 79.6038 118.04 113.279 118.468C115.159 118.48 117.145 118.446 118.953 118.372C117.157 118.591 115.174 118.771 113.293 118.905C79.6598 120.871 41.0566 114.918 17.3516 85.9348C16.4642 84.8277 15.6152 83.7036 14.7891 82.5432C13.8901 82.7543 12.9523 82.8703 11.9873 82.8703C5.36686 82.8701 0 77.6057 0 71.1125C0.000202317 64.6195 5.36698 59.3559 11.9873 59.3557Z" fill="url(#hlpaint0_32)"/>
+<path d="M133.939 120.678C132.369 120.919 130.647 121.204 129.029 121.485C99.5499 126.902 69.8404 134.143 43.9873 147.876C43.4006 148.2 42.8073 148.535 42.2168 148.874C42.3447 149.562 42.415 150.27 42.415 150.995C42.415 157.361 37.2545 162.521 30.8887 162.522C24.5227 162.522 19.3614 157.361 19.3613 150.995C19.3613 144.629 24.5227 139.469 30.8887 139.469C33.4021 139.469 35.726 140.275 37.6201 141.641C38.5159 141.218 39.4179 140.804 40.3027 140.414C68.9294 128.335 99.008 123.935 128.973 121.052C130.611 120.915 132.353 120.774 133.939 120.678Z" fill="url(#hlpaint1_32)"/>
+<path d="M42.417 51.5175C47.7642 51.5178 52.0986 55.7692 52.0986 61.0136C52.0986 63.9272 50.7594 66.5324 48.6533 68.2744C49.2172 69.1005 49.7957 69.9154 50.3936 70.7236C71.577 98.807 108.849 112.23 144.412 114.014C146.432 113.955 148.534 114.174 150.306 113.301C149.859 113.553 149.387 113.733 148.898 113.866C149.14 113.837 149.381 113.803 149.617 113.762C149.178 113.865 148.728 113.945 148.27 114.011C147.03 114.248 145.706 114.248 144.42 114.358C144.137 114.36 143.854 114.358 143.57 114.357C143.561 114.358 143.551 114.359 143.542 114.359C107.681 115.104 65.8779 107.282 43.7041 74.0498C42.9458 72.8727 42.2307 71.6873 41.5449 70.4697C36.606 70.0374 32.7344 65.97 32.7344 61.0136C32.7344 55.7691 37.0696 51.5175 42.417 51.5175Z" fill="url(#hlpaint2_32)"/>
+<path d="M90.7822 0.66696C92.6862 -0.538979 95.339 -0.0645439 96.707 1.72653C97.4008 2.63492 97.6295 3.70723 97.4395 4.70114C97.4522 4.82516 97.4598 4.9512 97.458 5.07907C97.3457 13.2627 97.0693 35.4671 97.0693 55.7363C97.0693 57.032 97.0492 58.2767 97.0127 59.4716C96.9525 70.6974 96.8631 79.7189 96.833 82.5644C96.8269 83.1338 96.4721 83.6365 95.9395 83.8379L91.54 85.5009C90.8536 85.7605 90.1321 85.4542 89.8232 84.8691C89.7229 84.7836 89.667 84.631 89.667 84.416V10.997L60.6465 29.3769C60.641 41.5872 60.6289 69.1824 60.6289 70.4882C60.6289 72.1676 53.0219 65.8699 52.7832 53.9043V26.8779C52.7832 26.486 52.8525 26.1102 52.9805 25.7627C53.2129 24.897 53.7706 24.1095 54.625 23.5683L90.7822 0.66696Z" fill="url(#hlpaint3_32)"/>
+<path d="M100.09 30.9179C100.075 30.534 100.509 30.3007 100.821 30.5254L114.154 40.1318C114.274 40.2184 114.346 40.3576 114.346 40.5058V47.0859C114.364 61.7596 114.695 92.4466 114.783 100.316C114.793 101.25 113.895 101.915 113.001 101.646L107.491 99.9922C106.906 99.8166 106.505 99.3019 106.505 98.6914V49.3906C106.505 49.3746 106.507 49.3571 106.508 49.3379V44.0117L100.671 40.3984C100.541 40.3178 100.459 40.1783 100.453 40.0254L100.09 30.9179Z" fill="url(#hlpaint4_32)"/>
+<defs>
+<linearGradient id="hlpaint0_32" x1="14.0623" y1="71.5739" x2="40.5735" y2="94.3963" gradientUnits="userSpaceOnUse">
+<stop stop-color="#9CE4E5"/>
+<stop offset="1" stop-color="#936DD7"/>
+</linearGradient>
+<linearGradient id="hlpaint1_32" x1="27.1997" y1="148.111" x2="123.334" y2="125.056" gradientUnits="userSpaceOnUse">
+<stop stop-color="#9CE4E5"/>
+<stop offset="0.778846" stop-color="#5B4790"/>
+<stop offset="1" stop-color="#98D8EB"/>
+</linearGradient>
+<linearGradient id="hlpaint2_32" x1="91.52" y1="51.5175" x2="91.52" y2="114.407" gradientUnits="userSpaceOnUse">
+<stop stop-color="#96D0F0"/>
+<stop offset="1" stop-color="#90B6EF"/>
+</linearGradient>
+<linearGradient id="hlpaint3_32" x1="75.1434" y1="0" x2="75.1434" y2="85.594" gradientUnits="userSpaceOnUse">
+<stop stop-color="#A37CEC"/>
+<stop offset="1" stop-color="#5B4790"/>
+</linearGradient>
+<linearGradient id="hlpaint4_32" x1="107.436" y1="30.4375" x2="107.436" y2="101.706" gradientUnits="userSpaceOnUse">
+<stop stop-color="#A37CEC"/>
+<stop offset="1" stop-color="#5B4790"/>
+</linearGradient>
+</defs>
+</svg><span class="hlword">Resonance</span></div></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.160.0/three.min.js"></script>
+<script src="corridor.js"></script>
+<script>
+(() => {
+const { ss, clamp, lerp, eo, snap, sub, vis, words, OX, OY, PH0, FINE } = Corridor;
+const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+const P = window.parent !== window ? window.parent : null;
+const tell = m => { try { P && P.postMessage(Object.assign({ src: 'xintro' }, m), location.origin); } catch (e) {} };
+const DEC = { status: null };
+scrollTo(0, 0);
+// the lockup: the corridor's own build (stroke trace, fill, glow, letters from depth), sized to land on the page's nav logo
+{ const hl = $('#lock .hlin');
+  hl.querySelectorAll('svg path').forEach((pa, i) => { const len = Math.ceil(pa.getTotalLength()); pa.style.setProperty('--len', len); pa.style.setProperty('--i', i); pa.setAttribute('stroke', pa.getAttribute('fill')); pa.setAttribute('stroke-width', '1.4'); });
+  const wd = hl.querySelector('.hlword'); const txt = wd.textContent; wd.textContent = ''; [...txt].forEach((ch, i) => { const sp = document.createElement('span'); sp.className = 'lt'; sp.textContent = ch; const r = n => (Math.sin(i * 12.9898 + n * 78.233) * 43758.5453) % 1; sp.style.setProperty('--x', (r(1) * 260).toFixed(0) + 'px'); sp.style.setProperty('--y', (r(2) * 160).toFixed(0) + 'px'); sp.style.setProperty('--z', (-300 - Math.abs(r(3)) * 900).toFixed(0) + 'px'); sp.style.setProperty('--r', (r(4) * 120).toFixed(0) + 'deg'); sp.style.setProperty('--i', i); wd.appendChild(sp); });
+  // target: the homepage's nav logo (same origin), or a sensible top-left default
+  let tg = { sx: 20, sy: 14, sw: 27, sh: 32, tx: 52, fs: 19.2 };
+  try { const d = P && P.document; const sv = d && d.querySelector('nav .nav-logo svg'), tt = d && d.querySelector('nav .nav-logo .logo-text');
+    if (sv && tt) { const a = sv.getBoundingClientRect(), b = tt.getBoundingClientRect(); tg = { sx: a.left, sy: a.top, sw: a.width, sh: a.height, tx: b.left, fs: parseFloat(P.getComputedStyle(tt).fontSize) }; } } catch (e) {}
+  const lay = () => {
+    // measure the lockup at nav size, then scale everything up so it reads large at the centre
+    const set = (k) => { hl.style.setProperty('--sw', tg.sw * k + 'px'); hl.style.setProperty('--sh', tg.sh * k + 'px'); hl.style.setProperty('--gap', (tg.tx - tg.sx - tg.sw) * k + 'px'); hl.style.setProperty('--fs', tg.fs * k + 'px'); };
+    set(1); const w1 = hl.getBoundingClientRect().width;
+    const k = Math.min(innerWidth - 40, 640) / w1; set(k);
+    const r = hl.getBoundingClientRect(); const L = (innerWidth - r.width) / 2, T = (innerHeight - r.height) / 2 - innerHeight * .04;
+    hl.style.left = L + 'px'; hl.style.top = T + 'px';
+    // land: the big lockup's top-left onto the logo's top-left, at 1/k
+    const vcen = tg.sy + tg.sh / 2;   // the svg's centre line is the lockup's centre line
+    hl.style.setProperty('--k', (1 / k).toFixed(5));
+    hl.style.setProperty('--tx', (tg.sx + r.width / k / 2 - (L + r.width / 2)) + 'px');
+    hl.style.setProperty('--ty', (vcen - (T + r.height / 2)) + 'px');
+  };
+  document.fonts.ready.then(() => { lay(); requestAnimationFrame(() => requestAnimationFrame(() => setTimeout(() => { document.documentElement.classList.add('go'); tell({ t: 'ready' }); runEnd(); }, 120))); });
+}
+// the end: after the slip beat, the camera pushes down the corridor along the red thread, then the page takes over
+function runEnd() {
+  const t0 = performance.now(), A = 4500, B = 6500, PD = .052;
+  const step = now => { const t = now - t0; if (t > A) { const e = clamp((t - A) / (B - A)); const k = e < .5 ? 4 * e * e * e : 1 - Math.pow(-2 * e + 2, 3) / 2; scrollTo(0, k * PD * (document.documentElement.scrollHeight - innerHeight)); }
+    if (t > A + 1050 && !step.sent) { step.sent = 1; tell({ t: 'done' }); }
+    if (t < B + 400) requestAnimationFrame(step); };
+  requestAnimationFrame(step);
+}
+['pointerdown', 'keydown', 'wheel', 'touchstart'].forEach(ev => addEventListener(ev, () => tell({ t: 'skip' }), { passive: true }));
+
+const SECTIONS = [
+// ---- 0 hero: the screens fly in from the depth and settle into near, mid and far layers; the camera eases back as they land;
+//      the headline assembles once they have; a beat later the slip happens on the screens themselves
+{ name: 'hero', label: "Start", stops: [], a: 0, b: .115, dom: '#hero0', shift: 0, scrim: 'center',
+  cam: [[0, 0, 0, 2, 0, 0, -30], [.5, 1.4, .3, -14, -1.5, .4, -40], [1, -1.6, 1, -42, -3.2, 1.2, -56]],
+  build(g, K, S) {
+    S.net = K.place(g, K.net(90, 30, 16, 26, 2, K.C.bone, .18), 0, 0, -38); K.place(g, K.haze(K.PAL.blue, 40, .1), 0, -2, -60);
+    S.dest = K.place(g, K.glow(K.PAL.gold, 7, 0), OX * .3, 0, -120); S.dest.userData.nofade = 1;   // the orb, already there, far down the corridor
+    //            kind, title, w, x, y, z, ry, rx, industry, room, link, tip title, tip body
+    const HH = [['#1147', 'Johnson · 3BR · wheelchair', 'Bldg C', '3', '23 Mar 2027', '+14 d', 'late'], ['#0882', 'Rivera · ground floor', 'Bldg C', '2', '16 Mar 2027', '0 d', 'ok'], ['#0614', 'Washington · school zone', 'Bldg C', '2', '16 Mar 2027', '0 d', 'ok'], ['#1203', 'Okafor · RAD priority', 'Bldg C', '4', '30 Mar 2027', '+14 d', 'watch'], ['#0975', 'Chen · senior', 'Bldg C', '1', '30 Mar 2027', '0 d', 'ok'], ['#1310', 'Nguyen · 2BR', 'Bldg D', '2', '6 Apr 2027', '0 d', 'ok'], ['#1422', 'Diaz · 3BR', 'Bldg D', '3', '13 Apr 2027', '0 d', 'ok']];
+    const UN = [['4B', 'Unit 4B · Bldg 7 · accessible', 'Bldg 7', '3', '14 Feb 2027', '0 d', 'ok'], ['2A', 'Unit 2A · Bldg 3', 'Bldg 3', '2', '21 Feb 2027', '0 d', 'ok'], ['6C', 'Unit 6C · senior wing', 'Bldg 12', '1', '28 Feb 2027', '+7 d', 'watch'], ['1D', 'Unit 1D · Bldg 2', 'Bldg 2', '2', '7 Mar 2027', '0 d', 'ok'], ['9F', 'Unit 9F · under construction', 'Bldg 14', '4', '4 Apr 2027', '+21 d', 'late'], ['3E', 'Unit 3E · inspection pending', 'Bldg 5', '3', '11 Apr 2027', '0 d', 'watch'], ['5A', 'Unit 5A · Bldg 1', 'Bldg 1', '2', '18 Apr 2027', '0 d', 'ok']];
+    const MAIL = ['construction@riverside-dev.example', 'riverside-relocation', ['Construction on Building C will start two weeks late.', 'The revised start date is 23 Mar 2027, not 9 Mar.', 'Every Phase 2 move date that depends on it moves too.', '', 'Revised schedule attached.'], ['⎘ BldgC_schedule_rev03.pdf', '⎘ phase2_moves.xlsx'], '4 recipients · none owns the move dates'];
+    //            kind, title, w, x, y, z, ry, rx, industry, room, link, tip title, tip body, rows
+    const D = [['sheet', 'Riverside_Phase2_moves_rev03.xlsx', 5.4, -7.3, 1.4, -9, .5, 0, 'housing', null, null, 'Your household data, straight from Yardi.', 'Resonance reads the export as it is.', HH],
+      ['mail', 'FW: Building C start moved two weeks', 5.2, 7.7, 2.3, -10, -.5, 0, 'housing', null, null, 'One email changes every move date.', 'Resonance reads the new date out of it.', MAIL],
+      ['roster', 'Riverside_Phase2_returns.xlsx', 3.8, -10.5, 4.8, -40, .3, 0, 'housing', null, null, 'Every household. One record.', 'Right to return tracked until the family is home.'],
+      ['units', 'Riverside · Phase 3 units', 3.8, 10.8, 4.5, -42, -.3, 0, 'housing', null, null, 'The right unit for every household.', 'Bedrooms, accessibility and readiness checked for each match.'],
+      ['sheet', 'Unit_readiness_checklist.xlsx', 4.2, 0, 5.6, -36, 0, -.3, 'housing', null, null, 'Every unit, and what it is waiting on.', 'Inspections and construction tied to each unit.', UN],
+      ['roster', 'Relocation_tracker_v4_FINAL.xlsx', 5.2, -7.6, -2.9, -18, .4, 0, 'housing', null, null, 'Every household. One record. No hunting.', 'When a building slips, every return date updates on its own.'],
+      ['units', 'Riverside · unit readiness', 5.0, 8.2, -2.6, -17, -.4, 0, 'housing', null, null, 'The right unit for every household. In minutes.', 'Matching that took months now takes minutes.'],
+      ['sheet', 'Phase2_relocation_plan.xlsx', 7.0, 0, 3.3, -24, 0, 0, 'housing', null, null, 'One plan, re-planned when dates move.', 'Same inputs, same plan.', HH]];
+    S.cards = D.map((d, i) => { const c = K.card(d[0], d[1], d[2], false, d[13], d[2] > 4 ? 1 : .6); c.rotation.y = d[6]; c.rotation.x = d[7]; c.userData.to = K.vec(d[3], d[4], d[5]); c.userData.from = K.vec(d[3] * .04, 2.2 + d[4] * .04, d[5] - 14); c.userData.slip = 0; c.userData.flash = 0; c.position.copy(c.userData.from); K.place(g, c, c.userData.from.x, c.userData.from.y, c.userData.from.z); K.hover(c, { w: c.userData.w, h: c.userData.h, dy: c.userData.h / 2, link: d[10] || undefined, meta: { industry: d[8], room: d[9] }, tip: () => ({ t: d[11], b: d[12] }) }); return c; });
+    S.lead = S.cards[0]; S.lead.userData.end = K.vec(-3.2, 1.2, -54); S.email = S.cards[1]; S.dash = S.cards[2];
+  },
+  update(q, K, S, el) {
+    const T = K.T, tIn = clamp((T - 2.5) / 1.9);
+    // arrival: deep to near, decelerating, staggered; the camera eases back as they land
+    S.cards.forEach((c, i) => { const e = 1 - Math.pow(1 - clamp((tIn - i * .07) / .75), 3); c.position.lerpVectors(c.userData.from, c.userData.to, e); if (c === S.lead) c.position.lerp(c.userData.end, ss(.35, 1, q)); c.position.y += Math.sin(T * .5 + i) * .12; const hot = c.userData.hot; c.userData.face.material.opacity = (c.userData.kind === 'decision' ? .42 : .97) * Math.min(1, e * 1.4) * c.userData._f; const sc = (1 + hot * .05) * (.12 + .88 * e); c.scale.setScalar(sc); if (c === S.lead) c.userData.tiltBase = [0, .55 - ss(.35, 1, q) * .55]; });
+    K.cam.position.z -= (1 - (1 - Math.pow(1 - clamp((T - .1) / 2.4), 3))) * 9 * (1 - ss(.04, .1, q));
+    // the slip beat: the email lights, the row flips to late, the float ticks to zero, the first pin ignites
+    const beat = ss(3.3, 4.3, T), flash = ss(3.1, 3.5, T) * (1 - ss(4.6, 5.6, T)); S.cards.forEach(c => { c.userData.slip = beat; }); S.email.userData.flash = flash; S.lead.userData.flash = ss(3.6, 3.9, T) * (1 - ss(4.8, 5.8, T)); S.dash.userData.flash = ss(3.9, 4.2, T) * (1 - ss(5, 6, T)); S.beat = flash; S.email.userData.glow.userData.base = .12 + flash * .4;
+    S.net.rotation.y = Math.sin(T * .08) * .12 + K.mouse.x * .08; S.net.rotation.x = K.mouse.y * .05; S.net.position.y = Math.sin(T * .3) * .4;
+    S.dest.material.opacity = .32 * ss(1.5, 3, T) * (1 - ss(.3, .7, q)) * (.85 + .15 * Math.sin(T * 1.4)); S.dest.scale.setScalar(7 + Math.sin(T * .7) * .6);
+    const peel = ss(.25, .95, q); $$('.hero .layer').forEach((l, i) => { l.style.transform = `translateY(${-peel * (40 - i * 8)}px) scale(${1 + peel * (.5 - i * .1)})`; l.style.opacity = 1 - ss(.3, .75, q); l.style.filter = `blur(${peel * 6}px)`; });
+  } },
+];
+// ---- the red thread: one line strung from the Norvale email to the signed record, seen only near you (the first version, kept)
+let THREAD = null;
+function buildThread(K) {
+  const KEY = [[.04, 8.6, 3.1, -26], [.115, -3.2, 1.2, -54], [.16, 2, -1, -80], [.215, 0, 0, -106], [.30, OX, OY, -164], [.37, OX + 4.5, OY + 1.2, -163.5], [.43, OX, OY + 1.4, -202], [.51, OX, OY, -222], [.585, OX - 1.2, OY + .1, -242], [.66, OX - .6, OY + 1.15, -262], [.7, OX, OY + .4, -282], [.735, OX, OY - 1, -301.5], [.79, OX + .8, OY + .3, -404], [.87, 0, 0, -452], [.9, 0, 0, -468]];
+  const path = [0, 1, 2].map(ch => K.mono(KEY.map(k => [k[0], k[1 + ch]])));
+  const N = 260, P0 = .04, P1 = .9, pts = []; for (let i = 0; i < N; i++) { const p = P0 + (P1 - P0) * i / (N - 1); pts.push(K.vec(path[0](p), path[1](p), path[2](p))); }
+  const curve = new THREE.CatmullRomCurve3(pts, false, 'centripetal'); const lens = curve.getLengths(N - 1), total = lens[lens.length - 1], U = lens.map(l => l / total);
+  const uOf = p => { const t = clamp((p - P0) / (P1 - P0)) * (N - 1); const i = Math.floor(t), f = t - i; return i >= N - 1 ? 1 : U[i] * (1 - f) + U[i + 1] * f; };
+  const geo = new THREE.TubeGeometry(curve, 900, .03, 8, false);
+  const mat = new THREE.ShaderMaterial({ uniforms: { uP: { value: 0 }, uHead: { value: 0 }, uTail: { value: 0 }, uHot: { value: -1 }, uDec: { value: uOf(.36) }, uOk: { value: 0 }, uOn: { value: 1 }, uT: { value: 0 } }, transparent: true, depthWrite: false,
+    vertexShader: `uniform float uT; varying float vU; varying vec3 vN; varying float vD; void main(){ vU = uv.x; vN = normalize(normalMatrix * normal); vec3 p = position + vec3(sin(uT * .9 + uv.x * 40.), cos(uT * .7 + uv.x * 33.), sin(uT * .6 + uv.x * 21.)) * .02; vec4 mv = modelViewMatrix * vec4(p, 1.); vD = -mv.z; gl_Position = projectionMatrix * mv; }`,
+    fragmentShader: `uniform float uP, uHead, uTail, uHot, uDec, uOk, uOn, uT; varying float vU; varying vec3 vN; varying float vD;
+      void main(){ float d = abs(vU - uP); float win = (smoothstep(.2, .03, d) * .85 + smoothstep(.5, .2, d) * .1) * smoothstep(.9, 2.4, vD) * (1. - smoothstep(45., 90., vD));
+        float drawn = smoothstep(uTail, uTail + .03, vU) * (1. - smoothstep(uHead - .004, uHead, vU)); float headGlow = smoothstep(.035, 0., uHead - vU);
+        float hot = uHot < 0. ? 0. : smoothstep(.06, 0., abs(vU - uHot));
+        vec3 thread = vec3(.84, .22, .18), green = vec3(.498, .71, .541); vec3 col = mix(thread, green, step(uDec, vU) * uOk);
+        float rim = .7 + .3 * max(vN.z, 0.); float pulse = .9 + .1 * sin(uT * 2.6 - vU * 70.);
+        gl_FragColor = vec4(col * rim * (1. + headGlow * 1.1 + hot * .8) * pulse, (win * drawn + hot * .6) * uOn); }` });
+  const mesh = new THREE.Mesh(geo, mat); mesh.frustumCulled = false; K.scene.add(mesh);
+  const pins = KEY.slice(0, -2).map(k => { const g = K.glow('#D63A2F', .9, 0); g.userData.nofade = 1; g.position.set(k[1], k[2], k[3]); g.userData.u = uOf(k[0]); K.scene.add(g); return g; });
+  const touch = K.glow('#F2EEE6', 1.4, 0); touch.userData.nofade = 1; K.scene.add(touch);
+  const head = K.glow('#FF8A7A', 1.0, 0); head.userData.nofade = 1; K.scene.add(head); const head2 = K.glow('#D63A2F', 2.4, 0); head2.userData.nofade = 1; K.scene.add(head2);
+  return { mesh, mat, curve, pts, U, uOf, pins, touch, head, head2 };
+}
+const _w = new THREE.Vector3();
+function updateThread(K) { const t = THREAD, pd = K.pd, T = K.T; const u = t.uOf(pd); t.mat.uniforms.uP.value = u; t.mat.uniforms.uT.value = T; const uHead = t.uOf(pd + .02), uTail = t.uOf(pd - .16); t.mat.uniforms.uHead.value = uHead; t.mat.uniforms.uTail.value = uTail;
+  const hp = t.curve.getPointAt(Math.min(.9999, uHead)); t.head.position.copy(hp); t.head2.position.copy(hp); const on0 = (1 - K.fade) * ss(.02, .05, pd) * (1 - ss(.86, .9, pd)); t.head.material.opacity = on0 * (.75 + .15 * Math.sin(T * 4)); t.head.scale.setScalar(.8 + .15 * Math.sin(T * 4)); t.head2.material.opacity = on0 * .22; t.head2.scale.setScalar(2.2 + .25 * Math.sin(T * 2)); const okh = t.mat.uniforms.uOk.value > .5 && uHead > t.mat.uniforms.uDec.value; t.head.material.color.set(okh ? '#B8F0C0' : '#FF8A7A'); t.head2.material.color.set(okh ? '#7FB58A' : '#D63A2F'); t.mat.uniforms.uOk.value += ((DEC.status === 'approved' ? 1 : 0) - t.mat.uniforms.uOk.value) * .05; t.mat.uniforms.uOn.value = (1 - K.fade) * ss(.02, .05, pd);
+  const ok = t.mat.uniforms.uOk.value; t.pins.forEach((p, i) => { let near = Math.max(0, 1 - Math.abs(p.userData.u - u) / .05); if (i === 0) near = Math.max(near, (SECTIONS[0].state.beat || 0) * (1 - ss(.06, .1, pd))); p.material.opacity = near * .9 * (1 - K.fade); p.scale.setScalar(.9 + near * .5 + .15 * Math.sin(T * 4)); p.material.color.set(ok > .5 && p.userData.u > t.uOf(.36) ? '#7FB58A' : '#D63A2F'); });
+  let hot = -1; const hv = K.hovered; if (hv) { hv.getWorldPosition(_w); let best = 1e9, bi = -1; for (let i = 0; i < t.pts.length; i++) { const d = t.pts[i].distanceToSquared(_w); if (d < best) { best = d; bi = i; } } if (best < 9) { hot = t.U[bi]; t.touch.position.copy(t.pts[bi]); } }
+  t.mat.uniforms.uHot.value += (hot - t.mat.uniforms.uHot.value) * (hot < 0 ? .3 : .25); t.touch.material.opacity += ((hot >= 0 ? .9 : 0) - t.touch.material.opacity) * .2; t.touch.scale.setScalar(1.2 + .3 * Math.sin(T * 5)); }
+
+Corridor.start({ sections: SECTIONS, room: 60, after: K => { THREAD = buildThread(K); }, onFrame: K => { updateThread(K); }, onStatic: () => tell({ t: 'skip' }) });
+})();
+</script>
+</body>
+</html>
