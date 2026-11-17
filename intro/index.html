@@ -19,8 +19,11 @@ html{scrollbar-width:none;} html::-webkit-scrollbar{display:none;}
 #lock .hlin{position:absolute;left:0;top:0;display:flex;align-items:center;gap:var(--gap,20px);opacity:0;transform-origin:50% 50%;}
 #lock .hlin svg{width:var(--sw,76px);height:var(--sh,90px);flex:none;}
 #lock .hlin .hlword{font-family:'Hanken Grotesk',system-ui,sans-serif;font-weight:700;font-size:var(--fs,56px);letter-spacing:-.025em;color:#F1EEFF;line-height:1;}
-html.go #lock .hlin{animation:lockLand 3.6s cubic-bezier(.65,0,.2,1) .1s both;}
-@keyframes lockLand{0%{opacity:1;transform:scale(.89);}66%{opacity:1;transform:scale(1);}100%{opacity:1;transform:translate(var(--tx),var(--ty)) scale(var(--k));}}
+html.go #lock .hlin{animation:lockLand 2.5s cubic-bezier(.65,0,.2,1) .05s both;}
+html.go #lock .hlin svg path{animation:traceIn .8s cubic-bezier(.6,0,.2,1) calc(.1s + var(--i) * .08s) forwards, fillIn .5s ease calc(.6s + var(--i) * .05s) forwards;}
+html.go #lock .hlin svg{animation:markPulse 1.1s ease .95s both;}
+html.go #lock .hlin .hlword .lt{animation:ltIn .95s cubic-bezier(.2,.9,.2,1) calc(.3s + var(--i) * .04s) forwards;}
+@keyframes lockLand{0%{opacity:1;transform:scale(.9);}58%{opacity:1;transform:scale(1);}100%{opacity:1;transform:translate(var(--tx),var(--ty)) scale(var(--k));}}
 </style>
 </head>
 <body class="home">
@@ -92,13 +95,23 @@ scrollTo(0, 0);
   };
   document.fonts.ready.then(() => { lay(); requestAnimationFrame(() => requestAnimationFrame(() => setTimeout(() => { document.documentElement.classList.add('go'); tell({ t: 'ready' }); runEnd(); }, 120))); });
 }
-// the end: after the slip beat, the camera pushes down the corridor along the red thread, then the page takes over
-function runEnd() {
-  const t0 = performance.now(), A = 4500, B = 6500, PD = .052;
-  const step = now => { const t = now - t0; if (t > A) { const e = clamp((t - A) / (B - A)); const k = e < .5 ? 4 * e * e * e : 1 - Math.pow(-2 * e + 2, 3) / 2; scrollTo(0, k * PD * (document.documentElement.scrollHeight - innerHeight)); }
-    if (t > A + 1050 && !step.sent) { step.sent = 1; tell({ t: 'done' }); }
-    if (t < B + 400) requestAnimationFrame(step); };
-  requestAnimationFrame(step);
+// the end: the centre screen comes forward, square to the camera, and hands its screen rect to the page,
+// which grows its live console out of that exact rect while this layer dissolves
+let HAND = null;
+function runEnd() { HAND = { t0: performance.now() + 2150, dur: 650, sent: false }; }
+const _f = new THREE.Vector3(), _tg = new THREE.Vector3(), _q = new THREE.Quaternion();
+function handFrame(K) {
+  if (!HAND) return; const c = SECTIONS[0].state.cards && SECTIONS[0].state.cards[7]; if (!c) return;
+  const e0 = clamp((performance.now() - HAND.t0) / HAND.dur); if (e0 <= 0) return; const e = 1 - Math.pow(1 - e0, 3);
+  const cam = K.cam; cam.getWorldDirection(_f);
+  const dist = 7.4; _tg.copy(cam.position).addScaledVector(_f, dist); _tg.y -= .5;
+  c.position.lerp(_tg, e); c.quaternion.slerp(cam.quaternion, e);
+  c.userData.face.material.opacity = Math.max(c.userData.face.material.opacity, e);
+  if (e0 >= 1 && !HAND.sent) { HAND.sent = true; c.updateMatrixWorld(true);
+    const bx = new THREE.Box3().setFromObject(c.userData.face), pts = []; for (let i = 0; i < 8; i++) pts.push(new THREE.Vector3(i & 1 ? bx.max.x : bx.min.x, i & 2 ? bx.max.y : bx.min.y, i & 4 ? bx.max.z : bx.min.z).project(cam));
+    const xs = pts.map(v => (v.x + 1) / 2 * innerWidth), ys = pts.map(v => (1 - v.y) / 2 * innerHeight);
+    const r = { x: Math.min(...xs), y: Math.min(...ys), w: Math.max(...xs) - Math.min(...xs), h: Math.max(...ys) - Math.min(...ys) };
+    tell({ t: 'done', rect: r }); }
 }
 ['pointerdown', 'keydown', 'wheel', 'touchstart'].forEach(ev => addEventListener(ev, () => tell({ t: 'skip' }), { passive: true }));
 
@@ -127,10 +140,10 @@ const SECTIONS = [
     S.lead = S.cards[0]; S.lead.userData.end = K.vec(-3.2, 1.2, -54); S.email = S.cards[1]; S.dash = S.cards[2];
   },
   update(q, K, S, el) {
-    const T = K.T, tIn = clamp((T - 2.5) / 1.9);
+    const T = K.T + 1.8, tIn = clamp((T - 2.5) / 1.9);
     // arrival: deep to near, decelerating, staggered; the camera eases back as they land
     S.cards.forEach((c, i) => { const e = 1 - Math.pow(1 - clamp((tIn - i * .07) / .75), 3); c.position.lerpVectors(c.userData.from, c.userData.to, e); if (c === S.lead) c.position.lerp(c.userData.end, ss(.35, 1, q)); c.position.y += Math.sin(T * .5 + i) * .12; const hot = c.userData.hot; c.userData.face.material.opacity = (c.userData.kind === 'decision' ? .42 : .97) * Math.min(1, e * 1.4) * c.userData._f; const sc = (1 + hot * .05) * (.12 + .88 * e); c.scale.setScalar(sc); if (c === S.lead) c.userData.tiltBase = [0, .55 - ss(.35, 1, q) * .55]; });
-    K.cam.position.z -= (1 - (1 - Math.pow(1 - clamp((T - .1) / 2.4), 3))) * 9 * (1 - ss(.04, .1, q));
+    K.cam.position.z -= (1 - (1 - Math.pow(1 - clamp((K.T - .1) / 2.4), 3))) * 9 * (1 - ss(.04, .1, q));
     // the slip beat: the email lights, the row flips to late, the float ticks to zero, the first pin ignites
     const beat = ss(3.3, 4.3, T), flash = ss(3.1, 3.5, T) * (1 - ss(4.6, 5.6, T)); S.cards.forEach(c => { c.userData.slip = beat; }); S.email.userData.flash = flash; S.lead.userData.flash = ss(3.6, 3.9, T) * (1 - ss(4.8, 5.8, T)); S.dash.userData.flash = ss(3.9, 4.2, T) * (1 - ss(5, 6, T)); S.beat = flash; S.email.userData.glow.userData.base = .12 + flash * .4;
     S.net.rotation.y = Math.sin(T * .08) * .12 + K.mouse.x * .08; S.net.rotation.x = K.mouse.y * .05; S.net.position.y = Math.sin(T * .3) * .4;
@@ -169,7 +182,7 @@ function updateThread(K) { const t = THREAD, pd = K.pd, T = K.T; const u = t.uOf
   let hot = -1; const hv = K.hovered; if (hv) { hv.getWorldPosition(_w); let best = 1e9, bi = -1; for (let i = 0; i < t.pts.length; i++) { const d = t.pts[i].distanceToSquared(_w); if (d < best) { best = d; bi = i; } } if (best < 9) { hot = t.U[bi]; t.touch.position.copy(t.pts[bi]); } }
   t.mat.uniforms.uHot.value += (hot - t.mat.uniforms.uHot.value) * (hot < 0 ? .3 : .25); t.touch.material.opacity += ((hot >= 0 ? .9 : 0) - t.touch.material.opacity) * .2; t.touch.scale.setScalar(1.2 + .3 * Math.sin(T * 5)); }
 
-Corridor.start({ sections: SECTIONS, room: 60, after: K => { THREAD = buildThread(K); }, onFrame: K => { updateThread(K); }, onStatic: () => tell({ t: 'skip' }) });
+Corridor.start({ sections: SECTIONS, room: 60, after: K => { THREAD = buildThread(K); }, onFrame: K => { updateThread(K); handFrame(K); }, onStatic: () => tell({ t: 'skip' }) });
 })();
 </script>
 </body>
