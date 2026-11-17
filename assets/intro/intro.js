@@ -21,10 +21,35 @@
   function handoffDos() {
     var h1 = document.getElementById('x-h1'), card = document.getElementById('xStack');
     if (h1 && h1.animate) {
-      h1.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 900, delay: 500, easing: INOUT, fill: 'backwards' });
+      h1.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 650, delay: 1250, easing: INOUT, fill: 'backwards' });
       [].forEach.call(h1.parentNode.children, function (n) { if (n === h1 || !n.animate) return;
         n.animate([{ opacity: 0, transform: 'translate3d(0,10px,0)' }, { opacity: 1, transform: 'none' }], { duration: 800, delay: 850, easing: EASE, fill: 'backwards' }); }); }
     if (card && card.animate) card.animate([{ opacity: 0, transform: 'translate3d(0,' + Math.round(innerHeight * .45) + 'px,0) scale(.82)' }, { offset: .25, opacity: 1 }, { opacity: 1, transform: 'none' }], { duration: 1900, delay: 300, easing: EASE, fill: 'backwards' });
+  }
+  // the corridor line: its words fly from their place in the intro, one line centred, and re-flow into the
+  // headline's stacked shape on the left; there the line turns into the headline
+  function flowLine(d) {
+    var h1 = document.getElementById('x-h1'); if (!h1 || !d.words || !d.words.length) return;
+    var hb = h1.getBoundingClientRect(), hcs = getComputedStyle(h1), hfs = parseFloat(hcs.fontSize), fs = hfs * .86;
+    var lay = document.createElement('div');
+    lay.style.cssText = 'position:fixed;left:' + hb.left + 'px;top:' + hb.top + 'px;width:' + hb.width + 'px;font:800 ' + fs + 'px/1 "Hanken Grotesk",system-ui,sans-serif;letter-spacing:-.035em;visibility:hidden;pointer-events:none;z-index:-1;';
+    lay.innerHTML = d.words.map(function (w) { return '<span style="display:inline-block">' + w.t + '</span>'; }).join(' ');
+    document.body.appendChild(lay);
+    var to = [].map.call(lay.children, function (n) { return n.getBoundingClientRect(); });
+    var top = to.length ? to[0].top : hb.top, off = hb.top - top; lay.remove();
+    var layer = document.createElement('div'); layer.setAttribute('aria-hidden', 'true');
+    layer.style.cssText = 'position:fixed;inset:0;z-index:10002;pointer-events:none;';
+    var k = d.fs / fs;
+    d.words.forEach(function (w, i) { var r = to[i]; if (!r) return;
+      var s = document.createElement('span'); s.textContent = w.t;
+      s.style.cssText = 'position:absolute;left:' + r.left + 'px;top:' + (r.top + off) + 'px;font:800 ' + fs + 'px/1 "Hanken Grotesk",system-ui,sans-serif;letter-spacing:-.035em;color:#F1EEFF;white-space:nowrap;transform-origin:0 0;will-change:transform,opacity;';
+      layer.appendChild(s);
+      s.animate([{ transform: 'translate3d(' + (w.x - r.left) + 'px,' + (w.y - r.top - off) + 'px,0) scale(' + k + ')' }, { transform: 'none' }], { duration: 1150, delay: i * 28, easing: 'cubic-bezier(.65,0,.25,1)', fill: 'both' });
+      s.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 600, delay: 1300, easing: INOUT, fill: 'forwards' });
+    });
+    document.body.appendChild(layer);
+    setTimeout(function () { layer.remove(); }, 2100);
+    cleanups.push(function () { if (layer.parentNode) layer.remove(); });
   }
   function handoff() {
     if (handed || done) return; handed = true;
@@ -70,6 +95,7 @@
     window.addEventListener('message', function (e) {
       if (e.origin !== location.origin || !e.data || e.data.src !== 'xintro') return;
       if (e.data.t === 'ready') ready = true;
+      if (e.data.t === 'line') flowLine(e.data);
       if (e.data.t === 'title') handoff();
       if (e.data.t === 'done') finish(false);
       if (e.data.t === 'skip') finish(true);

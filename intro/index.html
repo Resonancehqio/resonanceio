@@ -24,7 +24,7 @@ html.go #lock .hlin svg path{animation:traceIn .8s cubic-bezier(.6,0,.2,1) calc(
 html.go #lock .hlin svg{animation:markPulse 1.1s ease .95s both;}
 html.go #lock .hlin .hlword .lt{animation:ltIn .95s cubic-bezier(.2,.9,.2,1) calc(.3s + var(--i) * .04s) forwards;}
 @keyframes lockLand{0%{opacity:1;transform:scale(.9);}52%{opacity:1;transform:scale(1);}100%{opacity:1;transform:translate(var(--tx),var(--ty)) scale(var(--k));}}
-#tag{position:fixed;left:0;top:0;z-index:5;margin:0;pointer-events:none;text-wrap:balance;font:800 var(--tfs,40px)/1.05 'Hanken Grotesk',system-ui,sans-serif;letter-spacing:-.035em;color:#F1EEFF;transform-origin:0 0;will-change:transform,opacity;}
+#tag{position:fixed;left:0;top:0;z-index:5;margin:0;pointer-events:none;white-space:nowrap;text-align:center;font:800 var(--tfs,40px)/1.05 'Hanken Grotesk',system-ui,sans-serif;letter-spacing:-.035em;color:#F1EEFF;transform-origin:0 0;will-change:transform,opacity;}
 #tag .w{display:inline-block;opacity:0;filter:blur(8px);transform:translateY(18px) scale(1.12);}
 html.go #tag .w{animation:wIn .85s cubic-bezier(.2,.8,.2,1) forwards;animation-delay:calc(.5s + var(--d) * .07s);}
 </style>
@@ -92,9 +92,9 @@ scrollTo(0, 0);
     const r = hl.getBoundingClientRect(); const L = (innerWidth - r.width) / 2, T = (innerHeight - r.height) / 2 - innerHeight * .04;
     hl.style.left = L + 'px'; hl.style.top = T + 'px';
     const tag = $('#tag'); if (tag && new URLSearchParams(location.search).has('line')) { tag.hidden = false;
-      const tfs = Math.min(46, (innerWidth - 40) / 13.5); tag.style.setProperty('--tfs', tfs.toFixed(1) + 'px');
-      // wrap the line the way the page headline wraps, so it can resolve straight onto it
-      try { const h1 = P && P.document.querySelector('#x-h1, .hero h1'); if (h1) { const hw = h1.getBoundingClientRect().width, hf = parseFloat(P.getComputedStyle(h1).fontSize); tag.style.width = (hw * tfs / hf) + 'px'; } } catch (e) {}
+      // one line, centred under the logo (phones may take two)
+      const tfs = Math.max(15, Math.min(40, (innerWidth - 48) / 23)); tag.style.setProperty('--tfs', tfs.toFixed(1) + 'px');
+      if (innerWidth < 600) { tag.style.whiteSpace = 'normal'; tag.style.width = (innerWidth - 40) + 'px'; tag.style.textWrap = 'balance'; }
       if (!tag.dataset.split) { tag.dataset.split = 1; tag.innerHTML = tag.textContent.split(' ').map((w, i) => `<span class="w" style="--d:${i}">${w}</span>`).join(' '); }
       const tw = tag.offsetWidth; tag.style.left = (innerWidth - tw) / 2 + 'px'; tag.style.top = (T + r.height + Math.max(16, r.height * .3)) + 'px'; }
     // land: the big lockup's top-left onto the logo's top-left, at 1/k
@@ -108,10 +108,9 @@ scrollTo(0, 0);
 // the end: once the logo has landed, the page takes over (it brings its own console in from the depth of this corridor)
 function lineToHeadline() {
   const tag = $('#tag'); if (!tag || tag.hidden) return;
-  let hr = null, hfs = 0; try { const h1 = P && P.document.querySelector('#x-h1, .hero h1'); if (h1) { hr = h1.getBoundingClientRect(); hfs = parseFloat(P.getComputedStyle(h1).fontSize); } } catch (e) {}
-  if (!hr) return; const r = tag.getBoundingClientRect(), tfs = parseFloat(getComputedStyle(tag).fontSize);
-  const k = hfs / tfs, dx = hr.left - r.left, dy = hr.top - r.top;
-  tag.animate([{ transform: 'none' }, { transform: `translate(${dx}px,${dy}px) scale(${k})` }], { duration: 1050, easing: 'cubic-bezier(.65,0,.25,1)', fill: 'forwards' });
+  const words = [...tag.querySelectorAll('.w')].map(w => { const r = w.getBoundingClientRect(); return { x: r.left, y: r.top, w: r.width, h: r.height, t: w.textContent }; });
+  tell({ t: 'line', words, fs: parseFloat(getComputedStyle(tag).fontSize) });
+  requestAnimationFrame(() => { tag.style.visibility = 'hidden'; });
 }
 function runEnd() { setTimeout(() => { lineToHeadline(); tell({ t: 'title' }); }, 1950); setTimeout(() => tell({ t: 'done' }), 2250); }
 function handFrame() {}
