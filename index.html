@@ -2658,7 +2658,7 @@ y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
 <main id="main-content" role="main">
 <section class="hero" aria-label="Resonance affordable housing relocation and redevelopment software">
   <a href="/decisionos" class="hero-announce hero-announce-link">
-    <span class="announce-badge">Product preview</span>
+    <span class="announce-badge">New release</span>
     <span>New: <strong>DecisionOS</strong>, an intelligence layer that turns your data into plans you can defend</span>
     <span class="announce-arrow" aria-hidden="true">&rarr;</span>
   </a>
@@ -2674,6 +2674,7 @@ y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
       Schedule a demo
       <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8m-4-4 4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </a>
+    <a href="/decisionos" class="btn-lg btn-outline-lg x-hero-dos">Meet DecisionOS <span class="x-new">New</span></a>
     <button onclick="openLoomVideo()" class="btn-lg btn-outline-lg" style="display:none;border:none;cursor:pointer;align-items:center;gap:9px;">
       <span style="width:22px;height:22px;border-radius:50%;background:rgba(255,255,255,0.12);display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;">
         <svg width="8" height="10" viewBox="0 0 8 10" fill="currentColor"><path d="M0 0l8 5-8 5V0z"/></svg>
@@ -3683,7 +3684,7 @@ y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
   <div class="wrap">
     <div class="x-dos-head">
       <div>
-        <a class="x-dos-badge" href="/decisionos"><span>New</span>DecisionOS by Resonance · product preview</a>
+        <a class="x-dos-badge" href="/decisionos"><span>New</span>DecisionOS by Resonance · now available</a>
         <h2 class="section-title" id="x-dos-h">Most "AI for housing" is a chatbot on top of a spreadsheet. <em>DecisionOS makes decisions you can defend.</em></h2>
       </div>
       <div>
@@ -5322,11 +5323,6 @@ html:not([data-theme="light"]){--text-2:#D3CCEC;--text-3:#A39BC9;}
 .uc-card.x-in .uc-outcome::after{transform:scaleX(1);}
 
 /* ═══ Pass 2: pop ═══ */
-/* Hero product reveal (3D tilt flattens on scroll) */
-.x-js .platform-preview{perspective:1800px;}
-.x-js .platform-preview-inner{transform-origin:50% 0%;transform:rotateX(var(--rx,0deg)) scale(var(--sc,1)) translateY(var(--ty,0px));will-change:transform;}
-.x-js .platform-preview::after{content:'';position:absolute;left:8%;right:8%;bottom:-40px;height:120px;z-index:-1;border-radius:50%;background:radial-gradient(closest-side,rgba(124,58,237,0.55),transparent);filter:blur(24px);opacity:var(--gl,0.4);pointer-events:none;}
-
 /* Problem: three cards become full-width ledger rows */
 @media(min-width:861px){
   html body .problem-three{grid-template-columns:minmax(0,1fr);gap:0;background:none;border-radius:0;overflow:visible;border-top:0.5px solid var(--border);}
@@ -5579,6 +5575,112 @@ html[data-theme="light"] .x-ans-r{background:#F8F7FC;}
 .x-dos-proofs h3{font-family:var(--ff-display);font-weight:400;font-size:clamp(22px,2.2vw,28px);letter-spacing:-0.015em;color:var(--text-1);margin:0 0 8px;}
 .x-dos-proofs p{font-size:15px;line-height:1.65;color:var(--text-2);margin:0;}
 @media(max-width:760px){.x-dos-proofs{grid-template-columns:minmax(0,1fr);}.x-dos-proofs > div + div{padding-left:0;border-left:0;border-top:0.5px solid var(--border);margin-top:20px;}}
+/* Hero DecisionOS CTA */
+.x-hero-dos{display:inline-flex;align-items:center;gap:10px;text-decoration:none;}
+.x-new{font-size:10px;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;padding:3px 8px;border-radius:999px;color:var(--dark);background:var(--teal);}
+.hero-cta{flex-wrap:wrap;justify-content:center;}
+/* ═══ Hero: live operations console (replaces tilted dashboard when motion is on) ═══ */
+.x-js .platform-preview{display:none !important;}
+.xl{position:relative;width:100%;max-width:1180px;margin:56px auto 0;border-radius:20px;background:var(--dark-2);box-shadow:inset 0 0 0 0.5px var(--border-hi),0 60px 140px -40px rgba(0,0,0,0.9),0 0 120px -30px rgba(91,33,182,0.45);overflow:hidden;text-align:left;font-size:12.5px;animation:fadeUp .8s .45s ease both;}
+html[data-theme="light"] .xl{background:#fff;box-shadow:inset 0 0 0 1px rgba(91,33,182,0.15),0 50px 120px -50px rgba(40,20,90,0.35);}
+.xl-bar{display:flex;align-items:center;gap:12px;height:46px;padding:0 16px;background:var(--dark-1);border-bottom:0.5px solid var(--border);}
+html[data-theme="light"] .xl-bar{background:#F6F4FC;}
+.xl-bar .dots{display:flex;gap:6px;}.xl-bar .dots i{width:10px;height:10px;border-radius:50%;}
+.xl-bar .dots i:nth-child(1){background:#FF5F57}.xl-bar .dots i:nth-child(2){background:#FEBC2E}.xl-bar .dots i:nth-child(3){background:#28C840}
+.xl-url{flex:1;min-width:0;text-align:center;font-family:var(--ff-mono);font-size:11.5px;color:var(--text-3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.xl-pill{--c:#A78BFA;display:inline-flex;align-items:center;gap:7px;padding:5px 12px 5px 10px;border-radius:999px;font-size:12px;font-weight:600;color:var(--c);background:color-mix(in srgb,var(--c) 12%,transparent);box-shadow:inset 0 0 0 0.5px color-mix(in srgb,var(--c) 60%,transparent);white-space:nowrap;transition:color .3s,background .3s;}
+.xl-pill i{width:6px;height:6px;border-radius:50%;background:currentColor;}
+.xl-pill.busy i{animation:xBlink .8s steps(2) infinite;}
+.xl-wrap{display:grid;grid-template-columns:190px minmax(0,1fr) 300px;min-height:470px;}
+.xl-side{padding:16px 12px;border-right:0.5px solid var(--border);background:rgba(9,8,15,0.25);}
+html[data-theme="light"] .xl-side{background:#FAF9FD;}
+.xl-side-h{font-family:var(--ff-mono);font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-3);padding:8px 10px 6px;}
+.xl-nav{display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:8px;font-size:12.5px;color:var(--text-2);transition:background .3s,color .3s;}
+.xl-nav svg{width:14px;height:14px;opacity:.7;flex-shrink:0;}
+.xl-nav em{margin-left:auto;font-style:normal;font-size:10px;padding:1px 7px;border-radius:999px;background:var(--purple);color:#fff;}
+.xl-nav.on{background:rgba(91,33,182,0.28);color:var(--purple-bright);}
+html[data-theme="light"] .xl-nav.on{background:rgba(91,33,182,0.1);color:var(--purple);}
+.xl-main{position:relative;padding:16px 18px;min-width:0;}
+.xl-kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin-bottom:12px;}
+.xl-kpi{padding:10px 12px;border-radius:10px;background:rgba(255,255,255,0.03);box-shadow:inset 0 0 0 0.5px var(--border);}
+html[data-theme="light"] .xl-kpi{background:#F8F7FC;}
+.xl-kpi span{display:block;font-size:10.5px;color:var(--text-3);}
+.xl-kpi b{display:block;margin-top:2px;font-family:var(--ff-display);font-weight:400;font-size:24px;line-height:1.1;color:var(--text-1);font-variant-numeric:tabular-nums;}
+.xl-kpi b.t{color:var(--teal);}.xl-kpi b.a{color:var(--amber);}
+.xl-ev{display:flex;align-items:center;justify-content:space-between;gap:12px;height:0;overflow:hidden;opacity:0;margin-bottom:0;border-radius:10px;background:rgba(245,158,11,0.09);box-shadow:inset 0 0 0 0.5px rgba(245,158,11,0.5);padding:0 12px;font-size:12.5px;color:var(--text-1);transition:height .45s cubic-bezier(.16,1,.3,1),opacity .35s,margin .45s;}
+.xl-ev.on{height:40px;opacity:1;margin-bottom:12px;}
+.xl-ev b{color:var(--amber);font-weight:600;}
+.xl-ev .g{flex:1;max-width:260px;position:relative;height:10px;border-radius:5px;background:rgba(255,255,255,0.06);}
+.xl-ev .g i{position:absolute;top:0;bottom:0;left:20%;width:45%;border-radius:5px;background:var(--purple-mid);transition:left .9s cubic-bezier(.16,1,.3,1);}
+.xl-ev.slip .g i{left:36%;}
+.xl-stage{display:grid;grid-template-columns:150px minmax(0,1fr);gap:14px;}
+.xl-q-h,.xl-b-h{font-family:var(--ff-mono);font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-3);margin-bottom:8px;display:flex;justify-content:space-between;}
+.xl-q{display:flex;flex-direction:column;gap:5px;}
+.xl-qi{padding:7px 9px;border-radius:8px;background:rgba(255,255,255,0.03);box-shadow:inset 0 0 0 0.5px var(--border);transition:all .3s;}
+html[data-theme="light"] .xl-qi{background:#F8F7FC;}
+.xl-qi b{display:block;font-size:11.5px;font-weight:600;color:var(--text-1);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.xl-qi span{font-family:var(--ff-mono);font-size:10px;color:var(--text-3);}
+.xl-qi.now{background:rgba(124,58,237,0.18);box-shadow:inset 0 0 0 1px var(--purple-bright);}
+.xl-qi.done{opacity:.35;}
+.xl-qi.done b::after{content:' ✓';color:var(--teal);}
+.xl-board{position:relative;display:flex;flex-direction:column;gap:7px;}
+.xl-row{display:grid;grid-template-columns:48px minmax(0,1fr);gap:8px;align-items:center;}
+.xl-row > span{font-size:11px;color:var(--text-3);white-space:nowrap;}
+.xl-tiles{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:5px;}
+.xl-t{height:38px;font-size:10.5px !important;border-radius:5px;display:grid;place-items:center;font-family:var(--ff-mono);font-size:9.5px;color:var(--text-3);box-shadow:inset 0 0 0 0.5px var(--border);transition:background .35s,box-shadow .35s,color .35s,transform .35s;}
+.xl-t.occ{background:rgba(167,139,250,0.16);box-shadow:inset 0 0 0 0.5px rgba(167,139,250,0.4);color:var(--text-2);}
+.xl-t.tgt{box-shadow:inset 0 0 0 1.5px var(--teal-bright),0 0 12px rgba(94,234,212,0.5);}
+.xl-t.mat{background:rgba(20,184,166,0.3);box-shadow:inset 0 0 0 1px var(--teal);color:var(--text-1);}
+.xl-t.pop{transform:scale(1.18);}
+.xl-t.hit{background:rgba(245,158,11,0.3);box-shadow:inset 0 0 0 1px var(--amber);color:var(--text-1);}
+.xl-fly{position:absolute;left:0;top:0;z-index:6;padding:3px 8px;border-radius:999px;font-family:var(--ff-mono);font-size:10px;font-weight:600;white-space:nowrap;color:#06281C;background:var(--teal-bright);box-shadow:0 0 16px rgba(94,234,212,0.7),0 6px 14px -4px rgba(0,0,0,0.7);opacity:0;pointer-events:none;will-change:transform;}
+.xl-fly.amber{background:var(--amber);box-shadow:0 0 16px rgba(245,158,11,0.7);}
+.xl-panel{position:relative;border-left:0.5px solid var(--border);background:rgba(9,8,15,0.25);}
+html[data-theme="light"] .xl-panel{background:#FAF9FD;}
+.xl-pane{position:absolute;inset:0;padding:16px;opacity:0;visibility:hidden;transform:translateY(8px);transition:opacity .4s,transform .5s cubic-bezier(.16,1,.3,1),visibility 0s .4s;}
+.xl-pane.on{opacity:1;visibility:visible;transform:none;transition:opacity .4s,transform .5s cubic-bezier(.16,1,.3,1);}
+.xl-ph{font-family:var(--ff-mono);font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:var(--teal);margin-bottom:10px;}
+.xl-hn{font-size:16px;font-weight:600;color:var(--text-1);}
+.xl-hd{font-family:var(--ff-mono);font-size:11px;color:var(--text-3);margin-bottom:12px;}
+.xl-eval{font-size:11.5px;color:var(--text-2);margin-bottom:10px;}
+.xl-eval b{font-family:var(--ff-mono);color:var(--text-1);}
+.xl-crit{display:flex;flex-direction:column;gap:6px;margin-bottom:14px;}
+.xl-c{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text-3);transition:color .25s;}
+.xl-c i{width:14px;height:14px;border-radius:50%;box-shadow:inset 0 0 0 1px var(--border-hi);display:grid;place-items:center;flex-shrink:0;transition:background .25s;}
+.xl-c i::after{content:'';width:5px;height:3px;margin-top:-1px;border-left:1.5px solid #06281C;border-bottom:1.5px solid #06281C;transform:rotate(-45deg);opacity:0;}
+.xl-c.on{color:var(--text-1);}.xl-c.on i{background:var(--teal-bright);box-shadow:none;}.xl-c.on i::after{opacity:1;}
+.xl-score{display:flex;align-items:baseline;gap:10px;}
+.xl-score b{font-family:var(--ff-display);font-weight:300;font-size:56px;line-height:1;color:var(--teal);font-variant-numeric:tabular-nums;letter-spacing:-0.03em;}
+.xl-score span{font-size:12px;color:var(--text-3);}
+.xl-best{margin-top:10px;padding:9px 11px;border-radius:9px;font-size:12px;color:var(--text-1);background:rgba(20,184,166,0.08);box-shadow:inset 0 0 0 0.5px rgba(94,234,212,0.5);opacity:0;transition:opacity .3s;}
+.xl-best.on{opacity:1;}
+.xl-best b{color:var(--teal);}
+.xl-plan{padding:10px 11px;margin-bottom:7px;border-radius:10px;background:rgba(255,255,255,0.03);box-shadow:inset 0 0 0 0.5px var(--border);transition:all .4s;}
+html[data-theme="light"] .xl-plan{background:#fff;}
+.xl-plan-h{display:flex;justify-content:space-between;gap:8px;font-size:12px;font-weight:600;color:var(--text-1);}
+.xl-plan-h em{font-style:normal;font-family:var(--ff-mono);font-size:12px;}
+.xl-plan .bar{margin-top:7px;height:5px;border-radius:5px;background:rgba(255,255,255,0.07);overflow:hidden;}
+.xl-plan .bar i{display:block;height:100%;width:0;border-radius:5px;}
+.xl-plan .meta{margin-top:5px;font-size:10.5px;color:var(--text-3);}
+.xl-plan.win{background:rgba(20,184,166,0.1);box-shadow:inset 0 0 0 1.5px var(--teal),0 10px 26px -14px rgba(20,184,166,0.7);transform:translateX(-4px);}
+.xl-plan.lose{opacity:.5;}
+.xl-rec{margin:4px 0 10px;font-size:12px;font-weight:600;color:var(--teal);clip-path:inset(0 100% 0 0);}
+.xl-apply{width:100%;height:36px;border:0;border-radius:9px;font:600 13px/1 var(--ff-body);color:#fff;background:var(--purple);opacity:0;transition:opacity .3s,transform .15s,background .3s;cursor:default;}
+.xl-apply.on{opacity:1;}.xl-apply.press{transform:scale(.97);background:var(--purple-mid);}.xl-apply.done{background:var(--teal);color:#06281C;}
+.xl-log{display:flex;flex-direction:column;}
+.xl-li{position:relative;padding:0 0 12px 18px;font-size:12px;line-height:1.45;color:var(--text-2);opacity:0;transform:translateY(6px);transition:opacity .4s,transform .45s cubic-bezier(.16,1,.3,1);}
+.xl-li.on{opacity:1;transform:none;}
+.xl-li::before{content:'';position:absolute;left:3px;top:5px;width:7px;height:7px;border-radius:50%;background:var(--teal-bright);}
+.xl-li time{display:block;font-family:var(--ff-mono);font-size:10.5px;color:var(--text-3);}
+.xl-li b{color:var(--text-1);font-weight:600;}
+.xl-foot{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 16px;border-top:0.5px solid var(--border);font-size:12px;color:var(--text-3);}
+.xl-stages{display:flex;gap:6px;}
+.xl-stg{all:unset;cursor:pointer;padding:4px 10px;border-radius:999px;font-size:11.5px;color:var(--text-3);box-shadow:inset 0 0 0 0.5px var(--border);transition:all .3s;}
+.xl-stg.on{color:var(--text-1);background:rgba(124,58,237,0.25);box-shadow:inset 0 0 0 1px var(--purple-bright);}
+.xl-stg:focus-visible{outline:2px solid var(--teal-bright);outline-offset:2px;}
+@media(max-width:1100px){.xl-wrap{grid-template-columns:minmax(0,1fr) 280px;}.xl-side{display:none;}}
+@media(max-width:820px){.xl-wrap{grid-template-columns:minmax(0,1fr);}.xl-panel{border-left:0;border-top:0.5px solid var(--border);min-height:300px;}.xl-stage{grid-template-columns:minmax(0,1fr);}.xl-queue{display:none;}.xl-kpis{grid-template-columns:repeat(2,minmax(0,1fr));}}
+@media(max-width:480px){.xl-t{height:22px;font-size:0 !important;}.xl-tiles{gap:3px;}.xl-row{grid-template-columns:40px minmax(0,1fr);}.xl-main{padding:12px;}.xl-foot{flex-direction:column;align-items:flex-start;}.xl-url{text-align:left;}.xl-ev{font-size:11px;}.xl-ev .g{display:none;}.xl-score b{font-size:44px;}}
 @media (prefers-reduced-motion: reduce){.x-scanline,.x-autoplay-hint{display:none;}}
 </style>
 <script id="x-enh-js">
@@ -5866,13 +5968,109 @@ html[data-theme="light"] .x-ans-r{background:#F8F7FC;}
     })();
   })();
 
-  /* ═══ Pass 2: pop ═══ */
-  // Hero product reveal: one scroll progress value tilts the dashboard flat
-  (function(){var pv=document.querySelector('.platform-preview'),inner=pv&&pv.querySelector('.platform-preview-inner');if(!inner)return;
-    var tick=false;function upd(){tick=false;var r=pv.getBoundingClientRect(),vh=innerHeight;var p=Math.min(1,Math.max(0,1-(r.top-vh*0.12)/(vh*0.62)));var e=p*p*(3-2*p);var mob=innerWidth<720;
-      inner.style.setProperty('--rx',((mob?10:20)*(1-e)).toFixed(2)+'deg');inner.style.setProperty('--sc',(0.9+0.1*e).toFixed(3));inner.style.setProperty('--ty',(18*(1-e)).toFixed(1)+'px');pv.style.setProperty('--gl',(0.25+0.55*e).toFixed(3));}
-    addEventListener('scroll',function(){if(!tick){tick=true;requestAnimationFrame(upd);}},{passive:true});addEventListener('resize',upd);upd();})();
+  /* ── Hero: live operations console. One progress value t (22 s loop) drives matching → simulation → result ── */
+  (function(){
+    var pv=document.querySelector('.platform-preview');if(!pv)return;
+    var SS=function(t,a,b){var x=Math.min(1,Math.max(0,(t-a)/(b-a)));return x*x*(3-2*x);};
+    var BL=['Bldg 2','Bldg 3','Bldg 5','Bldg 6','Bldg 7','Bldg 12'];
+    var UL=['1A','1B','1C','2A','2B','2C','3A','3B','4A','4B','5A','6B'];
+    var HH=[['Johnson Family','#1147 · 3BR · wheelchair','Johnson',4,'4B',97,['3-bedroom requirement','Wheelchair accessible','HCV limit $1,842/mo','Phase 2 eligible']],
+            ['Rivera, C.','#0882 · 2BR · ground floor','Rivera',1,'2A',94,['2-bedroom requirement','Ground floor','Section 8 limit','Phase 2 eligible']],
+            ['Washington, D.','#0614 · 2BR · school age','Washington',0,'1C',100,['2-bedroom requirement','Same school zone','HCV limit','Phase 1 eligible']],
+            ['Okafor, N.','#1203 · 4BR · RAD priority','Okafor',3,'5A',88,['4-bedroom requirement','RAD priority','Right to return','Phase 2 eligible']],
+            ['Chen, L.','#0975 · 1BR · senior','Chen',5,'6B',91,['1-bedroom requirement','Elevator access','LIHTC limit','Senior wing']]];
+    var ICO={o:'<svg viewBox="0 0 16 16" fill="currentColor"><rect x="2" y="2" width="5" height="5" rx="1"/><rect x="9" y="2" width="5" height="5" rx="1"/><rect x="2" y="9" width="5" height="5" rx="1"/><rect x="9" y="9" width="5" height="5" rx="1"/></svg>',h:'<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="6" cy="6" r="4"/><path d="M8 14H4a2 2 0 01-2-2v-1a2 2 0 012-2h4"/></svg>',u:'<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="12" height="10" rx="1.5"/><path d="M2 7h12"/></svg>',m:'<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="6"/><circle cx="8" cy="8" r="2.5"/></svg>',s:'<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 4h12M2 8h8M2 12h5"/></svg>',c:'<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 4h6M4 8h8M5 12h6"/><rect x="2" y="2" width="12" height="12" rx="2"/></svg>'};
+    // deterministic board: occupancy, burst targets, phase-2 hits and their new homes
+    var seed=11;function rnd(){seed=(seed*16807)%2147483647;return seed/2147483647;}
+    var tiles=[];BL.forEach(function(b,bi){UL.forEach(function(u,ui){tiles.push({bi:bi,ui:ui,k:bi+'-'+u,st:'vac'});});});
+    var targetKeys={};HH.forEach(function(h){targetKeys[h[3]+'-'+h[4]]=1;});
+    tiles.forEach(function(t){if(!targetKeys[t.k]&&rnd()<0.38)t.st='occ';});
+    var vac=tiles.filter(function(t){return t.st==='vac'&&!targetKeys[t.k];});
+    for(var i=vac.length-1;i>0;i--){var j=Math.floor(rnd()*(i+1));var x=vac[i];vac[i]=vac[j];vac[j]=x;}
+    var burst=vac.slice(0,24),dest=vac.slice(24,32);
+    var hits=tiles.filter(function(t){return (t.bi===2||t.bi===3)&&(t.st==='occ');}).slice(0,8);
+    var el=document.createElement('div');el.className='xl';el.setAttribute('role','img');
+    el.setAttribute('aria-label','Animation of Resonance at work: households are matched to units by their needs, a construction delay triggers a simulation of three plans, Plan B is applied and every decision is logged.');
+    var side=[['o','Program Overview'],['h','Households','847'],['u','Unit Inventory'],['m','Matching Engine'],['s','Simulations'],['c','Compliance Docs']];
+    el.innerHTML='<div class="xl-bar"><span class="dots"><i></i><i></i><i></i></span><span class="xl-url">app.resonancehq.io / programs / riverside-phase-2</span><span class="xl-pill busy"><i></i><span>Matching</span></span></div>'+
+      '<div class="xl-wrap"><aside class="xl-side"><div class="xl-side-h">Program</div>'+side.map(function(s,i){return '<div class="xl-nav" data-n="'+i+'">'+ICO[s[0]]+s[1]+(s[2]?'<em>'+s[2]+'</em>':'')+'</div>';}).join('')+'</aside>'+
+      '<div class="xl-main"><div class="xl-kpis"><div class="xl-kpi"><span>Households</span><b>847</b></div><div class="xl-kpi"><span>Matched</span><b class="t k1">312</b></div><div class="xl-kpi"><span>Need re-sequencing</span><b class="a k2">0</b></div><div class="xl-kpi"><span>Compliance score</span><b class="k3">96%</b></div></div>'+
+      '<div class="xl-ev"><span><b>Phase 2 construction moved +3 weeks.</b> <span class="evn">60</span> households affected.</span><span class="g"><i></i></span></div>'+
+      '<div class="xl-stage"><div class="xl-queue"><div class="xl-q-h">Next to match</div><div class="xl-q">'+HH.map(function(h){return '<div class="xl-qi"><b>'+h[0]+'</b><span>'+h[1]+'</span></div>';}).join('')+'</div></div>'+
+      '<div><div class="xl-b-h"><span>Unit board · Riverside Phase 2</span><span class="bstat">72 units</span></div><div class="xl-board">'+BL.map(function(b,bi){return '<div class="xl-row"><span>'+b+'</span><div class="xl-tiles">'+UL.map(function(u){return '<i class="xl-t" data-k="'+bi+'-'+u+'">'+u+'</i>';}).join('')+'</div></div>';}).join('')+'<span class="xl-fly"></span></div></div></div></div>'+
+      '<div class="xl-panel">'+
+        '<div class="xl-pane" data-p="0"><div class="xl-ph">Matching engine</div><div class="xl-hn"></div><div class="xl-hd"></div><div class="xl-eval">Evaluating <b class="ev">47</b> available units</div><div class="xl-crit">'+[0,1,2,3].map(function(){return '<div class="xl-c"><i></i><span></span></div>';}).join('')+'</div><div class="xl-score"><b class="sc">0%</b><span>match score</span></div><div class="xl-best"></div></div>'+
+        '<div class="xl-pane" data-p="1"><div class="xl-ph">Simulation · phase reorder</div>'+[['Plan A: Hold Phase 2',62,'#F87171','High risk · +11 wks'],['Plan B: Advance Phase 3',18,'#34D399','Low risk · +4 wks'],['Plan C: Pull from Phase 4',31,'#F59E0B','Medium risk · +6 wks']].map(function(p){return '<div class="xl-plan"><div class="xl-plan-h"><span>'+p[0]+'</span><em style="color:'+p[2]+'" data-v="'+p[1]+'">0</em></div><div class="bar"><i style="background:'+p[2]+'"></i></div><div class="meta">households disrupted · '+p[3]+'</div></div>';}).join('')+'<div class="xl-rec">✓ Resonance recommends Plan B: 71% fewer disruptions</div><button class="xl-apply" type="button" tabindex="-1">Apply Plan B</button></div>'+
+        '<div class="xl-pane" data-p="2"><div class="xl-ph">Decision log</div><div class="xl-log">'+[['09:15','<b>Plan B applied</b> · 18 households re-sequenced'],['09:15','<b>Notices queued</b> for every affected household'],['09:16','<b>URA documentation</b> updated automatically'],['09:16','<b>Audit trail</b> · every decision timestamped and attributable']].map(function(r){return '<div class="xl-li"><time>'+r[0]+'</time>'+r[1]+'</div>';}).join('')+'</div></div>'+
+      '</div></div>'+
+      '<div class="xl-foot"><div class="xl-stages"><button class="xl-stg" type="button" data-s="0">Matching</button><button class="xl-stg" type="button" data-s="1">Simulation</button><button class="xl-stg" type="button" data-s="2">Decision log</button></div><span>Illustrative data · the Resonance platform at work</span></div>';
+    pv.parentNode.insertBefore(el,pv.nextSibling);
+    var q=function(s){return el.querySelector(s);},qa=function(s){return [].slice.call(el.querySelectorAll(s));};
+    var T={};qa('.xl-t').forEach(function(t){T[t.dataset.k]=t;});
+    tiles.forEach(function(t){T[t.k].dataset.base=t.st;});
+    var navs=qa('.xl-nav'),qis=qa('.xl-qi'),panes=qa('.xl-pane'),stgs=qa('.xl-stg'),fly=q('.xl-fly'),board=q('.xl-board'),ev=q('.xl-ev'),evn=q('.evn');
+    var hn=q('.xl-hn'),hd=q('.xl-hd'),evc=q('.ev'),cr=qa('.xl-c'),sc=q('.sc'),best=q('.xl-best'),plans=qa('.xl-plan'),rec=q('.xl-rec'),apply=q('.xl-apply'),lis=qa('.xl-li');
+    var k1=q('.k1'),k2=q('.k2'),k3=q('.k3'),pill=q('.xl-pill'),bstat=q('.bstat');
+    var lastP='';function setPill(t,c,b){if(t===lastP)return;lastP=t;pill.lastChild.textContent=t;pill.style.setProperty('--c',c);pill.classList.toggle('busy',b);}
+    function rel(e){var b=board.getBoundingClientRect(),r=e.getBoundingClientRect();return [r.left-b.left+r.width/2,r.top-b.top+r.height/2];}
+    var M0=0.03,MW=0.06;                                   // five detailed matches
+    var BU=[0.34,0.42],EV=0.45,SIM=[0.5,0.62],AP=0.66,MV=[0.68,0.76],LOG=0.79;
+    var lastCls={};function cls(k,c){if(lastCls[k]!==c){lastCls[k]=c;T[k].className=c;}}
+    function render(t){
+      var fade=1-SS(t,0.97,1);el.style.setProperty('--f',fade);
+      var cur=-1;for(var i=0;i<HH.length;i++)if(t>=M0+i*MW&&t<M0+(i+1)*MW)cur=i;
+      var stage=t<EV?0:(t<LOG?1:2);
+      navs.forEach(function(n,i){n.classList.toggle('on',i===[3,4,5][stage]);});
+      panes.forEach(function(p,i){p.classList.toggle('on',i===stage);});
+      stgs.forEach(function(s,i){s.classList.toggle('on',i===stage);});
+      qis.forEach(function(qq,i){qq.classList.toggle('now',i===cur);qq.classList.toggle('done',t>=M0+(i+1)*MW-0.012);});
+      // matching pane
+      var h=HH[Math.max(0,Math.min(HH.length-1,cur<0?(t<M0?0:HH.length-1):cur))];
+      if(hn.textContent!==h[0]){hn.textContent=h[0];hd.textContent=h[1];cr.forEach(function(c,i){c.querySelector('span').textContent=h[6][i];});best.innerHTML='Best match: <b>Unit '+h[4]+' · '+BL[h[3]]+'</b>';}
+      var a=cur>-1?M0+cur*MW:0,l=cur>-1?(t-a)/MW:1;
+      evc.textContent=cur>-1?Math.max(3,Math.round(47-44*SS(l,0.05,0.5))):3;
+      cr.forEach(function(c,i){c.classList.toggle('on',l>=0.1+i*0.1);});
+      sc.textContent=Math.round(h[5]*SS(l,0.15,0.55))+'%';
+      best.classList.toggle('on',l>=0.55);
+      // tiles
+      var matched=0,hitN=0;
+      tiles.forEach(function(tt){var c='xl-t'+(tt.st==='occ'?' occ':'');lastCls[tt.k]=lastCls[tt.k];
+        var hi=HH.findIndex(function(x){return x[3]+'-'+x[4]===tt.k;});
+        if(hi>-1){var ha=M0+hi*MW;if(t>=ha+MW*0.55&&t<ha+MW*0.85)c='xl-t tgt';if(t>=ha+MW*0.85){c='xl-t mat'+(t<ha+MW*0.95?' pop':'');matched++;}}
+        var bi=burst.indexOf(tt);if(bi>-1){var bt=BU[0]+(BU[1]-BU[0])*(bi/burst.length);if(t>=bt){c='xl-t mat'+(t<bt+0.008?' pop':'');matched++;}}
+        var hiI=hits.indexOf(tt);if(hiI>-1&&t>=EV+0.03+hiI*0.004){c='xl-t hit';hitN++;var mt=MV[0]+(MV[1]-MV[0])*(hiI/hits.length);if(t>=mt)c='xl-t';}
+        var di=dest.indexOf(tt);if(di>-1){var mt2=MV[0]+(MV[1]-MV[0])*(di/hits.length)+0.012;if(t>=mt2)c='xl-t mat'+(t<mt2+0.01?' pop':'');}
+        cls(tt.k,c);});
+      k1.textContent=312+matched;
+      bstat.textContent=t<EV?(72-matched-tiles.filter(function(x){return x.st==='occ';}).length)+' open units':'Phase 2 affected';
+      // flyer: matching household → unit, then amber moves
+      var fv=0;
+      if(cur>-1&&l>=0.55&&l<0.88){var qi=qis[cur],tg=T[h[3]+'-'+h[4]];var p0=rel(qi),p1=rel(tg),k=SS(l,0.55,0.85);
+        if(getComputedStyle(qi.parentNode.parentNode).display==='none')p0=[p1[0],p1[1]-60];
+        fly.textContent=h[2];fly.className='xl-fly';var x=p0[0]+(p1[0]-p0[0])*k,y=p0[1]+(p1[1]-p0[1])*k-Math.sin(Math.PI*k)*40;fly.style.transform='translate('+x+'px,'+y+'px) translate(-50%,-50%)';fv=1;}
+      else if(t>=MV[0]&&t<MV[1]+0.02){var idx=Math.min(hits.length-1,Math.floor((t-MV[0])/((MV[1]-MV[0])/hits.length)));var s0=MV[0]+(MV[1]-MV[0])*(idx/hits.length),kk=SS(t,s0,s0+(MV[1]-MV[0])/hits.length);
+        var A=rel(T[hits[idx].k]),B=rel(T[dest[idx].k]);fly.textContent='move';fly.className='xl-fly amber';var x2=A[0]+(B[0]-A[0])*kk,y2=A[1]+(B[1]-A[1])*kk-Math.sin(Math.PI*kk)*30;fly.style.transform='translate('+x2+'px,'+y2+'px) translate(-50%,-50%)';fv=kk<0.98?1:0;}
+      fly.style.opacity=fv*fade;
+      // event + simulation
+      ev.classList.toggle('on',t>=EV&&t<LOG+0.12);ev.classList.toggle('slip',t>=EV+0.015);
+      evn.textContent=Math.round(60*SS(t,EV+0.02,EV+0.06));
+      k2.textContent=t<EV?0:(t<MV[1]?Math.round(60*SS(t,EV+0.02,EV+0.06)):18);
+      plans.forEach(function(p,i){var ps=SIM[0]+i*0.03,kk=SS(t,ps,ps+0.07);var em=p.querySelector('em'),v=+em.dataset.v;em.textContent=Math.round(v*kk);p.querySelector('.bar i').style.width=(v/62*100*kk)+'%';
+        p.classList.toggle('win',i===1&&t>=SIM[1]);p.classList.toggle('lose',i!==1&&t>=SIM[1]);});
+      rec.style.clipPath='inset(0 '+(100-100*SS(t,SIM[1],SIM[1]+0.03))+'% 0 0)';
+      apply.classList.toggle('on',t>=SIM[1]+0.02);apply.classList.toggle('press',t>=AP&&t<AP+0.012);apply.classList.toggle('done',t>=AP+0.012);apply.textContent=t>=AP+0.012?'✓ Plan B applied':'Apply Plan B';
+      lis.forEach(function(li,i){li.classList.toggle('on',t>=LOG+0.02+i*0.035);});
+      k3.textContent=t>=LOG+0.1?'97%':'96%';
+      if(t<BU[0])setPill('Matching','#A78BFA',true);else if(t<EV)setPill(matched+' matched','#5EEAD4',false);else if(t<SIM[1])setPill('Simulating 3 plans','#F59E0B',true);else if(t<LOG)setPill('Plan B recommended','#5EEAD4',false);else setPill('Plan B applied · logged','#34D399',false);
+    }
+    var DUR=22000,pos=0,last=null,raf=null,vis=false,hover=false;
+    function frame(now){raf=null;if(last!==null&&!hover)pos=(pos+(now-last))%DUR;last=now;render(pos/DUR);if(vis)raf=requestAnimationFrame(frame);else last=null;}
+    new IntersectionObserver(function(e){vis=e[0].isIntersecting;if(vis&&!raf){last=null;raf=requestAnimationFrame(frame);}},{threshold:0.15}).observe(el);
+    stgs.forEach(function(s,i){s.addEventListener('click',function(){pos=[0,EV,LOG][i]*DUR;last=null;});});
+    render(0);
+  })();
 
+  /* ═══ Pass 2: pop ═══ */
   // Feature carousel: plays through the seven features until the visitor clicks
   (function(){var wrap=document.getElementById('fcat-wrap');if(!wrap||typeof window.fcatSwitch!=='function')return;var tabs=$$('.fcat-tab',wrap);if(!tabs.length)return;
     tabs.forEach(function(t){var i=document.createElement('i');i.className='x-tp';t.appendChild(i);});
