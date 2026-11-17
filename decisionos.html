@@ -365,42 +365,102 @@ section[id],div[id="replan"]{scroll-margin-top:68px;}
 .x-hero-note{margin-top:26px;display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text-3);}
 .x-hero-note i{width:6px;height:6px;border-radius:50%;background:var(--teal);flex-shrink:0;}
 
-/* Layer stack (hero visual) */
-.x-stack{position:relative;max-width:520px;width:100%;margin:0 auto;border-radius:16px;background:var(--dark-1);box-shadow:inset 0 0 0 0.5px var(--border-hi),0 40px 90px -30px rgba(0,0,0,0.85);overflow:hidden;}
-.x-stack-bar{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 16px;border-bottom:0.5px solid var(--border);}
-.x-stack-bar strong{font-size:13px;font-weight:600;}
-.x-stack-bar span{font-family:var(--ff-data);font-size:10.5px;color:var(--text-3);}
-.x-tiers{padding:14px;display:flex;flex-direction:column;}
-.x-tier{border-radius:12px;padding:13px 14px;background:rgba(255,255,255,0.025);box-shadow:inset 0 0 0 0.5px var(--border);}
-.x-tier-h{display:flex;align-items:center;justify-content:space-between;gap:8px;font-family:var(--ff-data);font-size:10.5px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;color:var(--text-3);margin-bottom:10px;}
-.x-tier-team{display:flex;align-items:center;justify-content:space-between;gap:10px;}
-.x-tier-team .x-tier-h{margin:0;}
-.x-appr{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--text-2);}
-.x-ok{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:600;padding:3px 9px;border-radius:999px;color:var(--green);background:rgba(52,211,153,0.1);box-shadow:inset 0 0 0 0.5px rgba(52,211,153,0.45);opacity:var(--on,0);transform:scale(calc(0.92 + var(--on,0)*0.08));}
-.x-tier-dos{position:relative;background:linear-gradient(180deg,rgba(124,58,237,0.13),rgba(20,184,166,0.05));box-shadow:inset 0 0 0 1px rgba(167,139,250,0.5);}
-.x-tier-dos .x-tier-h{color:var(--text-1);}
-.x-tier-dos .x-tier-h em{font-style:normal;color:var(--teal-bright);}
-.x-procs{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px;}
-.x-proc{border-radius:9px;padding:10px 11px;background:rgba(9,8,15,0.5);box-shadow:inset 0 0 0 0.5px rgba(120,100,220,calc(0.2 + var(--on,0)*0.5));}
-.x-proc b{display:block;font-size:12.5px;font-weight:600;color:var(--text-1);}
-.x-proc span{display:block;margin-top:2px;font-size:11.5px;line-height:1.4;color:var(--text-3);}
-.x-proc .x-bar{margin-top:9px;height:3px;border-radius:3px;background:rgba(255,255,255,0.07);overflow:hidden;}
-.x-proc .x-bar i{display:block;height:100%;width:calc(var(--on,0)*100%);background:var(--teal-bright);}
-.x-proc.eng .x-bar i{background:var(--purple-bright);}
-.x-plan{margin-top:8px;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:9px 11px;border-radius:9px;background:rgba(9,8,15,0.55);box-shadow:inset 0 0 0 0.5px var(--border-hi);font-size:12px;opacity:var(--on,0);transform:translateY(calc((1 - var(--on,0))*5px));}
-.x-plan span{font-family:var(--ff-data);font-size:10.5px;color:var(--green);white-space:nowrap;}
-.x-srcs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;}
-.x-src{border-radius:8px;padding:8px 6px;text-align:center;font-size:11.5px;font-weight:500;color:color-mix(in srgb,var(--text-1) calc(var(--on,0)*100%),var(--text-3));background:rgba(255,255,255,calc(0.02 + var(--on,0)*0.035));box-shadow:inset 0 0 0 0.5px rgba(120,100,220,calc(0.2 + var(--on,0)*0.35));white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-.x-src small{display:block;margin-top:2px;font-family:var(--ff-data);font-size:10px;font-weight:400;color:var(--text-3);}
-.x-pipe{position:relative;height:30px;display:grid;grid-template-columns:repeat(4,1fr);}
-.x-pipe.one{grid-template-columns:1fr;}
-.x-pipe i{position:relative;}
-.x-pipe i::before{content:'';position:absolute;left:50%;top:0;bottom:0;width:1px;background:rgba(120,100,220,0.3);}
-.x-pipe i::after{content:'';position:absolute;left:50%;width:6px;height:6px;margin-left:-3px;border-radius:50%;background:var(--teal-bright);top:calc((1 - var(--p,0))*100% - 3px);opacity:var(--a,0);}
-.x-pipe.one i::after{background:var(--purple-bright);}
-.x-stack-foot{display:flex;justify-content:space-between;gap:10px;padding:11px 16px;border-top:0.5px solid var(--border);font-size:12px;color:var(--text-3);}
-.x-stack-foot b{color:var(--text-2);font-weight:500;}
-@media(max-width:420px){.x-src{font-size:10.5px;padding:7px 3px;}.x-proc span{font-size:11px;}.x-stack-foot{flex-direction:column;gap:2px;}}
+/* Hero visual: a live re-plan in one card */
+.xh{position:relative;width:100%;max-width:560px;margin:0 auto;border-radius:18px;background:linear-gradient(180deg,#151129 0%,#0F0C1C 100%);box-shadow:inset 0 0 0 0.5px var(--border-hi),0 50px 100px -40px rgba(0,0,0,0.9),0 0 0 1px rgba(0,0,0,0.4);overflow:hidden;}
+.xh::before{content:'';position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:radial-gradient(120% 60% at 50% 0%,rgba(124,58,237,0.16),transparent 60%);}
+.xh-bar{position:relative;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 16px;border-bottom:0.5px solid var(--border);}
+.xh-title{min-width:0;display:flex;flex-direction:column;gap:2px;}
+.xh-title strong{font-size:14px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.xh-clock{font-family:var(--ff-data);font-size:11px;color:var(--text-3);font-variant-numeric:tabular-nums;}
+.xh-pill{--c:#F59E0B;display:inline-flex;align-items:center;gap:7px;flex-shrink:0;padding:5px 11px 5px 9px;border-radius:999px;font-size:12px;font-weight:600;color:var(--c);background:color-mix(in srgb,var(--c) 12%,transparent);box-shadow:inset 0 0 0 0.5px color-mix(in srgb,var(--c) 60%,transparent);transition:color .3s,background .3s,box-shadow .3s;white-space:nowrap;}
+.xh-pill i{width:6px;height:6px;border-radius:50%;background:currentColor;}
+.xh-pill.busy i{animation:xhBlink .9s steps(2) infinite;}
+@keyframes xhBlink{50%{opacity:.25}}
+
+.xh-body{position:relative;padding:14px;display:flex;flex-direction:column;}
+.xh-tier{position:relative;border-radius:13px;padding:12px 13px;background:rgba(255,255,255,0.022);box-shadow:inset 0 0 0 0.5px var(--border);}
+.xh-lbl{display:flex;align-items:center;gap:8px;font-family:var(--ff-data);font-size:11px;font-weight:500;letter-spacing:0.05em;text-transform:uppercase;color:var(--text-3);margin-bottom:10px;}
+.xh-lbl em{font-style:normal;margin-left:auto;color:var(--teal-bright);letter-spacing:0.04em;}
+.xh-lbl em.dim{color:var(--text-3);text-transform:none;letter-spacing:0;font-family:var(--ff-body);font-size:11.5px;}
+.xh-dot{width:7px;height:7px;border-radius:50%;background:var(--teal-bright);}
+
+/* team */
+.xh-team{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;}
+.xh-team .xh-lbl{margin:0;}
+.xh-chain{display:flex;align-items:center;gap:6px;flex-wrap:wrap;}
+.xh-arr{color:var(--text-3);flex-shrink:0;}
+.xh-who{display:inline-grid;grid-template-columns:auto auto;column-gap:7px;align-items:center;padding:5px 9px 5px 5px;border-radius:9px;font-size:11.5px;color:var(--text-2);background:rgba(255,255,255,0.03);box-shadow:inset 0 0 0 0.5px var(--border);transition:background .3s,box-shadow .3s,color .3s;}
+.xh-who b{grid-row:span 2;width:24px;height:24px;border-radius:7px;display:grid;place-items:center;font-size:10px;font-weight:700;color:var(--text-1);background:var(--dark-4);}
+.xh-who small{font-family:var(--ff-data);font-size:9.5px;color:var(--text-3);}
+.xh-who.on{color:var(--text-1);background:rgba(245,158,11,0.1);box-shadow:inset 0 0 0 1px rgba(245,158,11,0.55);}
+.xh-who.ok{color:var(--text-1);background:rgba(52,211,153,0.1);box-shadow:inset 0 0 0 1px rgba(52,211,153,0.55);}
+.xh-who.ok b{background:var(--green);color:#06281C;}
+.xh-who.ok small{color:var(--green);}
+
+/* DecisionOS tier */
+.xh-dos{padding:13px;background:linear-gradient(180deg,rgba(124,58,237,0.16),rgba(20,184,166,0.05));box-shadow:inset 0 0 0 1px rgba(167,139,250,0.5),0 18px 40px -24px rgba(91,33,182,0.9);}
+.xh-dos .xh-lbl{color:var(--text-1);}
+.xh-cols{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,0.9fr);gap:8px;}
+.xh-col{border-radius:10px;padding:10px 11px;background:rgba(9,8,15,0.55);box-shadow:inset 0 0 0 0.5px rgba(120,100,220,calc(0.18 + var(--on,0)*0.5));}
+#xhAI{--hl:var(--teal-bright);}
+#xhEng{--hl:var(--purple-bright);}
+.xh-col-h{display:flex;align-items:baseline;justify-content:space-between;gap:6px;margin-bottom:8px;}
+.xh-col-h span{font-size:13px;font-weight:600;color:color-mix(in srgb,var(--hl) calc(var(--on,0)*100%),var(--text-1));}
+.xh-col-h small{font-size:10.5px;color:var(--text-3);white-space:nowrap;}
+.xh-map{position:relative;height:21px;font-size:11.5px;}
+.xh-map s,.xh-map span{position:absolute;left:0;right:0;top:0;line-height:21px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.xh-map s{font-family:var(--ff-data);font-size:10.5px;color:#A79BD8;text-decoration:none;opacity:calc(1 - var(--m,0));transform:translateX(calc(var(--m,0)*-8px));}
+.xh-map span{color:var(--text-1);opacity:var(--m,0);transform:translateX(calc((1 - var(--m,0))*8px));}
+.xh-map span::before{content:'✓';display:inline-block;width:14px;color:var(--teal-bright);font-size:10px;}
+.xh-rules{display:flex;flex-direction:column;gap:3px;margin:0;}
+.xh-rules li{display:flex;align-items:center;gap:7px;font-size:11.5px;color:color-mix(in srgb,var(--text-1) calc(var(--r,0)*100%),var(--text-3));}
+.xh-rules i{width:12px;height:12px;border-radius:50%;flex-shrink:0;display:grid;place-items:center;box-shadow:inset 0 0 0 1px rgba(120,100,220,0.5);background:color-mix(in srgb,var(--green) calc(var(--r,0)*100%),transparent);transform:scale(calc(0.85 + var(--r,0)*0.15));}
+.xh-rules i::after{content:'';width:5px;height:3px;margin-top:-1px;border-left:1.5px solid #06281C;border-bottom:1.5px solid #06281C;transform:rotate(-45deg);opacity:var(--r,0);}
+.xh-count{margin-top:8px;font-size:11px;color:var(--text-3);}
+.xh-count b{font-family:var(--ff-data);font-size:13px;font-weight:600;color:var(--purple-bright);font-variant-numeric:tabular-nums;}
+.xh-plan{position:relative;margin-top:8px;min-height:38px;padding:9px 11px;border-radius:10px;background:rgba(9,8,15,0.65);box-shadow:inset 0 0 0 0.5px rgba(120,100,220,calc(0.25 + var(--on,0)*0.5));font-size:12px;color:var(--text-2);}
+.xh-old,.xh-new{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;}
+.xh-old{position:absolute;inset:9px 11px;color:var(--text-3);opacity:calc(1 - var(--on,0));}
+.xh-old b{color:var(--text-2);}
+.xh-new{opacity:var(--on,0);transform:translateY(calc((1 - var(--on,0))*5px));}
+.xh-plan b{color:var(--text-1);font-weight:600;}
+.xh-plan-r{display:flex;gap:10px;font-family:var(--ff-data);font-size:11px;}
+.xh-plan-r .g{color:var(--green);}
+.xh-plan-r .a{color:var(--amber);}
+
+/* pipes + flying chips */
+.xh-pipe{position:relative;height:40px;display:grid;grid-template-columns:repeat(4,1fr);}
+.xh-pipe.one{grid-template-columns:1fr;}
+.xh-pipe i{position:relative;}
+.xh-pipe i::before{content:'';position:absolute;left:50%;top:0;bottom:0;border-left:1px dashed rgba(120,100,220,0.4);}
+.xh-chip{position:absolute;bottom:0;left:calc(12.5% + var(--col,0)*25%);transform:translate(-50%,calc(var(--y,0)*-40px + 50%));opacity:var(--a,0);z-index:3;padding:3px 8px;border-radius:999px;font-family:var(--ff-data);font-size:10px;white-space:nowrap;color:var(--teal-bright);background:#0E2624;box-shadow:inset 0 0 0 0.5px rgba(94,234,212,0.6);}
+.xh-chip.a{color:var(--amber);background:#2A1E0B;box-shadow:inset 0 0 0 0.5px rgba(245,158,11,0.7);}
+.xh-chip.p{left:50%;color:#fff;background:var(--purple);box-shadow:0 6px 16px -6px rgba(0,0,0,0.8);font-weight:500;}
+.xh-chip[data-chip="0"]{--col:0}.xh-chip[data-chip="1"]{--col:1}.xh-chip[data-chip="2"]{--col:2}.xh-chip[data-chip="3"]{--col:3}
+
+/* sources */
+.xh-srcs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;}
+.xh-src{border-radius:9px;padding:8px 6px;text-align:center;background:rgba(255,255,255,0.03);box-shadow:inset 0 0 0 0.5px rgba(120,100,220,calc(0.22 + var(--on,0)*0.45));transition:none;min-width:0;}
+.xh-src b{display:block;font-size:12.5px;font-weight:600;color:var(--text-1);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.xh-src span{display:block;margin-top:2px;font-family:var(--ff-data);font-size:10px;color:var(--text-3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.xh-src.alert{background:rgba(245,158,11,0.1);box-shadow:inset 0 0 0 1px rgba(245,158,11,0.7);}
+.xh-src.alert span{color:var(--amber);}
+.xh-foot{display:flex;justify-content:space-between;gap:12px;padding:12px 16px;border-top:0.5px solid var(--border);font-size:12.5px;color:var(--text-3);}
+.xh-foot b{color:var(--text-2);font-weight:500;}
+@media(max-width:520px){
+  .xh-cols{grid-template-columns:minmax(0,1fr);}
+  .xh-body{padding:12px;}
+  .xh-bar{padding:12px;}
+  .xh-src b{font-size:11.5px;}
+  .xh-chip{font-size:9px;padding:2px 6px;}
+  .xh-foot{flex-direction:column;gap:2px;}
+  .xh-who{font-size:11px;}
+  .xh-title strong{white-space:normal;line-height:1.3;}
+  .xh-srcs{grid-template-columns:repeat(2,minmax(0,1fr));}
+  .xh-chain{flex-direction:column;align-items:flex-start;gap:4px;}
+  .xh-arr{transform:rotate(90deg);margin-left:10px;}
+  .xh-team{flex-direction:column;align-items:flex-start;}
+}
 
 /* ═══ Problem ═══ */
 .x-probs{display:flex;flex-direction:column;}
@@ -717,34 +777,72 @@ section[id],div[id="replan"]{scroll-margin-top:68px;}
         <p class="x-hero-note"><i aria-hidden="true"></i>From the team behind Resonance. Works with Resonance or on its own.</p>
       </div>
 
-      <figure class="x-stack" id="xStack" aria-label="Diagram: your systems of record feed DecisionOS. AI reads the data, a planning engine applies your rules, and your team approves the plan.">
-        <div class="x-stack-bar"><strong>Where DecisionOS sits</strong><span id="xStackClock">09:14:02</span></div>
-        <div class="x-tiers">
-          <div class="x-tier x-tier-team">
-            <div class="x-tier-h">Your team</div>
-            <div class="x-appr">Reviews and approves <span class="x-ok" data-k="ok">✓ Approved</span></div>
-          </div>
-          <div class="x-pipe one" aria-hidden="true"><i data-k="up"></i></div>
-          <div class="x-tier x-tier-dos">
-            <div class="x-tier-h"><span>DecisionOS</span><em>Intelligence layer</em></div>
-            <div class="x-procs">
-              <div class="x-proc" data-k="ai"><b>AI</b><span>reads and cleans your data</span><div class="x-bar"><i></i></div></div>
-              <div class="x-proc eng" data-k="eng"><b>Planning engine</b><span>applies your rules</span><div class="x-bar"><i></i></div></div>
+      <figure class="xh" id="xStack" aria-label="Animation: a construction schedule change arrives from Procore. DecisionOS reads your data with AI, re-plans nine households against your rules with zero violations, and routes the plan to the Director of Development, who approves it.">
+        <div class="xh-bar">
+          <div class="xh-title"><strong id="xhTitle">Building C start moved to Mar 23</strong><span class="xh-clock" id="xhClock">09:14:02</span></div>
+          <span class="xh-pill" id="xhPill"><i></i><span id="xhPillT">Change detected</span></span>
+        </div>
+
+        <div class="xh-body">
+          <!-- Your team -->
+          <div class="xh-tier xh-team">
+            <div class="xh-lbl">Your team</div>
+            <div class="xh-chain">
+              <span class="xh-who" id="xhW1"><b>RM</b>Relocation manager<small>limit $10,000</small></span>
+              <svg class="xh-arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              <span class="xh-who" id="xhW2"><b>DD</b>Director of Development<small id="xhW2s">limit $50,000</small></span>
             </div>
-            <div class="x-plan" data-k="plan">Plan ready · 46 households <span>0 rule violations</span></div>
           </div>
-          <div class="x-pipe" aria-hidden="true"><i data-k="w0"></i><i data-k="w1"></i><i data-k="w2"></i><i data-k="w3"></i></div>
-          <div class="x-tier">
-            <div class="x-tier-h">Your systems of record</div>
-            <div class="x-srcs">
-              <div class="x-src" data-k="s0">Resonance<small>households</small></div>
-              <div class="x-src" data-k="s1">Yardi<small>rent roll</small></div>
-              <div class="x-src" data-k="s2">Procore<small>schedule</small></div>
-              <div class="x-src" data-k="s3">Excel<small>budget</small></div>
+
+          <div class="xh-pipe one" aria-hidden="true"><i></i><span class="xh-chip p" data-chip="plan">Plan v15</span></div>
+
+          <!-- DecisionOS -->
+          <div class="xh-tier xh-dos">
+            <div class="xh-lbl"><span class="xh-dot"></span>DecisionOS <em>intelligence layer</em></div>
+            <div class="xh-cols">
+              <div class="xh-col" id="xhAI">
+                <div class="xh-col-h"><span>AI reads</span><small>messy data → facts</small></div>
+                <div class="xh-map" data-m="0"><s>ADA_REQ=Y</s><span>Needs accessible unit</span></div>
+                <div class="xh-map" data-m="1"><s>"3bd" / "3 BR"</s><span>3 bedrooms</span></div>
+                <div class="xh-map" data-m="2"><s>start 3/9 → 3/23</s><span>Building C slips 14 days</span></div>
+              </div>
+              <div class="xh-col" id="xhEng">
+                <div class="xh-col-h"><span>Engine decides</span><small>your rules</small></div>
+                <ul class="xh-rules">
+                  <li data-r="0"><i></i>Bedroom size</li>
+                  <li data-r="1"><i></i>Accessible unit</li>
+                  <li data-r="2"><i></i>Notice period</li>
+                  <li data-r="3"><i></i>Lease dates</li>
+                </ul>
+                <div class="xh-count"><b id="xhN">0</b> of 9 households re-placed</div>
+              </div>
+            </div>
+            <div class="xh-plan" id="xhPlan">
+              <span class="xh-old"><b>Plan v14</b> in effect · 46 households</span>
+              <span class="xh-new"><span><b>Plan v15</b> · 9 moves · 37 unchanged</span><span class="xh-plan-r"><span class="g">0 violations</span><span class="a">+$14,200</span></span></span>
+            </div>
+          </div>
+
+          <div class="xh-pipe" aria-hidden="true">
+            <i></i><i></i><i></i><i></i>
+            <span class="xh-chip" data-chip="0">households</span>
+            <span class="xh-chip" data-chip="1">rent roll</span>
+            <span class="xh-chip a" data-chip="2">schedule v15</span>
+            <span class="xh-chip" data-chip="3">budget</span>
+          </div>
+
+          <!-- Systems of record -->
+          <div class="xh-tier xh-sor">
+            <div class="xh-lbl">Your systems of record <em class="dim">stay as they are</em></div>
+            <div class="xh-srcs">
+              <div class="xh-src" data-s="0"><b>Resonance</b><span>households</span></div>
+              <div class="xh-src" data-s="1"><b>Yardi</b><span>rent roll</span></div>
+              <div class="xh-src" id="xhProcore" data-s="2"><b>Procore</b><span id="xhProcoreS">schedule</span></div>
+              <div class="xh-src" data-s="3"><b>Excel</b><span>budget</span></div>
             </div>
           </div>
         </div>
-        <figcaption class="x-stack-foot"><span><b>You keep your systems.</b> DecisionOS reads from them.</span><span>Illustrative</span></figcaption>
+        <figcaption class="xh-foot"><span><b>You keep your systems.</b> DecisionOS reads from them, then decides by your rules.</span><span>Illustrative</span></figcaption>
       </figure>
     </div>
   </div>
@@ -1578,25 +1676,45 @@ if(document.fonts&&document.fonts.ready)document.fonts.ready.then(relayout);
     render(0);
   }
 
-  /* Hero: systems of record → DecisionOS → your team. One progress value, 9 s. */
-  var st=document.getElementById('xStack');
-  if(st){
-    var k={};st.querySelectorAll('[data-k]').forEach(function(e){k[e.dataset.k]=e;});
-    var clock=document.getElementById('xStackClock');
-    var set=function(e,n,v){e.style.setProperty(n,v.toFixed(3));};
-    loop(st,9000,function(t){
-      var fade=1-S(t,0.93,1);
-      for(var i=0;i<4;i++){
-        set(k['s'+i],'--on',S(t,0.02+i*0.04,0.12+i*0.04)*fade);
-        var p=S(t,0.10+i*0.03,0.28+i*0.03);set(k['w'+i],'--p',p);set(k['w'+i],'--a',Math.sin(Math.PI*p));
-      }
-      set(k.ai,'--on',S(t,0.28,0.44)*fade);
-      set(k.eng,'--on',S(t,0.42,0.6)*fade);
-      set(k.plan,'--on',S(t,0.58,0.65)*fade);
-      var u=S(t,0.64,0.78);set(k.up,'--p',u);set(k.up,'--a',Math.sin(Math.PI*u));
-      set(k.ok,'--on',S(t,0.78,0.84)*fade);
-      var sec=2+Math.floor(t*9);clock.textContent='09:14:'+(sec<10?'0':'')+sec;
-    },0.86);
+  /* Hero: one re-plan, end to end. One progress value t drives every element (12 s loop). */
+  var hx=document.getElementById('xStack');
+  if(hx){
+    var q=function(s){return hx.querySelector(s);},qa=function(s){return [].slice.call(hx.querySelectorAll(s));};
+    var srcs=qa('.xh-src'),chips=qa('.xh-chip[data-chip]:not([data-chip="plan"])'),planChip=q('[data-chip="plan"]');
+    var maps=qa('.xh-map'),rules=qa('.xh-rules li'),ai=q('#xhAI'),eng=q('#xhEng'),plan=q('#xhPlan');
+    var pill=q('#xhPill'),pillT=q('#xhPillT'),clock=q('#xhClock'),n=q('#xhN'),w1=q('#xhW1'),w2=q('#xhW2'),w2s=q('#xhW2s');
+    var proc=q('#xhProcore'),procS=q('#xhProcoreS');
+    var set=function(e,k,v){e.style.setProperty(k,(+v).toFixed(3));};
+    var PILL=[[0,'Change detected','#F59E0B',1],[0.2,'Reading data','#5EEAD4',1],[0.42,'Re-planning','#A78BFA',1],[0.72,'Needs approval','#F59E0B',0],[0.86,'Approved','#34D399',0]];
+    var lastPill=-1;
+    function hero(t){
+      var fade=1-S(t,0.965,1);
+      // 1 · the change arrives from Procore
+      var alert=S(t,0.0,0.04)*(1-S(t,0.3,0.36));
+      proc.classList.toggle('alert',alert>0.5&&fade>0.5);procS.textContent=alert>0.5?'Mar 9 → 23':'schedule';
+      srcs.forEach(function(s,i){set(s,'--on',S(t,0.03+i*0.025,0.08+i*0.025)*fade);});
+      // 2 · data rises into DecisionOS
+      chips.forEach(function(c,i){var a=0.06+i*0.035,y=S(t,a,a+0.12);set(c,'--y',y);set(c,'--a',Math.sin(Math.PI*y)*fade);});
+      // 3 · AI turns messy fields into facts
+      set(ai,'--on',(S(t,0.2,0.24)-S(t,0.42,0.48)*0.6)*fade);
+      maps.forEach(function(m,i){set(m,'--m',S(t,0.24+i*0.055,0.29+i*0.055)*fade);});
+      // 4 · engine applies the rules and re-places households
+      set(eng,'--on',(S(t,0.42,0.46)-S(t,0.7,0.76)*0.6)*fade);
+      rules.forEach(function(r,i){set(r,'--r',S(t,0.46+i*0.05,0.49+i*0.05)*fade);});
+      n.textContent=Math.round(9*S(t,0.46,0.68)*fade);
+      set(plan,'--on',S(t,0.66,0.71)*fade);
+      // 5 · plan rises to the team and routes above the limit
+      var up=S(t,0.71,0.79);set(planChip,'--y',up);set(planChip,'--a',Math.sin(Math.PI*up)*fade);
+      var route=S(t,0.76,0.8)*fade,ok=S(t,0.86,0.89)*fade;
+      w1.className='xh-who'+(route>0.5&&ok<0.5?' on':'');
+      w2.className='xh-who'+(ok>0.5?' ok':route>0.5?' on':'');
+      w2s.textContent=ok>0.5?'approved':route>0.5?'over manager limit':'limit $50,000';
+      // header
+      var k=0;for(var i=0;i<PILL.length;i++)if(t>=PILL[i][0])k=i;
+      if(k!==lastPill){lastPill=k;pillT.textContent=PILL[k][1];pill.style.setProperty('--c',PILL[k][2]);pill.classList.toggle('busy',!!PILL[k][3]);}
+      var sec=2+Math.floor(t*58);clock.textContent='09:14:'+(sec<10?'0':'')+sec;
+    }
+    loop(hx,12000,hero,0.9);
   }
 
   /* How it works: a dot walks the swimlanes Connect → Understand → Decide → Approve. 10 s. */
