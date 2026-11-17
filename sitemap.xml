@@ -28,6 +28,14 @@
     <priority>0.9</priority>
   </url>
 
+  <!-- DecisionOS (product preview) -->
+  <url>
+    <loc>https://resonancehq.io/decisionos</loc>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
   <!-- Calculators -->
   <url>
     <loc>https://resonancehq.io/calculators</loc>

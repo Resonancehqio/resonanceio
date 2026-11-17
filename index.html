@@ -508,6 +508,11 @@ section { position: relative; z-index: 1; }
   font-size: 12.5px; color: var(--text-2);
   animation: fadeUp 0.7s ease forwards;
 }
+.hero-announce-link { text-decoration: none; transition: border-color 0.2s, background 0.2s; }
+.hero-announce-link:hover { background: rgba(20,184,166,0.12); border-color: rgba(20,184,166,0.6); }
+.hero-announce-link strong { color: var(--text-1); font-weight: 600; }
+.announce-arrow { color: var(--teal); flex-shrink: 0; transition: transform 0.2s; }
+.hero-announce-link:hover .announce-arrow { transform: translateX(3px); }
 .announce-badge {
   background: var(--teal); color: var(--dark); font-size: 10px; font-weight: 600; letter-spacing: 0.05em;
   padding: 3px 9px; border-radius: 100px; flex-shrink: 0;
@@ -2652,10 +2657,11 @@ y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
 <!-- HERO -->
 <main id="main-content" role="main">
 <section class="hero" aria-label="Resonance affordable housing relocation and redevelopment software">
-  <div class="hero-announce">
-    <span class="announce-badge">Update</span>
-    Simulation model updated: enhanced reasoning and matching precision now live
-  </div>
+  <a href="/decisionos" class="hero-announce hero-announce-link">
+    <span class="announce-badge">Product preview</span>
+    <span>New: <strong>DecisionOS</strong>, plans you can defend for relocation, rehab and acquisitions</span>
+    <span class="announce-arrow" aria-hidden="true">&rarr;</span>
+  </a>
   <h1 aria-label="Resonance: Affordable housing relocation and redevelopment software for housing authorities, developers, and relocation service providers">
     The operating system<br>
     <em>for affordable housing.</em>

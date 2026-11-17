@@ -23,6 +23,16 @@
   status = 200
 
 [[redirects]]
+  from = "/decisionos"
+  to   = "/decisionos.html"
+  status = 200
+
+[[redirects]]
+  from = "/decisionos/"
+  to   = "/decisionos"
+  status = 301
+
+[[redirects]]
   from = "/nysafah"
   to   = "/nysafah.html"
   status = 200

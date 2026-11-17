@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-D655YVSZ1V"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-D655YVSZ1V');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DecisionOS by Resonance</title>
+<meta name="description" content="DecisionOS turns your housing data into plans you can defend: relocation, rehab prioritization and acquisition fit, built on your rules with every number explained.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://resonancehq.io/decisionos">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://resonancehq.io/decisionos">
+<meta property="og:title" content="DecisionOS by Resonance">
+<meta property="og:description" content="DecisionOS turns your housing data into plans you can defend: relocation, rehab prioritization and acquisition fit, built on your rules with every number explained.">
+<meta property="og:image" content="https://resonancehq.io/ogimage.png">
+<meta property="og:site_name" content="Resonance">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="DecisionOS by Resonance">
+<meta name="twitter:description" content="Plans you can defend: relocation, rehab prioritization and acquisition fit, built on your rules with every number explained.">
+<meta name="twitter:image" content="https://resonancehq.io/ogimage.png">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg?v=2">
+<link rel="icon" type="image/x-icon" href="/favicon.ico?v=2" sizes="48x48">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=2">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=2">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=2">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Instrument+Sans:wght@400;500;600&family=Nunito+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question", "name": "Do we have to replace our current systems?", "acceptedAnswer": {"@type": "Answer", "text": "No. DecisionOS reads from the systems and files you already use."}},
+    {"@type": "Question", "name": "What if the plan is wrong?", "acceptedAnswer": {"@type": "Answer", "text": "A plan is only as good as its rules and data, so DecisionOS makes both visible. If something looks off, your team can see why, fix the rule or the data, and re-plan in minutes. Nothing goes ahead without approval."}},
+    {"@type": "Question", "name": "How is this different from ChatGPT?", "acceptedAnswer": {"@type": "Answer", "text": "AI models are good at reading messy data, but they can give a different answer each time. DecisionOS uses AI to understand your data and planning engines to make the decision, so the result is repeatable and auditable."}},
+    {"@type": "Question", "name": "What does it cost?", "acceptedAnswer": {"@type": "Answer", "text": "Pricing is scoped to the decision and the portfolio. Every engagement starts with a short pilot on your own data."}}
+  ]
+}
+</script>
+
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --purple:#5B21B6;--purple-mid:#7C3AED;--purple-bright:#A78BFA;
+  --purple-ghost:rgba(91,33,182,0.12);--purple-glow:rgba(91,33,182,0.28);
+  --teal:#14B8A6;--teal-bright:#5EEAD4;--teal-ghost:rgba(20,184,166,0.1);
+  --dark:#09080F;--dark-1:#110E1E;--dark-2:#1A1630;--dark-3:#231E3E;--dark-4:#2D2754;
+  --border:rgba(120,100,220,0.18);--border-hi:rgba(120,100,220,0.38);
+  --text-1:#F1EEFF;--text-2:#B8AAEE;--text-3:#7E72B8;
+  --amber:#F59E0B;--green:#34D399;--red:#F87171;
+  --ff-display:'Fraunces',Georgia,'Times New Roman',serif;
+  --ff-body:'Instrument Sans',-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
+  --ff-mono:'Nunito Sans',-apple-system,sans-serif;
+  --r-sm:8px;--r-md:12px;--r-lg:18px;--r-xl:24px;
+}
+html{scroll-behavior:smooth;font-size:16px;}
+body{font-family:var(--ff-body);background:var(--dark);color:var(--text-1);overflow-x:hidden;-webkit-font-smoothing:antialiased;}
+::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:var(--dark)}::-webkit-scrollbar-thumb{background:var(--dark-4);border-radius:3px}
+section[id]{scroll-margin-top:72px;}
+
+/* BG */
+.bg-grid{position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:linear-gradient(rgba(120,100,220,0.035) 1px,transparent 1px),linear-gradient(90deg,rgba(120,100,220,0.035) 1px,transparent 1px);
+  background-size:52px 52px;}
+.bg-canvas{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;}
+.orb{position:absolute;border-radius:50%;filter:blur(100px);opacity:0.5;}
+.orb-1{width:700px;height:700px;background:radial-gradient(circle,rgba(91,33,182,0.45) 0%,transparent 70%);top:-200px;right:-150px;}
+.orb-2{width:500px;height:500px;background:radial-gradient(circle,rgba(20,184,166,0.22) 0%,transparent 70%);bottom:100px;left:-100px;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.5;transform:scale(0.8)}}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important;}html{scroll-behavior:auto;}}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;height:64px;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0 40px;background:rgba(9,8,15,0.8);backdrop-filter:blur(24px) saturate(150%);-webkit-backdrop-filter:blur(24px) saturate(150%);border-bottom:0.5px solid var(--border);}
+.nav-logo{display:flex;align-items:center;gap:6px;text-decoration:none;}
+.logo-text{font-family:var(--ff-display);font-size:1.2rem;font-weight:400;color:var(--text-1);letter-spacing:-0.01em;}
+.conf-pill{display:inline-flex;align-items:center;gap:7px;background:rgba(20,184,166,0.08);border:0.5px solid rgba(20,184,166,0.35);border-radius:100px;padding:5px 14px 5px 8px;font-family:var(--ff-mono);font-size:10px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--teal);white-space:nowrap;}
+.conf-pill::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--teal);animation:pulse 2s infinite;}
+.nav-right{display:flex;align-items:center;gap:10px;}
+.btn-site{font-family:var(--ff-body);font-size:13px;font-weight:500;color:var(--text-2);text-decoration:none;padding:7px 14px;border-radius:var(--r-sm);border:0.5px solid var(--border);transition:all 0.2s;}
+.btn-site:hover{color:var(--text-1);background:rgba(255,255,255,0.055);border-color:var(--border-hi);}
+.btn-demo-nav{font-family:var(--ff-body);font-size:13px;font-weight:600;color:#fff;background:var(--purple);border:none;border-radius:var(--r-md);padding:9px 20px;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:6px;transition:all 0.2s;box-shadow:0 0 0 1px rgba(124,58,237,0.4),0 4px 16px rgba(91,33,182,0.35);white-space:nowrap;}
+.btn-demo-nav:hover{background:var(--purple-mid);transform:translateY(-1px);}
+@media(max-width:720px){
+  nav{padding:0 16px;}
+  .btn-site{display:none;}
+  .conf-pill{font-size:9px;padding:4px 10px 4px 6px;gap:5px;}
+  .btn-demo-nav{font-size:12px;padding:7px 13px;}
+  .logo-text{font-size:1rem;}
+}
+@media(max-width:400px){.conf-pill{display:none;}}
+
+/* LAYOUT */
+section{position:relative;z-index:1;}
+.wrap{max-width:1100px;margin:0 auto;padding:0 32px;}
+.wrap-tight{max-width:760px;margin:0 auto;padding:0 32px;}
+@media(max-width:600px){.wrap,.wrap-tight{padding:0 16px;}}
+
+/* SHARED */
+.eyebrow{display:inline-flex;align-items:center;gap:7px;font-family:var(--ff-mono);font-size:11px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--teal);margin-bottom:16px;}
+.eyebrow::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--teal);flex-shrink:0;}
+.section-h2{font-family:var(--ff-display);font-weight:300;font-size:clamp(1.9rem,4vw,3rem);line-height:1.12;letter-spacing:-0.02em;color:var(--text-1);margin-bottom:16px;max-width:820px;}
+.section-h2 em{font-style:italic;color:var(--teal-bright);}
+.section-lead{font-size:1.05rem;color:var(--text-2);line-height:1.72;max-width:640px;}
+.center{text-align:center;}
+.center .section-h2,.center .section-lead{margin-left:auto;margin-right:auto;}
+.center .eyebrow{justify-content:center;}
+
+/* BUTTONS */
+.btn-primary{font-family:var(--ff-body);font-size:15px;font-weight:600;display:inline-flex;align-items:center;gap:8px;cursor:pointer;text-decoration:none;border-radius:13px;padding:14px 32px;background:var(--purple);color:#fff;border:none;box-shadow:0 0 0 1px rgba(124,58,237,0.4),0 6px 24px rgba(91,33,182,0.38);transition:all 0.2s;}
+.btn-primary:hover{background:var(--purple-mid);transform:translateY(-2px);}
+.btn-outline{font-family:var(--ff-body);font-size:15px;font-weight:600;display:inline-flex;align-items:center;gap:8px;cursor:pointer;text-decoration:none;border-radius:13px;padding:14px 28px;background:transparent;color:var(--text-1);border:0.5px solid var(--border-hi);transition:all 0.2s;}
+.btn-outline:hover{background:rgba(255,255,255,0.055);border-color:var(--text-3);}
+
+/* HERO */
+.hero{padding:136px 0 96px;}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:56px;align-items:center;}
+.preview-badge{display:inline-flex;align-items:center;gap:10px;margin-bottom:28px;background:rgba(20,184,166,0.07);border:0.5px solid rgba(20,184,166,0.38);border-radius:100px;padding:7px 18px 7px 8px;animation:fadeUp 0.6s ease both;max-width:100%;}
+.preview-badge-tag{background:var(--teal);color:var(--dark);font-family:var(--ff-mono);font-size:10px;font-weight:700;letter-spacing:0.06em;padding:3px 10px;border-radius:100px;text-transform:uppercase;flex-shrink:0;}
+.preview-badge-txt{font-size:13px;color:var(--text-2);font-weight:500;}
+.hero h1{font-family:var(--ff-display);font-weight:300;font-size:clamp(2.5rem,5.4vw,4.4rem);line-height:1.05;letter-spacing:-0.025em;color:var(--text-1);margin-bottom:24px;animation:fadeUp 0.6s 0.08s ease both;}
+.hero h1 em{font-style:italic;color:var(--teal-bright);}
+.hero-sub{font-size:clamp(1rem,1.6vw,1.12rem);color:var(--text-2);line-height:1.75;max-width:560px;margin-bottom:36px;animation:fadeUp 0.6s 0.14s ease both;}
+.hero-cta{display:flex;gap:12px;flex-wrap:wrap;animation:fadeUp 0.6s 0.2s ease both;}
+.hero-vis{animation:fadeUp 0.7s 0.25s ease both;min-width:0;}
+@media(max-width:900px){.hero{padding:112px 0 72px;}.hero-grid{grid-template-columns:minmax(0,1fr);gap:44px;}}
+
+/* SCREEN MOCKUPS (same as homepage feature carousel) */
+.fcat-screen{width:100%;max-width:460px;margin:0 auto;background:var(--dark-2);border:0.5px solid var(--border-hi);border-radius:14px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,0.5),0 0 0 0.5px rgba(255,255,255,0.06);}
+.fcat-screen.wide{max-width:520px;}
+.fcat-screen-bar{display:flex;align-items:center;gap:10px;padding:10px 14px;background:var(--dark-1);border-bottom:0.5px solid var(--border);}
+.fcat-screen-dots{display:flex;gap:5px;flex-shrink:0;}
+.fcat-screen-dots span{width:8px;height:8px;border-radius:50%;}
+.fcat-screen-dots span:nth-child(1){background:#FF5F57;}
+.fcat-screen-dots span:nth-child(2){background:#FEBC2E;}
+.fcat-screen-dots span:nth-child(3){background:#28C840;}
+.fcat-screen-url{font-family:var(--ff-mono);font-size:9.5px;color:var(--text-3);flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.scr-body{padding:16px;display:flex;flex-direction:column;gap:10px;}
+.scr-head{display:flex;justify-content:space-between;align-items:center;gap:10px;}
+.scr-title{font-size:11.5px;font-weight:600;color:var(--text-1);}
+.scr-meta{font-size:10px;color:var(--teal);font-family:var(--ff-mono);white-space:nowrap;}
+.scr-sub{font-size:10px;color:var(--text-3);line-height:1.5;}
+.scr-label{font-size:9px;font-weight:600;color:var(--text-3);letter-spacing:0.1em;text-transform:uppercase;margin:4px 0 2px;}
+.scr-foot{margin-top:4px;padding-top:10px;border-top:0.5px solid var(--border);font-size:10px;color:var(--text-3);display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;}
+.scr-foot b{color:var(--text-2);font-weight:600;}
+
+.badge{display:inline-flex;align-items:center;gap:5px;font-size:9px;font-weight:600;padding:2px 8px;border-radius:100px;width:fit-content;white-space:nowrap;flex-shrink:0;}
+.badge::before{content:'';width:5px;height:5px;border-radius:50%;flex-shrink:0;}
+.badge-green{background:rgba(52,211,153,0.12);color:var(--green);border:0.5px solid rgba(52,211,153,0.25);}
+.badge-green::before{background:var(--green);}
+.badge-amber{background:rgba(245,158,11,0.12);color:var(--amber);border:0.5px solid rgba(245,158,11,0.25);}
+.badge-amber::before{background:var(--amber);}
+.badge-purple{background:rgba(167,139,250,0.12);color:var(--purple-bright);border:0.5px solid rgba(167,139,250,0.25);}
+.badge-purple::before{background:var(--purple-bright);}
+.badge-red{background:rgba(248,113,113,0.12);color:var(--red);border:0.5px solid rgba(248,113,113,0.25);}
+.badge-red::before{background:var(--red);}
+.badge-teal{background:rgba(20,184,166,0.12);color:var(--teal);border:0.5px solid rgba(20,184,166,0.3);}
+.badge-teal::before{background:var(--teal);}
+
+.fcat-hrow{display:flex;align-items:center;justify-content:space-between;padding:8px 10px;border-radius:8px;gap:8px;background:rgba(255,255,255,0.03);border:0.5px solid transparent;}
+.fcat-hrow-active{background:rgba(20,184,166,0.07);border-color:rgba(20,184,166,0.2);}
+.fcat-hrow-name{font-size:11px;color:var(--text-2);flex:1;min-width:0;}
+.fcat-hrow-name b{color:var(--text-1);font-weight:600;}
+.fcat-hrow-name .arrow{color:var(--teal);margin:0 3px;}
+.fcat-hrow-name .old{text-decoration:line-through;color:var(--text-3);margin-right:2px;}
+.fcat-hrow.cut{opacity:0.55;}
+.cutline{display:flex;align-items:center;gap:8px;font-family:var(--ff-mono);font-size:9px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--amber);margin:2px 0;}
+.cutline::before,.cutline::after{content:'';flex:1;height:0;border-top:0.5px dashed rgba(245,158,11,0.5);}
+
+.chk-row{display:flex;align-items:flex-start;gap:8px;font-size:10.5px;color:var(--text-2);padding:3px 0;line-height:1.45;}
+.chk-box{width:15px;height:15px;border-radius:4px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:9px;background:rgba(20,184,166,0.2);border:0.5px solid rgba(20,184,166,0.4);color:var(--teal);margin-top:1px;}
+.chk-box.warn{background:rgba(245,158,11,0.2);border-color:rgba(245,158,11,0.4);color:var(--amber);}
+
+.kv{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;}
+.kv-cell{background:rgba(255,255,255,0.03);border:0.5px solid var(--border);border-radius:8px;padding:8px 10px;min-width:0;}
+.kv-label{font-size:8.5px;color:var(--text-3);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:3px;}
+.kv-val{font-size:13px;font-weight:600;color:var(--text-1);font-family:var(--ff-mono);}
+.kv-val small{font-size:9.5px;color:var(--text-3);font-weight:500;}
+
+.approval{display:flex;align-items:flex-start;gap:10px;padding:10px 12px;border-radius:10px;background:rgba(245,158,11,0.07);border:0.5px solid rgba(245,158,11,0.25);font-size:10.5px;color:var(--text-2);line-height:1.5;}
+.approval b{color:var(--text-1);font-weight:600;}
+.approval .ic{color:var(--amber);flex-shrink:0;margin-top:1px;}
+.approval-btns{display:flex;gap:6px;margin-top:8px;}
+.mini-btn{font-size:9.5px;font-weight:600;padding:4px 10px;border-radius:6px;border:0.5px solid var(--border-hi);color:var(--text-2);background:rgba(255,255,255,0.03);}
+.mini-btn.go{background:var(--purple);border-color:transparent;color:#fff;}
+
+.progress-track{height:5px;background:rgba(255,255,255,0.07);border-radius:100px;overflow:hidden;}
+.progress-fill{height:100%;border-radius:100px;background:linear-gradient(90deg,var(--purple),var(--teal));}
+
+.dtable{width:100%;border-collapse:collapse;font-size:10.5px;}
+.dtable th{font-size:8.5px;font-weight:600;color:var(--text-3);letter-spacing:0.08em;text-transform:uppercase;text-align:left;padding:0 6px 6px;border-bottom:0.5px solid var(--border);}
+.dtable td{padding:7px 6px;color:var(--text-2);border-bottom:0.5px solid rgba(255,255,255,0.04);vertical-align:middle;}
+.dtable td.num,.dtable th.num{text-align:right;font-family:var(--ff-mono);}
+.dtable td b{color:var(--text-1);font-weight:600;}
+.dtable tr.top td{background:rgba(20,184,166,0.06);}
+.rank{display:inline-flex;width:18px;height:18px;border-radius:5px;align-items:center;justify-content:center;font-size:9.5px;font-weight:700;background:rgba(255,255,255,0.06);color:var(--text-2);}
+.rank.r1{background:rgba(20,184,166,0.2);color:var(--teal);}
+
+.scenario-card{background:var(--dark-3);border:0.5px solid var(--border);border-radius:12px;overflow:hidden;width:100%;}
+.sc-header{padding:11px 14px;border-bottom:0.5px solid var(--border);font-size:11px;font-weight:600;color:var(--text-1);display:flex;justify-content:space-between;gap:8px;}
+.sc-cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));}
+.sc-col{padding:14px 12px;}
+.sc-col+.sc-col{border-left:0.5px solid var(--border);}
+.sc-col.on{background:rgba(167,139,250,0.06);}
+.sc-col-label{font-size:9px;font-weight:700;color:var(--text-3);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:12px;min-height:22px;}
+.sc-metric{margin-bottom:10px;}
+.sc-m-label{font-size:9.5px;color:var(--text-3);margin-bottom:2px;}
+.sc-m-val{font-family:var(--ff-mono);font-size:15px;font-weight:600;}
+.sc-m-val.good{color:var(--green);}
+.sc-m-val.bad{color:var(--red);}
+.sc-m-val.mid{color:var(--text-2);}
+.sc-why{padding:11px 14px;background:rgba(20,184,166,0.08);border-top:0.5px solid rgba(20,184,166,0.2);font-size:10.5px;color:var(--text-2);line-height:1.55;}
+.sc-why b{color:var(--teal);font-weight:600;}
+
+/* PROBLEM */
+.prob-sec{padding:96px 0 80px;}
+.prob-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin-top:44px;}
+.prob-card{background:var(--dark-2);border:0.5px solid var(--border);border-radius:var(--r-lg);padding:28px 26px;position:relative;overflow:hidden;}
+.prob-card::before{content:'';position:absolute;left:0;top:16px;bottom:16px;width:3px;border-radius:0 2px 2px 0;}
+.prob-card.c1::before{background:#F87171;}
+.prob-card.c2::before{background:#FBBF24;}
+.prob-card.c3::before{background:var(--purple-bright);}
+.prob-card h3{font-family:var(--ff-display);font-size:1.2rem;font-weight:400;line-height:1.25;color:var(--text-1);letter-spacing:-0.01em;margin-bottom:10px;}
+.prob-card p{font-size:0.92rem;color:var(--text-2);line-height:1.65;}
+@media(max-width:860px){.prob-cards{grid-template-columns:minmax(0,1fr);}}
+
+/* HOW IT WORKS */
+.how-sec{padding:96px 0;border-top:0.5px solid var(--border);}
+.steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-top:48px;position:relative;}
+.step{background:var(--dark-2);border:0.5px solid var(--border);border-radius:var(--r-lg);padding:24px 22px;position:relative;}
+.step-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;}
+.step-num{font-family:var(--ff-mono);font-size:10px;font-weight:700;letter-spacing:0.1em;color:var(--text-3);}
+.step-ic{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;}
+.step-ic.t{background:rgba(20,184,166,0.14);color:var(--teal);}
+.step-ic.p{background:rgba(91,33,182,0.25);color:var(--purple-bright);}
+.step-ic.a{background:rgba(245,158,11,0.14);color:var(--amber);}
+.step h3{font-family:var(--ff-display);font-size:1.25rem;font-weight:400;color:var(--text-1);margin-bottom:8px;}
+.step p{font-size:0.88rem;color:var(--text-2);line-height:1.65;}
+.step-tag{display:inline-block;margin-top:14px;font-family:var(--ff-mono);font-size:9px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;padding:3px 9px;border-radius:4px;}
+.step-tag.ai{background:rgba(20,184,166,0.1);color:var(--teal);}
+.step-tag.rules{background:rgba(167,139,250,0.12);color:var(--purple-bright);}
+.step-tag.people{background:rgba(245,158,11,0.12);color:var(--amber);}
+.step:not(:last-child)::after{content:'';position:absolute;top:43px;right:-13px;width:10px;height:10px;border-top:1.5px solid var(--border-hi);border-right:1.5px solid var(--border-hi);transform:rotate(45deg);z-index:2;}
+@media(max-width:980px){.steps{grid-template-columns:repeat(2,minmax(0,1fr));}.step::after{display:none;}}
+@media(max-width:560px){.steps{grid-template-columns:minmax(0,1fr);}}
+
+/* FEATURE CAROUSEL (same pattern as homepage) */
+.feat-sec{padding:96px 0;border-top:0.5px solid var(--border);}
+.fcat-tabs{display:flex;gap:6px;flex-wrap:nowrap;overflow-x:auto;padding-bottom:2px;margin:44px 0 32px;scrollbar-width:none;-webkit-overflow-scrolling:touch;}
+.fcat-tabs::-webkit-scrollbar{display:none;}
+.fcat-tab{display:inline-flex;align-items:center;gap:6px;font-family:var(--ff-body);font-size:12.5px;font-weight:500;color:var(--text-3);background:rgba(255,255,255,0.04);border:0.5px solid var(--border);border-radius:100px;padding:7px 16px;cursor:pointer;white-space:nowrap;transition:background 0.2s,color 0.2s,border-color 0.2s;flex-shrink:0;}
+.fcat-tab:hover{background:rgba(20,184,166,0.08);color:var(--text-2);border-color:rgba(20,184,166,0.25);}
+.fcat-tab.active{background:rgba(20,184,166,0.12);color:var(--teal);border-color:rgba(20,184,166,0.4);}
+.fcat-panel{display:none;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:64px;align-items:center;animation:fcatFadeIn 0.35s ease both;}
+.fcat-panel.active{display:grid;}
+@keyframes fcatFadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.fcat-eyebrow{font-family:var(--ff-mono);font-size:10px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--teal);margin-bottom:14px;}
+.fcat-title{font-family:var(--ff-display);font-weight:300;font-size:clamp(1.4rem,2.6vw,2rem);letter-spacing:-0.02em;color:var(--text-1);line-height:1.22;margin-bottom:16px;}
+.fcat-desc{font-size:14.5px;color:var(--text-2);line-height:1.78;margin-bottom:20px;}
+.fcat-list{list-style:none;display:flex;flex-direction:column;gap:9px;}
+.fcat-list li{font-size:13.5px;color:var(--text-2);line-height:1.6;padding-left:20px;position:relative;}
+.fcat-list li::before{content:'';position:absolute;left:0;top:7px;width:6px;height:6px;border-radius:50%;background:var(--teal);opacity:0.7;}
+.fcat-vis{display:flex;align-items:center;justify-content:center;min-width:0;}
+@media(max-width:900px){.fcat-panel.active{grid-template-columns:minmax(0,1fr);gap:32px;}.fcat-vis{order:-1;}.fcat-screen{max-width:100%;}}
+
+/* TRUST */
+.trust-sec{padding:96px 0;border-top:0.5px solid var(--border);}
+.trust-cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-top:44px;}
+.trust-card{background:var(--dark-2);border:0.5px solid var(--border);border-radius:var(--r-lg);padding:26px 22px;position:relative;}
+.trust-card::before{content:'';position:absolute;left:0;top:16px;bottom:16px;width:2px;border-radius:0 1px 1px 0;background:linear-gradient(180deg,var(--purple-mid) 0%,var(--teal) 100%);}
+.trust-card h3{font-family:var(--ff-display);font-size:1.2rem;font-weight:400;color:var(--text-1);margin-bottom:8px;}
+.trust-card h3 em{font-style:italic;color:var(--purple-bright);}
+.trust-card p{font-size:0.88rem;color:var(--text-2);line-height:1.65;}
+@media(max-width:980px){.trust-cards{grid-template-columns:repeat(2,minmax(0,1fr));}}
+@media(max-width:560px){.trust-cards{grid-template-columns:minmax(0,1fr);}}
+
+.compare-wrap{margin-top:40px;background:var(--dark-1);border:0.5px solid var(--border-hi);border-radius:var(--r-lg);overflow-x:auto;-webkit-overflow-scrolling:touch;}
+.compare{width:100%;min-width:620px;border-collapse:collapse;font-size:14px;}
+.compare th,.compare td{padding:16px 20px;text-align:left;border-bottom:0.5px solid var(--border);vertical-align:top;}
+.compare tr:last-child td{border-bottom:none;}
+.compare thead th{font-family:var(--ff-mono);font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-3);background:rgba(255,255,255,0.02);}
+.compare thead th.us{color:var(--teal);background:rgba(20,184,166,0.08);}
+.compare td{color:var(--text-2);}
+.compare td:first-child{color:var(--text-1);font-weight:500;}
+.compare td.us{color:var(--text-1);background:rgba(20,184,166,0.05);font-weight:500;}
+.compare .no{color:var(--text-3);}
+.compare-hint{display:none;font-size:11px;color:var(--text-3);margin-top:10px;}
+@media(max-width:680px){.compare-hint{display:block;}}
+
+/* START */
+.start-sec{padding:96px 0;border-top:0.5px solid var(--border);}
+.phases{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;margin-top:48px;border:0.5px solid var(--border);border-radius:var(--r-lg);overflow:hidden;background:var(--dark-2);}
+.phase{padding:30px 28px;position:relative;}
+.phase+.phase{border-left:0.5px solid var(--border);}
+.phase-when{font-family:var(--ff-mono);font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-3);margin-bottom:14px;}
+.phase-bar{height:4px;border-radius:2px;margin-bottom:22px;}
+.phase:nth-child(1) .phase-bar{background:var(--teal);}
+.phase:nth-child(2) .phase-bar{background:linear-gradient(90deg,var(--teal),var(--purple-bright));}
+.phase:nth-child(3) .phase-bar{background:var(--purple-bright);}
+.phase h3{font-family:var(--ff-display);font-size:1.5rem;font-weight:300;color:var(--text-1);margin-bottom:10px;}
+.phase p{font-size:0.92rem;color:var(--text-2);line-height:1.68;}
+@media(max-width:860px){.phases{grid-template-columns:minmax(0,1fr);}.phase+.phase{border-left:none;border-top:0.5px solid var(--border);}}
+
+/* TEAM BAND */
+.team-sec{padding:0 0 96px;}
+.team-band{background:linear-gradient(135deg,var(--purple) 0%,#0F766E 100%);border-radius:var(--r-lg);padding:32px 40px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;}
+.team-band p{font-family:var(--ff-display);font-size:clamp(1.1rem,2.2vw,1.4rem);font-weight:300;line-height:1.45;color:#fff;max-width:720px;}
+.team-band p strong{font-weight:500;}
+.team-band a{font-size:14px;font-weight:600;color:#fff;text-decoration:none;border:0.5px solid rgba(255,255,255,0.45);border-radius:10px;padding:10px 18px;white-space:nowrap;transition:background 0.2s;}
+.team-band a:hover{background:rgba(255,255,255,0.1);}
+@media(max-width:600px){.team-band{padding:26px 22px;}}
+
+/* FAQ */
+.faq-sec{padding:96px 0;border-top:0.5px solid var(--border);}
+.faq-list{margin-top:40px;display:flex;flex-direction:column;gap:10px;}
+.faq-item{background:var(--dark-2);border:0.5px solid var(--border);border-radius:var(--r-md);overflow:hidden;}
+.faq-item summary{list-style:none;cursor:pointer;padding:20px 24px;font-size:1.02rem;font-weight:500;color:var(--text-1);display:flex;justify-content:space-between;align-items:center;gap:16px;}
+.faq-item summary::-webkit-details-marker{display:none;}
+.faq-item summary::after{content:'+';font-family:var(--ff-mono);font-size:20px;color:var(--teal);flex-shrink:0;transition:transform 0.2s;}
+.faq-item[open] summary::after{transform:rotate(45deg);}
+.faq-item p{padding:0 24px 22px;font-size:0.95rem;color:var(--text-2);line-height:1.72;}
+
+/* CONTACT */
+.demo-sec{padding:96px 0 120px;border-top:0.5px solid var(--border);}
+.form-card{max-width:680px;margin:44px auto 0;background:var(--dark-1);border:0.5px solid var(--border-hi);border-radius:var(--r-xl);padding:44px 40px;position:relative;overflow:hidden;}
+.form-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(91,33,182,0.6),rgba(94,234,212,0.4),transparent);}
+.f-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px;margin-bottom:16px;}
+.f-full{margin-bottom:16px;}
+.f-lbl{display:block;font-family:var(--ff-mono);font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-3);margin-bottom:8px;}
+.f-input,.f-select,.f-text{width:100%;background:rgba(255,255,255,0.04);border:0.5px solid rgba(255,255,255,0.12);border-radius:var(--r-sm);padding:11px 14px;font-size:16px;color:var(--text-1);font-family:var(--ff-body);outline:none;transition:border-color 0.2s,background 0.2s;-webkit-appearance:none;appearance:none;}
+.f-input:focus,.f-select:focus,.f-text:focus{border-color:rgba(167,139,250,0.5);background:rgba(255,255,255,0.06);}
+.f-input::placeholder,.f-text::placeholder{color:var(--text-3);}
+.f-text{min-height:110px;resize:vertical;line-height:1.55;}
+.f-select{cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M4 6l4 4 4-4' stroke='%236B7280' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;background-size:16px;padding-right:38px;}
+.f-select option{background:var(--dark-2);color:var(--text-1);}
+.f-hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0;}
+.f-submit{width:100%;padding:14px;border-radius:var(--r-md);border:none;background:var(--purple);color:#fff;font-size:15px;font-weight:600;font-family:var(--ff-body);cursor:pointer;margin-top:8px;transition:background 0.2s,transform 0.1s;box-shadow:0 0 0 1px rgba(124,58,237,0.4),0 6px 24px rgba(91,33,182,0.35);}
+.f-submit:hover{background:var(--purple-mid);transform:translateY(-1px);}
+.f-submit:disabled{opacity:0.6;cursor:default;transform:none;}
+.f-note{text-align:center;font-size:12px;color:var(--text-3);margin-top:14px;}
+.f-err{display:none;font-size:13px;color:var(--red);margin-top:12px;text-align:center;}
+.f-err a{color:var(--red);}
+.f-success{display:none;text-align:center;padding:40px 20px;}
+.f-success-icon{width:52px;height:52px;border-radius:50%;margin:0 auto 18px;display:flex;align-items:center;justify-content:center;background:rgba(20,184,166,0.15);color:var(--teal);}
+.f-success h3{font-family:var(--ff-display);font-size:1.9rem;font-weight:300;margin-bottom:12px;}
+.f-success p{color:var(--text-2);font-size:15px;line-height:1.7;}
+@media(max-width:560px){.f-row{grid-template-columns:minmax(0,1fr);}.form-card{padding:30px 20px;}}
+
+/* FOOTER */
+footer{position:relative;z-index:1;border-top:0.5px solid var(--border);padding:40px 0 48px;text-align:center;}
+.foot-logo{display:inline-flex;align-items:center;gap:6px;text-decoration:none;margin-bottom:14px;}
+.foot-logo-txt{font-family:var(--ff-display);font-size:1.1rem;font-weight:400;color:var(--text-2);}
+.foot-copy{font-size:12.5px;color:var(--text-3);line-height:2;}
+.foot-copy a{color:var(--text-3);text-decoration:none;transition:color 0.2s;}
+.foot-copy a:hover{color:var(--text-2);}
+.foot-copy .dot{margin:0 6px;}
+</style>
+</head>
+<body>
+
+<div class="bg-grid"></div>
+<div class="bg-canvas"><div class="orb orb-1"></div><div class="orb orb-2"></div></div>
+
+<!-- NAV -->
+<nav>
+  <a href="/" class="nav-logo" aria-label="Resonance home">
+    <svg width="32" height="32" viewBox="0 0 154 182" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M153.032 120.267C151.562 120.775 150.1 121.263 148.595 121.797C122.192 131.345 96.6636 144.643 77.0527 163.76C76.1612 164.641 75.2855 165.535 74.4268 166.442C74.8954 167.697 75.1533 169.054 75.1533 170.473C75.1533 176.839 69.9929 181.999 63.627 181.999C57.2609 181.999 52.0996 176.839 52.0996 170.473C52.0997 164.107 57.261 158.947 63.627 158.947C65.3899 158.947 67.0597 159.343 68.5537 160.051C69.5224 159.205 70.5035 158.377 71.4951 157.565C94.2724 139.231 121.208 128.493 148.469 121.378C150.02 120.983 151.523 120.635 153.032 120.267Z" fill="#9BE2E4"/>
+      <path d="M11.9873 59.3557C18.6078 59.3557 23.9754 64.6194 23.9756 71.1125C23.9756 73.5466 23.2204 75.8077 21.9287 77.6838C22.5991 78.8025 23.2939 79.8907 24.0283 80.967C42.696 108.284 79.6038 118.04 113.279 118.468C115.159 118.48 117.145 118.446 118.953 118.372C117.157 118.591 115.174 118.771 113.293 118.905C79.6598 120.871 41.0566 114.918 17.3516 85.9348C16.4642 84.8277 15.6152 83.7036 14.7891 82.5432C13.8901 82.7543 12.9523 82.8703 11.9873 82.8703C5.36686 82.8701 0 77.6057 0 71.1125C0.000202317 64.6195 5.36698 59.3559 11.9873 59.3557Z" fill="url(#p0)"/>
+      <path d="M133.939 120.678C132.369 120.919 130.647 121.204 129.029 121.485C99.5499 126.902 69.8404 134.143 43.9873 147.876C43.4006 148.2 42.8073 148.535 42.2168 148.874C42.3447 149.562 42.415 150.27 42.415 150.995C42.415 157.361 37.2545 162.521 30.8887 162.522C24.5227 162.522 19.3614 157.361 19.3613 150.995C19.3613 144.629 24.5227 139.469 30.8887 139.469C33.4021 139.469 35.726 140.275 37.6201 141.641C38.5159 141.218 39.4179 140.804 40.3027 140.414C68.9294 128.335 99.008 123.935 128.973 121.052C130.611 120.915 132.353 120.774 133.939 120.678Z" fill="url(#p1)"/>
+      <path d="M42.417 51.5175C47.7642 51.5178 52.0986 55.7692 52.0986 61.0136C52.0986 63.9272 50.7594 66.5324 48.6533 68.2744C49.2172 69.1005 49.7957 69.9154 50.3936 70.7236C71.577 98.807 108.849 112.23 144.412 114.014C146.432 113.955 148.534 114.174 150.306 113.301C149.859 113.553 149.387 113.733 148.898 113.866C149.178 113.865 148.728 113.945 148.27 114.011C147.03 114.248 145.706 114.248 144.42 114.358C107.681 115.104 65.8779 107.282 43.7041 74.0498C42.9458 72.8727 42.2307 71.6873 41.5449 70.4697C36.606 70.0374 32.7344 65.97 32.7344 61.0136C32.7344 55.7691 37.0696 51.5175 42.417 51.5175Z" fill="url(#p2)"/>
+      <path d="M90.7822 0.66696C92.6862 -0.538979 95.339 -0.0645439 96.707 1.72653C97.4008 2.63492 97.6295 3.70723 97.4395 4.70114C97.4522 4.82516 97.4598 4.9512 97.458 5.07907C97.3457 13.2627 97.0693 35.4671 97.0693 55.7363C97.0693 57.032 97.0492 58.2767 97.0127 59.4716C96.9525 70.6974 96.8631 79.7189 96.833 82.5644C96.8269 83.1338 96.4721 83.6365 95.9395 83.8379L91.54 85.5009C90.8536 85.7605 90.1321 85.4542 89.8232 84.8691C89.7229 84.7836 89.667 84.631 89.667 84.416V10.997L60.6465 29.3769C60.641 41.5872 60.6289 69.1824 60.6289 70.4882C60.6289 72.1676 53.0219 65.8699 52.7832 53.9043V26.8779C52.7832 26.486 52.8525 26.1102 52.9805 25.7627C53.2129 24.897 53.7706 24.1095 54.625 23.5683L90.7822 0.66696Z" fill="url(#p3)"/>
+      <path d="M100.09 30.9179C100.075 30.534 100.509 30.3007 100.821 30.5254L114.154 40.1318C114.274 40.2184 114.346 40.3576 114.346 40.5058V47.0859C114.364 61.7596 114.695 92.4466 114.783 100.316C114.793 101.25 113.895 101.915 113.001 101.646L107.491 99.9922C106.906 99.8166 106.505 99.3019 106.505 98.6914V49.3906L100.671 40.3984C100.541 40.3178 100.459 40.1783 100.453 40.0254L100.09 30.9179Z" fill="url(#p4)"/>
+      <defs>
+        <linearGradient id="p0" x1="14.0623" y1="71.5739" x2="40.5735" y2="94.3963" gradientUnits="userSpaceOnUse"><stop stop-color="#9CE4E5"/><stop offset="1" stop-color="#936DD7"/></linearGradient>
+        <linearGradient id="p1" x1="27.1997" y1="148.111" x2="123.334" y2="125.056" gradientUnits="userSpaceOnUse"><stop stop-color="#9CE4E5"/><stop offset="0.778846" stop-color="#5B4790"/><stop offset="1" stop-color="#98D8EB"/></linearGradient>
+        <linearGradient id="p2" x1="91.52" y1="51.5175" x2="91.52" y2="114.407" gradientUnits="userSpaceOnUse"><stop stop-color="#96D0F0"/><stop offset="1" stop-color="#90B6EF"/></linearGradient>
+        <linearGradient id="p3" x1="75.1434" y1="0" x2="75.1434" y2="85.594" gradientUnits="userSpaceOnUse"><stop stop-color="#A37CEC"/><stop offset="1" stop-color="#5B4790"/></linearGradient>
+        <linearGradient id="p4" x1="107.436" y1="30.4375" x2="107.436" y2="101.706" gradientUnits="userSpaceOnUse"><stop stop-color="#A37CEC"/><stop offset="1" stop-color="#5B4790"/></linearGradient>
+      </defs>
+    </svg>
+    <span class="logo-text">Resonance</span>
+  </a>
+  <div class="conf-pill">DecisionOS · Product preview</div>
+  <div class="nav-right">
+    <a href="/" class="btn-site">Main site</a>
+    <a href="#contact" class="btn-demo-nav">Talk to us</a>
+  </div>
+</nav>
+
+<!-- 1. HERO -->
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <div class="preview-badge"><span class="preview-badge-tag">Preview</span><span class="preview-badge-txt">DecisionOS by Resonance</span></div>
+        <h1>Decisions you can defend, <em>re-planned in minutes.</em></h1>
+        <p class="hero-sub">DecisionOS works on top of the systems you already use and turns your data into a plan: which households move where, which units to rehab first, and which buildings fit your portfolio. Every recommendation shows the rules and numbers behind it.</p>
+        <div class="hero-cta">
+          <a href="#contact" class="btn-primary">Talk to us
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8m-4-4 4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a href="#how" class="btn-outline">How it works</a>
+        </div>
+      </div>
+
+      <!-- Hero screen: a re-plan decision record -->
+      <div class="hero-vis" aria-hidden="true">
+        <div class="fcat-screen wide">
+          <div class="fcat-screen-bar">
+            <div class="fcat-screen-dots"><span></span><span></span><span></span></div>
+            <div class="fcat-screen-url">app.resonancehq.io / decisionos / relocation / re-plan-14</div>
+          </div>
+          <div class="scr-body">
+            <div class="scr-head">
+              <div class="scr-title">Re-plan: Building C start moved 2 weeks</div>
+              <span class="badge badge-amber">Awaiting approval</span>
+            </div>
+            <div class="scr-sub">Inputs: construction schedule v14 · rent roll (Oct) · 212 households · 44 temporary units</div>
+
+            <div class="kv">
+              <div class="kv-cell"><div class="kv-label">Households re-assigned</div><div class="kv-val">17 <small>of 212</small></div></div>
+              <div class="kv-cell"><div class="kv-label">Temp units used</div><div class="kv-val">41 <small>of 44</small></div></div>
+              <div class="kv-cell"><div class="kv-label">Rule violations</div><div class="kv-val" style="color:var(--green)">0</div></div>
+            </div>
+
+            <div class="scr-label">Rules followed</div>
+            <div class="chk-row"><span class="chk-box">✓</span>Bedroom count matches household size</div>
+            <div class="chk-row"><span class="chk-box">✓</span>9 households needing accessible units placed in accessible units</div>
+            <div class="chk-row"><span class="chk-box">✓</span>No move before the household's notice period ends</div>
+            <div class="chk-row"><span class="chk-box">✓</span>Every household stays within its school district</div>
+
+            <div class="approval">
+              <span class="ic"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 3h5v5"/><path d="M21 3 14 10"/><path d="M8 21H3v-5"/><path d="m3 21 7-7"/></svg></span>
+              <div>Moving costs <b>+$18,400</b> exceed the relocation manager's <b>$10,000</b> limit. Routed to <b>Director of Development</b>.
+                <div class="approval-btns"><span class="mini-btn go">Approve</span><span class="mini-btn">Send back</span><span class="mini-btn">View numbers</span></div>
+              </div>
+            </div>
+
+            <div class="scr-foot"><span>Re-run check: <b>same plan as run #1</b></span><span>Logged · 11:42 AM</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 2. THE PROBLEM -->
+<section class="prob-sec">
+  <div class="wrap">
+    <div class="eyebrow">The problem</div>
+    <h2 class="section-h2">Your systems tell you what's true. <em>They don't tell you what to do.</em></h2>
+    <div class="prob-cards">
+      <div class="prob-card c1">
+        <h3>Plans break when the schedule moves.</h3>
+        <p>The contractor slips two weeks, and someone spends a week rebuilding the move plan in a spreadsheet.</p>
+      </div>
+      <div class="prob-card c2">
+        <h3>The reasoning lives in people's heads.</h3>
+        <p>Decisions get made over email and in meetings, and six months later no one can show why.</p>
+      </div>
+      <div class="prob-card c3">
+        <h3>AI chat tools aren't built for this.</h3>
+        <p>Ask twice and you may get two different answers. You can't take that to a board or to HUD.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3. HOW IT WORKS -->
+<section class="how-sec" id="how">
+  <div class="wrap">
+    <div class="eyebrow">How it works</div>
+    <h2 class="section-h2">AI reads your data. <em>Your rules make the decision.</em></h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-top"><span class="step-num">01</span>
+          <span class="step-ic t"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 17H7A5 5 0 0 1 7 7h2"/><path d="M15 7h2a5 5 0 1 1 0 10h-2"/><line x1="8" x2="16" y1="12" y2="12"/></svg></span></div>
+        <h3>Connect</h3>
+        <p>Use integrations with your systems of record, or upload files such as rent rolls, construction schedules and budgets.</p>
+        <span class="step-tag ai">Your data</span>
+      </div>
+      <div class="step">
+        <div class="step-top"><span class="step-num">02</span>
+          <span class="step-ic t"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M7 12h10"/><path d="M10 18h4"/></svg></span></div>
+        <h3>Understand</h3>
+        <p>AI cleans and organizes messy data, maps it to the right fields and flags anything missing.</p>
+        <span class="step-tag ai">AI</span>
+      </div>
+      <div class="step">
+        <div class="step-top"><span class="step-num">03</span>
+          <span class="step-ic p"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></span></div>
+        <h3>Decide</h3>
+        <p>Purpose-built planning engines produce a recommendation that follows your rules and constraints. The same inputs give the same plan every time.</p>
+        <span class="step-tag rules">Your rules</span>
+      </div>
+      <div class="step">
+        <div class="step-top"><span class="step-num">04</span>
+          <span class="step-ic a"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg></span></div>
+        <h3>Approve</h3>
+        <p>Your team reviews the recommendation and approves it. Anything above a person's approval limit goes to the next approver. Every step is logged.</p>
+        <span class="step-tag people">Your people</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4. WHAT IT HANDLES TODAY -->
+<section class="feat-sec" id="handles">
+  <div class="wrap">
+    <div class="eyebrow">What it handles today</div>
+    <h2 class="section-h2">Built for the decisions housing teams <em>make every week.</em></h2>
+
+    <div class="fcat-tabs" role="tablist">
+      <button class="fcat-tab active" role="tab" aria-selected="true" onclick="fcatSwitch(0)">Relocation planning</button>
+      <button class="fcat-tab" role="tab" aria-selected="false" onclick="fcatSwitch(1)">Rehab prioritization</button>
+      <button class="fcat-tab" role="tab" aria-selected="false" onclick="fcatSwitch(2)">Acquisition fit</button>
+      <button class="fcat-tab" role="tab" aria-selected="false" onclick="fcatSwitch(3)">What-if scenarios</button>
+    </div>
+
+    <div class="fcat-panels">
+
+      <!-- 0: Relocation -->
+      <div class="fcat-panel active" data-panel="0">
+        <div class="fcat-copy">
+          <div class="fcat-eyebrow">Relocation planning</div>
+          <h3 class="fcat-title">Match hundreds of households to temporary units.</h3>
+          <p class="fcat-desc">Match households to temporary units while respecting their needs and the construction schedule. When dates change, re-plan in minutes.</p>
+          <ul class="fcat-list">
+            <li>Bedroom size, accessibility and other household needs are rules, not reminders</li>
+            <li>Moves follow the construction schedule, building by building</li>
+            <li>When a date moves, you see which households change and why</li>
+          </ul>
+        </div>
+        <div class="fcat-vis" aria-hidden="true">
+          <div class="fcat-screen">
+            <div class="fcat-screen-bar">
+              <div class="fcat-screen-dots"><span></span><span></span><span></span></div>
+              <div class="fcat-screen-url">app.resonancehq.io / decisionos / relocation / phase-2</div>
+            </div>
+            <div class="scr-body">
+              <div class="scr-head">
+                <div class="scr-title">Phase 2 move plan · after schedule change</div>
+                <div class="scr-meta">212 households</div>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:6px;">
+                <div class="fcat-hrow fcat-hrow-active">
+                  <div class="fcat-hrow-name"><b>Johnson, M. #1147</b> · 3BR · Wheelchair<br><span class="old">B-118</span><span class="arrow">→</span>C-104 accessible</div>
+                  <span class="badge badge-amber">Re-assigned</span>
+                </div>
+                <div class="fcat-hrow">
+                  <div class="fcat-hrow-name"><b>Rivera, C. #0692</b> · 2BR · Ground floor<br><span class="arrow" style="margin-left:0">→</span>B-102</div>
+                  <span class="badge badge-teal">Unchanged</span>
+                </div>
+                <div class="fcat-hrow">
+                  <div class="fcat-hrow-name"><b>Okafor, N. #1023</b> · 4BR<br><span class="old">Mar 3</span><span class="arrow">→</span>Mar 17 move date</div>
+                  <span class="badge badge-amber">Date moved</span>
+                </div>
+                <div class="fcat-hrow">
+                  <div class="fcat-hrow-name"><b>Chen, L. #0875</b> · 1BR · Senior<br><span class="arrow" style="margin-left:0">→</span>A-310 (elevator)</div>
+                  <span class="badge badge-teal">Unchanged</span>
+                </div>
+              </div>
+              <div class="scr-foot" style="flex-direction:column;gap:6px;">
+                <div style="display:flex;justify-content:space-between;"><span>Households placed</span><b>212 of 212</b></div>
+                <div class="progress-track"><div class="progress-fill" style="width:100%"></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 1: Rehab prioritization -->
+      <div class="fcat-panel" data-panel="1">
+        <div class="fcat-copy">
+          <div class="fcat-eyebrow">Rehab prioritization</div>
+          <h3 class="fcat-title">When the budget is cut, see what gets done first.</h3>
+          <p class="fcat-desc">See which units to rehab first and what gets deferred, with a score you can explain.</p>
+          <ul class="fcat-list">
+            <li>Every unit's score breaks down into the factors behind it</li>
+            <li>The budget line shows exactly what is funded and what waits</li>
+            <li>Change a weight or a cost, and the ranking updates</li>
+          </ul>
+        </div>
+        <div class="fcat-vis" aria-hidden="true">
+          <div class="fcat-screen">
+            <div class="fcat-screen-bar">
+              <div class="fcat-screen-dots"><span></span><span></span><span></span></div>
+              <div class="fcat-screen-url">app.resonancehq.io / decisionos / rehab / budget-v3</div>
+            </div>
+            <div class="scr-body">
+              <div class="scr-head">
+                <div class="scr-title">Rehab priority · budget $3.6M <span style="color:var(--text-3);font-weight:500">(was $4.2M)</span></div>
+              </div>
+              <div class="scr-sub">Score = life safety 40% · occupied 25% · system age 20% · cost per unit 15%</div>
+              <div style="display:flex;flex-direction:column;gap:6px;">
+                <div class="fcat-hrow fcat-hrow-active"><div class="fcat-hrow-name"><b>Bldg 2 · Unit 4B</b> · roof leak, occupied</div><span class="badge badge-green">Score 92</span></div>
+                <div class="fcat-hrow"><div class="fcat-hrow-name"><b>Bldg 1 · Unit 2A</b> · electrical panel</div><span class="badge badge-green">Score 88</span></div>
+                <div class="fcat-hrow"><div class="fcat-hrow-name"><b>Bldg 2 · Unit 6C</b> · boiler, 31 yrs</div><span class="badge badge-green">Score 81</span></div>
+                <div class="cutline">Budget line · $3.6M</div>
+                <div class="fcat-hrow cut"><div class="fcat-hrow-name"><b>Bldg 3 · Unit 1D</b> · kitchen, vacant</div><span class="badge badge-amber">Deferred</span></div>
+                <div class="fcat-hrow cut"><div class="fcat-hrow-name"><b>Bldg 3 · Unit 5A</b> · flooring</div><span class="badge badge-amber">Deferred</span></div>
+              </div>
+              <div class="scr-foot"><span>Funded <b>58 units</b></span><span>Deferred <b>14 units · $610K</b></span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2: Acquisition fit -->
+      <div class="fcat-panel" data-panel="2">
+        <div class="fcat-copy">
+          <div class="fcat-eyebrow">Acquisition fit</div>
+          <h3 class="fcat-title">A ranked shortlist your investment committee can inspect.</h3>
+          <p class="fcat-desc">Score candidate buildings against your criteria: rent headroom under affordability caps, units per million dollars and red flags.</p>
+          <ul class="fcat-list">
+            <li>Your criteria and weights, written down and applied the same way to every building</li>
+            <li>Red flags show the record that raised them</li>
+            <li>Every rank can be traced back to its numbers</li>
+          </ul>
+        </div>
+        <div class="fcat-vis" aria-hidden="true">
+          <div class="fcat-screen">
+            <div class="fcat-screen-bar">
+              <div class="fcat-screen-dots"><span></span><span></span><span></span></div>
+              <div class="fcat-screen-url">app.resonancehq.io / decisionos / acquisitions / pipeline</div>
+            </div>
+            <div class="scr-body">
+              <div class="scr-head">
+                <div class="scr-title">Candidate buildings · 9 screened</div>
+                <div class="scr-meta">Criteria v3</div>
+              </div>
+              <table class="dtable">
+                <thead><tr><th></th><th>Building</th><th class="num">Rent headroom</th><th class="num">Units / $M</th><th>Flags</th></tr></thead>
+                <tbody>
+                  <tr class="top"><td><span class="rank r1">1</span></td><td><b>Maple Court</b><br>84 units</td><td class="num">+11%</td><td class="num">6.2</td><td><span class="badge badge-green">None</span></td></tr>
+                  <tr><td><span class="rank">2</span></td><td><b>Elm Terrace</b><br>120 units</td><td class="num">+7%</td><td class="num">5.4</td><td><span class="badge badge-amber">1</span></td></tr>
+                  <tr><td><span class="rank">3</span></td><td><b>Harbor View</b><br>56 units</td><td class="num">+9%</td><td class="num">4.8</td><td><span class="badge badge-amber">1</span></td></tr>
+                  <tr><td><span class="rank">4</span></td><td><b>Linden Place</b><br>140 units</td><td class="num">+2%</td><td class="num">5.1</td><td><span class="badge badge-red">3</span></td></tr>
+                </tbody>
+              </table>
+              <div class="chk-row" style="margin-top:2px;"><span class="chk-box warn">!</span>Elm Terrace: open code violations (2) in the city record</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3: What-if -->
+      <div class="fcat-panel" data-panel="3">
+        <div class="fcat-copy">
+          <div class="fcat-eyebrow">What-if scenarios</div>
+          <h3 class="fcat-title">Test a change before it happens.</h3>
+          <p class="fcat-desc">Test a slipped date, a higher quote or a tighter deadline, and see how the recommendation changes and why.</p>
+          <ul class="fcat-list">
+            <li>Run scenarios side by side on the same data</li>
+            <li>Each result explains what changed and which rule caused it</li>
+            <li>Save a scenario and bring it to the next meeting</li>
+          </ul>
+        </div>
+        <div class="fcat-vis" aria-hidden="true">
+          <div class="fcat-screen">
+            <div class="fcat-screen-bar">
+              <div class="fcat-screen-dots"><span></span><span></span><span></span></div>
+              <div class="fcat-screen-url">app.resonancehq.io / decisionos / scenarios / phase-2</div>
+            </div>
+            <div class="scr-body">
+              <div class="scenario-card">
+                <div class="sc-header"><span>Scenario compare · Phase 2</span><span style="font-size:10px;color:var(--teal)">3 runs</span></div>
+                <div class="sc-cols">
+                  <div class="sc-col">
+                    <div class="sc-col-label">Current plan</div>
+                    <div class="sc-metric"><div class="sc-m-label">Re-assigned</div><div class="sc-m-val mid">0</div></div>
+                    <div class="sc-metric"><div class="sc-m-label">Temp units</div><div class="sc-m-val mid">38</div></div>
+                    <div class="sc-metric"><div class="sc-m-label">Move budget</div><div class="sc-m-val mid">$412K</div></div>
+                  </div>
+                  <div class="sc-col on">
+                    <div class="sc-col-label">Bldg C slips 2 wks</div>
+                    <div class="sc-metric"><div class="sc-m-label">Re-assigned</div><div class="sc-m-val bad">17</div></div>
+                    <div class="sc-metric"><div class="sc-m-label">Temp units</div><div class="sc-m-val bad">41</div></div>
+                    <div class="sc-metric"><div class="sc-m-label">Move budget</div><div class="sc-m-val bad">$430K</div></div>
+                  </div>
+                  <div class="sc-col">
+                    <div class="sc-col-label">Mover quote +12%</div>
+                    <div class="sc-metric"><div class="sc-m-label">Re-assigned</div><div class="sc-m-val good">0</div></div>
+                    <div class="sc-metric"><div class="sc-m-label">Temp units</div><div class="sc-m-val good">38</div></div>
+                    <div class="sc-metric"><div class="sc-m-label">Move budget</div><div class="sc-m-val bad">$461K</div></div>
+                  </div>
+                </div>
+                <div class="sc-why"><b>Why it changed:</b> the slip pushes 17 households past their temporary-unit end dates. 3 more units are needed in Building B to keep accessible placements.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- 5. WHY TEAMS TRUST IT -->
+<section class="trust-sec" id="trust">
+  <div class="wrap">
+    <div class="eyebrow">Why teams trust it</div>
+    <h2 class="section-h2">Built to be <em>checked.</em></h2>
+    <div class="trust-cards">
+      <div class="trust-card"><h3><em>Repeatable.</em></h3><p>Planning engines, not guesswork, compute the plan. Run it again and you get the same answer.</p></div>
+      <div class="trust-card"><h3><em>Explained.</em></h3><p>Every recommendation shows the constraints it followed and the numbers it used.</p></div>
+      <div class="trust-card"><h3><em>Human-approved.</em></h3><p>Nothing executes on its own. Your people approve, and approval limits are enforced.</p></div>
+      <div class="trust-card"><h3><em>No rip-and-replace.</em></h3><p>Keep Yardi, Procore and your spreadsheets. DecisionOS sits on top of them.</p></div>
+    </div>
+
+    <div class="compare-wrap">
+      <table class="compare">
+        <thead>
+          <tr><th></th><th>System of record<br>(Yardi, Procore)</th><th>AI chat tool</th><th class="us">DecisionOS</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Stores your data</td><td>Yes</td><td class="no">No</td><td class="us">Reads from your systems</td></tr>
+          <tr><td>Recommends what to do</td><td class="no">No</td><td>Yes, but answers vary</td><td class="us">Yes, by your rules</td></tr>
+          <tr><td>Same answer every time</td><td class="no">n/a</td><td class="no">No</td><td class="us">Yes</td></tr>
+          <tr><td>Shows its reasoning</td><td class="no">n/a</td><td>Partly</td><td class="us">Rules and numbers, every time</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="compare-hint">Swipe the table to see all columns →</p>
+  </div>
+</section>
+
+<!-- 6. HOW TO START -->
+<section class="start-sec" id="start">
+  <div class="wrap">
+    <div class="eyebrow">How to start</div>
+    <h2 class="section-h2">Start with <em>one decision.</em></h2>
+    <div class="phases">
+      <div class="phase">
+        <div class="phase-bar"></div>
+        <div class="phase-when">A few weeks</div>
+        <h3>Try</h3>
+        <p>Choose one decision, such as your next relocation, a budget scenario or an acquisition pipeline. Send us an export, and within a few weeks you'll see a real plan built on your own data.</p>
+      </div>
+      <div class="phase">
+        <div class="phase-bar"></div>
+        <div class="phase-when">About three months</div>
+        <h3>Implement</h3>
+        <p>We set up the guardrails, approval rules and integrations your team needs.</p>
+      </div>
+      <div class="phase">
+        <div class="phase-bar"></div>
+        <div class="phase-when">Ongoing</div>
+        <h3>Run</h3>
+        <p>DecisionOS becomes part of how your team plans, re-plans and reports.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 7. FROM THE TEAM BEHIND RESONANCE -->
+<section class="team-sec">
+  <div class="wrap">
+    <div class="team-band">
+      <p>DecisionOS is built by <strong>Resonance</strong>, the platform relocation and development teams use to run RAD, PACT and rehab programs.</p>
+      <a href="/">About Resonance →</a>
+    </div>
+  </div>
+</section>
+
+<!-- 8. FAQ -->
+<section class="faq-sec" id="faq">
+  <div class="wrap-tight">
+    <div class="eyebrow">FAQ</div>
+    <h2 class="section-h2">Questions teams <em>ask first.</em></h2>
+    <div class="faq-list">
+      <details class="faq-item"><summary>Do we have to replace our current systems?</summary><p>No. DecisionOS reads from the systems and files you already use.</p></details>
+      <details class="faq-item"><summary>What if the plan is wrong?</summary><p>A plan is only as good as its rules and data, so DecisionOS makes both visible. If something looks off, your team can see why, fix the rule or the data, and re-plan in minutes. Nothing goes ahead without approval.</p></details>
+      <details class="faq-item"><summary>How is this different from ChatGPT?</summary><p>AI models are good at reading messy data, but they can give a different answer each time. DecisionOS uses AI to understand your data and planning engines to make the decision, so the result is repeatable and auditable.</p></details>
+      <details class="faq-item"><summary>What does it cost?</summary><p>Pricing is scoped to the decision and the portfolio. Every engagement starts with a short pilot on your own data.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- 9. CONTACT -->
+<section class="demo-sec" id="contact">
+  <div class="wrap">
+    <div class="center">
+      <div class="eyebrow">Contact</div>
+      <h2 class="section-h2">Bring us <em>one decision.</em></h2>
+      <p class="section-lead">Tell us what you're trying to plan, and we'll show you what it looks like in DecisionOS.</p>
+    </div>
+
+    <div class="form-card">
+      <form id="dosForm" novalidate>
+        <div class="f-row">
+          <div><label class="f-lbl" for="d-name">Name</label><input class="f-input" type="text" id="d-name" name="name" placeholder="Your name" autocomplete="name" required></div>
+          <div><label class="f-lbl" for="d-email">Work email</label><input class="f-input" type="email" id="d-email" name="email" placeholder="you@yourorg.org" autocomplete="email" required></div>
+        </div>
+        <div class="f-row">
+          <div><label class="f-lbl" for="d-org">Organization</label><input class="f-input" type="text" id="d-org" name="organization" placeholder="Housing authority, developer…" autocomplete="organization" required></div>
+          <div><label class="f-lbl" for="d-role">Role</label>
+            <select class="f-select" id="d-role" name="role">
+              <option value="" selected>Select your role…</option>
+              <option>Development director</option>
+              <option>Asset manager</option>
+              <option>Relocation manager</option>
+              <option>COO / executive</option>
+              <option>Other</option>
+            </select>
+          </div>
+        </div>
+        <div class="f-full">
+          <label class="f-lbl" for="d-decision">Decision you want to plan</label>
+          <select class="f-select" id="d-decision" name="decision">
+            <option value="" selected>Choose one…</option>
+            <option>Relocation planning</option>
+            <option>Rehab prioritization</option>
+            <option>Acquisition fit</option>
+            <option>What-if scenarios</option>
+            <option>Something else</option>
+          </select>
+        </div>
+        <div class="f-full">
+          <label class="f-lbl" for="d-msg">What are you trying to plan?</label>
+          <textarea class="f-text" id="d-msg" name="message" placeholder="e.g. 240 households across two buildings, construction starts in March"></textarea>
+        </div>
+        <div class="f-hp" aria-hidden="true"><label for="d-website">Website</label><input type="text" id="d-website" name="_gotcha" tabindex="-1" autocomplete="off"></div>
+        <button class="f-submit" type="submit">Talk to us →</button>
+        <p class="f-err" id="dosErr"></p>
+        <p class="f-note">We'll reply within one business day.</p>
+      </form>
+      <div class="f-success" id="dosSuccess">
+        <div class="f-success-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
+        <h3>Thanks. We'll be in touch.</h3>
+        <p>The Resonance team will reply within one business day to set up a conversation about your decision.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap" style="display:flex;flex-direction:column;align-items:center;">
+    <a href="/" class="foot-logo">
+      <svg width="22" height="22" viewBox="0 0 154 182" fill="none"><path d="M153.032 120.267C151.562 120.775 150.1 121.263 148.595 121.797C122.192 131.345 96.6636 144.643 77.0527 163.76C76.1612 164.641 75.2855 165.535 74.4268 166.442C74.8954 167.697 75.1533 169.054 75.1533 170.473C75.1533 176.839 69.9929 181.999 63.627 181.999C57.2609 181.999 52.0996 176.839 52.0996 170.473C52.0997 164.107 57.261 158.947 63.627 158.947C65.3899 158.947 67.0597 159.343 68.5537 160.051C69.5224 159.205 70.5035 158.377 71.4951 157.565C94.2724 139.231 121.208 128.493 148.469 121.378C150.02 120.983 151.523 120.635 153.032 120.267Z" fill="#9BE2E4"/><path d="M11.9873 59.3557C18.6078 59.3557 23.9754 64.6194 23.9756 71.1125C23.9756 73.5466 23.2204 75.8077 21.9287 77.6838C22.5991 78.8025 23.2939 79.8907 24.0283 80.967C42.696 108.284 79.6038 118.04 113.279 118.468C115.159 118.48 117.145 118.446 118.953 118.372C117.157 118.591 115.174 118.771 113.293 118.905C79.6598 120.871 41.0566 114.918 17.3516 85.9348C16.4642 84.8277 15.6152 83.7036 14.7891 82.5432C13.8901 82.7543 12.9523 82.8703 11.9873 82.8703C5.36686 82.8701 0 77.6057 0 71.1125C0.000202317 64.6195 5.36698 59.3559 11.9873 59.3557Z" fill="url(#fp0)"/><defs><linearGradient id="fp0" x1="14" y1="71" x2="40" y2="94" gradientUnits="userSpaceOnUse"><stop stop-color="#9CE4E5"/><stop offset="1" stop-color="#936DD7"/></linearGradient></defs></svg>
+      <span class="foot-logo-txt">Resonance</span>
+    </a>
+    <p class="foot-copy">
+      © 2026 Resonance. All rights reserved.
+      <span class="dot">·</span>
+      <a href="/privacy-policy">Privacy Policy</a>
+      <span class="dot">·</span>
+      <a href="/">resonancehq.io</a>
+    </p>
+  </div>
+</footer>
+
+<script>
+/* UTM */
+(function(){
+  var p = new URLSearchParams(window.location.search);
+  window._utm = {
+    source:   p.get('utm_source')   || 'direct',
+    medium:   p.get('utm_medium')   || 'web',
+    campaign: p.get('utm_campaign') || 'decisionos-preview'
+  };
+})();
+
+/* FEATURE TABS */
+function fcatSwitch(idx){
+  document.querySelectorAll('.fcat-tab').forEach(function(t,i){
+    t.classList.toggle('active', i===idx);
+    t.setAttribute('aria-selected', i===idx ? 'true' : 'false');
+  });
+  document.querySelectorAll('.fcat-panel').forEach(function(p,i){
+    p.classList.toggle('active', i===idx);
+  });
+}
+
+/* CONTACT FORM */
+(function(){
+  var form = document.getElementById('dosForm');
+  var err  = document.getElementById('dosErr');
+  var FALLBACK = 'sean@resonancehq.io';
+  function showErr(html){ err.innerHTML = html; err.style.display = 'block'; }
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    err.style.display = 'none';
+    if (document.getElementById('d-website').value) return; // bot
+
+    var name  = document.getElementById('d-name').value.trim();
+    var email = document.getElementById('d-email').value.trim();
+    var org   = document.getElementById('d-org').value.trim();
+    if (!name || !email || !org) { showErr('Please fill in your name, work email and organization.'); return; }
+    if (!/^\S+@\S+\.\S+$/.test(email)) { showErr('Please enter a valid work email.'); return; }
+
+    var payload = {
+      name: name,
+      email: email,
+      organization: org,
+      role: document.getElementById('d-role').value || 'Not specified',
+      decision: document.getElementById('d-decision').value || 'Not specified',
+      message: document.getElementById('d-msg').value.trim(),
+      source_page: 'decisionos',
+      utm_source: window._utm.source,
+      utm_medium: window._utm.medium,
+      utm_campaign: window._utm.campaign,
+      _subject: 'DecisionOS inquiry: ' + name + ' (' + org + ')'
+    };
+
+    var btn = form.querySelector('.f-submit');
+    btn.disabled = true; btn.textContent = 'Sending…';
+    if (window.gtag) window.gtag('event','decisionos_contact',{event_label:payload.decision,utm_source:window._utm.source});
+
+    function fail(){
+      btn.disabled = false; btn.textContent = 'Talk to us →';
+      var mail = 'mailto:' + FALLBACK + '?subject=' + encodeURIComponent('DecisionOS: ' + org) + '&body=' + encodeURIComponent(payload.message || '');
+      showErr('Something went wrong sending the form. Please email <a href="' + mail + '">' + FALLBACK + '</a>.');
+    }
+
+    fetch('https://formspree.io/f/xlgpwdbq', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json','Accept':'application/json'},
+      body: JSON.stringify(payload)
+    })
+    .then(function(r){ return r.json().then(function(d){ return {ok:r.ok, d:d}; }); })
+    .then(function(res){
+      if (res.ok && (res.d.ok !== false)) {
+        form.style.display = 'none';
+        document.getElementById('dosSuccess').style.display = 'block';
+      } else { fail(); }
+    })
+    .catch(fail);
+  });
+})();
+</script>
+</body>
+</html>
