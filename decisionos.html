@@ -33,8 +33,7 @@
 <link rel="manifest" href="/site.webmanifest">
 <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Instrument+Sans:wght@400;500;600&family=Nunito+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -48,381 +47,631 @@
   ]
 }
 </script>
-
 <style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{
+/* Simulation styles, scoped to #replan */
+
+#replan{
   --purple:#5B21B6;--purple-mid:#7C3AED;--purple-bright:#A78BFA;
-  --purple-ghost:rgba(91,33,182,0.12);--purple-glow:rgba(91,33,182,0.28);
-  --teal:#14B8A6;--teal-bright:#5EEAD4;--teal-ghost:rgba(20,184,166,0.1);
+  --teal:#14B8A6;--teal-bright:#5EEAD4;
   --dark:#09080F;--dark-1:#110E1E;--dark-2:#1A1630;--dark-3:#231E3E;--dark-4:#2D2754;
   --border:rgba(120,100,220,0.18);--border-hi:rgba(120,100,220,0.38);
-  --text-1:#F1EEFF;--text-2:#B8AAEE;--text-3:#7E72B8;
+  --text-1:#F1EEFF;--text-2:#B8AAEE;--text-3:#8A7FC4;
   --amber:#F59E0B;--green:#34D399;--red:#F87171;
   --ff-display:'Fraunces',Georgia,'Times New Roman',serif;
   --ff-body:'Instrument Sans',-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
-  --ff-mono:'Nunito Sans',-apple-system,sans-serif;
-  --r-sm:8px;--r-md:12px;--r-lg:18px;--r-xl:24px;
+  --ff-data:'JetBrains Mono','SF Mono',ui-monospace,Menlo,monospace;
+  --lab:158px;
 }
-html{scroll-behavior:smooth;font-size:16px;}
-body{font-family:var(--ff-body);background:var(--dark);color:var(--text-1);overflow-x:hidden;-webkit-font-smoothing:antialiased;}
-::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:var(--dark)}::-webkit-scrollbar-thumb{background:var(--dark-4);border-radius:3px}
-section[id]{scroll-margin-top:72px;}
+#replan *{box-sizing:border-box}
+#replan{font-size:16px}
+#replan{margin:0;background:var(--dark);color:var(--text-1);font-family:var(--ff-body);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+#replan button{font:inherit;color:inherit}
+#replan .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 
-/* BG */
-.bg-grid{position:fixed;inset:0;z-index:0;pointer-events:none;
-  background-image:linear-gradient(rgba(120,100,220,0.035) 1px,transparent 1px),linear-gradient(90deg,rgba(120,100,220,0.035) 1px,transparent 1px);
-  background-size:52px 52px;}
-.bg-canvas{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;}
-.orb{position:absolute;border-radius:50%;filter:blur(100px);opacity:0.5;}
-.orb-1{width:700px;height:700px;background:radial-gradient(circle,rgba(91,33,182,0.45) 0%,transparent 70%);top:-200px;right:-150px;}
-.orb-2{width:500px;height:500px;background:radial-gradient(circle,rgba(20,184,166,0.22) 0%,transparent 70%);bottom:100px;left:-100px;}
-@keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
-@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.5;transform:scale(0.8)}}
-@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important;}html{scroll-behavior:auto;}}
+#replan .sim{position:relative;padding:clamp(48px,8vw,104px) 16px clamp(48px,7vw,88px);overflow:clip}
+#replan .sim::before{content:"";position:absolute;left:50%;top:120px;width:1100px;height:620px;transform:translateX(-50%);
+  background:radial-gradient(closest-side,rgba(91,33,182,0.26),transparent 72%);pointer-events:none}
+#replan .wrap{position:relative;max-width:1180px;margin:0 auto}
 
-/* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:200;height:64px;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0 40px;background:rgba(9,8,15,0.8);backdrop-filter:blur(24px) saturate(150%);-webkit-backdrop-filter:blur(24px) saturate(150%);border-bottom:0.5px solid var(--border);}
-.nav-logo{display:flex;align-items:center;gap:6px;text-decoration:none;}
-.logo-text{font-family:var(--ff-display);font-size:1.2rem;font-weight:400;color:var(--text-1);letter-spacing:-0.01em;}
-.conf-pill{display:inline-flex;align-items:center;gap:7px;background:rgba(20,184,166,0.08);border:0.5px solid rgba(20,184,166,0.35);border-radius:100px;padding:5px 14px 5px 8px;font-family:var(--ff-mono);font-size:10px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--teal);white-space:nowrap;}
-.conf-pill::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--teal);animation:pulse 2s infinite;}
-.nav-right{display:flex;align-items:center;gap:10px;}
-.btn-site{font-family:var(--ff-body);font-size:13px;font-weight:500;color:var(--text-2);text-decoration:none;padding:7px 14px;border-radius:var(--r-sm);border:0.5px solid var(--border);transition:all 0.2s;}
-.btn-site:hover{color:var(--text-1);background:rgba(255,255,255,0.055);border-color:var(--border-hi);}
-.btn-demo-nav{font-family:var(--ff-body);font-size:13px;font-weight:600;color:#fff;background:var(--purple);border:none;border-radius:var(--r-md);padding:9px 20px;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:6px;transition:all 0.2s;box-shadow:0 0 0 1px rgba(124,58,237,0.4),0 4px 16px rgba(91,33,182,0.35);white-space:nowrap;}
-.btn-demo-nav:hover{background:var(--purple-mid);transform:translateY(-1px);}
+#replan .head{max-width:860px;margin-bottom:clamp(26px,4vw,44px)}
+#replan .head h2{margin:0;font-family:var(--ff-display);font-weight:300;font-size:clamp(30px,5vw,56px);line-height:1.06;letter-spacing:-0.022em;color:var(--text-1);text-wrap:balance}
+#replan .head p{margin:18px 0 0;max-width:620px;font-size:clamp(15px,1.5vw,17.5px);line-height:1.55;color:var(--text-2)}
+
+/* ---------- console ---------- */
+#replan .console{background:var(--dark-1);border:0.5px solid var(--border-hi);border-radius:14px;
+  box-shadow:0 30px 80px rgba(0,0,0,0.55),0 0 0 0.5px rgba(255,255,255,0.05) inset}
+#replan .topbar{display:flex;align-items:center;justify-content:space-between;gap:10px 16px;flex-wrap:wrap;padding:13px 18px;border-bottom:0.5px solid var(--border)}
+#replan .tb-name{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;min-width:0}
+#replan .tb-name strong{font-weight:600;font-size:14px;letter-spacing:-0.005em}
+#replan .tb-name span{font-size:13px;color:var(--text-3)}
+#replan .tb-state{display:flex;align-items:center;gap:10px}
+#replan .ver{font-family:var(--ff-data);font-size:11.5px;color:var(--text-2)}
+#replan .pill{display:inline-flex;align-items:center;gap:7px;padding:4px 10px 4px 8px;border-radius:100px;font-size:12px;font-weight:500;
+  border:0.5px solid currentColor;color:var(--green);background:rgba(52,211,153,0.07);white-space:nowrap}
+#replan .pill i{width:6px;height:6px;border-radius:50%;background:currentColor}
+#replan .pill.warn{color:var(--amber);background:rgba(245,158,11,0.08)}
+#replan .pill.work{color:var(--purple-bright);background:rgba(124,58,237,0.12)}
+#replan .pill.work i{animation:blink 0.9s steps(2) infinite}
+#replan .paused .pill.work i{animation:none}
+@keyframes blink{50%{opacity:0.25}}
+
+/* transport */
+#replan .transport{position:sticky;top:0;z-index:40;display:grid;grid-template-columns:auto minmax(0,1fr);gap:10px 16px;align-items:center;padding:14px 18px 14px;border-bottom:0.5px solid var(--border);background:#16122A;box-shadow:0 10px 18px -14px rgba(0,0,0,0.9)}
+#replan .btns{display:flex;gap:6px}
+#replan .tbtn{width:34px;height:34px;display:grid;place-items:center;border-radius:8px;border:0.5px solid var(--border-hi);background:var(--dark-2);cursor:pointer;color:var(--text-2);padding:0}
+#replan .tbtn:hover{color:var(--text-1);background:var(--dark-3)}
+#replan .tbtn:focus-visible,#replan .track:focus-visible,#replan .log li:focus-visible{outline:2px solid var(--teal-bright);outline-offset:2px}
+#replan .tbtn svg{width:14px;height:14px;fill:currentColor}
+#replan .tbtn .ic-play{display:none}
+#replan .paused-user .tbtn .ic-play{display:block}
+#replan .paused-user .tbtn .ic-pause{display:none}
+#replan .track{position:relative;display:grid;grid-template-columns:repeat(5,1fr);gap:3px;cursor:pointer;touch-action:pan-y;padding:5px 0;border-radius:6px;user-select:none;-webkit-user-select:none}
+#replan .seg{position:relative;padding-top:9px;font-size:11.5px;color:var(--text-3);white-space:nowrap;overflow:hidden;text-overflow:clip;transition:color .2s}
+#replan .seg::before{content:"";position:absolute;left:0;right:0;top:0;height:3px;border-radius:2px;background:rgba(120,100,220,0.22)}
+#replan .seg i{position:absolute;left:0;top:0;height:3px;border-radius:2px;background:var(--purple-bright);width:calc(var(--f,0)*100%)}
+#replan .seg.on{color:var(--text-1)}
+#replan .seg .s{display:none}
+#replan .head-pt{position:absolute;top:1.5px;left:0;width:10px;height:10px;margin-left:-5px;border-radius:50%;background:#fff;box-shadow:0 0 0 3px rgba(167,139,250,0.35);pointer-events:none}
+#replan .caption{grid-column:1/-1;display:flex;gap:10px;align-items:baseline;min-height:1.45em;font-family:var(--ff-display);font-weight:300;font-size:clamp(17px,1.7vw,21px);line-height:1.38;letter-spacing:-0.01em;color:var(--text-1);text-wrap:balance}
+#replan .caption b{font-weight:400;color:var(--teal-bright)}
+#replan .hold{font-family:var(--ff-body);letter-spacing:0}
+#replan .hold{margin-left:auto;flex:none;font-size:11.5px;color:var(--text-3);opacity:0;transition:opacity .15s}
+#replan .hover-hold .hold{opacity:1}
+
+/* body */
+#replan .body{display:grid;grid-template-columns:minmax(0,1fr) 326px}
+#replan .main{padding:16px 18px 14px;min-width:0}
+#replan .rail{border-left:0.5px solid var(--border);padding:16px 16px 12px;min-width:0}
+#replan .foot{grid-column:1/-1;border-top:0.5px solid var(--border);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,400px)}
+
+/* schedule strip */
+#replan .sched{position:relative;padding-bottom:20px}
+#replan .g-row{display:grid;grid-template-columns:var(--lab) minmax(0,1fr);gap:0 14px;align-items:center;height:38px}
+#replan .g-lab{white-space:nowrap;font-size:12.5px;color:var(--text-2);line-height:1.2;display:flex;flex-direction:column;gap:1px}
+#replan .g-lab small{font-size:11px;color:var(--text-3)}
+#replan .g-lab small.bad{color:var(--red)}
+#replan .g-lab small.ok{color:var(--teal-bright)}
+#replan .g-track{position:relative;height:16px}
+#replan .g-bar{position:absolute;top:0;height:16px;border-radius:4px;display:flex;align-items:center;padding:0 7px;font-family:var(--ff-data);font-size:9.5px;white-space:nowrap;overflow:hidden}
+#replan .g-bar.c{background:linear-gradient(90deg,#6D28D9,#7C3AED);color:#EDE9FE;width:77.42%}
+#replan .g-bar.lease{left:3.226%;width:83.87%;background:rgba(20,184,166,0.16);border:0.5px solid rgba(20,184,166,0.5);color:var(--teal-bright)}
+#replan .g-ghost{position:absolute;top:0;left:6.452%;width:77.42%;height:16px;border-radius:4px;border:1px dashed rgba(167,139,250,0.55);opacity:0}
+#replan .g-over{position:absolute;top:-3px;height:22px;left:87.1%;border-radius:2px;opacity:0;
+  background:repeating-linear-gradient(135deg,rgba(248,113,113,0.95) 0 3px,rgba(248,113,113,0.25) 3px 6px);box-shadow:0 0 0 1px rgba(248,113,113,0.7)}
+#replan .g-lines{position:absolute;top:0;bottom:0;left:calc(var(--lab) + 14px);right:0;pointer-events:none}
+#replan .g-lines span{position:absolute;top:0;bottom:16px;border-left:0.5px solid rgba(120,100,220,0.16)}
+#replan .g-lines em{position:absolute;bottom:0;font-style:normal;font-family:var(--ff-data);font-size:9.5px;color:var(--text-3);transform:translateX(3px)}
+
+
+/* event line */
+#replan .event{display:grid;margin:6px 0 12px;min-height:40px}
+#replan .event>div{grid-area:1/1;display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:8px 12px;border-radius:8px;font-size:13px;line-height:1.35}
+#replan .ev-none{color:var(--text-3);border:0.5px dashed var(--border)}
+#replan .ev-hit{opacity:0;color:#FDE9C2;background:rgba(245,158,11,0.09);border:0.5px solid rgba(245,158,11,0.5)}
+#replan .ev-hit strong{font-weight:600;color:#FFF3DB}
+#replan .ev-hit code{font-family:var(--ff-data);font-size:11.5px;color:var(--amber)}
+#replan .ev-hit svg{width:14px;height:14px;flex:none;fill:var(--amber)}
+#replan .ev-hit small{font-size:11.5px;color:rgba(253,233,194,0.6);margin-left:auto}
+
+/* board */
+#replan .board{position:relative}
+#replan .site{display:grid;grid-template-columns:var(--lab) minmax(0,1fr);gap:0 14px;align-items:center;padding:9px 0 8px;border-top:0.5px solid var(--border)}
+#replan .site-lab{display:flex;flex-direction:column;gap:2px;min-width:0}
+#replan .site-lab .nm{font-size:13px;font-weight:500;color:var(--text-1)}
+#replan .site-lab .ct{font-family:var(--ff-data);font-size:10.5px;color:var(--text-3)}
+#replan .slots{display:grid;grid-template-columns:repeat(16,minmax(0,1fr));gap:5px}
+#replan .cb{position:relative;height:28px;border-radius:5px}
+#replan .slot.vac .cb{border:1px dashed rgba(120,100,220,0.3)}
+#replan .pips{display:flex;gap:2px;justify-content:center;margin-top:3px;height:3px}
+#replan .pips i{width:5px;height:3px;border-radius:1px;background:rgba(126,114,184,0.42)}
+#replan .slot.acc .pips i{background:var(--teal)}
+#replan .chip,#replan .flyer{border-radius:5px;border:1px solid rgb(86,74,160);background:#231E3E;color:#B8AAEE;font-family:var(--ff-data);font-weight:500;font-size:9.5px;letter-spacing:-0.02em;display:grid;place-items:center;white-space:nowrap}
+#replan .chip{position:absolute;inset:0;opacity:var(--dim,1)}
+#replan .chip.b{background:#1A1630;color:#7E72B8;border-color:rgb(62,53,118)}
+#replan .ghost{position:absolute;inset:0;border-radius:5px;border:1px dashed rgba(120,100,220,0.3);opacity:0}
+#replan .probe{position:absolute;inset:-3px;border-radius:7px;border:1.5px solid var(--purple-bright);opacity:0}
+#replan .fly{position:absolute;inset:0;pointer-events:none}
+#replan .fly svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+#replan .fly path{fill:none;stroke:var(--teal-bright);stroke-width:1.2;stroke-linecap:round;opacity:0}
+#replan .flyer{position:absolute;left:0;top:0;will-change:transform}
+#replan .tag{position:absolute;left:0;top:0;padding:3px 8px;border-radius:4px;background:var(--teal-bright);color:#04201D;font-size:11px;font-weight:600;white-space:nowrap;opacity:0;z-index:5;box-shadow:0 6px 18px rgba(0,0,0,0.5)}
+#replan .sweep{position:absolute;top:0;bottom:0;left:0;width:70px;margin-left:-70px;opacity:0;pointer-events:none;
+  background:linear-gradient(90deg,transparent,rgba(167,139,250,0.16));border-right:1.5px solid var(--purple-bright)}
+#replan .legend{display:flex;flex-wrap:wrap;gap:6px 18px;padding-top:10px;border-top:0.5px solid var(--border);font-size:11.5px;color:var(--text-3)}
+#replan .legend span{display:inline-flex;align-items:center;gap:6px}
+#replan .legend .k{display:inline-block;width:18px;height:11px;border-radius:3px}
+#replan .k.hh{border:1px solid rgb(86,74,160);background:#231E3E}
+#replan .k.vc{border:1px dashed rgba(120,100,220,0.5)}
+#replan .k.cf{border:1px solid var(--amber);background:#3A280E}
+#replan .k.mv{border:1px solid var(--teal-bright);background:#0E3636}
+#replan .legend .pp{display:inline-flex;gap:2px}
+#replan .legend .pp i{width:5px;height:3px;border-radius:1px;background:rgba(126,114,184,0.7)}
+#replan .legend .pp.t i{background:var(--teal)}
+
+/* change log */
+#replan .rail h3{margin:0 0 2px;font-size:14px;font-weight:600;display:flex;justify-content:space-between;align-items:baseline}
+#replan .rail h3 span{font-family:var(--ff-data);font-weight:400;font-size:11px;color:var(--text-3)}
+#replan .rail-sub{margin:0 0 8px;font-size:12px;color:var(--text-3)}
+#replan .logwrap{position:relative}
+#replan .log-empty{position:absolute;left:0;right:0;top:10px;font-size:13px;line-height:1.5;color:var(--text-3)}
+#replan .log{list-style:none;margin:0;padding:0}
+#replan .log li{padding:7px 8px 8px;margin:0 -8px;border-radius:7px;opacity:0;cursor:default;border-top:0.5px solid transparent}
+#replan .log li+li{border-top-color:var(--border)}
+#replan .log li:hover,#replan .log li:focus{background:rgba(94,234,212,0.06)}
+#replan .lr-top{display:flex;gap:10px;align-items:baseline;font-family:var(--ff-data);font-size:11px;color:var(--text-2)}
+#replan .lr-top .hh{color:var(--teal-bright);font-weight:500}
+#replan .lr-top .ar{color:var(--text-3)}
+#replan .lr-rule{margin-top:2px;font-size:12.5px;line-height:1.35;color:var(--text-3)}
+#replan .lr-rule b{font-weight:600;color:var(--text-1);margin-right:6px}
+
+/* foot: ledger + approval */
+#replan .ledger{padding:18px 18px 16px;min-width:0}
+#replan .figs{display:flex;flex-wrap:wrap;gap:14px 34px;align-items:flex-end}
+#replan .fig{display:flex;flex-direction:column;gap:3px}
+#replan .fig .n{font-family:var(--ff-display);font-weight:300;font-size:38px;line-height:1;letter-spacing:-0.02em;font-variant-numeric:tabular-nums lining-nums;color:var(--text-1)}
+#replan .fig .n small{font-size:17px;color:var(--text-3);margin-left:2px}
+#replan .fig .l{font-size:12.5px;color:var(--text-3)}
+#replan .fig.bad .n{color:var(--red)}
+#replan .fig.good .n{color:var(--green)}
+#replan .rules{display:flex;flex-wrap:wrap;gap:5px 16px;margin:16px 0 0;padding:0;list-style:none;font-size:12.5px;color:var(--text-2)}
+#replan .rules li{display:inline-flex;align-items:center;gap:6px}
+#replan .rules svg{width:11px;height:11px;stroke:var(--green);fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+#replan .rules li.bad{color:var(--red)}
+#replan .rules li.bad svg{stroke:var(--red)}
+#replan .rules .x{display:none}#replan .rules li.bad .x{display:block}#replan .rules li.bad .v{display:none}
+#replan .same{margin:14px 0 0;font-size:12.5px;color:var(--text-3)}
+#replan .same code{font-family:var(--ff-data);font-size:11px;color:var(--text-2)}
+#replan .approve{border-left:0.5px solid var(--border);padding:18px;display:grid;min-width:0}
+#replan .approve>div{grid-area:1/1;min-width:0}
+#replan .ap-prev{font-size:13px;line-height:1.5;color:var(--text-3);align-self:center}
+#replan .ap-new{opacity:0}
+#replan .ap-line{display:flex;justify-content:space-between;align-items:baseline;gap:12px;font-size:13px;color:var(--text-2)}
+#replan .ap-line b{font-family:var(--ff-data);font-weight:500;font-size:15px;color:var(--text-1);font-variant-numeric:tabular-nums}
+#replan .ap-line b.over{color:var(--amber)}
+#replan .meter{position:relative;height:8px;margin:10px 0 22px;border-radius:4px;background:rgba(120,100,220,0.16)}
+#replan .meter i{position:absolute;top:0;bottom:0;left:0;transform-origin:left;border-radius:4px 0 0 4px}
+#replan .m-base{width:62.5%;background:var(--purple-bright)}
+#replan .m-over{left:62.5%!important;width:26.25%;background:var(--amber);border-radius:0 4px 4px 0!important}
+#replan .m-tick{position:absolute;left:62.5%;top:-4px;bottom:-4px;border-left:1.5px solid var(--text-1)}
+#replan .m-tick span{position:absolute;top:14px;left:0;transform:translateX(-50%);white-space:nowrap;font-size:11px;color:var(--text-3)}
+#replan .route{display:flex;align-items:center;gap:8px;font-size:12.5px}
+#replan .node{padding:6px 10px;border-radius:7px;border:0.5px solid var(--border-hi);color:var(--text-2);line-height:1.25;min-width:0}
+#replan .node small{display:block;font-size:11px;color:var(--text-3)}
+#replan .node.over{border-color:rgba(245,158,11,0.55)}
+#replan .node.over small{color:var(--amber)}
+#replan .node.to{border-color:var(--teal-bright);background:rgba(94,234,212,0.07);color:var(--text-1)}
+#replan .node.to small{color:var(--teal-bright)}
+#replan .wire{flex:1 1 16px;min-width:12px;height:1px;background:var(--text-3);transform-origin:left;position:relative}
+#replan .wire::after{content:"";position:absolute;right:0;top:-3px;border-left:6px solid var(--text-3);border-top:3.5px solid transparent;border-bottom:3.5px solid transparent}
+
+#replan .fine{margin:14px 2px 0;font-size:12px;color:var(--text-3)}
+
+/* ---------- responsive ---------- */
+@media (max-width:1020px){
+  #replan .body{grid-template-columns:minmax(0,1fr)}
+  #replan .rail{border-left:0;border-top:0.5px solid var(--border)}
+  #replan .log{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 28px}
+  #replan .log li+li{border-top-color:transparent}
+  #replan .foot{grid-template-columns:minmax(0,1fr)}
+  #replan .approve{border-left:0;border-top:0.5px solid var(--border)}
+}
+@media (max-width:680px){
+  #replan{--lab:0px}
+  #replan .topbar,#replan .transport{padding-left:12px;padding-right:12px}
+  #replan .main{padding:14px 12px 12px}
+  #replan .rail,#replan .ledger,#replan .approve{padding-left:12px;padding-right:12px}
+  #replan .tbtn{width:40px;height:40px}
+  #replan .transport{grid-template-columns:minmax(0,1fr)}
+  #replan .btns{order:2}
+  #replan .caption{order:3;min-height:3.9em;font-size:15.5px;line-height:1.32}
+  #replan .transport{gap:10px}
+  #replan .seg{font-size:10.5px}
+  #replan .seg .l{display:none}#replan .seg .s{display:inline}
+  #replan .g-row{grid-template-columns:minmax(0,1fr);height:auto;gap:4px;margin-bottom:8px}
+  #replan .g-lab{flex-direction:row;justify-content:space-between;align-items:baseline}
+  #replan .g-lines{left:0}
+  #replan .g-lines span{display:none}
+  #replan .site{grid-template-columns:minmax(0,1fr);gap:6px}
+  #replan .site-lab{flex-direction:row;justify-content:space-between;align-items:baseline}
+  #replan .slots{grid-template-columns:repeat(8,minmax(0,1fr));gap:4px 4px}
+  #replan .cb{height:27px}
+  #replan .chip,#replan .flyer{font-size:9px}
+  #replan .ev-hit small{margin-left:0;flex-basis:100%}
+  #replan .event{min-height:78px}
+  #replan .log{grid-template-columns:minmax(0,1fr)}
+  #replan .log li+li{border-top-color:var(--border)}
+  #replan .figs{display:grid;grid-template-columns:1fr 1fr;gap:16px 12px}
+  #replan .fig .n{font-size:32px}
+  #replan .route{gap:6px;font-size:11.5px}
+  #replan .node{padding:6px 8px}
+  #replan .node small{font-size:10.5px}
+  #replan .wire{flex:0 0 14px}
+}
+
+
+#replan .transport{top:64px;}
+#replan{scroll-margin-top:64px;}
+/* ═══ Page ═══ */
+:root{
+  --purple:#5B21B6;--purple-mid:#7C3AED;--purple-bright:#A78BFA;
+  --teal:#14B8A6;--teal-bright:#5EEAD4;
+  --dark:#09080F;--dark-1:#110E1E;--dark-2:#1A1630;--dark-3:#231E3E;--dark-4:#2D2754;
+  --border:rgba(120,100,220,0.18);--border-hi:rgba(120,100,220,0.38);
+  --text-1:#F1EEFF;--text-2:#B8AAEE;--text-3:#8A7FC4;
+  --amber:#F59E0B;--green:#34D399;--red:#F87171;
+  --ff-display:'Fraunces',Georgia,'Times New Roman',serif;
+  --ff-body:'Instrument Sans',-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
+  --ff-data:'JetBrains Mono','SF Mono',ui-monospace,Menlo,monospace;
+  --x-pad:clamp(16px,4vw,32px);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;font-size:16px;background:var(--dark);scrollbar-color:var(--dark-4) var(--dark);}
+body{margin:0;background:var(--dark);color:var(--text-1);font-family:var(--ff-body);-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+::selection{background:rgba(124,58,237,0.45);color:#fff;}
+:focus-visible{outline:2px solid var(--teal-bright);outline-offset:3px;}
+a{color:inherit;}
+img,svg{display:block;}
+h1,h2,h3,p,ul,ol,figure{margin:0;padding:0;}
+ul,ol{list-style:none;}
+section[id],div[id="replan"]{scroll-margin-top:68px;}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto;}}
+
+.x-wrap{max-width:1180px;margin:0 auto;padding:0 var(--x-pad);}
+.x-sec{position:relative;padding:clamp(80px,11vw,136px) 0;border-top:0.5px solid var(--border);}
+.x-h2{font-family:var(--ff-display);font-weight:300;font-size:clamp(32px,4.8vw,56px);line-height:1.05;letter-spacing:-0.025em;color:var(--text-1);text-wrap:balance;font-variation-settings:'opsz' 144;}
+.x-h2 b{font-weight:500;}
+.x-lede{font-size:clamp(16px,1.5vw,18px);line-height:1.65;color:var(--text-2);max-width:46ch;text-wrap:pretty;}
+.x-head{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,0.85fr);gap:clamp(18px,4vw,64px);align-items:end;margin-bottom:clamp(36px,5vw,64px);}
+@media(max-width:860px){.x-head{grid-template-columns:minmax(0,1fr);}}
+.x-mono{font-family:var(--ff-data);}
+
+/* Buttons */
+.x-btn{display:inline-flex;align-items:center;gap:10px;height:48px;padding:0 22px;border-radius:12px;font:600 15px/1 var(--ff-body);text-decoration:none;cursor:pointer;border:0;transition:background .2s,transform .2s,box-shadow .2s;white-space:nowrap;}
+.x-btn svg{transition:transform .2s;}
+.x-btn:hover svg{transform:translateX(3px);}
+.x-btn-p{background:var(--purple);color:#fff;box-shadow:0 0 0 1px rgba(124,58,237,0.45),0 8px 22px -8px rgba(0,0,0,0.7);}
+.x-btn-p:hover{background:var(--purple-mid);}
+.x-btn-g{background:transparent;color:var(--text-1);box-shadow:inset 0 0 0 1px var(--border-hi);}
+.x-btn-g:hover{background:rgba(255,255,255,0.05);}
+
+/* ═══ Nav ═══ */
+.x-nav{position:fixed;top:0;left:0;right:0;z-index:100;height:64px;background:rgba(9,8,15,0.82);backdrop-filter:blur(18px) saturate(140%);-webkit-backdrop-filter:blur(18px) saturate(140%);border-bottom:0.5px solid var(--border);}
+.x-nav .x-wrap{height:100%;display:flex;align-items:center;gap:20px;}
+.x-brand{display:flex;align-items:center;gap:8px;text-decoration:none;}
+.x-brand-t{font-family:var(--ff-display);font-size:19px;font-weight:400;letter-spacing:-0.01em;}
+.x-brand-sep{width:1px;height:18px;background:var(--border-hi);margin:0 4px;}
+.x-brand-p{font-size:14px;font-weight:600;color:var(--text-1);}
+.x-tag{font-family:var(--ff-data);font-size:11px;font-weight:500;letter-spacing:0.04em;color:var(--teal-bright);padding:3px 8px;border-radius:6px;background:rgba(20,184,166,0.1);box-shadow:inset 0 0 0 0.5px rgba(94,234,212,0.4);white-space:nowrap;}
+.x-nav-links{margin-left:auto;display:flex;align-items:center;gap:6px;}
+.x-nav-links a:not(.x-btn){font-size:14px;color:var(--text-2);text-decoration:none;padding:8px 12px;border-radius:8px;transition:color .2s,background .2s;}
+.x-nav-links a:not(.x-btn):hover{color:var(--text-1);background:rgba(255,255,255,0.04);}
+.x-nav .x-btn{height:38px;padding:0 16px;font-size:14px;margin-left:6px;}
+@media(max-width:860px){.x-nav-links a:not(.x-btn){display:none;}}
+.x-tag-s{display:none;}
+@media(max-width:480px){.x-brand-t,.x-brand-sep{display:none;}.x-nav .x-wrap{gap:10px;}.x-tag-l{display:none;}.x-tag-s{display:inline;}.x-nav .x-btn{padding:0 13px;margin-left:0;}.x-brand-p{font-size:15px;}}
+
+/* ═══ Hero ═══ */
+.x-hero{position:relative;padding:clamp(120px,15vw,168px) 0 clamp(64px,8vw,104px);overflow:clip;}
+.x-hero::before{content:'';position:absolute;right:-260px;top:-180px;width:1000px;height:820px;background:radial-gradient(closest-side,rgba(91,33,182,0.32),transparent);pointer-events:none;}
+.x-hero::after{content:'';position:absolute;left:-200px;bottom:-200px;width:700px;height:600px;background:radial-gradient(closest-side,rgba(20,184,166,0.1),transparent);pointer-events:none;}
+.x-hero-grid{position:relative;display:grid;grid-template-columns:minmax(0,1.02fr) minmax(0,1fr);gap:clamp(40px,6vw,88px);align-items:center;}
+@media(max-width:980px){.x-hero-grid{grid-template-columns:minmax(0,1fr);}}
+.x-hero h1{font-family:var(--ff-display);font-weight:300;font-size:clamp(42px,6.4vw,84px);line-height:0.98;letter-spacing:-0.035em;text-wrap:balance;font-variation-settings:'opsz' 144;}
+.x-hero h1 b{font-weight:500;display:block;}
+.x-hero-sub{margin-top:28px;font-size:clamp(16.5px,1.6vw,19px);line-height:1.62;color:var(--text-2);max-width:40ch;}
+.x-hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:36px;}
+.x-hero-note{margin-top:26px;display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text-3);}
+.x-hero-note i{width:6px;height:6px;border-radius:50%;background:var(--teal);flex-shrink:0;}
+
+/* Layer stack (hero visual) */
+.x-stack{position:relative;max-width:520px;width:100%;margin:0 auto;border-radius:16px;background:var(--dark-1);box-shadow:inset 0 0 0 0.5px var(--border-hi),0 40px 90px -30px rgba(0,0,0,0.85);overflow:hidden;}
+.x-stack-bar{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 16px;border-bottom:0.5px solid var(--border);}
+.x-stack-bar strong{font-size:13px;font-weight:600;}
+.x-stack-bar span{font-family:var(--ff-data);font-size:10.5px;color:var(--text-3);}
+.x-tiers{padding:14px;display:flex;flex-direction:column;}
+.x-tier{border-radius:12px;padding:13px 14px;background:rgba(255,255,255,0.025);box-shadow:inset 0 0 0 0.5px var(--border);}
+.x-tier-h{display:flex;align-items:center;justify-content:space-between;gap:8px;font-family:var(--ff-data);font-size:10.5px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;color:var(--text-3);margin-bottom:10px;}
+.x-tier-team{display:flex;align-items:center;justify-content:space-between;gap:10px;}
+.x-tier-team .x-tier-h{margin:0;}
+.x-appr{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--text-2);}
+.x-ok{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:600;padding:3px 9px;border-radius:999px;color:var(--green);background:rgba(52,211,153,0.1);box-shadow:inset 0 0 0 0.5px rgba(52,211,153,0.45);opacity:var(--on,0);transform:scale(calc(0.92 + var(--on,0)*0.08));}
+.x-tier-dos{position:relative;background:linear-gradient(180deg,rgba(124,58,237,0.13),rgba(20,184,166,0.05));box-shadow:inset 0 0 0 1px rgba(167,139,250,0.5);}
+.x-tier-dos .x-tier-h{color:var(--text-1);}
+.x-tier-dos .x-tier-h em{font-style:normal;color:var(--teal-bright);}
+.x-procs{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px;}
+.x-proc{border-radius:9px;padding:10px 11px;background:rgba(9,8,15,0.5);box-shadow:inset 0 0 0 0.5px rgba(120,100,220,calc(0.2 + var(--on,0)*0.5));}
+.x-proc b{display:block;font-size:12.5px;font-weight:600;color:var(--text-1);}
+.x-proc span{display:block;margin-top:2px;font-size:11.5px;line-height:1.4;color:var(--text-3);}
+.x-proc .x-bar{margin-top:9px;height:3px;border-radius:3px;background:rgba(255,255,255,0.07);overflow:hidden;}
+.x-proc .x-bar i{display:block;height:100%;width:calc(var(--on,0)*100%);background:var(--teal-bright);}
+.x-proc.eng .x-bar i{background:var(--purple-bright);}
+.x-plan{margin-top:8px;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:9px 11px;border-radius:9px;background:rgba(9,8,15,0.55);box-shadow:inset 0 0 0 0.5px var(--border-hi);font-size:12px;opacity:var(--on,0);transform:translateY(calc((1 - var(--on,0))*5px));}
+.x-plan span{font-family:var(--ff-data);font-size:10.5px;color:var(--green);white-space:nowrap;}
+.x-srcs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;}
+.x-src{border-radius:8px;padding:8px 6px;text-align:center;font-size:11.5px;font-weight:500;color:color-mix(in srgb,var(--text-1) calc(var(--on,0)*100%),var(--text-3));background:rgba(255,255,255,calc(0.02 + var(--on,0)*0.035));box-shadow:inset 0 0 0 0.5px rgba(120,100,220,calc(0.2 + var(--on,0)*0.35));white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.x-src small{display:block;margin-top:2px;font-family:var(--ff-data);font-size:10px;font-weight:400;color:var(--text-3);}
+.x-pipe{position:relative;height:30px;display:grid;grid-template-columns:repeat(4,1fr);}
+.x-pipe.one{grid-template-columns:1fr;}
+.x-pipe i{position:relative;}
+.x-pipe i::before{content:'';position:absolute;left:50%;top:0;bottom:0;width:1px;background:rgba(120,100,220,0.3);}
+.x-pipe i::after{content:'';position:absolute;left:50%;width:6px;height:6px;margin-left:-3px;border-radius:50%;background:var(--teal-bright);top:calc((1 - var(--p,0))*100% - 3px);opacity:var(--a,0);}
+.x-pipe.one i::after{background:var(--purple-bright);}
+.x-stack-foot{display:flex;justify-content:space-between;gap:10px;padding:11px 16px;border-top:0.5px solid var(--border);font-size:12px;color:var(--text-3);}
+.x-stack-foot b{color:var(--text-2);font-weight:500;}
+@media(max-width:420px){.x-src{font-size:10.5px;padding:7px 3px;}.x-proc span{font-size:11px;}.x-stack-foot{flex-direction:column;gap:2px;}}
+
+/* ═══ Problem ═══ */
+.x-probs{display:flex;flex-direction:column;}
+.x-prob{display:grid;grid-template-columns:minmax(0,0.9fr) minmax(0,1.1fr);gap:clamp(24px,5vw,72px);align-items:center;padding:clamp(28px,4vw,44px) 0;border-top:0.5px solid var(--border);}
+.x-prob:last-child{border-bottom:0.5px solid var(--border);}
+.x-prob h3{font-family:var(--ff-display);font-weight:400;font-size:clamp(22px,2.4vw,30px);line-height:1.15;letter-spacing:-0.015em;text-wrap:balance;}
+.x-prob p{margin-top:12px;font-size:16px;line-height:1.65;color:var(--text-2);max-width:42ch;}
+@media(max-width:860px){.x-prob{grid-template-columns:minmax(0,1fr);}}
+.x-art{border-radius:14px;background:var(--dark-1);box-shadow:inset 0 0 0 0.5px var(--border-hi),0 24px 60px -30px rgba(0,0,0,0.9);overflow:hidden;font-size:13px;}
+.x-art-bar{display:flex;align-items:center;gap:8px;padding:10px 14px;border-bottom:0.5px solid var(--border);font-family:var(--ff-data);font-size:10.5px;color:var(--text-3);}
+.x-art-bar svg{color:var(--text-3);}
+/* files */
+.x-files li{display:grid;grid-template-columns:22px minmax(0,1fr) auto;gap:10px;align-items:center;padding:10px 14px;border-bottom:0.5px solid rgba(120,100,220,0.1);}
+.x-files li:last-child{border-bottom:0;}
+.x-files .ic{width:22px;height:26px;border-radius:4px;background:rgba(52,211,153,0.14);box-shadow:inset 0 0 0 0.5px rgba(52,211,153,0.45);display:grid;place-items:center;font-family:var(--ff-data);font-size:7.5px;font-weight:600;color:var(--green);}
+.x-files .nm{font-family:var(--ff-data);font-size:12px;color:var(--text-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.x-files .tm{font-size:11.5px;color:var(--text-3);white-space:nowrap;}
+.x-files li.live{background:rgba(245,158,11,0.07);}
+.x-files li.live .nm{color:var(--text-1);}
+.x-files li.live .tm{color:var(--amber);}
+.x-files li.dim{opacity:0.5;}
+/* thread */
+.x-thread li{padding:11px 14px;border-bottom:0.5px solid rgba(120,100,220,0.1);}
+.x-thread li:last-child{border-bottom:0;background:rgba(248,113,113,0.06);}
+.x-thread .who{display:flex;justify-content:space-between;gap:10px;font-size:12px;color:var(--text-3);}
+.x-thread .who b{color:var(--text-2);font-weight:600;}
+.x-thread .msg{margin-top:4px;font-size:13.5px;line-height:1.5;color:var(--text-2);}
+.x-thread li:last-child .msg{color:var(--text-1);}
+.x-thread li.gap{padding:6px 14px;font-family:var(--ff-data);font-size:10.5px;color:var(--text-3);text-align:center;background:rgba(255,255,255,0.02);}
+/* two answers */
+.x-ask{padding:12px 14px;border-bottom:0.5px solid var(--border);font-size:13.5px;color:var(--text-1);}
+.x-ask span{font-family:var(--ff-data);font-size:10.5px;color:var(--text-3);margin-right:8px;}
+.x-ans{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);}
+.x-ans > div{padding:12px 14px;font-size:13px;line-height:1.55;color:var(--text-2);}
+.x-ans > div + div{border-left:0.5px solid var(--border);}
+.x-ans .t{display:block;font-family:var(--ff-data);font-size:10px;color:var(--text-3);margin-bottom:6px;}
+.x-ans mark{background:rgba(248,113,113,0.14);color:var(--text-1);border-radius:3px;padding:0 3px;}
+.x-diff{display:flex;align-items:center;gap:8px;padding:9px 14px;border-top:0.5px solid var(--border);font-size:12px;color:var(--red);background:rgba(248,113,113,0.05);}
+@media(max-width:480px){.x-ans{grid-template-columns:minmax(0,1fr);}.x-ans > div + div{border-left:0;border-top:0.5px solid var(--border);}}
+
+/* ═══ How it works: swimlanes ═══ */
+.x-lanes{position:relative;border-radius:18px;background:var(--dark-1);box-shadow:inset 0 0 0 0.5px var(--border-hi);overflow:hidden;}
+.x-lane-grid{position:relative;display:grid;grid-template-columns:150px repeat(4,minmax(0,1fr));}
+.x-lane-l{display:flex;flex-direction:column;justify-content:center;gap:3px;padding:0 18px;border-right:0.5px solid var(--border);font-size:13px;font-weight:600;color:var(--text-1);min-height:118px;}
+.x-lane-l small{font-size:11.5px;font-weight:400;color:var(--text-3);}
+.x-lane-row{display:contents;}
+.x-lane-row > .x-cell{border-top:0.5px solid rgba(120,100,220,0.1);}
+.x-lane-row:first-child > *{border-top:0;}
+.x-lane-row > .x-lane-l{border-top:0.5px solid rgba(120,100,220,0.1);}
+.x-lane-row:first-child > .x-lane-l{border-top:0;}
+.x-cell{position:relative;padding:14px;display:flex;align-items:center;}
+.x-node{position:relative;z-index:2;width:100%;border-radius:12px;padding:13px 14px;background:var(--dark-2);box-shadow:inset 0 0 0 0.5px var(--border-hi);opacity:calc(0.45 + var(--on,0)*0.55);transform:translateY(calc((1 - var(--on,0))*4px));}
+.x-node.on{box-shadow:inset 0 0 0 1px var(--c,var(--teal-bright)),0 14px 30px -18px rgba(0,0,0,0.9);}
+.x-node h3{font-family:var(--ff-display);font-weight:400;font-size:21px;letter-spacing:-0.01em;}
+.x-node p{margin-top:6px;font-size:13px;line-height:1.55;color:var(--text-2);}
+.x-node code{display:block;margin-top:10px;padding-top:9px;border-top:0.5px solid var(--border);font-family:var(--ff-data);font-size:10.5px;line-height:1.55;color:var(--text-3);white-space:normal;}
+.x-node code b{font-weight:500;color:var(--c,var(--teal-bright));}
+.x-wire{position:absolute;left:0;top:0;width:100%;height:100%;overflow:visible;pointer-events:none;z-index:1;}
+.x-wire path{fill:none;stroke:rgba(120,100,220,0.35);stroke-width:1.5;stroke-dasharray:4 5;}
+.x-wire path.lit{stroke:url(#xLaneGrad);stroke-dasharray:none;}
+.x-wire circle{fill:#fff;}
+.x-lanes-foot{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between;padding:14px 18px;border-top:0.5px solid var(--border);font-size:13px;color:var(--text-2);}
+.x-lanes-foot b{color:var(--text-1);font-weight:600;}
+@media(max-width:980px){
+  .x-lane-grid{grid-template-columns:minmax(0,1fr);}
+  .x-lane-l{display:none;}
+  .x-lane-row > .x-cell{border-top:0;}
+  .x-cell{padding:8px 14px;}
+  .x-cell.x-empty{display:none;}
+  .x-node::before{content:attr(data-lane);display:block;margin-bottom:6px;font-family:var(--ff-data);font-size:10px;letter-spacing:0.06em;text-transform:uppercase;color:var(--c,var(--teal-bright));}
+  .x-lane-grid{padding:8px 0;}
+  .x-wire{display:none;}
+  .x-lane-grid::before{content:'';position:absolute;left:28px;top:20px;bottom:20px;width:1px;background:rgba(120,100,220,0.3);}
+}
+
+.x-lane-desc{display:grid;grid-template-columns:150px repeat(4,minmax(0,1fr));border-top:0.5px solid var(--border);}
+.x-lane-desc p{padding:16px 14px 18px;font-size:13.5px;line-height:1.6;color:var(--text-2);}
+.x-lane-desc p b{color:var(--text-1);font-weight:600;}
+.x-lane-desc p + p{border-left:0.5px solid rgba(120,100,220,0.1);}
+@media(min-width:981px){.x-node p{display:none;}.x-lane-l{min-height:96px;}.x-node{padding:12px 13px;}.x-node code{margin-top:8px;padding-top:8px;}}
+@media(max-width:980px){.x-lane-desc{display:none;}}
+/* ═══ Decisions (tabs + screens) ═══ */
+.x-dec{display:grid;grid-template-columns:minmax(0,0.85fr) minmax(0,1.15fr);gap:clamp(24px,4vw,56px);align-items:start;}
+@media(max-width:980px){.x-dec{grid-template-columns:minmax(0,1fr);}}
+.x-dlist{display:flex;flex-direction:column;border-top:0.5px solid var(--border);}
+.x-dtab{all:unset;box-sizing:border-box;cursor:pointer;display:block;padding:20px 4px 20px 0;border-bottom:0.5px solid var(--border);}
+.x-dtab .n{display:flex;align-items:center;justify-content:space-between;gap:12px;font-family:var(--ff-display);font-weight:300;font-size:clamp(22px,2.4vw,30px);letter-spacing:-0.015em;color:var(--text-3);transition:color .25s;}
+.x-dtab .n svg{opacity:0;transform:translateX(-6px);transition:opacity .25s,transform .25s;color:var(--teal-bright);flex-shrink:0;}
+.x-dtab .d{display:grid;grid-template-rows:0fr;transition:grid-template-rows .35s ease;}
+.x-dtab .d > span{overflow:hidden;font-size:15px;line-height:1.6;color:var(--text-2);max-width:44ch;}
+.x-dtab:hover .n{color:var(--text-2);}
+.x-dtab[aria-selected="true"] .n{color:var(--text-1);font-weight:400;}
+.x-dtab[aria-selected="true"] .n svg{opacity:1;transform:none;}
+.x-dtab[aria-selected="true"] .d{grid-template-rows:1fr;}
+.x-dtab[aria-selected="true"] .d > span{padding-top:10px;}
+.x-dtab:focus-visible{outline:2px solid var(--teal-bright);outline-offset:4px;border-radius:6px;}
+.x-screens{position:relative;}
+.x-scr{display:none;border-radius:16px;background:var(--dark-1);box-shadow:inset 0 0 0 0.5px var(--border-hi),0 40px 90px -36px rgba(0,0,0,0.9);overflow:hidden;animation:xIn .4s cubic-bezier(.16,1,.3,1) both;}
+.x-scr.on{display:block;}
+@keyframes xIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.x-scr-top{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;padding:13px 16px;border-bottom:0.5px solid var(--border);}
+.x-scr-top strong{font-size:13.5px;font-weight:600;}
+.x-scr-top span{font-size:12.5px;color:var(--text-3);}
+.x-pill{display:inline-flex;align-items:center;gap:6px;padding:3px 9px;border-radius:999px;font-size:11.5px;font-weight:500;box-shadow:inset 0 0 0 0.5px currentColor;white-space:nowrap;}
+.x-pill i{width:5px;height:5px;border-radius:50%;background:currentColor;}
+.x-pill.g{color:var(--green);background:rgba(52,211,153,0.07);}
+.x-pill.a{color:var(--amber);background:rgba(245,158,11,0.08);}
+.x-pill.p{color:var(--purple-bright);background:rgba(124,58,237,0.12);}
+.x-scr-body{padding:16px;}
+.x-scr-sub{font-size:12px;color:var(--text-3);margin-bottom:12px;}
+.x-tbl{width:100%;border-collapse:collapse;font-size:12.5px;}
+.x-tbl th{font-family:var(--ff-data);font-size:10.5px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;color:var(--text-3);text-align:left;padding:0 8px 8px;border-bottom:0.5px solid var(--border);}
+.x-tbl td{padding:10px 8px;border-bottom:0.5px solid rgba(120,100,220,0.1);color:var(--text-2);vertical-align:middle;}
+.x-tbl td b{color:var(--text-1);font-weight:600;}
+.x-tbl td small{display:block;font-size:11px;color:var(--text-3);}
+.x-tbl .r{text-align:right;font-family:var(--ff-data);font-variant-numeric:tabular-nums;}
+.x-tbl tr.top td{background:rgba(20,184,166,0.06);}
+.x-tbl tr.cut td{opacity:0.5;}
+.x-cutline td{padding:4px 8px !important;border-bottom:0 !important;}
+.x-cutline span{display:flex;align-items:center;gap:8px;font-family:var(--ff-data);font-size:10.5px;color:var(--amber);}
+.x-cutline span::before,.x-cutline span::after{content:'';flex:1;border-top:1px dashed rgba(245,158,11,0.5);}
+.x-score{display:inline-block;min-width:34px;text-align:center;font-family:var(--ff-data);font-size:11.5px;font-weight:500;padding:2px 6px;border-radius:6px;background:rgba(52,211,153,0.1);color:var(--green);}
+.x-score.a{background:rgba(245,158,11,0.1);color:var(--amber);}
+.x-score.r{background:rgba(248,113,113,0.1);color:var(--red);}
+.x-why{margin-top:12px;padding:11px 12px;border-radius:10px;background:rgba(20,184,166,0.06);box-shadow:inset 0 0 0 0.5px rgba(94,234,212,0.3);font-size:12.5px;line-height:1.55;color:var(--text-2);}
+.x-why b{color:var(--teal-bright);font-weight:600;}
+.x-why.warn{background:rgba(245,158,11,0.06);box-shadow:inset 0 0 0 0.5px rgba(245,158,11,0.35);}
+.x-why.warn b{color:var(--amber);}
+.x-sc{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-radius:12px;box-shadow:inset 0 0 0 0.5px var(--border);overflow:hidden;}
+.x-sc > div{padding:12px;}
+.x-sc > div + div{border-left:0.5px solid var(--border);}
+.x-sc .on{background:rgba(167,139,250,0.07);}
+.x-sc .x-sch{margin:0 0 12px;font-family:var(--ff-data);font-size:10.5px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;color:var(--text-3);min-height:26px;}
+.x-sc dl{margin:0;display:flex;flex-direction:column;gap:10px;}
+.x-sc dt{font-size:11px;color:var(--text-3);}
+.x-sc dd{margin:2px 0 0;font-family:var(--ff-data);font-size:17px;font-weight:500;font-variant-numeric:tabular-nums;color:var(--text-2);}
+.x-sc dd.up{color:var(--red);}
+.x-sc dd.same{color:var(--green);}
+@media(max-width:560px){.x-tbl .hide-s{display:none;}.x-sc dd{font-size:15px;}.x-sc > div{padding:10px 8px;}}
+.x-dec-mobile-note{display:none;}
+
+/* ═══ Trust: proof ledger ═══ */
+.x-proofs{border-top:0.5px solid var(--border);}
+.x-proof{display:grid;grid-template-columns:minmax(0,0.75fr) minmax(0,1fr) minmax(0,1.15fr);gap:clamp(18px,3vw,40px);align-items:center;padding:clamp(24px,3vw,34px) 0;border-bottom:0.5px solid var(--border);}
+.x-proof h3{font-family:var(--ff-display);font-weight:400;font-size:clamp(24px,2.6vw,32px);letter-spacing:-0.015em;}
+.x-proof p{font-size:15.5px;line-height:1.6;color:var(--text-2);}
+.x-ev{border-radius:12px;padding:12px 14px;background:var(--dark-1);box-shadow:inset 0 0 0 0.5px var(--border-hi);font-family:var(--ff-data);font-size:11.5px;line-height:1.7;color:var(--text-2);}
+.x-ev .row{display:flex;justify-content:space-between;gap:12px;}
+.x-ev .k{color:var(--text-3);}
+.x-ev .g{color:var(--green);}
+.x-ev .t{color:var(--teal-bright);}
+.x-ev .a{color:var(--amber);}
+.x-ev .hr{height:0;border-top:0.5px solid var(--border);margin:6px 0;}
+.x-chain{display:flex;align-items:center;flex-wrap:wrap;gap:6px;font-family:var(--ff-body);font-size:12px;}
+.x-chain span{padding:5px 9px;border-radius:7px;background:rgba(255,255,255,0.04);box-shadow:inset 0 0 0 0.5px var(--border);white-space:nowrap;}
+.x-chain span.on{color:var(--green);background:rgba(52,211,153,0.1);box-shadow:inset 0 0 0 0.5px rgba(52,211,153,0.5);}
+.x-chain i{font-style:normal;color:var(--text-3);}
+@media(max-width:980px){.x-proof{grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);}.x-proof h3{grid-column:1/-1;}}
+@media(max-width:640px){.x-proof{grid-template-columns:minmax(0,1fr);gap:12px;}}
+
+.x-cmp{margin-top:clamp(40px,5vw,64px);}
+.x-cmp-h{font-family:var(--ff-display);font-weight:400;font-size:clamp(20px,2vw,24px);margin-bottom:16px;}
+.x-cmp-t{width:100%;border-collapse:separate;border-spacing:0;font-size:14.5px;}
+.x-cmp-t th,.x-cmp-t td{padding:15px 16px;text-align:left;border-bottom:0.5px solid var(--border);vertical-align:top;}
+.x-cmp-t thead th{font-size:12.5px;font-weight:500;color:var(--text-3);}
+.x-cmp-t thead th.us{color:var(--text-1);font-weight:600;}
+.x-cmp-t td:first-child{color:var(--text-1);}
+.x-cmp-t td{color:var(--text-2);}
+.x-cmp-t .us{background:rgba(124,58,237,0.08);}
+.x-cmp-t thead .us{border-radius:12px 12px 0 0;box-shadow:inset 0 1px 0 rgba(167,139,250,0.5);}
+.x-cmp-t td.us{color:var(--text-1);font-weight:500;}
+.x-cmp-t .no{color:var(--text-3);}
 @media(max-width:720px){
-  nav{padding:0 16px;}
-  .btn-site{display:none;}
-  .conf-pill{font-size:9px;padding:4px 10px 4px 6px;gap:5px;}
-  .btn-demo-nav{font-size:12px;padding:7px 13px;}
-  .logo-text{font-size:1rem;}
+  .x-cmp-t thead{display:none;}
+  .x-cmp-t,.x-cmp-t tbody,.x-cmp-t tr,.x-cmp-t td{display:block;width:100%;}
+  .x-cmp-t tr{padding:14px 0;border-bottom:0.5px solid var(--border);}
+  .x-cmp-t td{border:0;padding:3px 0;display:flex;justify-content:space-between;gap:16px;}
+  .x-cmp-t td:first-child{font-weight:600;padding-bottom:8px;}
+  .x-cmp-t td:not(:first-child)::before{content:attr(data-h);color:var(--text-3);font-weight:400;}
+  .x-cmp-t td.us{background:none;}
+  .x-cmp-t td{text-align:right;}
 }
-@media(max-width:400px){.conf-pill{display:none;}}
 
-/* LAYOUT */
-section{position:relative;z-index:1;}
-.wrap{max-width:1100px;margin:0 auto;padding:0 32px;}
-.wrap-tight{max-width:760px;margin:0 auto;padding:0 32px;}
-@media(max-width:600px){.wrap,.wrap-tight{padding:0 16px;}}
+/* ═══ Start ═══ */
+.x-tl{position:relative;}
+.x-tl-scale{display:grid;grid-template-columns:3fr 9fr 4fr;gap:4px;margin-bottom:18px;}
+.x-tl-scale i{height:6px;border-radius:6px;}
+.x-tl-scale i:nth-child(1){background:var(--teal);}
+.x-tl-scale i:nth-child(2){background:linear-gradient(90deg,var(--teal),var(--purple-bright));}
+.x-tl-scale i:nth-child(3){background:repeating-linear-gradient(90deg,var(--purple-bright) 0 10px,transparent 10px 16px);}
+.x-tl-cols{display:grid;grid-template-columns:3fr 9fr 4fr;gap:clamp(16px,3vw,40px);}
+.x-ph .when{font-family:var(--ff-data);font-size:11.5px;color:var(--text-3);}
+.x-ph h3{margin-top:8px;font-family:var(--ff-display);font-weight:400;font-size:clamp(26px,2.8vw,34px);letter-spacing:-0.015em;}
+.x-ph p{margin-top:10px;font-size:15.5px;line-height:1.62;color:var(--text-2);max-width:40ch;}
+@media(max-width:860px){
+  .x-tl-scale{display:none;}
+  .x-tl-cols{grid-template-columns:minmax(0,1fr);gap:0;}
+  .x-ph{position:relative;padding:0 0 28px 26px;}
+  .x-ph::before{content:'';position:absolute;left:0;top:6px;width:9px;height:9px;border-radius:50%;background:var(--teal);}
+  .x-ph:nth-child(2)::before{background:var(--purple-mid);}
+  .x-ph:nth-child(3)::before{background:var(--purple-bright);}
+  .x-ph::after{content:'';position:absolute;left:4px;top:20px;bottom:4px;width:1px;background:var(--border-hi);}
+  .x-ph:last-child::after{display:none;}
+}
+.x-band{margin-top:clamp(48px,6vw,80px);display:flex;align-items:center;justify-content:space-between;gap:20px 32px;flex-wrap:wrap;padding:clamp(22px,3vw,30px) clamp(20px,3vw,32px);border-radius:16px;background:linear-gradient(120deg,rgba(91,33,182,0.55),rgba(15,118,110,0.45));box-shadow:inset 0 0 0 0.5px rgba(255,255,255,0.12);}
+.x-band p{font-family:var(--ff-display);font-weight:300;font-size:clamp(18px,2vw,23px);line-height:1.4;color:#fff;max-width:56ch;}
+.x-band p b{font-weight:500;}
+.x-band a{font-size:14px;font-weight:600;color:#fff;text-decoration:none;padding:11px 16px;border-radius:10px;box-shadow:inset 0 0 0 1px rgba(255,255,255,0.4);white-space:nowrap;transition:background .2s;}
+.x-band a:hover{background:rgba(255,255,255,0.1);}
 
-/* SHARED */
-.eyebrow{display:inline-flex;align-items:center;gap:7px;font-family:var(--ff-mono);font-size:11px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--teal);margin-bottom:16px;}
-.eyebrow::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--teal);flex-shrink:0;}
-.section-h2{font-family:var(--ff-display);font-weight:300;font-size:clamp(1.9rem,4vw,3rem);line-height:1.12;letter-spacing:-0.02em;color:var(--text-1);margin-bottom:16px;max-width:820px;}
-.section-h2 em{font-style:italic;color:var(--teal-bright);}
-.section-lead{font-size:1.05rem;color:var(--text-2);line-height:1.72;max-width:640px;}
-.center{text-align:center;}
-.center .section-h2,.center .section-lead{margin-left:auto;margin-right:auto;}
-.center .eyebrow{justify-content:center;}
+/* ═══ FAQ ═══ */
+.x-faq{display:grid;grid-template-columns:minmax(0,0.8fr) minmax(0,1.2fr);gap:clamp(24px,5vw,72px);align-items:start;}
+@media(max-width:860px){.x-faq{grid-template-columns:minmax(0,1fr);}}
+.x-faq details{border-bottom:0.5px solid var(--border);}
+.x-faq details:first-child{border-top:0.5px solid var(--border);}
+.x-faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:22px 0;font-size:17px;font-weight:500;color:var(--text-1);}
+.x-faq summary::-webkit-details-marker{display:none;}
+.x-faq summary svg{flex-shrink:0;color:var(--text-3);transition:transform .25s,color .25s;}
+.x-faq details[open] summary svg{transform:rotate(45deg);color:var(--teal-bright);}
+.x-faq details p{padding:0 0 22px;font-size:16px;line-height:1.7;color:var(--text-2);max-width:60ch;}
 
-/* BUTTONS */
-.btn-primary{font-family:var(--ff-body);font-size:15px;font-weight:600;display:inline-flex;align-items:center;gap:8px;cursor:pointer;text-decoration:none;border-radius:13px;padding:14px 32px;background:var(--purple);color:#fff;border:none;box-shadow:0 0 0 1px rgba(124,58,237,0.4),0 6px 24px rgba(91,33,182,0.38);transition:all 0.2s;}
-.btn-primary:hover{background:var(--purple-mid);transform:translateY(-2px);}
-.btn-outline{font-family:var(--ff-body);font-size:15px;font-weight:600;display:inline-flex;align-items:center;gap:8px;cursor:pointer;text-decoration:none;border-radius:13px;padding:14px 28px;background:transparent;color:var(--text-1);border:0.5px solid var(--border-hi);transition:all 0.2s;}
-.btn-outline:hover{background:rgba(255,255,255,0.055);border-color:var(--text-3);}
+/* ═══ Contact ═══ */
+.x-contact{display:grid;grid-template-columns:minmax(0,0.9fr) minmax(0,1.1fr);gap:clamp(28px,5vw,72px);align-items:start;}
+@media(max-width:900px){.x-contact{grid-template-columns:minmax(0,1fr);}}
+.x-next{margin-top:32px;display:flex;flex-direction:column;}
+.x-next li{display:grid;grid-template-columns:28px minmax(0,1fr);gap:12px;padding:14px 0;border-top:0.5px solid var(--border);font-size:15px;line-height:1.55;color:var(--text-2);}
+.x-next li b{color:var(--text-1);font-weight:600;}
+.x-next li i{font-style:normal;font-family:var(--ff-data);font-size:11.5px;color:var(--text-3);padding-top:3px;}
+.x-form{border-radius:18px;padding:clamp(22px,3vw,34px);background:var(--dark-1);box-shadow:inset 0 0 0 0.5px var(--border-hi),0 40px 90px -40px rgba(0,0,0,0.9);}
+.x-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:14px;margin-bottom:14px;}
+.x-f{margin-bottom:14px;}
+@media(max-width:560px){.x-row{grid-template-columns:minmax(0,1fr);}}
+.x-lbl{display:block;font-size:13px;font-weight:500;color:var(--text-2);margin-bottom:7px;}
+.x-in,.x-sel,.x-ta{width:100%;font:400 16px/1.4 var(--ff-body);color:var(--text-1);background:rgba(255,255,255,0.035);border:0;border-radius:10px;box-shadow:inset 0 0 0 0.5px rgba(255,255,255,0.16);padding:12px 14px;outline:none;transition:box-shadow .2s,background .2s;-webkit-appearance:none;appearance:none;}
+.x-in:focus,.x-sel:focus,.x-ta:focus{box-shadow:inset 0 0 0 1.5px var(--purple-bright);background:rgba(255,255,255,0.05);}
+.x-in::placeholder,.x-ta::placeholder{color:#8A7FC4;}
+.x-in[aria-invalid="true"]{box-shadow:inset 0 0 0 1.5px var(--red);}
+.x-ta{min-height:112px;resize:vertical;}
+.x-sel{cursor:pointer;padding-right:40px;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M4 6l4 4 4-4' stroke='%238A7FC4' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 13px center;background-size:16px;}
+.x-sel option{background:var(--dark-2);color:var(--text-1);}
+.x-chips{display:flex;flex-wrap:wrap;gap:8px;}
+.x-chip{position:relative;}
+.x-chip input{position:absolute;opacity:0;pointer-events:none;}
+.x-chip span{display:inline-flex;align-items:center;height:38px;padding:0 14px;border-radius:999px;font-size:14px;color:var(--text-2);box-shadow:inset 0 0 0 0.5px var(--border-hi);cursor:pointer;transition:all .2s;}
+.x-chip span:hover{color:var(--text-1);background:rgba(255,255,255,0.04);}
+.x-chip input:checked + span{color:#fff;background:rgba(124,58,237,0.35);box-shadow:inset 0 0 0 1px var(--purple-bright);}
+.x-chip input:focus-visible + span{outline:2px solid var(--teal-bright);outline-offset:2px;}
+.x-hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0;}
+.x-submit{width:100%;justify-content:center;margin-top:6px;height:52px;font-size:15.5px;}
+.x-submit:disabled{opacity:0.6;cursor:default;}
+.x-err{display:none;margin-top:12px;font-size:14px;color:var(--red);}
+.x-err a{color:var(--red);}
+.x-fnote{margin-top:12px;font-size:13px;color:var(--text-3);text-align:center;}
+.x-done{display:none;text-align:center;padding:36px 8px;}
+.x-done .ic{width:52px;height:52px;margin:0 auto 18px;border-radius:50%;display:grid;place-items:center;color:var(--teal-bright);background:rgba(20,184,166,0.14);}
+.x-done h3{font-family:var(--ff-display);font-weight:300;font-size:30px;}
+.x-done p{margin-top:10px;font-size:15.5px;line-height:1.65;color:var(--text-2);}
 
-/* HERO */
-.hero{padding:132px 0 88px;}
-.hero-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:64px;align-items:center;}
-.preview-badge{display:inline-flex;align-items:center;gap:10px;margin-bottom:28px;background:rgba(20,184,166,0.07);border:0.5px solid rgba(20,184,166,0.38);border-radius:100px;padding:6px 16px 6px 6px;animation:fadeUp 0.6s ease both;max-width:100%;}
-.preview-badge-tag{background:var(--teal);color:var(--dark);font-family:var(--ff-mono);font-size:10px;font-weight:700;letter-spacing:0.06em;padding:3px 10px;border-radius:100px;text-transform:uppercase;flex-shrink:0;}
-.preview-badge-txt{font-size:13px;color:var(--text-2);font-weight:500;}
-.hero h1{font-family:var(--ff-display);font-weight:300;font-size:clamp(2.5rem,5.2vw,4.3rem);line-height:1.04;letter-spacing:-0.028em;color:var(--text-1);margin-bottom:24px;animation:fadeUp 0.6s 0.08s ease both;}
-.hero h1 em{font-style:italic;color:var(--teal-bright);}
-.hero-sub{font-size:clamp(1rem,1.6vw,1.12rem);color:var(--text-2);line-height:1.75;max-width:540px;margin-bottom:36px;animation:fadeUp 0.6s 0.14s ease both;}
-.hero-cta{display:flex;gap:12px;flex-wrap:wrap;animation:fadeUp 0.6s 0.2s ease both;}
-.hero-vis{animation:fadeUp 0.7s 0.25s ease both;min-width:0;}
-@media(max-width:900px){.hero{padding:108px 0 64px;}.hero-grid{grid-template-columns:minmax(0,1fr);gap:48px;}}
-
-/* LAYER STACK (hero diagram) */
-.stack{max-width:460px;margin:0 auto;display:flex;flex-direction:column;align-items:stretch;}
-.tier{border-radius:16px;padding:16px 18px;background:rgba(26,22,48,0.72);border:0.5px solid var(--border);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);}
-.tier-label{display:flex;align-items:center;gap:8px;font-family:var(--ff-mono);font-size:9.5px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-3);margin-bottom:12px;}
-.tier-team{display:flex;align-items:center;justify-content:space-between;gap:12px;}
-.tier-team .tier-label{margin:0;}
-.team-state{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text-2);}
-.ok-badge{display:inline-flex;align-items:center;gap:5px;font-size:10px;font-weight:600;padding:3px 9px;border-radius:100px;background:rgba(52,211,153,0.12);color:var(--green);border:0.5px solid rgba(52,211,153,0.3);opacity:var(--on,0);transform:scale(calc(0.9 + var(--on,0)*0.1));}
-.tier-dos{position:relative;padding:18px;border:0;background:linear-gradient(var(--dark-2),var(--dark-2)) padding-box,linear-gradient(135deg,rgba(167,139,250,0.75),rgba(94,234,212,0.6)) border-box;border:1px solid transparent;box-shadow:0 18px 60px rgba(91,33,182,0.28);}
-.tier-dos .tier-label{color:var(--teal-bright);}
-.tier-dos .tier-label::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--teal);box-shadow:0 0 10px var(--teal);}
-.tier-dos .tier-label small{margin-left:auto;font-size:9px;color:var(--text-3);letter-spacing:0.08em;}
-.dos-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px;}
-.dos-chip{border-radius:10px;padding:10px 12px;font-size:11.5px;line-height:1.4;color:var(--text-3);background:rgba(255,255,255,0.03);border:0.5px solid var(--border);transition:none;}
-.dos-chip b{display:block;font-size:12px;font-weight:600;color:var(--text-2);margin-bottom:2px;}
-.dos-chip.c-ai{background:rgba(20,184,166,calc(0.03 + var(--on,0)*0.12));border-color:rgba(20,184,166,calc(0.15 + var(--on,0)*0.4));}
-.dos-chip.c-ai b{color:color-mix(in srgb,var(--teal-bright) calc(var(--on,0)*100%),var(--text-2));}
-.dos-chip.c-eng{background:rgba(167,139,250,calc(0.03 + var(--on,0)*0.14));border-color:rgba(167,139,250,calc(0.15 + var(--on,0)*0.45));}
-.dos-chip.c-eng b{color:color-mix(in srgb,var(--purple-bright) calc(var(--on,0)*100%),var(--text-2));}
-.dos-plan{margin-top:10px;display:flex;align-items:center;justify-content:space-between;gap:8px;padding:9px 12px;border-radius:10px;background:rgba(255,255,255,0.04);border:0.5px solid var(--border-hi);font-size:11.5px;color:var(--text-1);opacity:var(--on,0);transform:translateY(calc((1 - var(--on,0))*6px));}
-.dos-plan span{font-family:var(--ff-mono);font-size:10px;color:var(--green);white-space:nowrap;}
-.sor-row{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;}
-.sor{font-size:11px;font-weight:500;text-align:center;padding:8px 4px;border-radius:8px;color:color-mix(in srgb,var(--text-1) calc(var(--on,0)*100%),var(--text-3));background:rgba(255,255,255,calc(0.025 + var(--on,0)*0.04));border:0.5px solid rgba(120,100,220,calc(0.18 + var(--on,0)*0.3));white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-.wire{position:relative;height:34px;display:grid;grid-template-columns:repeat(4,1fr);}
-.wire.single{grid-template-columns:1fr;}
-.wire i{position:relative;display:block;}
-.wire i::before{content:'';position:absolute;left:50%;top:0;bottom:0;width:1px;background:linear-gradient(180deg,rgba(120,100,220,0.35),rgba(120,100,220,0.12));}
-.wire i::after{content:'';position:absolute;left:50%;width:7px;height:7px;margin-left:-3px;border-radius:50%;background:var(--teal-bright);box-shadow:0 0 12px var(--teal);top:calc((1 - var(--p,0))*100% - 3px);opacity:var(--a,0);}
-.wire.single i::after{background:var(--purple-bright);box-shadow:0 0 12px var(--purple-mid);}
-.stack-caption{text-align:center;font-size:12.5px;color:var(--text-3);margin-top:18px;line-height:1.6;}
-.stack-caption b{color:var(--text-2);font-weight:600;}
-@media(max-width:420px){.sor{font-size:10px;}.dos-chip{font-size:10.5px;padding:9px 10px;}}
-
-/* SECTION BASICS */
-.sec{padding:104px 0;border-top:0.5px solid var(--border);}
-.sec-first{border-top:0;padding-top:72px;}
-@media(max-width:600px){.sec{padding:76px 0;}}
-
-/* WORKFLOW (animated how-it-works) */
-.flow{display:grid;grid-template-columns:minmax(0,0.9fr) minmax(0,1.1fr);gap:56px;align-items:center;margin-top:48px;}
-.flow-steps{display:flex;flex-direction:column;gap:8px;}
-.flow-step{all:unset;box-sizing:border-box;display:block;cursor:pointer;padding:16px 18px;border-radius:14px;border:0.5px solid transparent;transition:background 0.25s,border-color 0.25s;}
-.flow-step:hover{background:rgba(255,255,255,0.03);}
-.flow-step.on{background:var(--dark-2);border-color:var(--border-hi);}
-.flow-step:focus-visible{outline:2px solid var(--teal);outline-offset:2px;}
-.fs-top{display:flex;align-items:center;gap:12px;}
-.fs-num{font-family:var(--ff-mono);font-size:10px;font-weight:700;color:var(--text-3);width:22px;}
-.fs-name{font-family:var(--ff-display);font-size:1.3rem;font-weight:400;color:var(--text-3);transition:color 0.25s;}
-.flow-step.on .fs-name{color:var(--text-1);}
-.fs-who{margin-left:auto;font-family:var(--ff-mono);font-size:9px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;padding:3px 8px;border-radius:4px;}
-.fs-who.ai{background:rgba(20,184,166,0.1);color:var(--teal);}
-.fs-who.rules{background:rgba(167,139,250,0.12);color:var(--purple-bright);}
-.fs-who.people{background:rgba(245,158,11,0.12);color:var(--amber);}
-.fs-body{font-size:0.92rem;color:var(--text-2);line-height:1.65;margin:8px 0 0 34px;max-height:0;overflow:hidden;opacity:0;transition:max-height 0.35s ease,opacity 0.35s ease;}
-.flow-step.on .fs-body{max-height:140px;opacity:1;}
-.fs-bar{margin:12px 0 0 34px;height:2px;border-radius:2px;background:rgba(255,255,255,0.06);overflow:hidden;display:none;}
-.flow-step.on .fs-bar{display:block;}
-.fs-bar i{display:block;height:100%;width:calc(var(--l,0)*100%);background:linear-gradient(90deg,var(--purple-mid),var(--teal));}
-.flow-vis{min-width:0;}
-.flow-vis .fcat-screen{max-width:520px;}
-.panes{position:relative;min-height:320px;}
-.pane{position:absolute;inset:0;padding:16px;display:flex;flex-direction:column;gap:9px;opacity:0;visibility:hidden;transition:opacity 0.35s ease,visibility 0s linear 0.35s;}
-.pane.on{opacity:1;visibility:visible;transition:opacity 0.35s ease;}
-.rv{opacity:var(--r,0);transform:translateY(calc((1 - var(--r,0))*6px));}
-.src-row{display:flex;align-items:center;gap:10px;padding:9px 10px;border-radius:8px;background:rgba(255,255,255,0.03);font-size:11px;color:var(--text-2);}
-.src-ic{width:24px;height:24px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-family:var(--ff-mono);font-size:8.5px;font-weight:700;flex-shrink:0;}
-.src-ic.x{background:rgba(52,211,153,0.14);color:var(--green);}
-.src-ic.r{background:rgba(167,139,250,0.18);color:var(--purple-bright);}
-.src-ic.p{background:rgba(245,158,11,0.14);color:var(--amber);}
-.src-name{flex:1;min-width:0;}
-.src-name b{display:block;color:var(--text-1);font-weight:600;}
-.map-row{display:grid;grid-template-columns:minmax(0,0.9fr) 16px minmax(0,1.2fr) auto;align-items:center;gap:8px;font-size:10.5px;padding:7px 4px;border-bottom:0.5px solid rgba(255,255,255,0.04);}
-.map-from{font-family:var(--ff-mono);color:var(--text-3);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
-.map-arrow{color:var(--teal);text-align:center;}
-.map-to{color:var(--text-1);}
-.log-row{display:flex;gap:10px;font-size:10.5px;color:var(--text-2);padding:5px 0;line-height:1.45;}
-.log-time{font-family:var(--ff-mono);color:var(--text-3);flex-shrink:0;width:38px;}
-@media(max-width:900px){.flow{grid-template-columns:minmax(0,1fr);gap:28px;}.flow-vis{order:-1;}}
-
-@media (prefers-reduced-motion: reduce){.fs-bar{display:none!important;}}
-/* SCREEN MOCKUPS (same as homepage feature carousel) */
-.fcat-screen{width:100%;max-width:460px;margin:0 auto;background:var(--dark-2);border:0.5px solid var(--border-hi);border-radius:14px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,0.5),0 0 0 0.5px rgba(255,255,255,0.06);}
-.fcat-screen.wide{max-width:520px;}
-.fcat-screen-bar{display:flex;align-items:center;gap:10px;padding:10px 14px;background:var(--dark-1);border-bottom:0.5px solid var(--border);}
-.fcat-screen-dots{display:flex;gap:5px;flex-shrink:0;}
-.fcat-screen-dots span{width:8px;height:8px;border-radius:50%;}
-.fcat-screen-dots span:nth-child(1){background:#FF5F57;}
-.fcat-screen-dots span:nth-child(2){background:#FEBC2E;}
-.fcat-screen-dots span:nth-child(3){background:#28C840;}
-.fcat-screen-url{font-family:var(--ff-mono);font-size:9.5px;color:var(--text-3);flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
-.scr-body{padding:16px;display:flex;flex-direction:column;gap:10px;}
-.scr-head{display:flex;justify-content:space-between;align-items:center;gap:10px;}
-.scr-title{font-size:11.5px;font-weight:600;color:var(--text-1);}
-.scr-meta{font-size:10px;color:var(--teal);font-family:var(--ff-mono);white-space:nowrap;}
-.scr-sub{font-size:10px;color:var(--text-3);line-height:1.5;}
-.scr-label{font-size:9px;font-weight:600;color:var(--text-3);letter-spacing:0.1em;text-transform:uppercase;margin:4px 0 2px;}
-.scr-foot{margin-top:4px;padding-top:10px;border-top:0.5px solid var(--border);font-size:10px;color:var(--text-3);display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;}
-.scr-foot b{color:var(--text-2);font-weight:600;}
-
-.badge{display:inline-flex;align-items:center;gap:5px;font-size:9px;font-weight:600;padding:2px 8px;border-radius:100px;width:fit-content;white-space:nowrap;flex-shrink:0;}
-.badge::before{content:'';width:5px;height:5px;border-radius:50%;flex-shrink:0;}
-.badge-green{background:rgba(52,211,153,0.12);color:var(--green);border:0.5px solid rgba(52,211,153,0.25);}
-.badge-green::before{background:var(--green);}
-.badge-amber{background:rgba(245,158,11,0.12);color:var(--amber);border:0.5px solid rgba(245,158,11,0.25);}
-.badge-amber::before{background:var(--amber);}
-.badge-purple{background:rgba(167,139,250,0.12);color:var(--purple-bright);border:0.5px solid rgba(167,139,250,0.25);}
-.badge-purple::before{background:var(--purple-bright);}
-.badge-red{background:rgba(248,113,113,0.12);color:var(--red);border:0.5px solid rgba(248,113,113,0.25);}
-.badge-red::before{background:var(--red);}
-.badge-teal{background:rgba(20,184,166,0.12);color:var(--teal);border:0.5px solid rgba(20,184,166,0.3);}
-.badge-teal::before{background:var(--teal);}
-
-.fcat-hrow{display:flex;align-items:center;justify-content:space-between;padding:8px 10px;border-radius:8px;gap:8px;background:rgba(255,255,255,0.03);border:0.5px solid transparent;}
-.fcat-hrow-active{background:rgba(20,184,166,0.07);border-color:rgba(20,184,166,0.2);}
-.fcat-hrow-name{font-size:11px;color:var(--text-2);flex:1;min-width:0;}
-.fcat-hrow-name b{color:var(--text-1);font-weight:600;}
-.fcat-hrow-name .arrow{color:var(--teal);margin:0 3px;}
-.fcat-hrow-name .old{text-decoration:line-through;color:var(--text-3);margin-right:2px;}
-.fcat-hrow.cut{opacity:0.55;}
-.cutline{display:flex;align-items:center;gap:8px;font-family:var(--ff-mono);font-size:9px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--amber);margin:2px 0;}
-.cutline::before,.cutline::after{content:'';flex:1;height:0;border-top:0.5px dashed rgba(245,158,11,0.5);}
-
-.chk-row{display:flex;align-items:flex-start;gap:8px;font-size:10.5px;color:var(--text-2);padding:3px 0;line-height:1.45;}
-.chk-box{width:15px;height:15px;border-radius:4px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:9px;background:rgba(20,184,166,0.2);border:0.5px solid rgba(20,184,166,0.4);color:var(--teal);margin-top:1px;}
-.chk-box.warn{background:rgba(245,158,11,0.2);border-color:rgba(245,158,11,0.4);color:var(--amber);}
-
-.kv{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;}
-.kv-cell{background:rgba(255,255,255,0.03);border:0.5px solid var(--border);border-radius:8px;padding:8px 10px;min-width:0;}
-.kv-label{font-size:8.5px;color:var(--text-3);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:3px;}
-.kv-val{font-size:13px;font-weight:600;color:var(--text-1);font-family:var(--ff-mono);}
-.kv-val small{font-size:9.5px;color:var(--text-3);font-weight:500;}
-
-.approval{display:flex;align-items:flex-start;gap:10px;padding:10px 12px;border-radius:10px;background:rgba(245,158,11,0.07);border:0.5px solid rgba(245,158,11,0.25);font-size:10.5px;color:var(--text-2);line-height:1.5;}
-.approval b{color:var(--text-1);font-weight:600;}
-.approval .ic{color:var(--amber);flex-shrink:0;margin-top:1px;}
-.approval-btns{display:flex;gap:6px;margin-top:8px;}
-.mini-btn{font-size:9.5px;font-weight:600;padding:4px 10px;border-radius:6px;border:0.5px solid var(--border-hi);color:var(--text-2);background:rgba(255,255,255,0.03);}
-.mini-btn.go{background:var(--purple);border-color:transparent;color:#fff;}
-
-.progress-track{height:5px;background:rgba(255,255,255,0.07);border-radius:100px;overflow:hidden;}
-.progress-fill{height:100%;border-radius:100px;background:linear-gradient(90deg,var(--purple),var(--teal));}
-
-.dtable{width:100%;border-collapse:collapse;font-size:10.5px;}
-.dtable th{font-size:8.5px;font-weight:600;color:var(--text-3);letter-spacing:0.08em;text-transform:uppercase;text-align:left;padding:0 6px 6px;border-bottom:0.5px solid var(--border);}
-.dtable td{padding:7px 6px;color:var(--text-2);border-bottom:0.5px solid rgba(255,255,255,0.04);vertical-align:middle;}
-.dtable td.num,.dtable th.num{text-align:right;font-family:var(--ff-mono);}
-.dtable td b{color:var(--text-1);font-weight:600;}
-.dtable tr.top td{background:rgba(20,184,166,0.06);}
-.rank{display:inline-flex;width:18px;height:18px;border-radius:5px;align-items:center;justify-content:center;font-size:9.5px;font-weight:700;background:rgba(255,255,255,0.06);color:var(--text-2);}
-.rank.r1{background:rgba(20,184,166,0.2);color:var(--teal);}
-
-.scenario-card{background:var(--dark-3);border:0.5px solid var(--border);border-radius:12px;overflow:hidden;width:100%;}
-.sc-header{padding:11px 14px;border-bottom:0.5px solid var(--border);font-size:11px;font-weight:600;color:var(--text-1);display:flex;justify-content:space-between;gap:8px;}
-.sc-cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));}
-.sc-col{padding:14px 12px;}
-.sc-col+.sc-col{border-left:0.5px solid var(--border);}
-.sc-col.on{background:rgba(167,139,250,0.06);}
-.sc-col-label{font-size:9px;font-weight:700;color:var(--text-3);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:12px;min-height:22px;}
-.sc-metric{margin-bottom:10px;}
-.sc-m-label{font-size:9.5px;color:var(--text-3);margin-bottom:2px;}
-.sc-m-val{font-family:var(--ff-mono);font-size:15px;font-weight:600;}
-.sc-m-val.good{color:var(--green);}
-.sc-m-val.bad{color:var(--red);}
-.sc-m-val.mid{color:var(--text-2);}
-.sc-why{padding:11px 14px;background:rgba(20,184,166,0.08);border-top:0.5px solid rgba(20,184,166,0.2);font-size:10.5px;color:var(--text-2);line-height:1.55;}
-.sc-why b{color:var(--teal);font-weight:600;}
-
-/* PROBLEM */
-.prob-sec{padding:96px 0 80px;}
-.prob-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin-top:44px;}
-.prob-card{background:var(--dark-2);border:0.5px solid var(--border);border-radius:var(--r-lg);padding:28px 26px;position:relative;overflow:hidden;}
-.prob-card::before{content:'';position:absolute;left:0;top:16px;bottom:16px;width:3px;border-radius:0 2px 2px 0;}
-.prob-card.c1::before{background:#F87171;}
-.prob-card.c2::before{background:#FBBF24;}
-.prob-card.c3::before{background:var(--purple-bright);}
-.prob-card h3{font-family:var(--ff-display);font-size:1.2rem;font-weight:400;line-height:1.25;color:var(--text-1);letter-spacing:-0.01em;margin-bottom:10px;}
-.prob-card p{font-size:0.92rem;color:var(--text-2);line-height:1.65;}
-@media(max-width:860px){.prob-cards{grid-template-columns:minmax(0,1fr);}}
-
-/* FEATURE CAROUSEL (same pattern as homepage) */
-.feat-sec{padding:96px 0;border-top:0.5px solid var(--border);}
-.fcat-tabs{display:flex;gap:6px;flex-wrap:nowrap;overflow-x:auto;padding-bottom:2px;margin:44px 0 32px;scrollbar-width:none;-webkit-overflow-scrolling:touch;}
-.fcat-tabs::-webkit-scrollbar{display:none;}
-.fcat-tab{display:inline-flex;align-items:center;gap:6px;font-family:var(--ff-body);font-size:12.5px;font-weight:500;color:var(--text-3);background:rgba(255,255,255,0.04);border:0.5px solid var(--border);border-radius:100px;padding:7px 16px;cursor:pointer;white-space:nowrap;transition:background 0.2s,color 0.2s,border-color 0.2s;flex-shrink:0;}
-.fcat-tab:hover{background:rgba(20,184,166,0.08);color:var(--text-2);border-color:rgba(20,184,166,0.25);}
-.fcat-tab.active{background:rgba(20,184,166,0.12);color:var(--teal);border-color:rgba(20,184,166,0.4);}
-.fcat-panel{display:none;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:64px;align-items:center;animation:fcatFadeIn 0.35s ease both;}
-.fcat-panel.active{display:grid;}
-@keyframes fcatFadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
-.fcat-eyebrow{font-family:var(--ff-mono);font-size:10px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--teal);margin-bottom:14px;}
-.fcat-title{font-family:var(--ff-display);font-weight:300;font-size:clamp(1.4rem,2.6vw,2rem);letter-spacing:-0.02em;color:var(--text-1);line-height:1.22;margin-bottom:16px;}
-.fcat-desc{font-size:14.5px;color:var(--text-2);line-height:1.78;margin-bottom:20px;}
-.fcat-list{list-style:none;display:flex;flex-direction:column;gap:9px;}
-.fcat-list li{font-size:13.5px;color:var(--text-2);line-height:1.6;padding-left:20px;position:relative;}
-.fcat-list li::before{content:'';position:absolute;left:0;top:7px;width:6px;height:6px;border-radius:50%;background:var(--teal);opacity:0.7;}
-.fcat-vis{display:flex;align-items:center;justify-content:center;min-width:0;}
-@media(max-width:900px){.fcat-panel.active{grid-template-columns:minmax(0,1fr);gap:32px;}.fcat-vis{order:-1;}.fcat-screen{max-width:100%;}}
-
-/* TRUST */
-.trust-sec{padding:96px 0;border-top:0.5px solid var(--border);}
-.trust-cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-top:44px;}
-.trust-card{background:var(--dark-2);border:0.5px solid var(--border);border-radius:var(--r-lg);padding:26px 22px;position:relative;}
-.trust-card::before{content:'';position:absolute;left:0;top:16px;bottom:16px;width:2px;border-radius:0 1px 1px 0;background:linear-gradient(180deg,var(--purple-mid) 0%,var(--teal) 100%);}
-.trust-card h3{font-family:var(--ff-display);font-size:1.2rem;font-weight:400;color:var(--text-1);margin-bottom:8px;}
-.trust-card h3 em{font-style:italic;color:var(--purple-bright);}
-.trust-card p{font-size:0.88rem;color:var(--text-2);line-height:1.65;}
-@media(max-width:980px){.trust-cards{grid-template-columns:repeat(2,minmax(0,1fr));}}
-@media(max-width:560px){.trust-cards{grid-template-columns:minmax(0,1fr);}}
-
-/* START */
-.start-sec{padding:96px 0;border-top:0.5px solid var(--border);}
-.phases{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;margin-top:48px;border:0.5px solid var(--border);border-radius:var(--r-lg);overflow:hidden;background:var(--dark-2);}
-.phase{padding:30px 28px;position:relative;}
-.phase+.phase{border-left:0.5px solid var(--border);}
-.phase-when{font-family:var(--ff-mono);font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-3);margin-bottom:14px;}
-.phase-bar{height:4px;border-radius:2px;margin-bottom:22px;}
-.phase:nth-child(1) .phase-bar{background:var(--teal);}
-.phase:nth-child(2) .phase-bar{background:linear-gradient(90deg,var(--teal),var(--purple-bright));}
-.phase:nth-child(3) .phase-bar{background:var(--purple-bright);}
-.phase h3{font-family:var(--ff-display);font-size:1.5rem;font-weight:300;color:var(--text-1);margin-bottom:10px;}
-.phase p{font-size:0.92rem;color:var(--text-2);line-height:1.68;}
-@media(max-width:860px){.phases{grid-template-columns:minmax(0,1fr);}.phase+.phase{border-left:none;border-top:0.5px solid var(--border);}}
-
-/* TEAM BAND */
-.team-sec{padding:0 0 96px;}
-.team-band{background:linear-gradient(135deg,var(--purple) 0%,#0F766E 100%);border-radius:var(--r-lg);padding:32px 40px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;}
-.team-band p{font-family:var(--ff-display);font-size:clamp(1.1rem,2.2vw,1.4rem);font-weight:300;line-height:1.45;color:#fff;max-width:720px;}
-.team-band p strong{font-weight:500;}
-.team-band a{font-size:14px;font-weight:600;color:#fff;text-decoration:none;border:0.5px solid rgba(255,255,255,0.45);border-radius:10px;padding:10px 18px;white-space:nowrap;transition:background 0.2s;}
-.team-band a:hover{background:rgba(255,255,255,0.1);}
-@media(max-width:600px){.team-band{padding:26px 22px;}}
-
-/* FAQ */
-.faq-sec{padding:96px 0;border-top:0.5px solid var(--border);}
-.faq-list{margin-top:40px;display:flex;flex-direction:column;gap:10px;}
-.faq-item{background:var(--dark-2);border:0.5px solid var(--border);border-radius:var(--r-md);overflow:hidden;}
-.faq-item summary{list-style:none;cursor:pointer;padding:20px 24px;font-size:1.02rem;font-weight:500;color:var(--text-1);display:flex;justify-content:space-between;align-items:center;gap:16px;}
-.faq-item summary::-webkit-details-marker{display:none;}
-.faq-item summary::after{content:'+';font-family:var(--ff-mono);font-size:20px;color:var(--teal);flex-shrink:0;transition:transform 0.2s;}
-.faq-item[open] summary::after{transform:rotate(45deg);}
-.faq-item p{padding:0 24px 22px;font-size:0.95rem;color:var(--text-2);line-height:1.72;}
-
-/* CONTACT */
-.demo-sec{padding:96px 0 120px;border-top:0.5px solid var(--border);}
-.form-card{max-width:680px;margin:44px auto 0;background:var(--dark-1);border:0.5px solid var(--border-hi);border-radius:var(--r-xl);padding:44px 40px;position:relative;overflow:hidden;}
-.form-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(91,33,182,0.6),rgba(94,234,212,0.4),transparent);}
-.f-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px;margin-bottom:16px;}
-.f-full{margin-bottom:16px;}
-.f-lbl{display:block;font-family:var(--ff-mono);font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-3);margin-bottom:8px;}
-.f-input,.f-select,.f-text{width:100%;background:rgba(255,255,255,0.04);border:0.5px solid rgba(255,255,255,0.12);border-radius:var(--r-sm);padding:11px 14px;font-size:16px;color:var(--text-1);font-family:var(--ff-body);outline:none;transition:border-color 0.2s,background 0.2s;-webkit-appearance:none;appearance:none;}
-.f-input:focus,.f-select:focus,.f-text:focus{border-color:rgba(167,139,250,0.5);background:rgba(255,255,255,0.06);}
-.f-input::placeholder,.f-text::placeholder{color:var(--text-3);}
-.f-text{min-height:110px;resize:vertical;line-height:1.55;}
-.f-select{cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M4 6l4 4 4-4' stroke='%236B7280' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;background-size:16px;padding-right:38px;}
-.f-select option{background:var(--dark-2);color:var(--text-1);}
-.f-hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0;}
-.f-submit{width:100%;padding:14px;border-radius:var(--r-md);border:none;background:var(--purple);color:#fff;font-size:15px;font-weight:600;font-family:var(--ff-body);cursor:pointer;margin-top:8px;transition:background 0.2s,transform 0.1s;box-shadow:0 0 0 1px rgba(124,58,237,0.4),0 6px 24px rgba(91,33,182,0.35);}
-.f-submit:hover{background:var(--purple-mid);transform:translateY(-1px);}
-.f-submit:disabled{opacity:0.6;cursor:default;transform:none;}
-.f-note{text-align:center;font-size:12px;color:var(--text-3);margin-top:14px;}
-.f-err{display:none;font-size:13px;color:var(--red);margin-top:12px;text-align:center;}
-.f-err a{color:var(--red);}
-.f-success{display:none;text-align:center;padding:40px 20px;}
-.f-success-icon{width:52px;height:52px;border-radius:50%;margin:0 auto 18px;display:flex;align-items:center;justify-content:center;background:rgba(20,184,166,0.15);color:var(--teal);}
-.f-success h3{font-family:var(--ff-display);font-size:1.9rem;font-weight:300;margin-bottom:12px;}
-.f-success p{color:var(--text-2);font-size:15px;line-height:1.7;}
-@media(max-width:560px){.f-row{grid-template-columns:minmax(0,1fr);}.form-card{padding:30px 20px;}}
-
-/* FOOTER */
-footer{position:relative;z-index:1;border-top:0.5px solid var(--border);padding:40px 0 48px;text-align:center;}
-.foot-logo{display:inline-flex;align-items:center;gap:6px;text-decoration:none;margin-bottom:14px;}
-.foot-logo-txt{font-family:var(--ff-display);font-size:1.1rem;font-weight:400;color:var(--text-2);}
-.foot-copy{font-size:12.5px;color:var(--text-3);line-height:2;}
-.foot-copy a{color:var(--text-3);text-decoration:none;transition:color 0.2s;}
-.foot-copy a:hover{color:var(--text-2);}
-.foot-copy .dot{margin:0 6px;}
+/* Footer */
+.x-foot{border-top:0.5px solid var(--border);padding:36px 0 44px;}
+.x-foot .x-wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:13px;color:var(--text-3);}
+.x-foot a{color:var(--text-3);text-decoration:none;}
+.x-foot a:hover{color:var(--text-2);}
+.x-foot nav{display:flex;gap:18px;flex-wrap:wrap;}
 </style>
 </head>
 <body>
 
-<div class="bg-grid"></div>
-<div class="bg-canvas"><div class="orb orb-1"></div><div class="orb orb-2"></div></div>
-
-<!-- NAV -->
-<nav>
-  <a href="/" class="nav-logo" aria-label="Resonance home">
-    <svg width="32" height="32" viewBox="0 0 154 182" fill="none" xmlns="http://www.w3.org/2000/svg">
+<!-- ═══ NAV ═══ -->
+<header class="x-nav">
+  <div class="x-wrap">
+    <a class="x-brand" href="/" aria-label="Resonance home">
+      <svg width="26" height="26" viewBox="0 0 154 182" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M153.032 120.267C151.562 120.775 150.1 121.263 148.595 121.797C122.192 131.345 96.6636 144.643 77.0527 163.76C76.1612 164.641 75.2855 165.535 74.4268 166.442C74.8954 167.697 75.1533 169.054 75.1533 170.473C75.1533 176.839 69.9929 181.999 63.627 181.999C57.2609 181.999 52.0996 176.839 52.0996 170.473C52.0997 164.107 57.261 158.947 63.627 158.947C65.3899 158.947 67.0597 159.343 68.5537 160.051C69.5224 159.205 70.5035 158.377 71.4951 157.565C94.2724 139.231 121.208 128.493 148.469 121.378C150.02 120.983 151.523 120.635 153.032 120.267Z" fill="#9BE2E4"/>
       <path d="M11.9873 59.3557C18.6078 59.3557 23.9754 64.6194 23.9756 71.1125C23.9756 73.5466 23.2204 75.8077 21.9287 77.6838C22.5991 78.8025 23.2939 79.8907 24.0283 80.967C42.696 108.284 79.6038 118.04 113.279 118.468C115.159 118.48 117.145 118.446 118.953 118.372C117.157 118.591 115.174 118.771 113.293 118.905C79.6598 120.871 41.0566 114.918 17.3516 85.9348C16.4642 84.8277 15.6152 83.7036 14.7891 82.5432C13.8901 82.7543 12.9523 82.8703 11.9873 82.8703C5.36686 82.8701 0 77.6057 0 71.1125C0.000202317 64.6195 5.36698 59.3559 11.9873 59.3557Z" fill="url(#p0)"/>
       <path d="M133.939 120.678C132.369 120.919 130.647 121.204 129.029 121.485C99.5499 126.902 69.8404 134.143 43.9873 147.876C43.4006 148.2 42.8073 148.535 42.2168 148.874C42.3447 149.562 42.415 150.27 42.415 150.995C42.415 157.361 37.2545 162.521 30.8887 162.522C24.5227 162.522 19.3614 157.361 19.3613 150.995C19.3613 144.629 24.5227 139.469 30.8887 139.469C33.4021 139.469 35.726 140.275 37.6201 141.641C38.5159 141.218 39.4179 140.804 40.3027 140.414C68.9294 128.335 99.008 123.935 128.973 121.052C130.611 120.915 132.353 120.774 133.939 120.678Z" fill="url(#p1)"/>
@@ -437,660 +686,984 @@ footer{position:relative;z-index:1;border-top:0.5px solid var(--border);padding:
         <linearGradient id="p4" x1="107.436" y1="30.4375" x2="107.436" y2="101.706" gradientUnits="userSpaceOnUse"><stop stop-color="#A37CEC"/><stop offset="1" stop-color="#5B4790"/></linearGradient>
       </defs>
     </svg>
-    <span class="logo-text">Resonance</span>
-  </a>
-  <div class="conf-pill">DecisionOS · Product preview</div>
-  <div class="nav-right">
-    <a href="/" class="btn-site">Resonance platform</a>
-    <a href="#contact" class="btn-demo-nav">Talk to us</a>
-  </div>
-</nav>
-
-<!-- HERO -->
-<section class="hero">
-  <div class="wrap">
-    <div class="hero-grid">
-      <div>
-        <div class="preview-badge"><span class="preview-badge-tag">New</span><span class="preview-badge-txt">DecisionOS by Resonance · product preview</span></div>
-        <h1>Decisions you can defend, <em>re&#8209;planned in minutes.</em></h1>
-        <p class="hero-sub">DecisionOS is an intelligence layer on top of the systems you already use. It turns your data into a plan: which households move where, which units to rehab first, and which buildings fit your portfolio. Every recommendation shows the rules and numbers behind it.</p>
-        <div class="hero-cta">
-          <a href="#contact" class="btn-primary">Talk to us
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8m-4-4 4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </a>
-          <a href="#how" class="btn-outline">See how it works</a>
-        </div>
-      </div>
-
-      <!-- Layer diagram: systems of record → DecisionOS → your team -->
-      <div class="hero-vis">
-        <div class="stack" id="stack" role="img" aria-label="Diagram: your systems of record, such as Resonance, Yardi, Procore and spreadsheets, feed DecisionOS. AI reads the data, a planning engine applies your rules, and your team approves the plan.">
-          <div class="tier tier-team">
-            <div class="tier-label">Your team</div>
-            <div class="team-state">Reviews and approves <span class="ok-badge" data-k="approved">✓ Approved</span></div>
-          </div>
-          <div class="wire single"><i data-k="up"></i></div>
-          <div class="tier tier-dos">
-            <div class="tier-label">DecisionOS <small>Intelligence layer</small></div>
-            <div class="dos-row">
-              <div class="dos-chip c-ai" data-k="ai"><b>AI</b>reads and cleans your data</div>
-              <div class="dos-chip c-eng" data-k="eng"><b>Planning engine</b>applies your rules</div>
-            </div>
-            <div class="dos-plan" data-k="plan">Plan ready · 212 households <span>0 rule violations</span></div>
-          </div>
-          <div class="wire"><i data-k="w0"></i><i data-k="w1"></i><i data-k="w2"></i><i data-k="w3"></i></div>
-          <div class="tier tier-sor">
-            <div class="tier-label">Your systems of record</div>
-            <div class="sor-row">
-              <span class="sor" data-k="s0">Resonance</span><span class="sor" data-k="s1">Yardi</span><span class="sor" data-k="s2">Procore</span><span class="sor" data-k="s3">Spreadsheets</span>
-            </div>
-          </div>
-        </div>
-        <p class="stack-caption"><b>Works with Resonance or on its own.</b> You keep your current systems.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- THE PROBLEM -->
-<section class="sec sec-first">
-  <div class="wrap">
-    <div class="eyebrow">The problem</div>
-    <h2 class="section-h2">Your systems tell you what's true. <em>They don't tell you what to do.</em></h2>
-    <div class="prob-cards">
-      <div class="prob-card c1">
-        <h3>Plans break when the schedule moves.</h3>
-        <p>The contractor slips two weeks. Someone then spends a week rebuilding the move plan in a spreadsheet.</p>
-      </div>
-      <div class="prob-card c2">
-        <h3>The reasoning lives in people's heads.</h3>
-        <p>Teams make decisions over email and in meetings. Six months later, no one can show why.</p>
-      </div>
-      <div class="prob-card c3">
-        <h3>AI chat tools aren't built for this.</h3>
-        <p>Ask twice and you may get two different answers. You can't take that to a board or to HUD.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- HOW IT WORKS (animated workflow) -->
-<section class="sec" id="how">
-  <div class="wrap">
-    <div class="eyebrow">How it works</div>
-    <h2 class="section-h2">AI reads your data. <em>Your rules make the decision.</em></h2>
-
-    <div class="flow" id="flow">
-      <div class="flow-steps" role="tablist" aria-label="DecisionOS workflow">
-        <button class="flow-step on" role="tab" aria-selected="true" data-step="0">
-          <span class="fs-top"><span class="fs-num">01</span><span class="fs-name">Connect</span><span class="fs-who ai">Your data</span></span>
-          <span class="fs-body" style="display:block">Use integrations with your systems of record, or upload files such as rent rolls, construction schedules and budgets.</span>
-          <span class="fs-bar"><i></i></span>
-        </button>
-        <button class="flow-step" role="tab" aria-selected="false" data-step="1">
-          <span class="fs-top"><span class="fs-num">02</span><span class="fs-name">Understand</span><span class="fs-who ai">AI</span></span>
-          <span class="fs-body" style="display:block">AI cleans and organizes messy data. It maps each field and flags anything missing.</span>
-          <span class="fs-bar"><i></i></span>
-        </button>
-        <button class="flow-step" role="tab" aria-selected="false" data-step="2">
-          <span class="fs-top"><span class="fs-num">03</span><span class="fs-name">Decide</span><span class="fs-who rules">Your rules</span></span>
-          <span class="fs-body" style="display:block">Planning engines build a recommendation that follows your rules and constraints. The same inputs give the same plan every time.</span>
-          <span class="fs-bar"><i></i></span>
-        </button>
-        <button class="flow-step" role="tab" aria-selected="false" data-step="3">
-          <span class="fs-top"><span class="fs-num">04</span><span class="fs-name">Approve</span><span class="fs-who people">Your people</span></span>
-          <span class="fs-body" style="display:block">Your team reviews and approves the plan. Anything above a person's approval limit goes to the next approver. DecisionOS logs every step.</span>
-          <span class="fs-bar"><i></i></span>
-        </button>
-      </div>
-
-      <div class="flow-vis" aria-hidden="true">
-        <div class="fcat-screen">
-          <div class="fcat-screen-bar">
-            <div class="fcat-screen-dots"><span></span><span></span><span></span></div>
-            <div class="fcat-screen-url" id="flowUrl">app.resonancehq.io / decisionos / sources</div>
-          </div>
-          <div class="panes">
-
-            <!-- 0 Connect -->
-            <div class="pane on" data-pane="0" data-url="app.resonancehq.io / decisionos / sources">
-              <div class="scr-head"><div class="scr-title">Sources · Phase 2 relocation</div><div class="scr-meta">4 connected</div></div>
-              <div class="src-row rv"><span class="src-ic r">RES</span><span class="src-name"><b>Households and units</b>Resonance · 212 households</span><span class="badge badge-green">Synced</span></div>
-              <div class="src-row rv"><span class="src-ic p">PRO</span><span class="src-name"><b>Construction schedule v14</b>Procore · 6 buildings</span><span class="badge badge-green">Synced</span></div>
-              <div class="src-row rv"><span class="src-ic x">XLS</span><span class="src-name"><b>Rent roll, October</b>Upload · 1 file</span><span class="badge badge-green">Uploaded</span></div>
-              <div class="src-row rv"><span class="src-ic x">XLS</span><span class="src-name"><b>Relocation budget FY27</b>Upload · 1 file</span><span class="badge badge-green">Uploaded</span></div>
-            </div>
-
-            <!-- 1 Understand -->
-            <div class="pane" data-pane="1" data-url="app.resonancehq.io / decisionos / data-review">
-              <div class="scr-head"><div class="scr-title">Data review</div><div class="scr-meta">46 of 49 fields mapped</div></div>
-              <div class="map-row rv"><span class="map-from">HH_SIZE</span><span class="map-arrow">→</span><span class="map-to">Household size</span><span class="badge badge-teal">Mapped</span></div>
-              <div class="map-row rv"><span class="map-from">ADA_REQ</span><span class="map-arrow">→</span><span class="map-to">Needs accessible unit</span><span class="badge badge-teal">Mapped</span></div>
-              <div class="map-row rv"><span class="map-from">BR / Bdrms</span><span class="map-arrow">→</span><span class="map-to">Bedrooms (2 formats merged)</span><span class="badge badge-teal">Cleaned</span></div>
-              <div class="map-row rv"><span class="map-from">School_ID</span><span class="map-arrow">→</span><span class="map-to">School district</span><span class="badge badge-teal">Mapped</span></div>
-              <div class="chk-row rv" style="margin-top:4px;"><span class="chk-box warn">!</span>3 households have no move-out date. Add them before planning.</div>
-            </div>
-
-            <!-- 2 Decide -->
-            <div class="pane" data-pane="2" data-url="app.resonancehq.io / decisionos / relocation / plan-2">
-              <div class="scr-head"><div class="scr-title">Recommended plan · Phase 2</div><span class="badge badge-purple">Recommended</span></div>
-              <div class="kv rv">
-                <div class="kv-cell"><div class="kv-label">Households placed</div><div class="kv-val">212 <small>of 212</small></div></div>
-                <div class="kv-cell"><div class="kv-label">Temp units used</div><div class="kv-val">41 <small>of 44</small></div></div>
-                <div class="kv-cell"><div class="kv-label">Rule violations</div><div class="kv-val" style="color:var(--green)">0</div></div>
-              </div>
-              <div class="scr-label rv">Rules followed</div>
-              <div class="chk-row rv"><span class="chk-box">✓</span>Bedroom count matches household size</div>
-              <div class="chk-row rv"><span class="chk-box">✓</span>Households that need accessible units get accessible units</div>
-              <div class="chk-row rv"><span class="chk-box">✓</span>No move before the notice period ends</div>
-              <div class="chk-row rv"><span class="chk-box">✓</span>Each household stays in its school district</div>
-              <div class="scr-foot rv"><span>Re-run check: <b>same plan as run #1</b></span></div>
-            </div>
-
-            <!-- 3 Approve -->
-            <div class="pane" data-pane="3" data-url="app.resonancehq.io / decisionos / relocation / plan-2 / approval">
-              <div class="scr-head"><div class="scr-title">Approval · Phase 2 plan</div><span class="badge badge-amber" id="apState">Awaiting approval</span></div>
-              <div class="approval rv">
-                <span class="ic"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 3h5v5"/><path d="M21 3 14 10"/></svg></span>
-                <div>Moving costs of <b>$18,400</b> are above the relocation manager's <b>$10,000</b> limit. The plan goes to the <b>Director of Development</b>.</div>
-              </div>
-              <div class="scr-label rv">Log</div>
-              <div class="log-row rv"><span class="log-time">11:42</span>Plan built from sources v14</div>
-              <div class="log-row rv"><span class="log-time">11:44</span>Relocation manager reviewed the plan</div>
-              <div class="log-row rv"><span class="log-time">11:45</span>Sent to Director of Development (over limit)</div>
-              <div class="log-row rv"><span class="log-time">11:58</span><span style="color:var(--green)">Director of Development approved</span></div>
-            </div>
-
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- WHAT IT HANDLES TODAY -->
-<section class="feat-sec" id="handles">
-  <div class="wrap">
-    <div class="eyebrow">What it handles today</div>
-    <h2 class="section-h2">Built for the decisions housing teams <em>make every week.</em></h2>
-
-    <div class="fcat-tabs" role="tablist">
-      <button class="fcat-tab active" role="tab" aria-selected="true" onclick="fcatSwitch(0)">Relocation planning</button>
-      <button class="fcat-tab" role="tab" aria-selected="false" onclick="fcatSwitch(1)">Rehab prioritization</button>
-      <button class="fcat-tab" role="tab" aria-selected="false" onclick="fcatSwitch(2)">Acquisition fit</button>
-      <button class="fcat-tab" role="tab" aria-selected="false" onclick="fcatSwitch(3)">What-if scenarios</button>
-    </div>
-
-    <div class="fcat-panels">
-
-      <!-- 0: Relocation -->
-      <div class="fcat-panel active" data-panel="0">
-        <div class="fcat-copy">
-          <div class="fcat-eyebrow">Relocation planning</div>
-          <h3 class="fcat-title">Match hundreds of households to temporary units.</h3>
-          <p class="fcat-desc">The plan respects each household's needs and the construction schedule. When a date changes, you re-plan in minutes and see which households change.</p>
-        </div>
-        <div class="fcat-vis" aria-hidden="true">
-          <div class="fcat-screen">
-            <div class="fcat-screen-bar">
-              <div class="fcat-screen-dots"><span></span><span></span><span></span></div>
-              <div class="fcat-screen-url">app.resonancehq.io / decisionos / relocation / phase-2</div>
-            </div>
-            <div class="scr-body">
-              <div class="scr-head">
-                <div class="scr-title">Phase 2 move plan · after schedule change</div>
-                <div class="scr-meta">212 households</div>
-              </div>
-              <div style="display:flex;flex-direction:column;gap:6px;">
-                <div class="fcat-hrow fcat-hrow-active">
-                  <div class="fcat-hrow-name"><b>Johnson, M. #1147</b> · 3BR · Wheelchair<br><span class="old">B-118</span><span class="arrow">→</span>C-104 accessible</div>
-                  <span class="badge badge-amber">Re-assigned</span>
-                </div>
-                <div class="fcat-hrow">
-                  <div class="fcat-hrow-name"><b>Rivera, C. #0692</b> · 2BR · Ground floor<br><span class="arrow" style="margin-left:0">→</span>B-102</div>
-                  <span class="badge badge-teal">Unchanged</span>
-                </div>
-                <div class="fcat-hrow">
-                  <div class="fcat-hrow-name"><b>Okafor, N. #1023</b> · 4BR<br><span class="old">Mar 3</span><span class="arrow">→</span>Mar 17 move date</div>
-                  <span class="badge badge-amber">Date moved</span>
-                </div>
-                <div class="fcat-hrow">
-                  <div class="fcat-hrow-name"><b>Chen, L. #0875</b> · 1BR · Senior<br><span class="arrow" style="margin-left:0">→</span>A-310 (elevator)</div>
-                  <span class="badge badge-teal">Unchanged</span>
-                </div>
-              </div>
-              <div class="scr-foot" style="flex-direction:column;gap:6px;">
-                <div style="display:flex;justify-content:space-between;"><span>Households placed</span><b>212 of 212</b></div>
-                <div class="progress-track"><div class="progress-fill" style="width:100%"></div></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- 1: Rehab prioritization -->
-      <div class="fcat-panel" data-panel="1">
-        <div class="fcat-copy">
-          <div class="fcat-eyebrow">Rehab prioritization</div>
-          <h3 class="fcat-title">When the budget is cut, see what gets done first.</h3>
-          <p class="fcat-desc">See which units to rehab first and what gets deferred. Each unit gets a score you can explain, factor by factor.</p>
-        </div>
-        <div class="fcat-vis" aria-hidden="true">
-          <div class="fcat-screen">
-            <div class="fcat-screen-bar">
-              <div class="fcat-screen-dots"><span></span><span></span><span></span></div>
-              <div class="fcat-screen-url">app.resonancehq.io / decisionos / rehab / budget-v3</div>
-            </div>
-            <div class="scr-body">
-              <div class="scr-head">
-                <div class="scr-title">Rehab priority · budget $3.6M <span style="color:var(--text-3);font-weight:500">(was $4.2M)</span></div>
-              </div>
-              <div class="scr-sub">Score = life safety 40% · occupied 25% · system age 20% · cost per unit 15%</div>
-              <div style="display:flex;flex-direction:column;gap:6px;">
-                <div class="fcat-hrow fcat-hrow-active"><div class="fcat-hrow-name"><b>Bldg 2 · Unit 4B</b> · roof leak, occupied</div><span class="badge badge-green">Score 92</span></div>
-                <div class="fcat-hrow"><div class="fcat-hrow-name"><b>Bldg 1 · Unit 2A</b> · electrical panel</div><span class="badge badge-green">Score 88</span></div>
-                <div class="fcat-hrow"><div class="fcat-hrow-name"><b>Bldg 2 · Unit 6C</b> · boiler, 31 yrs</div><span class="badge badge-green">Score 81</span></div>
-                <div class="cutline">Budget line · $3.6M</div>
-                <div class="fcat-hrow cut"><div class="fcat-hrow-name"><b>Bldg 3 · Unit 1D</b> · kitchen, vacant</div><span class="badge badge-amber">Deferred</span></div>
-                <div class="fcat-hrow cut"><div class="fcat-hrow-name"><b>Bldg 3 · Unit 5A</b> · flooring</div><span class="badge badge-amber">Deferred</span></div>
-              </div>
-              <div class="scr-foot"><span>Funded <b>58 units</b></span><span>Deferred <b>14 units · $610K</b></span></div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- 2: Acquisition fit -->
-      <div class="fcat-panel" data-panel="2">
-        <div class="fcat-copy">
-          <div class="fcat-eyebrow">Acquisition fit</div>
-          <h3 class="fcat-title">A ranked shortlist your investment committee can inspect.</h3>
-          <p class="fcat-desc">Score candidate buildings against your criteria: rent headroom under affordability caps, units per million dollars and red flags. Each rank traces back to its numbers.</p>
-        </div>
-        <div class="fcat-vis" aria-hidden="true">
-          <div class="fcat-screen">
-            <div class="fcat-screen-bar">
-              <div class="fcat-screen-dots"><span></span><span></span><span></span></div>
-              <div class="fcat-screen-url">app.resonancehq.io / decisionos / acquisitions / pipeline</div>
-            </div>
-            <div class="scr-body">
-              <div class="scr-head">
-                <div class="scr-title">Candidate buildings · 9 screened</div>
-                <div class="scr-meta">Criteria v3</div>
-              </div>
-              <table class="dtable">
-                <thead><tr><th></th><th>Building</th><th class="num">Rent headroom</th><th class="num">Units / $M</th><th>Flags</th></tr></thead>
-                <tbody>
-                  <tr class="top"><td><span class="rank r1">1</span></td><td><b>Maple Court</b><br>84 units</td><td class="num">+11%</td><td class="num">6.2</td><td><span class="badge badge-green">None</span></td></tr>
-                  <tr><td><span class="rank">2</span></td><td><b>Elm Terrace</b><br>120 units</td><td class="num">+7%</td><td class="num">5.4</td><td><span class="badge badge-amber">1</span></td></tr>
-                  <tr><td><span class="rank">3</span></td><td><b>Harbor View</b><br>56 units</td><td class="num">+9%</td><td class="num">4.8</td><td><span class="badge badge-amber">1</span></td></tr>
-                  <tr><td><span class="rank">4</span></td><td><b>Linden Place</b><br>140 units</td><td class="num">+2%</td><td class="num">5.1</td><td><span class="badge badge-red">3</span></td></tr>
-                </tbody>
-              </table>
-              <div class="chk-row" style="margin-top:2px;"><span class="chk-box warn">!</span>Elm Terrace: open code violations (2) in the city record</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- 3: What-if -->
-      <div class="fcat-panel" data-panel="3">
-        <div class="fcat-copy">
-          <div class="fcat-eyebrow">What-if scenarios</div>
-          <h3 class="fcat-title">Test a change before it happens.</h3>
-          <p class="fcat-desc">Try a slipped date, a higher quote or a tighter deadline. See how the recommendation changes, and why.</p>
-        </div>
-        <div class="fcat-vis" aria-hidden="true">
-          <div class="fcat-screen">
-            <div class="fcat-screen-bar">
-              <div class="fcat-screen-dots"><span></span><span></span><span></span></div>
-              <div class="fcat-screen-url">app.resonancehq.io / decisionos / scenarios / phase-2</div>
-            </div>
-            <div class="scr-body">
-              <div class="scenario-card">
-                <div class="sc-header"><span>Scenario compare · Phase 2</span><span style="font-size:10px;color:var(--teal)">3 runs</span></div>
-                <div class="sc-cols">
-                  <div class="sc-col">
-                    <div class="sc-col-label">Current plan</div>
-                    <div class="sc-metric"><div class="sc-m-label">Re-assigned</div><div class="sc-m-val mid">0</div></div>
-                    <div class="sc-metric"><div class="sc-m-label">Temp units</div><div class="sc-m-val mid">38</div></div>
-                    <div class="sc-metric"><div class="sc-m-label">Move budget</div><div class="sc-m-val mid">$412K</div></div>
-                  </div>
-                  <div class="sc-col on">
-                    <div class="sc-col-label">Bldg C slips 2 wks</div>
-                    <div class="sc-metric"><div class="sc-m-label">Re-assigned</div><div class="sc-m-val bad">17</div></div>
-                    <div class="sc-metric"><div class="sc-m-label">Temp units</div><div class="sc-m-val bad">41</div></div>
-                    <div class="sc-metric"><div class="sc-m-label">Move budget</div><div class="sc-m-val bad">$430K</div></div>
-                  </div>
-                  <div class="sc-col">
-                    <div class="sc-col-label">Mover quote +12%</div>
-                    <div class="sc-metric"><div class="sc-m-label">Re-assigned</div><div class="sc-m-val good">0</div></div>
-                    <div class="sc-metric"><div class="sc-m-label">Temp units</div><div class="sc-m-val good">38</div></div>
-                    <div class="sc-metric"><div class="sc-m-label">Move budget</div><div class="sc-m-val bad">$461K</div></div>
-                  </div>
-                </div>
-                <div class="sc-why"><b>Why it changed:</b> the slip pushes 17 households past their temporary-unit end dates. Building B needs 3 more units to keep accessible placements.</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-
-<!-- WHY TEAMS TRUST IT -->
-<section class="sec" id="trust">
-  <div class="wrap">
-    <div class="eyebrow">Why teams trust it</div>
-    <h2 class="section-h2">Built to be <em>checked.</em></h2>
-    <div class="trust-cards">
-      <div class="trust-card"><h3><em>Repeatable.</em></h3><p>Planning engines compute the plan. Run it again with the same inputs and you get the same answer.</p></div>
-      <div class="trust-card"><h3><em>Explained.</em></h3><p>Every recommendation shows the constraints it followed and the numbers it used.</p></div>
-      <div class="trust-card"><h3><em>Human-approved.</em></h3><p>Nothing runs on its own. Your people approve, and DecisionOS enforces approval limits.</p></div>
-      <div class="trust-card"><h3><em>No rip-and-replace.</em></h3><p>Keep Yardi, Procore, Resonance and your spreadsheets. DecisionOS sits on top of them.</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- HOW TO START -->
-<section class="sec" id="start">
-  <div class="wrap">
-    <div class="eyebrow">How to start</div>
-    <h2 class="section-h2">Start with <em>one decision.</em></h2>
-    <div class="phases">
-      <div class="phase">
-        <div class="phase-bar"></div>
-        <div class="phase-when">A few weeks</div>
-        <h3>Try</h3>
-        <p>Choose one decision, such as your next relocation, a budget scenario or an acquisition pipeline. Send us an export. Within a few weeks, you'll see a real plan built on your own data.</p>
-      </div>
-      <div class="phase">
-        <div class="phase-bar"></div>
-        <div class="phase-when">About three months</div>
-        <h3>Implement</h3>
-        <p>We set up the guardrails, approval rules and integrations your team needs.</p>
-      </div>
-      <div class="phase">
-        <div class="phase-bar"></div>
-        <div class="phase-when">Ongoing</div>
-        <h3>Run</h3>
-        <p>DecisionOS becomes part of how your team plans, re-plans and reports.</p>
-      </div>
-    </div>
-
-    <div class="team-band" style="margin-top:40px;">
-      <p>DecisionOS comes from <strong>Resonance</strong>, the platform relocation and development teams use to run RAD, PACT and rehab programs.</p>
-      <a href="/">See the Resonance platform →</a>
-    </div>
-  </div>
-</section>
-
-<!-- FAQ -->
-<section class="sec" id="faq">
-  <div class="wrap-tight">
-    <div class="eyebrow">FAQ</div>
-    <h2 class="section-h2">Questions teams <em>ask first.</em></h2>
-    <div class="faq-list">
-      <details class="faq-item"><summary>Do we have to replace our current systems?</summary><p>No. DecisionOS reads from the systems and files you already use.</p></details>
-      <details class="faq-item"><summary>Do we need Resonance to use DecisionOS?</summary><p>No. DecisionOS works on its own, on top of the systems you have now. If you use Resonance, DecisionOS reads from it like any other source.</p></details>
-      <details class="faq-item"><summary>What if the plan is wrong?</summary><p>A plan is only as good as its rules and data, so DecisionOS makes both visible. If something looks off, your team can see why. Fix the rule or the data, and re-plan in minutes. Nothing goes ahead without approval.</p></details>
-      <details class="faq-item"><summary>How is this different from ChatGPT?</summary><p>AI models are good at reading messy data, but they can give a different answer each time. DecisionOS uses AI to understand your data and planning engines to make the decision. The result is repeatable and auditable.</p></details>
-      <details class="faq-item"><summary>What does it cost?</summary><p>Pricing depends on the decision and the portfolio. Every engagement starts with a short pilot on your own data.</p></details>
-    </div>
-  </div>
-</section>
-
-<!-- CONTACT -->
-<section class="demo-sec" id="contact">
-  <div class="wrap">
-    <div class="center">
-      <div class="eyebrow">Contact</div>
-      <h2 class="section-h2">Bring us <em>one decision.</em></h2>
-      <p class="section-lead">Tell us what you're trying to plan. We'll show you what it looks like in DecisionOS.</p>
-    </div>
-    <div class="form-card">
-      <form id="dosForm" novalidate>
-        <div class="f-row">
-          <div><label class="f-lbl" for="d-name">Name</label><input class="f-input" type="text" id="d-name" name="name" placeholder="Your name" autocomplete="name" required></div>
-          <div><label class="f-lbl" for="d-email">Work email</label><input class="f-input" type="email" id="d-email" name="email" placeholder="you@yourorg.org" autocomplete="email" required></div>
-        </div>
-        <div class="f-row">
-          <div><label class="f-lbl" for="d-org">Organization</label><input class="f-input" type="text" id="d-org" name="organization" placeholder="Housing authority, developer…" autocomplete="organization" required></div>
-          <div><label class="f-lbl" for="d-role">Role</label>
-            <select class="f-select" id="d-role" name="role">
-              <option value="" selected>Select your role…</option>
-              <option>Development director</option>
-              <option>Asset manager</option>
-              <option>Relocation manager</option>
-              <option>COO / executive</option>
-              <option>Other</option>
-            </select>
-          </div>
-        </div>
-        <div class="f-full">
-          <label class="f-lbl" for="d-decision">Decision you want to plan</label>
-          <select class="f-select" id="d-decision" name="decision">
-            <option value="" selected>Choose one…</option>
-            <option>Relocation planning</option>
-            <option>Rehab prioritization</option>
-            <option>Acquisition fit</option>
-            <option>What-if scenarios</option>
-            <option>Something else</option>
-          </select>
-        </div>
-        <div class="f-full">
-          <label class="f-lbl" for="d-msg">What are you trying to plan?</label>
-          <textarea class="f-text" id="d-msg" name="message" placeholder="e.g. 240 households across two buildings, construction starts in March"></textarea>
-        </div>
-        <div class="f-hp" aria-hidden="true"><label for="d-website">Website</label><input type="text" id="d-website" name="_gotcha" tabindex="-1" autocomplete="off"></div>
-        <button class="f-submit" type="submit">Talk to us →</button>
-        <p class="f-err" id="dosErr"></p>
-        <p class="f-note">We'll reply within one business day.</p>
-      </form>
-      <div class="f-success" id="dosSuccess">
-        <div class="f-success-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
-        <h3>Thanks. We'll be in touch.</h3>
-        <p>The Resonance team will reply within one business day to set up a conversation about your decision.</p>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer>
-  <div class="wrap" style="display:flex;flex-direction:column;align-items:center;">
-    <a href="/" class="foot-logo">
-      <svg width="22" height="22" viewBox="0 0 154 182" fill="none"><path d="M153.032 120.267C151.562 120.775 150.1 121.263 148.595 121.797C122.192 131.345 96.6636 144.643 77.0527 163.76C76.1612 164.641 75.2855 165.535 74.4268 166.442C74.8954 167.697 75.1533 169.054 75.1533 170.473C75.1533 176.839 69.9929 181.999 63.627 181.999C57.2609 181.999 52.0996 176.839 52.0996 170.473C52.0997 164.107 57.261 158.947 63.627 158.947C65.3899 158.947 67.0597 159.343 68.5537 160.051C69.5224 159.205 70.5035 158.377 71.4951 157.565C94.2724 139.231 121.208 128.493 148.469 121.378C150.02 120.983 151.523 120.635 153.032 120.267Z" fill="#9BE2E4"/><path d="M11.9873 59.3557C18.6078 59.3557 23.9754 64.6194 23.9756 71.1125C23.9756 73.5466 23.2204 75.8077 21.9287 77.6838C22.5991 78.8025 23.2939 79.8907 24.0283 80.967C42.696 108.284 79.6038 118.04 113.279 118.468C115.159 118.48 117.145 118.446 118.953 118.372C117.157 118.591 115.174 118.771 113.293 118.905C79.6598 120.871 41.0566 114.918 17.3516 85.9348C16.4642 84.8277 15.6152 83.7036 14.7891 82.5432C13.8901 82.7543 12.9523 82.8703 11.9873 82.8703C5.36686 82.8701 0 77.6057 0 71.1125C0.000202317 64.6195 5.36698 59.3559 11.9873 59.3557Z" fill="url(#fp0)"/><defs><linearGradient id="fp0" x1="14" y1="71" x2="40" y2="94" gradientUnits="userSpaceOnUse"><stop stop-color="#9CE4E5"/><stop offset="1" stop-color="#936DD7"/></linearGradient></defs></svg>
-      <span class="foot-logo-txt">Resonance</span>
+      <span class="x-brand-t">Resonance</span>
     </a>
-    <p class="foot-copy">
-      © 2026 Resonance. All rights reserved.
-      <span class="dot">·</span>
-      <a href="/privacy-policy">Privacy Policy</a>
-      <span class="dot">·</span>
-      <a href="/">resonancehq.io</a>
-    </p>
+    <span class="x-brand-sep" aria-hidden="true"></span>
+    <span class="x-brand-p">DecisionOS</span>
+    <span class="x-tag"><span class="x-tag-l">Product preview</span><span class="x-tag-s">Preview</span></span>
+    <nav class="x-nav-links" aria-label="Page">
+      <a href="#replan">See a re-plan</a>
+      <a href="#how">How it works</a>
+      <a href="#faq">FAQ</a>
+      <a class="x-btn x-btn-p" href="#contact">Talk to us</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<!-- ═══ HERO ═══ -->
+<section class="x-hero" aria-labelledby="x-h1">
+  <div class="x-wrap">
+    <div class="x-hero-grid">
+      <div>
+        <h1 id="x-h1">Decisions you can defend, <b>re&#8209;planned in minutes.</b></h1>
+        <p class="x-hero-sub">DecisionOS is an intelligence layer on top of the systems you already use. It turns your data into a plan: which households move where, which units to rehab first, and which buildings fit your portfolio. Every recommendation shows the rules and numbers behind it.</p>
+        <div class="x-hero-cta">
+          <a class="x-btn x-btn-p" href="#contact">Talk to us <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8m-4-4 4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          <a class="x-btn x-btn-g" href="#replan">Watch a re-plan</a>
+        </div>
+        <p class="x-hero-note"><i aria-hidden="true"></i>From the team behind Resonance. Works with Resonance or on its own.</p>
+      </div>
+
+      <figure class="x-stack" id="xStack" aria-label="Diagram: your systems of record feed DecisionOS. AI reads the data, a planning engine applies your rules, and your team approves the plan.">
+        <div class="x-stack-bar"><strong>Where DecisionOS sits</strong><span id="xStackClock">09:14:02</span></div>
+        <div class="x-tiers">
+          <div class="x-tier x-tier-team">
+            <div class="x-tier-h">Your team</div>
+            <div class="x-appr">Reviews and approves <span class="x-ok" data-k="ok">✓ Approved</span></div>
+          </div>
+          <div class="x-pipe one" aria-hidden="true"><i data-k="up"></i></div>
+          <div class="x-tier x-tier-dos">
+            <div class="x-tier-h"><span>DecisionOS</span><em>Intelligence layer</em></div>
+            <div class="x-procs">
+              <div class="x-proc" data-k="ai"><b>AI</b><span>reads and cleans your data</span><div class="x-bar"><i></i></div></div>
+              <div class="x-proc eng" data-k="eng"><b>Planning engine</b><span>applies your rules</span><div class="x-bar"><i></i></div></div>
+            </div>
+            <div class="x-plan" data-k="plan">Plan ready · 212 households <span>0 rule violations</span></div>
+          </div>
+          <div class="x-pipe" aria-hidden="true"><i data-k="w0"></i><i data-k="w1"></i><i data-k="w2"></i><i data-k="w3"></i></div>
+          <div class="x-tier">
+            <div class="x-tier-h">Your systems of record</div>
+            <div class="x-srcs">
+              <div class="x-src" data-k="s0">Resonance<small>households</small></div>
+              <div class="x-src" data-k="s1">Yardi<small>rent roll</small></div>
+              <div class="x-src" data-k="s2">Procore<small>schedule</small></div>
+              <div class="x-src" data-k="s3">Excel<small>budget</small></div>
+            </div>
+          </div>
+        </div>
+        <figcaption class="x-stack-foot"><span><b>You keep your systems.</b> DecisionOS reads from them.</span><span>Illustrative</span></figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PROBLEM ═══ -->
+<section class="x-sec" aria-labelledby="x-prob-h">
+  <div class="x-wrap">
+    <div class="x-head">
+      <h2 class="x-h2" id="x-prob-h">Your systems tell you what's true. <b>They don't tell you what to do.</b></h2>
+      <p class="x-lede">Yardi knows the rent roll. Procore knows the schedule. Working out what to do with both still happens by hand.</p>
+    </div>
+    <div class="x-probs">
+      <article class="x-prob">
+        <div>
+          <h3>Plans break when the schedule moves.</h3>
+          <p>The contractor slips two weeks. Someone then spends a week rebuilding the move plan in a spreadsheet.</p>
+        </div>
+        <div class="x-art" aria-hidden="true">
+          <div class="x-art-bar"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z"/></svg>Shared drive / Phase 2 / Relocation</div>
+          <ul class="x-files">
+            <li class="dim"><span class="ic">XLS</span><span class="nm">Move plan v7 FINAL.xlsx</span><span class="tm">Jan 12</span></li>
+            <li class="dim"><span class="ic">XLS</span><span class="nm">Move plan v7 FINAL (2).xlsx</span><span class="tm">Jan 19</span></li>
+            <li><span class="ic">XLS</span><span class="nm">Move plan v8 USE THIS ONE.xlsx</span><span class="tm">Feb 2</span></li>
+            <li class="live"><span class="ic">XLS</span><span class="nm">Move plan v9 Bldg C slip DRAFT.xlsx</span><span class="tm">editing, day 5</span></li>
+          </ul>
+        </div>
+      </article>
+      <article class="x-prob">
+        <div>
+          <h3>The reasoning lives in people's heads.</h3>
+          <p>Teams make decisions over email and in meetings. Six months later, no one can show why.</p>
+        </div>
+        <div class="x-art" aria-hidden="true">
+          <div class="x-art-bar"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>RE: RE: RE: Unit for #1147?</div>
+          <ul class="x-thread">
+            <li><div class="who"><b>Relocation coordinator</b><span>Mar 2</span></div><div class="msg">Can we put 1147 in A-102? Talked to the PM, should be fine.</div></li>
+            <li><div class="who"><b>Development manager</b><span>Mar 2</span></div><div class="msg">ok per our call</div></li>
+            <li class="gap">6 months later</li>
+            <li><div class="who"><b>Asset manager</b><span>Sep 14</span></div><div class="msg">HUD is asking why 1147 went to A-102 and not B-104. Does anyone remember?</div></li>
+          </ul>
+        </div>
+      </article>
+      <article class="x-prob">
+        <div>
+          <h3>AI chat tools aren't built for this.</h3>
+          <p>Ask twice and you may get two different answers. You can't take that to a board or to HUD.</p>
+        </div>
+        <div class="x-art" aria-hidden="true">
+          <div class="x-ask"><span>Asked twice</span>Which Building C households should move first?</div>
+          <div class="x-ans">
+            <div><span class="t">Answer 1 · 10:02</span>Start with the <mark>larger families</mark>, since 3BR and 4BR units are hardest to find.</div>
+            <div><span class="t">Answer 2 · 10:03</span>Prioritize <mark>seniors and households with accessibility needs</mark>, then the rest.</div>
+          </div>
+          <div class="x-diff"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg>Same question, same data, different plan.</div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ RE-PLAN SIMULATION ═══ -->
+<div id="replan">
+<section class="sim" aria-labelledby="sim-h">
+  <div class="wrap">
+    <header class="head">
+      <h2 id="sim-h">A start date slips. Nine households move. Thirty-seven stay put.</h2>
+      <p>DecisionOS re-plans only what a change touches, shows the rule behind every move, and returns the same plan for the same inputs every time.</p>
+    </header>
+
+    <div class="console" id="console" role="group" aria-label="Rehousing re-plan simulation with fictional data">
+      <div class="topbar">
+        <div class="tb-name"><strong>Alder Court redevelopment</strong><span>Building C relocation plan</span></div>
+        <div class="tb-state"><span class="ver" id="ver">Plan v14</span><span class="pill" id="pill"><i></i><span id="pillT">In effect</span></span></div>
+      </div>
+
+      <div class="transport">
+        <div class="btns">
+          <button class="tbtn" id="bPlay" type="button" aria-label="Pause">
+            <svg class="ic-pause" viewBox="0 0 14 14"><rect x="2.5" y="2" width="3.2" height="10" rx="1"/><rect x="8.3" y="2" width="3.2" height="10" rx="1"/></svg>
+            <svg class="ic-play" viewBox="0 0 14 14"><path d="M3.5 1.8v10.4a.6.6 0 0 0 .9.5l8-5.2a.6.6 0 0 0 0-1L4.4 1.3a.6.6 0 0 0-.9.5z"/></svg>
+          </button>
+          <button class="tbtn" id="bStep" type="button" aria-label="Play the next stage, then stop" title="Next stage">
+            <svg viewBox="0 0 14 14"><path d="M2 1.8v10.4a.6.6 0 0 0 .9.5l6.6-5.2a.6.6 0 0 0 0-1L2.9 1.3a.6.6 0 0 0-.9.5z"/><rect x="10.3" y="1.5" width="2.2" height="11" rx="1"/></svg>
+          </button>
+          <button class="tbtn" id="bReplay" type="button" aria-label="Replay from the start" title="Replay">
+            <svg viewBox="0 0 14 14"><path d="M7 2.2a4.8 4.8 0 1 0 4.6 6.2.75.75 0 0 0-1.43-.44A3.3 3.3 0 1 1 7 3.7c.8 0 1.5.27 2.1.73L7.9 5.6a.4.4 0 0 0 .28.68h3.02a.4.4 0 0 0 .4-.4V2.86a.4.4 0 0 0-.68-.28l-.76.76A4.8 4.8 0 0 0 7 2.2z"/></svg>
+          </button>
+        </div>
+        <div class="track" id="track" role="slider" tabindex="0" aria-label="Simulation position" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+          <div class="seg"><i></i><span class="l">Plan in place</span><span class="s">Plan</span></div>
+          <div class="seg"><i></i><span class="l">Schedule change</span><span class="s">Change</span></div>
+          <div class="seg"><i></i><span class="l">Impact check</span><span class="s">Impact</span></div>
+          <div class="seg"><i></i><span class="l">Re-plan</span><span class="s">Re-plan</span></div>
+          <div class="seg"><i></i><span class="l">Check and approve</span><span class="s">Approve</span></div>
+          <div class="head-pt" id="headPt"></div>
+        </div>
+        <div class="caption"><span id="cap"></span><span class="hold">Paused while you look</span></div>
+      </div>
+
+      <div class="body" id="body">
+        <div class="main">
+          <div class="sched" aria-hidden="true">
+            <div class="g-row">
+              <div class="g-lab">Building C construction</div>
+              <div class="g-track"><div class="g-ghost" id="gGhost"></div><div class="g-bar c" id="gC"><span id="gCd">Mar 9 – Aug 24</span></div><div class="g-over" id="gOver"></div></div>
+            </div>
+            <div class="g-row">
+              <div class="g-lab">Hollis St. lease, 9 units <small id="gNote">1 week of margin</small></div>
+              <div class="g-track"><div class="g-bar lease"><span>ends Aug 31</span></div></div>
+            </div>
+            <div class="g-lines" id="gLines"></div>
+          </div>
+
+          <div class="event">
+            <div class="ev-none" id="evNone">No open changes. Plan v14 was approved Feb 12.</div>
+            <div class="ev-hit" id="evHit">
+              <svg viewBox="0 0 14 14"><path d="M7 .9 13.4 12a.7.7 0 0 1-.6 1H1.2a.7.7 0 0 1-.6-1L7 .9zm-.7 4.3v3.9h1.4V5.2H6.3zm0 4.9v1.4h1.4v-1.4H6.3z"/></svg>
+              <strong>Building C construction start slips 2 weeks</strong><code>Mar 9 → Mar 23</code>
+              <small>Read from the construction schedule</small>
+            </div>
+          </div>
+
+          <div class="board" id="board" aria-hidden="true"></div>
+
+          <div class="legend" aria-hidden="true">
+            <span><i class="k hh"></i>household</span>
+            <span><i class="k vc"></i>vacant unit</span>
+            <span><i class="k cf"></i>breaks a rule</span>
+            <span><i class="k mv"></i>re-assigned</span>
+            <span><i class="pp"><i></i><i></i></i>bedrooms</span>
+            <span><i class="pp t"><i></i><i></i></i>accessible unit</span>
+          </div>
+        </div>
+
+        <aside class="rail">
+          <h3>Changes in this re-plan <span id="logN">0 of 9</span></h3>
+          <p class="rail-sub">Each move lists the rule that decided it.</p>
+          <div class="logwrap">
+            <p class="log-empty" id="logEmpty"></p>
+            <ol class="log" id="log"></ol>
+          </div>
+        </aside>
+
+        <div class="foot">
+          <div class="ledger">
+            <div class="figs">
+              <div class="fig"><span class="n" id="nRe">0</span><span class="l">households re-assigned</span></div>
+              <div class="fig"><span class="n" id="nKeep">46</span><span class="l">keep their unit</span></div>
+              <div class="fig"><span class="n">46<small>/ 56</small></span><span class="l">temporary units in use</span></div>
+              <div class="fig good" id="fViol"><span class="n" id="nViol">0</span><span class="l">rule violations</span></div>
+            </div>
+            <ul class="rules" id="rules"></ul>
+            <p class="same">Same inputs, same plan. <code id="hashes"></code></p>
+          </div>
+          <div class="approve">
+            <div class="ap-prev" id="apPrev">Plan v14 was approved by the Relocation Manager. Its cost was inside the manager's limit.</div>
+            <div class="ap-new" id="apNew">
+              <div class="ap-line"><span>Added moving cost in v15</span><b id="cost">$0</b></div>
+              <div class="meter"><i class="m-base" id="mBase"></i><i class="m-over" id="mOver"></i><div class="m-tick"><span>Manager limit $10,000</span></div></div>
+              <div class="route">
+                <div class="node" id="n1">Relocation Manager<small id="n1s">can approve to $10,000</small></div>
+                <div class="wire" id="wire"></div>
+                <div class="node" id="n2">Director of Development<small id="n2s">not needed</small></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p class="sr-only">Simulation summary: a relocation plan places 46 households in 56 temporary units across four sites. Building C's construction start slips two weeks, which would leave nine households in Hollis Street units past the end of that lease. The engine re-assigns only those nine households to vacant units at other sites, each for a stated rule: bedroom size, accessible unit, notice period or school district. Thirty-seven households keep their unit, there are zero rule violations, and because the added moving cost of $14,200 is over the Relocation Manager's $10,000 limit, the new plan is sent to the Director of Development for approval.</p>
+    <p class="fine">Illustrative data. Alder Court, its sites and its households are fictional.</p>
+  </div>
+</section>
+</div>
+
+<!-- ═══ HOW IT WORKS ═══ -->
+<section class="x-sec" id="how" aria-labelledby="x-how-h">
+  <div class="x-wrap">
+    <div class="x-head">
+      <h2 class="x-h2" id="x-how-h">AI reads your data. <b>Your rules make the decision.</b></h2>
+      <p class="x-lede">Each step has one owner. AI never makes the decision, and nothing goes ahead without a person.</p>
+    </div>
+
+    <div class="x-lanes" id="xLanes">
+      <div class="x-lane-grid" id="xLaneGrid">
+        <svg class="x-wire" id="xWire" aria-hidden="true"><defs><linearGradient id="xLaneGrad" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#5EEAD4"/><stop offset="1" stop-color="#A78BFA"/></linearGradient></defs><path id="xWireBase"/><path id="xWireLit" class="lit"/><circle id="xWireDot" r="4"/></svg>
+        <div class="x-lane-row">
+          <div class="x-lane-l">Your data<small>systems and files</small></div>
+          <div class="x-cell"><div class="x-node" data-lane="Your data" style="--c:#5EEAD4" data-step="0"><h3>Connect</h3><p>Use integrations with your systems of record, or upload files such as rent rolls, construction schedules and budgets.</p><code><b>4 sources</b> · rent roll · schedule v14 · budget FY27 · households</code></div></div>
+          <div class="x-cell x-empty"></div><div class="x-cell x-empty"></div><div class="x-cell x-empty"></div>
+        </div>
+        <div class="x-lane-row">
+          <div class="x-lane-l">AI<small>reads, never decides</small></div>
+          <div class="x-cell x-empty"></div>
+          <div class="x-cell"><div class="x-node" data-lane="AI" style="--c:#5EEAD4" data-step="1"><h3>Understand</h3><p>AI cleans and organizes messy data. It maps each field and flags anything missing.</p><code>ADA_REQ → <b>needs accessible unit</b> · 3 move-out dates missing</code></div></div>
+          <div class="x-cell x-empty"></div><div class="x-cell x-empty"></div>
+        </div>
+        <div class="x-lane-row">
+          <div class="x-lane-l">Planning engine<small>your rules</small></div>
+          <div class="x-cell x-empty"></div><div class="x-cell x-empty"></div>
+          <div class="x-cell"><div class="x-node" data-lane="Planning engine" style="--c:#A78BFA" data-step="2"><h3>Decide</h3><p>Planning engines build a recommendation that follows your rules and constraints. The same inputs give the same plan every time.</p><code>5 rules · <b>0 violations</b> · run 2 = run 1</code></div></div>
+          <div class="x-cell x-empty"></div>
+        </div>
+        <div class="x-lane-row">
+          <div class="x-lane-l">Your team<small>approval limits</small></div>
+          <div class="x-cell x-empty"></div><div class="x-cell x-empty"></div><div class="x-cell x-empty"></div>
+          <div class="x-cell"><div class="x-node" data-lane="Your team" style="--c:#F59E0B" data-step="3"><h3>Approve</h3><p>Your team reviews and approves the plan. Anything above a person's approval limit goes to the next approver. DecisionOS logs every step.</p><code>$18,400 &gt; $10,000 → <b>Director of Development</b></code></div></div>
+        </div>
+      </div>
+      <div class="x-lane-desc" aria-hidden="true">
+        <div></div>
+        <p><b>Connect.</b> Use integrations with your systems of record, or upload files such as rent rolls, construction schedules and budgets.</p>
+        <p><b>Understand.</b> AI cleans and organizes messy data. It maps each field and flags anything missing.</p>
+        <p><b>Decide.</b> Planning engines build a recommendation that follows your rules and constraints. The same inputs give the same plan every time.</p>
+        <p><b>Approve.</b> Your team reviews and approves the plan. Anything above a person's approval limit goes to the next approver. DecisionOS logs every step.</p>
+      </div>
+      <div class="x-lanes-foot"><span><b>AI</b> handles messy data.</span><span><b>Engines</b> handle the decision.</span><span><b>People</b> handle the approval.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ WHAT IT HANDLES TODAY ═══ -->
+<section class="x-sec" id="decisions" aria-labelledby="x-dec-h">
+  <div class="x-wrap">
+    <div class="x-head">
+      <h2 class="x-h2" id="x-dec-h">Built for the decisions housing teams <b>make every week.</b></h2>
+      <p class="x-lede">Each one runs on your data and your rules, and each one shows its work.</p>
+    </div>
+    <div class="x-dec">
+      <div class="x-dlist" role="tablist" aria-label="Decisions DecisionOS handles">
+        <button class="x-dtab" role="tab" aria-selected="true" aria-controls="xs0" id="xt0" data-i="0"><span class="n">Relocation planning <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span><span class="d"><span>Match hundreds of households to temporary units while respecting their needs and the construction schedule. When dates change, re-plan in minutes.</span></span></button>
+        <button class="x-dtab" role="tab" aria-selected="false" aria-controls="xs1" id="xt1" data-i="1" tabindex="-1"><span class="n">Rehab prioritization <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span><span class="d"><span>When the budget is cut, see which units to rehab first and what gets deferred, with a score you can explain.</span></span></button>
+        <button class="x-dtab" role="tab" aria-selected="false" aria-controls="xs2" id="xt2" data-i="2" tabindex="-1"><span class="n">Acquisition fit <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span><span class="d"><span>Score candidate buildings against your criteria: rent headroom under affordability caps, units per million dollars and red flags. You get a ranked shortlist your investment committee can inspect.</span></span></button>
+        <button class="x-dtab" role="tab" aria-selected="false" aria-controls="xs3" id="xt3" data-i="3" tabindex="-1"><span class="n">What-if scenarios <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span><span class="d"><span>Test a slipped date, a higher quote or a tighter deadline. See how the recommendation changes, and why.</span></span></button>
+      </div>
+
+      <div class="x-screens">
+        <div class="x-scr on" role="tabpanel" id="xs0" aria-labelledby="xt0">
+          <div class="x-scr-top"><div><strong>Phase 2 move plan</strong> <span>Alder Court</span></div><span class="x-pill g"><i></i>212 of 212 placed</span></div>
+          <div class="x-scr-body">
+            <p class="x-scr-sub">Each household's match, and the rules it satisfies</p>
+            <table class="x-tbl">
+              <thead><tr><th>Household</th><th>Temp unit</th><th class="hide-s">Move date</th><th>Rules</th></tr></thead>
+              <tbody>
+                <tr class="top"><td><b>#1147</b><small>3BR · accessible</small></td><td><b>A-102</b><small>accessible</small></td><td class="hide-s x-mono">Mar 23</td><td><span class="x-score">5 / 5</span></td></tr>
+                <tr><td><b>#0614</b><small>2BR · school age</small></td><td><b>A-106</b><small>same district</small></td><td class="hide-s x-mono">Mar 23</td><td><span class="x-score">5 / 5</span></td></tr>
+                <tr><td><b>#1023</b><small>4BR</small></td><td><b>D-108</b><small>4BR</small></td><td class="hide-s x-mono">Mar 30</td><td><span class="x-score">5 / 5</span></td></tr>
+                <tr><td><b>#0875</b><small>1BR · senior</small></td><td><b>D-103</b><small>elevator</small></td><td class="hide-s x-mono">Mar 30</td><td><span class="x-score">5 / 5</span></td></tr>
+              </tbody>
+            </table>
+            <div class="x-why"><b>Why #1147 → A-102:</b> needs an accessible unit, 3 bedrooms, and the notice period ends Mar 2. A-102 is the only open unit that meets all three.</div>
+          </div>
+        </div>
+
+        <div class="x-scr" role="tabpanel" id="xs1" aria-labelledby="xt1">
+          <div class="x-scr-top"><div><strong>Rehab priority</strong> <span>budget cut $4.2M → $3.6M</span></div><span class="x-pill a"><i></i>14 deferred</span></div>
+          <div class="x-scr-body">
+            <p class="x-scr-sub">Score = life safety 40% · occupied 25% · system age 20% · cost per unit 15%</p>
+            <table class="x-tbl">
+              <thead><tr><th>Unit</th><th class="hide-s">Main issue</th><th class="r">Cost</th><th class="r">Score</th></tr></thead>
+              <tbody>
+                <tr class="top"><td><b>Bldg 2 · 4B</b><small>occupied</small></td><td class="hide-s">Roof leak</td><td class="r">$38K</td><td class="r"><span class="x-score">92</span></td></tr>
+                <tr><td><b>Bldg 1 · 2A</b><small>occupied</small></td><td class="hide-s">Electrical panel</td><td class="r">$21K</td><td class="r"><span class="x-score">88</span></td></tr>
+                <tr><td><b>Bldg 2 · 6C</b><small>occupied</small></td><td class="hide-s">Boiler, 31 years</td><td class="r">$46K</td><td class="r"><span class="x-score">81</span></td></tr>
+                <tr class="x-cutline"><td colspan="4"><span>budget line · $3.6M</span></td></tr>
+                <tr class="cut"><td><b>Bldg 3 · 1D</b><small>vacant</small></td><td class="hide-s">Kitchen</td><td class="r">$29K</td><td class="r"><span class="x-score a">54</span></td></tr>
+                <tr class="cut"><td><b>Bldg 3 · 5A</b><small>vacant</small></td><td class="hide-s">Flooring</td><td class="r">$12K</td><td class="r"><span class="x-score a">41</span></td></tr>
+              </tbody>
+            </table>
+            <div class="x-why"><b>Why 4B scores 92:</b> life safety 40 of 40, occupied 25 of 25, system age 14 of 20, cost per unit 13 of 15.</div>
+          </div>
+        </div>
+
+        <div class="x-scr" role="tabpanel" id="xs2" aria-labelledby="xt2">
+          <div class="x-scr-top"><div><strong>Acquisition shortlist</strong> <span>9 buildings screened</span></div><span class="x-pill p"><i></i>Criteria v3</span></div>
+          <div class="x-scr-body">
+            <table class="x-tbl">
+              <thead><tr><th>Building</th><th class="r">Rent headroom</th><th class="r hide-s">Units / $M</th><th class="r">Flags</th></tr></thead>
+              <tbody>
+                <tr class="top"><td><b>Maple Court</b><small>84 units</small></td><td class="r">+11%</td><td class="r hide-s">6.2</td><td class="r"><span class="x-score">0</span></td></tr>
+                <tr><td><b>Elm Terrace</b><small>120 units</small></td><td class="r">+7%</td><td class="r hide-s">5.4</td><td class="r"><span class="x-score a">1</span></td></tr>
+                <tr><td><b>Harbor View</b><small>56 units</small></td><td class="r">+9%</td><td class="r hide-s">4.8</td><td class="r"><span class="x-score a">1</span></td></tr>
+                <tr><td><b>Linden Place</b><small>140 units</small></td><td class="r">+2%</td><td class="r hide-s">5.1</td><td class="r"><span class="x-score r">3</span></td></tr>
+              </tbody>
+            </table>
+            <div class="x-why warn"><b>Flag on Elm Terrace:</b> 2 open code violations in the city record. Click through to the source record.</div>
+          </div>
+        </div>
+
+        <div class="x-scr" role="tabpanel" id="xs3" aria-labelledby="xt3">
+          <div class="x-scr-top"><div><strong>Scenario compare</strong> <span>Phase 2, same data</span></div><span class="x-pill p"><i></i>3 runs</span></div>
+          <div class="x-scr-body">
+            <div class="x-sc">
+              <div><div class="x-sch">Current plan</div><dl><div><dt>Re-assigned</dt><dd>0</dd></div><div><dt>Temp units</dt><dd>38</dd></div><div><dt>Move budget</dt><dd>$412K</dd></div></dl></div>
+              <div class="on"><div class="x-sch">Bldg C slips 2 weeks</div><dl><div><dt>Re-assigned</dt><dd class="up">17</dd></div><div><dt>Temp units</dt><dd class="up">41</dd></div><div><dt>Move budget</dt><dd class="up">$430K</dd></div></dl></div>
+              <div><div class="x-sch">Mover quote +12%</div><dl><div><dt>Re-assigned</dt><dd class="same">0</dd></div><div><dt>Temp units</dt><dd class="same">38</dd></div><div><dt>Move budget</dt><dd class="up">$461K</dd></div></dl></div>
+            </div>
+            <div class="x-why"><b>Why the slip changes the plan:</b> 17 households would outstay their temporary leases. Building B needs 3 more units to keep accessible placements.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ TRUST ═══ -->
+<section class="x-sec" id="trust" aria-labelledby="x-trust-h">
+  <div class="x-wrap">
+    <div class="x-head">
+      <h2 class="x-h2" id="x-trust-h">Built to be <b>checked.</b></h2>
+      <p class="x-lede">You have to defend these decisions to boards, investors and HUD. Every claim below shows up on screen.</p>
+    </div>
+    <div class="x-proofs">
+      <div class="x-proof">
+        <h3>Repeatable.</h3>
+        <p>Planning engines compute the plan. Run it again with the same inputs and you get the same answer.</p>
+        <div class="x-ev" aria-label="Example: two runs with the same inputs produce the same plan">
+          <div class="row"><span class="k">run 1 · 09:15</span><span>inputs 8d03 → plan <span class="t">c7e1</span></span></div>
+          <div class="row"><span class="k">run 2 · 16:40</span><span>inputs 8d03 → plan <span class="t">c7e1</span></span></div>
+          <div class="hr"></div>
+          <div class="row"><span class="k">result</span><span class="g">identical</span></div>
+        </div>
+      </div>
+      <div class="x-proof">
+        <h3>Explained.</h3>
+        <p>Every recommendation shows the constraints it followed and the numbers it used.</p>
+        <div class="x-ev" aria-label="Example: the rules behind one placement">
+          <div class="row"><span>#1147 → A-102</span><span class="g">5 of 5 rules</span></div>
+          <div class="hr"></div>
+          <div class="row"><span class="k">accessible unit</span><span class="g">✓ required, A-102 is</span></div>
+          <div class="row"><span class="k">bedrooms</span><span class="g">✓ 3 needed, 3 in unit</span></div>
+          <div class="row"><span class="k">notice period</span><span class="g">✓ ends Mar 2, move Mar 23</span></div>
+        </div>
+      </div>
+      <div class="x-proof">
+        <h3>Human-approved.</h3>
+        <p>Nothing runs on its own. Your people approve, and DecisionOS enforces approval limits.</p>
+        <div class="x-ev" aria-label="Example: an approval routed above a manager's limit">
+          <div class="row"><span class="k">added cost</span><span class="a">$18,400</span></div>
+          <div class="row"><span class="k">manager limit</span><span>$10,000</span></div>
+          <div class="hr"></div>
+          <div class="x-chain"><span>Relocation manager</span><i>→</i><span class="on">✓ Director of Development</span></div>
+        </div>
+      </div>
+      <div class="x-proof">
+        <h3>No rip-and-replace.</h3>
+        <p>Keep Yardi, Procore, Resonance and your spreadsheets. DecisionOS sits on top of them.</p>
+        <div class="x-ev" aria-label="Example: sources DecisionOS reads from">
+          <div class="row"><span class="k">Yardi</span><span>rent roll</span></div>
+          <div class="row"><span class="k">Procore</span><span>construction schedule</span></div>
+          <div class="row"><span class="k">Resonance</span><span>households and units</span></div>
+          <div class="row"><span class="k">Excel</span><span>budget FY27</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="x-cmp">
+      <h3 class="x-cmp-h">Where it fits</h3>
+      <table class="x-cmp-t">
+        <thead><tr><th scope="col"><span class="sr-only">Question</span></th><th scope="col">System of record (Yardi, Procore)</th><th scope="col">AI chat tool</th><th scope="col" class="us">DecisionOS</th></tr></thead>
+        <tbody>
+          <tr><td>Stores your data</td><td data-h="System of record">Yes</td><td data-h="AI chat tool" class="no">No</td><td data-h="DecisionOS" class="us">Reads from your systems</td></tr>
+          <tr><td>Recommends what to do</td><td data-h="System of record" class="no">No</td><td data-h="AI chat tool">Yes, but answers vary</td><td data-h="DecisionOS" class="us">Yes, by your rules</td></tr>
+          <tr><td>Same answer every time</td><td data-h="System of record" class="no">n/a</td><td data-h="AI chat tool" class="no">No</td><td data-h="DecisionOS" class="us">Yes</td></tr>
+          <tr><td>Shows its reasoning</td><td data-h="System of record" class="no">n/a</td><td data-h="AI chat tool">Partly</td><td data-h="DecisionOS" class="us">Rules and numbers, every time</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ HOW TO START ═══ -->
+<section class="x-sec" id="start" aria-labelledby="x-start-h">
+  <div class="x-wrap">
+    <div class="x-head">
+      <h2 class="x-h2" id="x-start-h">Start with <b>one decision.</b></h2>
+      <p class="x-lede">Your next relocation, a budget scenario or an acquisition pipeline. Pick one, and see a real plan on your own data.</p>
+    </div>
+    <div class="x-tl">
+      <div class="x-tl-scale" aria-hidden="true"><i></i><i></i><i></i></div>
+      <div class="x-tl-cols">
+        <div class="x-ph"><div class="when">A few weeks</div><h3>Try</h3><p>Choose one decision. Send us an export. Within a few weeks, you'll see a real plan built on your own data.</p></div>
+        <div class="x-ph"><div class="when">About three months</div><h3>Implement</h3><p>We set up the guardrails, approval rules and integrations your team needs.</p></div>
+        <div class="x-ph"><div class="when">Ongoing</div><h3>Run</h3><p>DecisionOS becomes part of how your team plans, re-plans and reports.</p></div>
+      </div>
+    </div>
+    <div class="x-band">
+      <p>DecisionOS is built by <b>Resonance</b>, the platform relocation and development teams use to run RAD, PACT and rehab programs.</p>
+      <a href="/">See the Resonance platform</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FAQ ═══ -->
+<section class="x-sec" id="faq" aria-labelledby="x-faq-h">
+  <div class="x-wrap x-faq">
+    <h2 class="x-h2" id="x-faq-h">Questions teams <b>ask first.</b></h2>
+    <div>
+      <details><summary>Do we have to replace our current systems?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></summary><p>No. DecisionOS reads from the systems and files you already use.</p></details>
+      <details><summary>Do we need Resonance to use DecisionOS?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></summary><p>No. DecisionOS works on its own, on top of the systems you have now. If you use Resonance, DecisionOS reads from it like any other source.</p></details>
+      <details><summary>What if the plan is wrong?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></summary><p>A plan is only as good as its rules and data, so DecisionOS makes both visible. If something looks off, your team can see why. Fix the rule or the data, and re-plan in minutes. Nothing goes ahead without approval.</p></details>
+      <details><summary>How is this different from ChatGPT?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></summary><p>AI models are good at reading messy data, but they can give a different answer each time. DecisionOS uses AI to understand your data and planning engines to make the decision. The result is repeatable and auditable.</p></details>
+      <details><summary>What does it cost?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></summary><p>Pricing depends on the decision and the portfolio. Every engagement starts with a short pilot on your own data.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CONTACT ═══ -->
+<section class="x-sec" id="contact" aria-labelledby="x-contact-h">
+  <div class="x-wrap x-contact">
+    <div>
+      <h2 class="x-h2" id="x-contact-h">Bring us <b>one decision.</b></h2>
+      <p class="x-lede" style="margin-top:20px">Tell us what you're trying to plan. We'll show you what it looks like in DecisionOS.</p>
+      <ol class="x-next">
+        <li><i>1</i><span><b>We reply within one business day</b> to set up a call about your decision.</span></li>
+        <li><i>2</i><span><b>You send an export</b>, such as a rent roll, schedule or budget.</span></li>
+        <li><i>3</i><span><b>Within a few weeks</b>, you see a plan built on your own data.</span></li>
+      </ol>
+    </div>
+    <div class="x-form">
+      <form id="dosForm" novalidate>
+        <div class="x-row">
+          <div><label class="x-lbl" for="d-name">Name</label><input class="x-in" id="d-name" name="name" autocomplete="name" required></div>
+          <div><label class="x-lbl" for="d-email">Work email</label><input class="x-in" id="d-email" name="email" type="email" autocomplete="email" placeholder="you@yourorg.org" required></div>
+        </div>
+        <div class="x-row">
+          <div><label class="x-lbl" for="d-org">Organization</label><input class="x-in" id="d-org" name="organization" autocomplete="organization" placeholder="Housing authority, developer…" required></div>
+          <div><label class="x-lbl" for="d-role">Role</label>
+            <select class="x-sel" id="d-role" name="role">
+              <option value="">Select your role</option>
+              <option>Development director</option><option>Asset manager</option><option>Relocation manager</option><option>COO or executive</option><option>Other</option>
+            </select></div>
+        </div>
+        <fieldset class="x-f" style="border:0;padding:0;margin:0 0 14px">
+          <legend class="x-lbl">The decision you want to plan</legend>
+          <div class="x-chips">
+            <label class="x-chip"><input type="radio" name="decision" value="Relocation planning"><span>Relocation</span></label>
+            <label class="x-chip"><input type="radio" name="decision" value="Rehab prioritization"><span>Rehab</span></label>
+            <label class="x-chip"><input type="radio" name="decision" value="Acquisition fit"><span>Acquisition</span></label>
+            <label class="x-chip"><input type="radio" name="decision" value="What-if scenarios"><span>What-if</span></label>
+            <label class="x-chip"><input type="radio" name="decision" value="Something else"><span>Something else</span></label>
+          </div>
+        </fieldset>
+        <div class="x-f"><label class="x-lbl" for="d-msg">What are you trying to plan?</label><textarea class="x-ta" id="d-msg" name="message" placeholder="For example: 240 households across two buildings, construction starts in March"></textarea></div>
+        <div class="x-hp" aria-hidden="true"><label for="d-website">Website</label><input id="d-website" name="_gotcha" tabindex="-1" autocomplete="off"></div>
+        <button class="x-btn x-btn-p x-submit" type="submit">Talk to us</button>
+        <p class="x-err" id="dosErr" role="alert"></p>
+        <p class="x-fnote">We use your details only to reply to you.</p>
+      </form>
+      <div class="x-done" id="dosDone">
+        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
+        <h3>Thanks. We'll be in touch.</h3>
+        <p>The Resonance team will reply within one business day to set up a call about your decision.</p>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="x-foot">
+  <div class="x-wrap">
+    <span>© 2026 Resonance. DecisionOS is a product preview. Illustrative data on this page is fictional.</span>
+    <nav aria-label="Footer"><a href="/">Resonance platform</a><a href="/about">About</a><a href="/privacy-policy">Privacy policy</a></nav>
   </div>
 </footer>
 
-
 <script>
-/* UTM */
 (function(){
-  var p = new URLSearchParams(window.location.search);
-  window._utm = {
-    source:   p.get('utm_source')   || 'direct',
-    medium:   p.get('utm_medium')   || 'web',
-    campaign: p.get('utm_campaign') || 'decisionos-preview'
-  };
-})();
+'use strict';
+var $=function(s){return document.querySelector(s)};
+var clamp=function(x,a,b){return Math.min(b,Math.max(a,x))};
+var ss=function(a,b,x){var t=clamp((x-a)/(b-a),0,1);return t*t*(3-2*t)};
+var lin=function(a,b,x){return clamp((x-a)/(b-a),0,1)};
+var lerp=function(a,b,t){return a+(b-a)*t};
+var r3=function(x){return Math.round(x*1000)/1000};
 
-/* FEATURE TABS */
-function fcatSwitch(idx){
-  document.querySelectorAll('.fcat-tab').forEach(function(t,i){
-    t.classList.toggle('active', i===idx);
-    t.setAttribute('aria-selected', i===idx ? 'true' : 'false');
+/* ---------- one timeline. Retime the story by editing these slices. ---------- */
+var DUR=16000;                      /* ms for one loop */
+var B=[0,0.09,0.23,0.38,0.72,1];    /* stage boundaries: plan | change | impact | re-plan | approve */
+var SETTLE=[0.07,0.225,0.375,0.722,0.955]; /* resting frame of each stage (step targets) */
+var END=0.955;                      /* still frame for reduced motion */
+var T={
+  fadeIn:[0,0.025], fadeOut:[0.975,1],
+  event:[0.09,0.12], slip:[0.11,0.19], over:[0.17,0.21],
+  sweep:[0.245,0.345], dim:[0.25,0.33],
+  solveStart:0.40, stagger:0.033, flight:0.055,
+  recheck:[0.725,0.80], cost:[0.80,0.88], route:[0.89,0.93]
+};
+
+/* ---------- fictional data ---------- */
+var SITES=[
+  {key:'Hollis', name:'Hollis St.',    br:'2123221221322122', acc:[0,8],  vac:[]},
+  {key:'Ward',   name:'Ward Ave.',     br:'21222132212221',   acc:[5],    vac:[5,12]},
+  {key:'Canal',  name:'Canal Row',     br:'223122213221',     acc:[0],    vac:[2,3,6,7,8,11]},
+  {key:'Dunmore',name:'Dunmore Apts.', br:'22122312222122',   acc:[4,9],  vac:[4,10]}
+];
+var MOVES=[
+  {hh:'C-02',from:1, to:['Ward',5],    rule:'Accessible unit', why:'Step-free, roll-in shower'},
+  {hh:'C-05',from:3, to:['Canal',2],   rule:'Bedroom size',    why:'5 people, 3 bedrooms'},
+  {hh:'C-06',from:4, to:['Ward',12],   rule:'School district', why:'Same school zone'},
+  {hh:'C-09',from:6, to:['Canal',3],   rule:'Notice period',   why:'Ready before the noticed date'},
+  {hh:'C-11',from:7, to:['Dunmore',4], rule:'Accessible unit', why:'Ground floor, 36-inch doorways'},
+  {hh:'C-14',from:9, to:['Canal',7],   rule:'Notice period',   why:'Ready before the noticed date'},
+  {hh:'C-15',from:10,to:['Canal',8],   rule:'Bedroom size',    why:'6 people, 3 bedrooms'},
+  {hh:'C-19',from:12,to:['Dunmore',10],rule:'School district', why:'Same school zone'},
+  {hh:'C-22',from:14,to:['Canal',6],   rule:'Bedroom size',    why:'4 people, 2 bedrooms'}
+];
+var RULES=['Bedroom size','Accessible unit','Notice period','School district','Lease dates'];
+var TOTAL=46, COST=14200, LIMIT=10000;
+var unitNo=function(i){return i<8?101+i:201+(i-8)};
+var pad=function(n){return (n<10?'0':'')+n};
+
+/* ---------- build board ---------- */
+var board=$('#board'), slotEl={}, siteCt={}, siteBase={}, vacList=[];
+(function build(){
+  var reserved={}; MOVES.forEach(function(m){reserved[m.hh]=1});
+  var fromIdx={}; MOVES.forEach(function(m,i){fromIdx[m.from]=i});
+  var b=1,c=1;
+  function nextC(){while(reserved['C-'+pad(c)])c++;return 'C-'+pad(c++)}
+  SITES.forEach(function(s,si){
+    var row=document.createElement('div');row.className='site';
+    var lab=document.createElement('div');lab.className='site-lab';
+    lab.innerHTML='<span class="nm">'+s.name+'</span><span class="ct"></span>';
+    siteCt[s.key]=lab.lastChild; siteBase[s.key]=s.br.length-s.vac.length;
+    var grid=document.createElement('div');grid.className='slots';
+    slotEl[s.key]=[];
+    for(var i=0;i<s.br.length;i++){
+      var sl=document.createElement('div');sl.className='slot'+(s.acc.indexOf(i)>-1?' acc':'');
+      var cb=document.createElement('div');cb.className='cb';
+      var pips=document.createElement('div');pips.className='pips';
+      for(var k=0;k<+s.br[i];k++)pips.appendChild(document.createElement('i'));
+      var isVac=s.vac.indexOf(i)>-1, isFrom=si===0&&fromIdx[i]!==undefined;
+      if(isVac){sl.className+=' vac';var pr=document.createElement('div');pr.className='probe';cb.appendChild(pr);vacList.push({site:s.key,idx:i,probe:pr,mover:-1})}
+      else if(isFrom){var g=document.createElement('div');g.className='ghost';cb.appendChild(g);MOVES[fromIdx[i]].ghost=g}
+      else{
+        var id, isB;
+        if(si===0)isB=true; else isB=((i+si)%2===0);
+        if(isB&&b>22)isB=false; if(!isB&&c>24)isB=true;
+        id=isB?'B-'+pad(b++):nextC();
+        var ch=document.createElement('div');ch.className='chip'+(isB?' b':'');ch.textContent=id;cb.appendChild(ch);
+      }
+      sl.appendChild(cb);sl.appendChild(pips);grid.appendChild(sl);slotEl[s.key].push(cb);
+    }
+    row.appendChild(lab);row.appendChild(grid);board.appendChild(row);
   });
-  document.querySelectorAll('.fcat-panel').forEach(function(p,i){
-    p.classList.toggle('active', i===idx);
+  var sw=document.createElement('div');sw.className='sweep';sw.id='sweep';board.appendChild(sw);
+  var fly=document.createElement('div');fly.className='fly';
+  fly.innerHTML='<svg aria-hidden="true"></svg>';
+  board.appendChild(fly);
+  var svg=fly.firstChild, log=$('#log');
+  MOVES.forEach(function(m,i){
+    m.a=T.solveStart+i*T.stagger; m.b=m.a+T.flight;
+    m.o=slotEl.Hollis[m.from]; m.d=slotEl[m.to[0]][m.to[1]];
+    m.path=document.createElementNS('http://www.w3.org/2000/svg','path');svg.appendChild(m.path);
+    m.el=document.createElement('div');m.el.className='flyer';m.el.textContent=m.hh;fly.appendChild(m.el);
+    m.tag=document.createElement('div');m.tag.className='tag';m.tag.textContent=m.rule;fly.appendChild(m.tag);
+    vacList.forEach(function(v){if(v.site===m.to[0]&&v.idx===m.to[1])v.mover=i});
+    var li=document.createElement('li');li.tabIndex=0;
+    li.innerHTML='<div class="lr-top"><span class="hh">'+m.hh+'</span><span>Hollis '+unitNo(m.from)+' <span class="ar">→</span> '+m.to[0]+' '+unitNo(m.to[1])+'</span></div>'+
+      '<div class="lr-rule"><b>'+m.rule+'</b>'+m.why+'</div>';
+    log.appendChild(li);m.li=li;
+    li.addEventListener('mouseenter',function(){hoverRow=i;render(p)});
+    li.addEventListener('mouseleave',function(){if(hoverRow===i){hoverRow=-1;render(p)}});
+    li.addEventListener('focus',function(){hoverRow=i;render(p)});
+    li.addEventListener('blur',function(){if(hoverRow===i){hoverRow=-1;render(p)}});
+  });
+  var ru=$('#rules');
+  RULES.forEach(function(r){var li=document.createElement('li');
+    li.innerHTML='<svg class="v" viewBox="0 0 12 12"><path d="M2 6.4 4.8 9 10 3.2"/></svg><svg class="x" viewBox="0 0 12 12"><path d="M3 3l6 6M9 3l-6 6"/></svg><span>'+r+'</span>';ru.appendChild(li)});
+  /* month ticks on the schedule strip (31-week window from Feb 23) */
+  var gl=$('#gLines'), mo=[['Mar',0.86],['Apr',5.29],['May',9.57],['Jun',14],['Jul',18.29],['Aug',22.71],['Sep',27.14]];
+  mo.forEach(function(x){var l=x[1]/31*100;gl.insertAdjacentHTML('beforeend','<span style="left:'+l+'%"></span><em style="left:'+l+'%">'+x[0]+'</em>')});
+})();
+var ruleEls=[].slice.call(document.querySelectorAll('#rules li'));
+var segEls=[].slice.call(document.querySelectorAll('.seg'));
+
+/* ---------- measure (positions are layout-derived, so phone and desktop share one render) ---------- */
+var BW=1;
+function measure(){
+  var br=board.getBoundingClientRect();BW=br.width||1;
+  MOVES.forEach(function(m){
+    var o=m.o.getBoundingClientRect(), d=m.d.getBoundingClientRect();
+    m.ox=o.left-br.left;m.oy=o.top-br.top;m.dx=d.left-br.left;m.dy=d.top-br.top;m.w=o.width;m.h=o.height;
+    m.el.style.width=o.width+'px';m.el.style.height=o.height+'px';
+    var mx=(m.ox+m.dx)/2, my=(m.oy+m.dy)/2, vx=m.dx-m.ox, vy=m.dy-m.oy;
+    m.cx=mx+vy*0.16; m.cy=my-vx*0.16;
+    var hw=m.w/2, hh=m.h/2;
+    m.path.setAttribute('d','M'+(m.ox+hw)+' '+(m.oy+hh)+' Q'+(m.cx+hw)+' '+(m.cy+hh)+' '+(m.dx+hw)+' '+(m.dy+hh));
+    m.len=m.path.getTotalLength();m.path.style.strokeDasharray=m.len;
+    m.ti=T.sweep[0]+(T.sweep[1]-T.sweep[0])*((m.ox+hw)/BW);   /* when the sweep reaches this household */
+    var tw=m.tag.offsetWidth, th=m.tag.offsetHeight;
+    m.tx=clamp(m.dx+hw-tw/2,0,BW-tw); m.ty=m.dy-th-6;
   });
 }
 
-/* ── MOTION ──
-   One 0–1 progress value drives each animation. Each stage reads its own
-   slice through smoothstep, so stages retime by changing their slices and
-   any progress value renders the same frame. Reduce Motion gets a still. */
-var REDUCED = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-function clamp01(x){ return x < 0 ? 0 : x > 1 ? 1 : x; }
-function stage(t, a, b){ var x = clamp01((t - a) / (b - a)); return x * x * (3 - 2 * x); }
-function inView(el, cb){
-  if (!('IntersectionObserver' in window)) { cb(true); return; }
-  new IntersectionObserver(function(es){ cb(es[0].isIntersecting); }, {threshold:0.15}).observe(el);
+/* ---------- cached style writes ---------- */
+var cache=new WeakMap();
+function S(el,k,v){var c=cache.get(el);if(!c){c={};cache.set(el,c)}if(c[k]===v)return;c[k]=v;
+  if(k==='text')el.textContent=v;else if(k==='class')el.className=v;else if(k.charAt(0)==='-')el.style.setProperty(k,v);else el.style[k]=v}
+var C_N={bd:[86,74,160],bg:[35,30,62],fg:[184,170,238]},
+    C_A={bd:[245,158,11],bg:[58,40,14],fg:[252,211,77]},
+    C_T={bd:[94,234,212],bg:[14,54,54],fg:[204,251,241]};
+function mix3(a,b,t){return [lerp(a[0],b[0],t)|0,lerp(a[1],b[1],t)|0,lerp(a[2],b[2],t)|0]}
+function rgb(a){return 'rgb('+a[0]+','+a[1]+','+a[2]+')'}
+function hex4(n){n=Math.imul(n+11,2654435761)>>>0;return ('000'+(n>>>16).toString(16)).slice(-4)}
+function money(n){return '$'+n.toString().replace(/\B(?=(\d{3})+(?!\d))/g,',')}
+
+var el={pill:$('#pill'),pillT:$('#pillT'),ver:$('#ver'),cap:$('#cap'),body:$('#body'),gC:$('#gC'),gCd:$('#gCd'),gGhost:$('#gGhost'),gOver:$('#gOver'),gNote:$('#gNote'),
+  evNone:$('#evNone'),evHit:$('#evHit'),sweep:$('#sweep'),logN:$('#logN'),logEmpty:$('#logEmpty'),nRe:$('#nRe'),nKeep:$('#nKeep'),nViol:$('#nViol'),fViol:$('#fViol'),
+  hashes:$('#hashes'),apPrev:$('#apPrev'),apNew:$('#apNew'),cost:$('#cost'),mBase:$('#mBase'),mOver:$('#mOver'),n1:$('#n1'),n1s:$('#n1s'),n2:$('#n2'),n2s:$('#n2s'),wire:$('#wire'),
+  track:$('#track'),headPt:$('#headPt'),con:$('#console'),bPlay:$('#bPlay')};
+
+var p=0, hoverRow=-1;
+
+/* ---------- render(p): every visual is a pure function of p ---------- */
+function render(p){
+  var i,m;
+  /* loop seam: the console dips so the wrap from 1 to 0 is never a hard cut */
+  var dip=Math.max(ss(T.fadeOut[0],T.fadeOut[1],p),1-ss(T.fadeIn[0],T.fadeIn[1],p));
+  S(el.body,'opacity',r3(1-0.72*dip));
+
+  /* stage + transport */
+  var st=0;for(i=0;i<5;i++)if(p>=B[i])st=i;
+  for(i=0;i<5;i++){S(segEls[i],'--f',r3(lin(B[i],B[i+1],p)));S(segEls[i],'class','seg'+(i===st?' on':''))}
+  var x=(st+lin(B[st],B[st+1],p))/5;
+  S(el.headPt,'left',r3(x*100)+'%');
+
+  /* schedule strip */
+  var slip=ss(T.slip[0],T.slip[1],p);
+  S(el.gC,'left',r3((2+2*slip)/31*100)+'%');
+  S(el.gCd,'text',p<0.15?'Mar 9 – Aug 24':'Mar 23 – Sep 7');
+  S(el.gGhost,'opacity',r3(ss(T.slip[0],T.slip[0]+0.03,p)*0.9));
+  var resolved=ss(0.69,0.725,p);
+  S(el.gOver,'width',r3(Math.max(0,(26+2*slip)-27)/31*100)+'%');
+  S(el.gOver,'opacity',r3(ss(T.over[0],T.over[1],p)*(1-resolved)));
+  if(p<0.18){S(el.gNote,'text','1 week of margin');S(el.gNote,'class','')}
+  else if(p<0.71){S(el.gNote,'text','return is 1 week past lease end');S(el.gNote,'class','bad')}
+  else{S(el.gNote,'text','9 units released');S(el.gNote,'class','ok')}
+
+  /* event line */
+  var ev=ss(T.event[0],T.event[1],p);
+  S(el.evNone,'opacity',r3(1-ev));
+  S(el.evHit,'opacity',r3(ev));
+  S(el.evHit,'transform','translateY('+r3((1-ev)*-6)+'px)');
+
+  /* impact sweep */
+  var sw=lin(T.sweep[0],T.sweep[1],p);
+  S(el.sweep,'transform','translate3d('+r3(sw*BW)+'px,0,0)');
+  S(el.sweep,'opacity',r3(ss(T.sweep[0]-0.012,T.sweep[0],p)*(1-ss(T.sweep[1],T.sweep[1]+0.02,p))));
+  var dim=ss(T.dim[0],T.dim[1],p);
+  S(board,'--dim',r3(1-0.52*dim+0.27*ss(0.72,0.78,p)));
+
+  /* movers */
+  var found=0, landed=0, departed=0;
+  for(i=0;i<MOVES.length;i++){
+    m=MOVES[i];
+    var am=ss(m.ti,m.ti+0.018,p); if(p>=m.ti+0.009)found++;
+    var u=ss(m.a,m.b,p), land=ss(m.b-0.02,m.b,p);
+    if(p>=m.b)landed++; if(u>0.5)departed++;
+    var q=1-u, px=q*q*m.ox+2*q*u*m.cx+u*u*m.dx, py=q*q*m.oy+2*q*u*m.cy+u*u*m.dy;
+    var lift=Math.sin(Math.PI*u);
+    S(m.el,'transform','translate3d('+r3(px)+'px,'+r3(py-lift*4)+'px,0) scale('+r3(1+0.14*lift)+')');
+    S(m.el,'zIndex',u>0&&u<1?'3':'1');
+    S(m.el,'boxShadow',lift>0.02?'0 '+r3(8*lift)+'px '+r3(18*lift)+'px rgba(0,0,0,'+r3(0.5*lift)+')':'none');
+    var hl=hoverRow===i;
+    S(m.el,'borderColor',rgb(mix3(mix3(C_N.bd,C_A.bd,am),C_T.bd,land)));
+    S(m.el,'background',rgb(mix3(mix3(C_N.bg,C_A.bg,am),C_T.bg,land)));
+    S(m.el,'color',rgb(mix3(mix3(C_N.fg,C_A.fg,am),C_T.fg,land)));
+    S(m.el,'outline',hl&&p>=m.b?'2px solid rgba(94,234,212,0.5)':'none');
+    S(m.ghost,'opacity',r3(u));
+    S(m.ghost,'borderColor',hl&&p>=m.b?'rgba(94,234,212,0.9)':'');
+    S(m.path,'strokeDashoffset',r3(m.len*(1-u)));
+    S(m.path,'opacity',u<=0?0:(hl?0.9:r3(lerp(0.75,0.2,ss(m.b,m.b+0.05,p)))));
+    var pop=ss(m.b-0.012,m.b+0.008,p)*(1-ss(m.b+0.05,m.b+0.07,p));
+    if(hl&&p>=m.b)pop=1;
+    S(m.tag,'opacity',r3(pop));
+    S(m.tag,'transform','translate3d('+r3(m.tx)+'px,'+r3(m.ty+(1-pop)*5)+'px,0)');
+    var row=ss(m.b-0.012,m.b+0.012,p);
+    S(m.li,'opacity',r3(row));
+    S(m.li,'transform','translateY('+r3((1-row)*6)+'px)');
+  }
+
+  /* engine probing the vacant units while it solves */
+  var env=ss(0.375,0.40,p)*(1-ss(0.70,0.72,p));
+  for(i=0;i<vacList.length;i++){
+    var v=vacList[i], mv=v.mover>-1?MOVES[v.mover]:null, o=0;
+    if(!mv||p<mv.a){var s1=Math.max(0,Math.sin(p*190+i*2.1));o=s1*s1*0.5*env}
+    if(mv){o=Math.max(o,ss(mv.a-0.028,mv.a-0.006,p)*(1-ss(mv.b-0.012,mv.b,p)))}
+    S(v.probe,'opacity',r3(o));
+  }
+
+  /* site occupancy */
+  var arr={Ward:0,Canal:0,Dunmore:0};
+  for(i=0;i<MOVES.length;i++)if(p>=MOVES[i].b)arr[MOVES[i].to[0]]++;
+  SITES.forEach(function(s){var n=s.key==='Hollis'?siteBase.Hollis-departed:siteBase[s.key]+arr[s.key];S(siteCt[s.key],'text',n+' of '+s.br.length+' in use')});
+
+  /* log + ledger */
+  S(el.logN,'text',landed+' of 9');
+  S(el.logEmpty,'opacity',r3(1-ss(0.385,0.41,p)));
+  S(el.logEmpty,'text',p<B[2]?'Nothing to review. Plan v14 matches the current schedule.':'Checking which households the new dates affect.');
+  var viol=found-landed;
+  S(el.nRe,'text',''+landed);
+  S(el.nKeep,'text',''+(TOTAL-found));
+  S(el.nViol,'text',''+viol);
+  S(el.fViol,'class','fig '+(viol>0?'bad':'good'));
+  for(i=0;i<ruleEls.length;i++){
+    var a=T.recheck[0]+i*0.014;
+    S(ruleEls[i],'opacity',r3(1-0.55*ss(0.23,0.26,p)*(1-ss(a,a+0.016,p))));
+    S(ruleEls[i],'class',(i===4&&viol>0)?'bad':'');
+  }
+  var inH=p<0.12?'4f2a·91c7':'8d03·5be2', f=Math.floor(p*300);
+  var plH=p<B[3]?'a90e·3c16':(p<B[4]?hex4(f)+'·'+hex4(f+97):'c7e1·0a4d');
+  S(el.hashes,'text','inputs '+inH+' → plan '+plH);
+
+  /* approval */
+  S(el.apPrev,'opacity',r3(1-ss(0.74,0.775,p)));
+  S(el.apNew,'opacity',r3(ss(0.775,0.805,p)));
+  var ck=ss(T.cost[0],T.cost[1],p), cost=Math.round(COST*ck/100)*100;
+  S(el.cost,'text',(cost>0?'+':'')+money(cost));
+  S(el.cost,'class',cost>LIMIT?'over':'');
+  S(el.mBase,'transform','scaleX('+r3(Math.min(cost,LIMIT)/LIMIT)+')');
+  S(el.mOver,'transform','scaleX('+r3(Math.max(0,cost-LIMIT)/(COST-LIMIT))+')');
+  var rt=ss(T.route[0],T.route[1],p);
+  S(el.n1,'class','node'+(cost>LIMIT?' over':''));
+  S(el.n1s,'text',cost>LIMIT?'over the $10,000 limit':'can approve to $10,000');
+  S(el.wire,'transform','scaleX('+r3(rt)+')');
+  S(el.wire,'opacity',r3(rt));
+  S(el.n2,'class','node'+(rt>0.6?' to':''));
+  S(el.n2,'opacity',r3(0.45+0.55*rt));
+  S(el.n2s,'text',rt>0.6?'approval requested':'not needed');
+
+  /* status */
+  var pt,pc;
+  if(p<0.10){pt='In effect';pc='pill'}
+  else if(p<B[3]){pt='Out of date';pc='pill warn'}
+  else if(p<B[4]){pt='Re-planning';pc='pill work'}
+  else if(p<0.90){pt='Checked, 0 violations';pc='pill'}
+  else{pt='Needs approval';pc='pill warn'}
+  S(el.pillT,'text',pt);S(el.pill,'class',pc);
+  S(el.ver,'text',p<B[4]?'Plan v14':'Plan v15 draft');
+
+  /* caption */
+  var cap;
+  if(st===0)cap='Plan v14 is in effect: 46 households placed across 56 temporary units.';
+  else if(st===1)cap='The construction schedule changes. Building C now starts Mar 23, not Mar 9.';
+  else if(st===2)cap='Checking every placement against the new dates: '+Math.round(TOTAL*sw)+' of 46 checked, '+found+' would outstay the Hollis St. lease.';
+  else if(st===3)cap='Re-planning the 9 affected households: '+landed+' placed. The other 37 are not touched.';
+  else if(p<0.84)cap='Every placement is re-checked against the rules. 0 violations.';
+  else cap='The added moving cost is over the manager’s limit, so plan v15 goes to the Director of Development.';
+  S(el.cap,'text',cap);
+  el.track.setAttribute('aria-valuenow',Math.round(x*100));
+  el.track.setAttribute('aria-valuetext',segEls[st].querySelector('.l').textContent);
 }
 
-/* Hero: systems of record → DecisionOS → your team (9 s loop) */
-(function(){
-  var root = document.getElementById('stack'); if (!root) return;
-  var k = {}; root.querySelectorAll('[data-k]').forEach(function(e){ k[e.dataset.k] = e; });
-  function set(el, name, v){ el.style.setProperty(name, v.toFixed(3)); }
-  function render(t){
-    var fade = 1 - stage(t, 0.93, 1);                         // soft reset at loop end
-    for (var i = 0; i < 4; i++){
-      var s = stage(t, 0.02 + i*0.04, 0.12 + i*0.04);         // sources light in turn
-      set(k['s'+i], '--on', s * fade);
-      var p = stage(t, 0.10 + i*0.03, 0.28 + i*0.03);         // pulses rise into DecisionOS
-      set(k['w'+i], '--p', p);
-      set(k['w'+i], '--a', Math.sin(Math.PI * p));
-    }
-    set(k.ai,   '--on', (stage(t, 0.28, 0.38) - stage(t, 0.52, 0.62) * 0.55) * fade);
-    set(k.eng,  '--on', (stage(t, 0.44, 0.54) - stage(t, 0.70, 0.80) * 0.45) * fade);
-    set(k.plan, '--on', stage(t, 0.56, 0.64) * fade);
-    var u = stage(t, 0.64, 0.78);                             // plan rises to the team
-    set(k.up, '--p', u); set(k.up, '--a', Math.sin(Math.PI * u));
-    set(k.approved, '--on', stage(t, 0.78, 0.84) * fade);
-  }
-  if (REDUCED) { render(0.86); return; }
-  var LOOP = 9000, t0 = null, visible = true, raf = null, held = 0;
-  function frame(now){
-    if (t0 === null) t0 = now - held;
-    held = (now - t0) % LOOP;
-    render(held / LOOP);
-    raf = visible ? requestAnimationFrame(frame) : null;
-  }
-  inView(root, function(v){ visible = v; if (v && !raf){ t0 = null; raf = requestAnimationFrame(frame); } });
-  render(0);
-})();
+/* ---------- playback ---------- */
+var RM=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+var userPaused=RM, hoverPaused=false, focusPaused=false, inView=true, stepTarget=-1, raf=0, last=0, scrubbing=false;
+function playing(){return !userPaused&&!hoverPaused&&!focusPaused&&!scrubbing&&inView&&!document.hidden}
+function sync(){
+  S(el.con,'class','console'+(userPaused?' paused-user':'')+(playing()?'':' paused')+((hoverPaused||focusPaused)&&!userPaused?' hover-hold':''));
+  el.bPlay.setAttribute('aria-label',userPaused?'Play':'Pause');
+  if(playing()&&!raf){last=0;raf=requestAnimationFrame(tick)}
+}
+function tick(t){
+  raf=0;
+  if(!playing())return;
+  var dt=last?Math.min(100,t-last):0;last=t;
+  var np=p+dt/DUR*(stepTarget>=0?1.35:1);
+  if(stepTarget>=0&&np>=stepTarget){np=stepTarget;stepTarget=-1;userPaused=true}
+  if(np>=1)np-=1;
+  p=np;render(p);
+  if(userPaused){sync();return}
+  raf=requestAnimationFrame(tick);
+}
+function seek(v){p=clamp(v,0,0.9999);stepTarget=-1;render(p)}
 
-/* How it works: four stages, 4.5 s each, click to jump */
+el.bPlay.addEventListener('click',function(){userPaused=!userPaused;stepTarget=-1;if(!userPaused&&p>=0.97)p=0;sync()});
+$('#bReplay').addEventListener('click',function(){p=0;stepTarget=-1;userPaused=false;render(p);sync()});
+$('#bStep').addEventListener('click',function(){
+  var t=-1;for(var i=0;i<SETTLE.length;i++)if(SETTLE[i]>p+0.004){t=SETTLE[i];break}
+  if(t<0){p=T.fadeIn[1];t=SETTLE[0]}
+  if(RM){userPaused=true;seek(t);sync();return}
+  stepTarget=t;userPaused=false;render(p);sync();
+});
+
+/* scrub: the five segments are equal width on screen, mapped back to their slices */
+function xToP(cx){var r=el.track.getBoundingClientRect(), x=clamp((cx-r.left)/r.width,0,0.9999)*5, i=Math.floor(x);return lerp(B[i],B[i+1],x-i)}
+el.track.addEventListener('pointerdown',function(e){scrubbing=true;try{el.track.setPointerCapture(e.pointerId)}catch(_){ }seek(xToP(e.clientX));sync()});
+el.track.addEventListener('pointermove',function(e){if(scrubbing)seek(xToP(e.clientX))});
+function endScrub(){if(scrubbing){scrubbing=false;sync()}}
+el.track.addEventListener('pointerup',endScrub);el.track.addEventListener('pointercancel',endScrub);
+el.track.addEventListener('keydown',function(e){
+  var d=e.key==='ArrowRight'||e.key==='ArrowUp'?1:(e.key==='ArrowLeft'||e.key==='ArrowDown'?-1:0);
+  if(!d)return;e.preventDefault();userPaused=true;seek(p+d*0.015);sync();
+});
+
+/* pause while someone is reading the board */
+if(window.matchMedia('(hover:hover)').matches){
+  el.body.addEventListener('mouseenter',function(){hoverPaused=true;sync()});
+  el.body.addEventListener('mouseleave',function(){hoverPaused=false;sync()});
+}
+el.body.addEventListener('focusin',function(){focusPaused=true;sync()});
+el.body.addEventListener('focusout',function(){focusPaused=false;sync()});
+document.addEventListener('visibilitychange',sync);
+if('IntersectionObserver' in window){new IntersectionObserver(function(en){inView=en[0].isIntersecting;sync()},{threshold:0.05}).observe(el.con)}
+
+/* ---------- start ---------- */
+var forced=/[?&#]p=([0-9.]+)/.exec(location.search+location.hash);   /* e.g. ?p=0.5 renders that exact frame */
+if(forced){p=clamp(parseFloat(forced[1]),0,0.9999);userPaused=true}
+else if(RM){p=END}
+function relayout(){measure();render(p)}
+relayout();sync();
+if('ResizeObserver' in window){new ResizeObserver(relayout).observe(board)}else{window.addEventListener('resize',relayout)}
+if(document.fonts&&document.fonts.ready)document.fonts.ready.then(relayout);
+})();
+</script>
+<script>
 (function(){
-  var flow = document.getElementById('flow'); if (!flow) return;
-  var steps = [].slice.call(flow.querySelectorAll('.flow-step'));
-  var panes = [].slice.call(flow.querySelectorAll('.pane'));
-  var url = document.getElementById('flowUrl');
-  var ap = document.getElementById('apState');
-  var N = steps.length, STEP_MS = 4500, LOOP = N * STEP_MS, cur = -1;
-  function show(i){
-    if (i === cur) return; cur = i;
-    steps.forEach(function(s, j){ s.classList.toggle('on', j === i); s.setAttribute('aria-selected', j === i ? 'true' : 'false'); });
-    panes.forEach(function(p, j){ p.classList.toggle('on', j === i); });
-    url.textContent = panes[i].dataset.url;
+  var clamp=function(x){return x<0?0:x>1?1:x;};
+  var S=function(t,a,b){var x=clamp((t-a)/(b-a));return x*x*(3-2*x);};
+  var REDUCED=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function loop(el,dur,render,still){
+    if(!el)return;
+    if(REDUCED){render(still);return;}
+    var t0=null,held=0,vis=false,raf=null;
+    function f(now){raf=null;if(t0===null)t0=now-held;held=(now-t0)%dur;render(held/dur);if(vis)raf=requestAnimationFrame(f);else t0=null;}
+    if('IntersectionObserver' in window){new IntersectionObserver(function(e){vis=e[0].isIntersecting;if(vis&&!raf)raf=requestAnimationFrame(f);},{threshold:0.2}).observe(el);}
+    else{vis=true;raf=requestAnimationFrame(f);}
+    render(0);
   }
-  function render(t){                                         // t: 0–1 across all four stages
-    var i = Math.min(N - 1, Math.floor(t * N));
-    var local = t * N - i;                                    // 0–1 inside the active stage
-    show(i);
-    steps[i].style.setProperty('--l', local.toFixed(3));
-    var rows = panes[i].querySelectorAll('.rv'), n = rows.length;
-    for (var r = 0; r < n; r++){
-      var a = 0.04 + r * (0.5 / n);
-      rows[r].style.setProperty('--r', stage(local, a, a + 0.12).toFixed(3));
+
+  /* Hero: systems of record → DecisionOS → your team. One progress value, 9 s. */
+  var st=document.getElementById('xStack');
+  if(st){
+    var k={};st.querySelectorAll('[data-k]').forEach(function(e){k[e.dataset.k]=e;});
+    var clock=document.getElementById('xStackClock');
+    var set=function(e,n,v){e.style.setProperty(n,v.toFixed(3));};
+    loop(st,9000,function(t){
+      var fade=1-S(t,0.93,1);
+      for(var i=0;i<4;i++){
+        set(k['s'+i],'--on',S(t,0.02+i*0.04,0.12+i*0.04)*fade);
+        var p=S(t,0.10+i*0.03,0.28+i*0.03);set(k['w'+i],'--p',p);set(k['w'+i],'--a',Math.sin(Math.PI*p));
+      }
+      set(k.ai,'--on',S(t,0.28,0.44)*fade);
+      set(k.eng,'--on',S(t,0.42,0.6)*fade);
+      set(k.plan,'--on',S(t,0.58,0.65)*fade);
+      var u=S(t,0.64,0.78);set(k.up,'--p',u);set(k.up,'--a',Math.sin(Math.PI*u));
+      set(k.ok,'--on',S(t,0.78,0.84)*fade);
+      var sec=2+Math.floor(t*9);clock.textContent='09:14:'+(sec<10?'0':'')+sec;
+    },0.86);
+  }
+
+  /* How it works: a dot walks the swimlanes Connect → Understand → Decide → Approve. 10 s. */
+  var lanes=document.getElementById('xLanes'),grid=document.getElementById('xLaneGrid');
+  if(lanes){
+    var nodes=[].slice.call(lanes.querySelectorAll('.x-node'));
+    var base=document.getElementById('xWireBase'),lit=document.getElementById('xWireLit'),dot=document.getElementById('xWireDot');
+    var pts=[],len=0,segs=[];
+    function geom(){
+      var g=grid.getBoundingClientRect();pts=nodes.map(function(n){var r=n.getBoundingClientRect();return [r.left-g.left+r.width/2,r.top-g.top+r.height/2,r];});
+      var d='';segs=[0];len=0;
+      for(var i=0;i<pts.length;i++){
+        if(i===0){d='M'+pts[0][0]+' '+pts[0][1];continue;}
+        var a=pts[i-1],b=pts[i],mx=b[0];
+        d+=' L'+mx+' '+a[1]+' L'+b[0]+' '+b[1];
+      }
+      base.setAttribute('d',d);lit.setAttribute('d',d);
+      len=base.getTotalLength();lit.style.strokeDasharray=len;
+      // cumulative length at each node
+      var acc=0;segs=[0];for(var j=1;j<pts.length;j++){acc+=Math.abs(pts[j][0]-pts[j-1][0])+Math.abs(pts[j][1]-pts[j-1][1]);segs.push(acc);}
+      var tot=acc||1;segs=segs.map(function(v){return v/tot;});
     }
-    if (i === 3) {
-      var done = local > 0.62;
-      ap.textContent = done ? 'Approved' : 'Awaiting approval';
-      ap.className = 'badge ' + (done ? 'badge-green' : 'badge-amber');
+    function render(t){
+      var travel=S(t,0.05,0.8),fade=1-S(t,0.92,1);
+      if(len){lit.style.strokeDashoffset=len*(1-travel*fade);var p=base.getPointAtLength(len*travel);dot.setAttribute('cx',p.x);dot.setAttribute('cy',p.y);dot.style.opacity=fade;}
+      nodes.forEach(function(n,i){var on=S(t,0.05+segs[i]*0.75-0.02,0.05+segs[i]*0.75+0.04)*fade;n.style.setProperty('--on',on.toFixed(3));n.classList.toggle('on',on>0.5);});
     }
-  }
-  var pos = 0, last = null, visible = false, raf = null;
-  function frame(now){
-    if (last !== null) pos = (pos + (now - last)) % LOOP;
-    last = now;
-    render(pos / LOOP);
-    raf = visible ? requestAnimationFrame(frame) : null;
-  }
-  steps.forEach(function(s, j){
-    s.addEventListener('click', function(){
-      pos = j * STEP_MS + (REDUCED ? STEP_MS * 0.999 : 0);
-      render(pos / LOOP);
+    var mq=matchMedia('(max-width:980px)');
+    function setup(){if(mq.matches){nodes.forEach(function(n){n.style.setProperty('--on',1);n.classList.add('on');});return false;}geom();return true;}
+    (document.fonts&&document.fonts.ready?document.fonts.ready:Promise.resolve()).then(function(){
+      if(setup()) loop(lanes,10000,function(t){if(!mq.matches)render(t);},0.85);
+      var rz;addEventListener('resize',function(){clearTimeout(rz);rz=setTimeout(function(){if(!setup())return;geom();},80);});
     });
+  }
+
+  /* Decision tabs */
+  var tabs=[].slice.call(document.querySelectorAll('.x-dtab')),panes=[].slice.call(document.querySelectorAll('.x-scr'));
+  function pick(i,focus){tabs.forEach(function(t,j){var on=j===i;t.setAttribute('aria-selected',on);t.tabIndex=on?0:-1;if(on&&focus)t.focus();});panes.forEach(function(p,j){p.classList.toggle('on',j===i);});}
+  tabs.forEach(function(t,i){
+    t.addEventListener('click',function(){pick(i);});
+    t.addEventListener('keydown',function(e){var n=tabs.length;if(e.key==='ArrowDown'||e.key==='ArrowRight'){e.preventDefault();pick((i+1)%n,true);}if(e.key==='ArrowUp'||e.key==='ArrowLeft'){e.preventDefault();pick((i-1+n)%n,true);}});
   });
-  if (REDUCED) { render(0.999 / N); return; }                 // still: step 1, fully drawn
-  render(0);
-  inView(flow, function(v){ visible = v; if (v && !raf){ last = null; raf = requestAnimationFrame(frame); } });
-})();
 
-/* CONTACT FORM */
-(function(){
-  var form = document.getElementById('dosForm');
-  var err  = document.getElementById('dosErr');
-  var FALLBACK = 'sean@resonancehq.io';
-  function showErr(html){ err.innerHTML = html; err.style.display = 'block'; }
+  /* UTM */
+  var q=new URLSearchParams(location.search);
+  var utm={source:q.get('utm_source')||'direct',medium:q.get('utm_medium')||'web',campaign:q.get('utm_campaign')||'decisionos-preview'};
 
-  form.addEventListener('submit', function(e){
-    e.preventDefault();
-    err.style.display = 'none';
-    if (document.getElementById('d-website').value) return; // bot
-
-    var name  = document.getElementById('d-name').value.trim();
-    var email = document.getElementById('d-email').value.trim();
-    var org   = document.getElementById('d-org').value.trim();
-    if (!name || !email || !org) { showErr('Please fill in your name, work email and organization.'); return; }
-    if (!/^\S+@\S+\.\S+$/.test(email)) { showErr('Please enter a valid work email.'); return; }
-
-    var payload = {
-      name: name,
-      email: email,
-      organization: org,
-      role: document.getElementById('d-role').value || 'Not specified',
-      decision: document.getElementById('d-decision').value || 'Not specified',
-      message: document.getElementById('d-msg').value.trim(),
-      source_page: 'decisionos',
-      utm_source: window._utm.source,
-      utm_medium: window._utm.medium,
-      utm_campaign: window._utm.campaign,
-      _subject: 'DecisionOS inquiry: ' + name + ' (' + org + ')'
-    };
-
-    var btn = form.querySelector('.f-submit');
-    btn.disabled = true; btn.textContent = 'Sending…';
-    if (window.gtag) window.gtag('event','decisionos_contact',{event_label:payload.decision,utm_source:window._utm.source});
-
-    function fail(){
-      btn.disabled = false; btn.textContent = 'Talk to us →';
-      var mail = 'mailto:' + FALLBACK + '?subject=' + encodeURIComponent('DecisionOS: ' + org) + '&body=' + encodeURIComponent(payload.message || '');
-      showErr('Something went wrong sending the form. Please email <a href="' + mail + '">' + FALLBACK + '</a>.');
-    }
-
-    fetch('https://formspree.io/f/xlgpwdbq', {
-      method: 'POST',
-      headers: {'Content-Type':'application/json','Accept':'application/json'},
-      body: JSON.stringify(payload)
-    })
-    .then(function(r){ return r.json().then(function(d){ return {ok:r.ok, d:d}; }); })
-    .then(function(res){
-      if (res.ok && (res.d.ok !== false)) {
-        form.style.display = 'none';
-        document.getElementById('dosSuccess').style.display = 'block';
-      } else { fail(); }
-    })
-    .catch(fail);
+  /* Contact form */
+  var form=document.getElementById('dosForm'),err=document.getElementById('dosErr'),FALLBACK='sean@resonancehq.io';
+  function showErr(h){err.innerHTML=h;err.style.display='block';}
+  form.addEventListener('submit',function(e){
+    e.preventDefault();err.style.display='none';
+    if(document.getElementById('d-website').value)return;
+    var f={name:document.getElementById('d-name'),email:document.getElementById('d-email'),org:document.getElementById('d-org')};
+    Object.keys(f).forEach(function(k){f[k].removeAttribute('aria-invalid');});
+    var name=f.name.value.trim(),email=f.email.value.trim(),org=f.org.value.trim();
+    if(!name||!email||!org){[f.name,f.email,f.org].forEach(function(el){if(!el.value.trim())el.setAttribute('aria-invalid','true');});showErr('Add your name, work email and organization so we can reply.');return;}
+    if(!/^\S+@\S+\.\S+$/.test(email)){f.email.setAttribute('aria-invalid','true');showErr('That email address looks incomplete. Check it and try again.');return;}
+    var dec=form.querySelector('input[name="decision"]:checked');
+    var payload={name:name,email:email,organization:org,role:document.getElementById('d-role').value||'Not specified',decision:dec?dec.value:'Not specified',message:document.getElementById('d-msg').value.trim(),source_page:'decisionos',utm_source:utm.source,utm_medium:utm.medium,utm_campaign:utm.campaign,_subject:'DecisionOS inquiry: '+name+' ('+org+')'};
+    var btn=form.querySelector('.x-submit');btn.disabled=true;btn.textContent='Sending…';
+    if(window.gtag)gtag('event','decisionos_contact',{event_label:payload.decision,utm_source:utm.source});
+    function fail(){btn.disabled=false;btn.textContent='Talk to us';var m='mailto:'+FALLBACK+'?subject='+encodeURIComponent('DecisionOS: '+org)+'&body='+encodeURIComponent(payload.message||'');showErr('The form did not send. Email us at <a href="'+m+'">'+FALLBACK+'</a> and we will reply the same way.');}
+    fetch('https://formspree.io/f/xlgpwdbq',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(payload)})
+      .then(function(r){return r.json().then(function(d){return {ok:r.ok,d:d};});})
+      .then(function(res){if(res.ok&&res.d.ok!==false){form.style.display='none';document.getElementById('dosDone').style.display='block';}else fail();})
+      .catch(fail);
   });
 })();
-
 </script>
 </body>
 </html>
