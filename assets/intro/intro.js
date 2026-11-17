@@ -23,6 +23,9 @@
         an.onfinish = function () { xl.style.visibility = ''; c.remove(); };
         setTimeout(function () { xl.style.visibility = ''; if (c.parentNode) c.remove(); }, 3000);
       } }
+    // the homepage headline rises where the corridor line just was
+    var h1 = !fast && document.querySelector('.hero h1');
+    if (h1 && h1.animate) h1.animate([{ opacity: 0, transform: 'translateY(16px)', filter: 'blur(8px)' }, { opacity: 1, transform: 'none', filter: 'none' }], { duration: 1100, delay: 350, easing: 'cubic-bezier(.2,.8,.2,1)', fill: 'backwards' });
     f.style.transition = 'opacity ' + (fast ? .35 : 1.8) + 's cubic-bezier(.4,0,.2,1)' + (fast ? '' : ' .6s');
     f.style.opacity = '0';
     setTimeout(function () { if (f && f.parentNode) f.parentNode.removeChild(f); }, fast ? 400 : 2300);
@@ -44,7 +47,7 @@
     });
     ['keydown', 'wheel', 'touchstart', 'pointerdown'].forEach(function (ev) { window.addEventListener(ev, function () { finish(true); }, { passive: true, once: true }); });
     setTimeout(function () { if (!ready) finish(true); }, 4000);   // never loaded: the page shows
-    setTimeout(function () { finish(false); }, 7000);             // hard ceiling
+    setTimeout(function () { finish(false); }, 9000);             // hard ceiling
   }
   if (document.body) main(); else document.addEventListener('DOMContentLoaded', main);
 })();
