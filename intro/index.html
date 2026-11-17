@@ -19,11 +19,11 @@ html{scrollbar-width:none;} html::-webkit-scrollbar{display:none;}
 #lock .hlin{position:absolute;left:0;top:0;display:flex;align-items:center;gap:var(--gap,20px);opacity:0;transform-origin:50% 50%;}
 #lock .hlin svg{width:var(--sw,76px);height:var(--sh,90px);flex:none;}
 #lock .hlin .hlword{font-family:'Hanken Grotesk',system-ui,sans-serif;font-weight:700;font-size:var(--fs,56px);letter-spacing:-.025em;color:#F1EEFF;line-height:1;}
-html.go #lock .hlin{animation:lockLand 2.5s cubic-bezier(.65,0,.2,1) .05s both;}
+html.go #lock .hlin{animation:lockLand 2.15s cubic-bezier(.65,0,.2,1) .05s both;}
 html.go #lock .hlin svg path{animation:traceIn .8s cubic-bezier(.6,0,.2,1) calc(.1s + var(--i) * .08s) forwards, fillIn .5s ease calc(.6s + var(--i) * .05s) forwards;}
 html.go #lock .hlin svg{animation:markPulse 1.1s ease .95s both;}
 html.go #lock .hlin .hlword .lt{animation:ltIn .95s cubic-bezier(.2,.9,.2,1) calc(.3s + var(--i) * .04s) forwards;}
-@keyframes lockLand{0%{opacity:1;transform:scale(.9);}58%{opacity:1;transform:scale(1);}100%{opacity:1;transform:translate(var(--tx),var(--ty)) scale(var(--k));}}
+@keyframes lockLand{0%{opacity:1;transform:scale(.9);}52%{opacity:1;transform:scale(1);}100%{opacity:1;transform:translate(var(--tx),var(--ty)) scale(var(--k));}}
 </style>
 </head>
 <body class="home">
@@ -96,7 +96,7 @@ scrollTo(0, 0);
   document.fonts.ready.then(() => { lay(); requestAnimationFrame(() => requestAnimationFrame(() => setTimeout(() => { document.documentElement.classList.add('go'); tell({ t: 'ready' }); runEnd(); }, 120))); });
 }
 // the end: once the logo has landed, the page takes over (it brings its own console in from the depth of this corridor)
-function runEnd() { setTimeout(() => tell({ t: 'title' }), 1750); setTimeout(() => tell({ t: 'done' }), 2050); }
+function runEnd() { setTimeout(() => tell({ t: 'title' }), 1950); setTimeout(() => tell({ t: 'done' }), 2250); }
 function handFrame() {}
 ['pointerdown', 'keydown', 'wheel', 'touchstart'].forEach(ev => addEventListener(ev, () => tell({ t: 'skip' }), { passive: true }));
 
