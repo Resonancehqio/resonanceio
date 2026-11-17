@@ -18,10 +18,8 @@
     c.style.cssText = 'position:absolute;margin:0;left:' + b.left + 'px;top:' + b.top + 'px;width:' + b.width + 'px;font-size:' + cs.fontSize + ';line-height:' + cs.lineHeight + ';text-align:' + cs.textAlign + ';animation:none;';
     w.appendChild(c); document.body.appendChild(w); h1.style.visibility = 'hidden';
     var lines = c.children.length ? [].slice.call(c.children) : [c];
-    // a plain fade, starting just after the page background begins to take over
-    c.animate([{ opacity: 0, filter: 'blur(4px)' }, { opacity: 1, filter: 'none' }], { duration: 900, delay: 280, easing: 'cubic-bezier(.4,0,.2,1)', fill: 'both' });
-    // the rest of the hero copy comes in with it
-    [].forEach.call(h1.parentNode.children, function (n) { if (n === h1 || n.classList.contains('xl') || !n.animate) return; n.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 900, delay: 380, easing: 'cubic-bezier(.4,0,.2,1)', fill: 'backwards' }); });
+    var rise = Math.max(160, innerHeight - b.top);   // from the bottom of the screen
+    c.animate([{ opacity: 0, transform: 'translateY(' + rise + 'px)', filter: 'blur(6px)' }, { offset: .35, opacity: 1, filter: 'blur(0)' }, { opacity: 1, transform: 'none', filter: 'none' }], { duration: 1400, easing: 'cubic-bezier(.16,1,.3,1)', fill: 'both' });
     var end = function () { h1.style.visibility = ''; if (w.parentNode) w.remove(); };
     setTimeout(end, 2900);
     window.__xTitleEnd = end;
