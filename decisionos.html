@@ -868,6 +868,160 @@ html.x-lock,html.x-lock body{overflow:hidden;}
   .x-fg-row > span[role="cell"]:nth-of-type(4)::before{content:'DecisionOS';}
 }
 @media(min-width:861px){.x-fg-row > span[role="cell"]:nth-of-type(2){border-left:0;}}
+/* ═══ Pass 3 ═══ */
+/* Reading progress + active nav */
+.x-prog{position:absolute;left:0;bottom:-0.5px;height:2px;width:100%;transform-origin:left;transform:scaleX(var(--p,0));background:linear-gradient(90deg,var(--teal-bright),var(--purple-bright));pointer-events:none;}
+.x-nav-links a.cur:not(.x-btn){color:var(--text-1);background:rgba(255,255,255,0.05);}
+.x-sec-tight{padding:clamp(56px,7vw,88px) 0;}
+
+/* Now you try */
+.x-try{border-radius:18px;background:var(--dark-1);box-shadow:inset 0 0 0 0.5px var(--border-hi),0 40px 90px -40px rgba(0,0,0,0.9);overflow:hidden;}
+.x-try-top{display:flex;align-items:center;justify-content:space-between;gap:16px 24px;flex-wrap:wrap;padding:20px 22px;border-bottom:0.5px solid var(--border);background:#16122A;}
+.x-try-ctl{flex:1;min-width:260px;max-width:620px;}
+.x-try-l{display:block;font-family:var(--ff-display);font-weight:300;font-size:clamp(20px,2.2vw,26px);letter-spacing:-0.01em;margin-bottom:12px;}
+.x-try-l b{font-weight:500;color:var(--amber);font-variant-numeric:tabular-nums;}
+.x-try input[type=range]{width:100%;appearance:none;-webkit-appearance:none;background:transparent;height:30px;cursor:pointer;margin:0;}
+.x-try input[type=range]::-webkit-slider-runnable-track{height:6px;border-radius:6px;background:linear-gradient(90deg,var(--amber) var(--fill,33%),rgba(255,255,255,0.1) var(--fill,33%));}
+.x-try input[type=range]::-moz-range-track{height:6px;border-radius:6px;background:rgba(255,255,255,0.1);}
+.x-try input[type=range]::-moz-range-progress{height:6px;border-radius:6px;background:var(--amber);}
+.x-try input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:24px;height:24px;margin-top:-9px;border-radius:50%;background:#fff;box-shadow:0 0 0 6px rgba(245,158,11,0.25),0 4px 12px rgba(0,0,0,0.6);}
+.x-try input[type=range]::-moz-range-thumb{width:24px;height:24px;border:0;border-radius:50%;background:#fff;box-shadow:0 0 0 6px rgba(245,158,11,0.25);}
+.x-try input[type=range]:focus-visible{outline:2px solid var(--teal-bright);outline-offset:4px;border-radius:8px;}
+.x-try-ticks{display:flex;justify-content:space-between;font-family:var(--ff-data);font-size:11px;color:var(--text-3);padding:0 6px;}
+.x-try-pill{--c:#34D399;display:inline-flex;align-items:center;gap:8px;padding:7px 14px 7px 11px;border-radius:999px;font-size:13px;font-weight:600;color:var(--c);background:color-mix(in srgb,var(--c) 11%,transparent);box-shadow:inset 0 0 0 0.5px color-mix(in srgb,var(--c) 60%,transparent);transition:color .3s,background .3s,box-shadow .3s;white-space:nowrap;}
+.x-try-pill i{width:7px;height:7px;border-radius:50%;background:currentColor;}
+.x-try-pill.busy i{animation:xhBlink .7s steps(2) infinite;}
+.x-try-grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,0.85fr);}
+@media(max-width:900px){.x-try-grid{grid-template-columns:minmax(0,1fr);}}
+.x-try-tl{padding:20px 22px;border-right:0.5px solid var(--border);}
+@media(max-width:900px){.x-try-tl{border-right:0;border-bottom:0.5px solid var(--border);}}
+.x-tt-row{display:grid;grid-template-columns:150px minmax(0,1fr);align-items:center;gap:12px;margin-bottom:12px;}
+.x-tt-l{font-size:12.5px;color:var(--text-2);}
+.x-tt-row.hit .x-tt-l{color:#FCA5A5;}
+.x-tt-track{position:relative;height:20px;border-radius:5px;background:rgba(255,255,255,0.03);}
+.x-tt-bar{position:absolute;top:0;bottom:0;left:3.3%;width:68.5%;border-radius:5px;background:var(--purple-mid);display:flex;align-items:center;padding:0 8px;font-family:var(--ff-data);font-size:10.5px;color:#fff;white-space:nowrap;overflow:hidden;transition:left .55s cubic-bezier(.2,.8,.2,1);}
+.x-tt-ret{position:absolute;top:-6px;height:110px;left:71.8%;border-left:1.5px dashed var(--amber);transition:left .55s cubic-bezier(.2,.8,.2,1);z-index:2;pointer-events:none;}
+.x-tt-ret em{position:absolute;top:-14px;left:4px;font-style:normal;font-family:var(--ff-data);font-size:9.5px;color:var(--amber);}
+.x-tt-lease{position:absolute;top:0;bottom:0;left:0;border-radius:5px;background:rgba(20,184,166,0.13);box-shadow:inset 0 0 0 0.5px rgba(94,234,212,0.45);display:flex;align-items:center;justify-content:flex-end;padding:0 8px;transition:background .35s,box-shadow .35s;}
+.x-tt-lease span{font-family:var(--ff-data);font-size:10px;color:var(--teal-bright);white-space:nowrap;}
+.x-tt-row.hit .x-tt-lease{background:rgba(248,113,113,0.12);box-shadow:inset 0 0 0 1px rgba(248,113,113,0.6);}
+.x-tt-row.hit .x-tt-lease span{color:#FCA5A5;}
+.x-tt-axis{display:flex;justify-content:space-between;margin-left:162px;font-family:var(--ff-data);font-size:10px;color:var(--text-3);}
+@media(max-width:560px){.x-tt-row{grid-template-columns:minmax(0,1fr);gap:4px;}.x-tt-axis{margin-left:0;}.x-tt-ret{height:150px;}}
+.x-try-dots{padding:18px 22px;display:flex;flex-direction:column;gap:12px;}
+.x-dg > span{display:block;font-size:12px;color:var(--text-3);margin-bottom:6px;}
+.x-dg > div{display:flex;flex-wrap:wrap;gap:5px;}
+.x-hd{width:14px;height:14px;border-radius:4px;background:#2A2449;box-shadow:inset 0 0 0 0.5px rgba(167,139,250,0.45);transition:background .3s ease,box-shadow .3s ease,transform .3s ease;}
+.x-hd.hit{background:rgba(245,158,11,0.35);box-shadow:inset 0 0 0 1px var(--amber);transform:scale(1.12);}
+.x-hd.placed{background:rgba(94,234,212,0.3);box-shadow:inset 0 0 0 1px var(--teal-bright);transform:none;}
+.x-hd.flag{background:transparent;box-shadow:inset 0 0 0 1.5px var(--red);transform:none;}
+.x-dlegend{display:flex;flex-wrap:wrap;gap:6px 14px;margin-top:4px;font-size:11.5px;color:var(--text-3);}
+.x-dlegend span{display:inline-flex;align-items:center;gap:6px;}
+.x-dlegend i{width:10px;height:10px;border-radius:3px;}
+.x-dlegend .d{background:#2A2449;box-shadow:inset 0 0 0 0.5px rgba(167,139,250,0.5);}
+.x-dlegend .h{background:rgba(245,158,11,0.35);box-shadow:inset 0 0 0 1px var(--amber);}
+.x-dlegend .p{background:rgba(94,234,212,0.3);box-shadow:inset 0 0 0 1px var(--teal-bright);}
+.x-dlegend .f{box-shadow:inset 0 0 0 1.5px var(--red);}
+.x-try-out{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));border-top:0.5px solid var(--border);}
+.x-to{padding:16px 18px;border-right:0.5px solid rgba(120,100,220,0.1);}
+.x-to:last-child{border-right:0;}
+.x-to b{display:block;font-family:var(--ff-display);font-weight:300;font-size:clamp(26px,2.8vw,36px);line-height:1;font-variant-numeric:tabular-nums;letter-spacing:-0.02em;}
+.x-to b.ok{color:var(--green);}
+.x-to b.f{color:var(--text-1);}
+.x-to b.f.on{color:var(--red);}
+.x-to b.s{font-family:var(--ff-body);font-size:15px;font-weight:600;line-height:1.3;}
+.x-to span{display:block;margin-top:6px;font-size:12px;color:var(--text-3);}
+.x-to.wide{grid-column:span 1;}
+@media(max-width:900px){.x-try-out{grid-template-columns:repeat(3,minmax(0,1fr));}.x-to{border-bottom:0.5px solid rgba(120,100,220,0.1);}.x-to:nth-child(3n){border-right:0;}}
+@media(max-width:480px){.x-try-out{grid-template-columns:repeat(2,minmax(0,1fr));}.x-to:nth-child(3n){border-right:0.5px solid rgba(120,100,220,0.1);}.x-to:nth-child(2n){border-right:0;}}
+.x-try-msg{padding:16px 22px;border-top:0.5px solid var(--border);font-family:var(--ff-display);font-weight:300;font-size:clamp(17px,1.7vw,21px);line-height:1.4;color:var(--text-1);min-height:3.4em;}
+.x-try-msg em{font-style:normal;color:var(--teal-bright);}
+.x-try-msg .r{color:#FCA5A5;}
+.x-try-foot{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:12px 22px;border-top:0.5px solid var(--border);font-size:12.5px;color:var(--text-3);}
+.x-try-foot code{font-family:var(--ff-data);color:var(--teal-bright);transition:color .2s;}
+.x-try-foot code.chg{color:#fff;}
+
+/* Won't do */
+.x-nos{display:grid;grid-template-columns:minmax(0,0.8fr) minmax(0,1.2fr);gap:clamp(24px,5vw,72px);align-items:start;}
+@media(max-width:860px){.x-nos{grid-template-columns:minmax(0,1fr);}}
+.x-no-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));border-top:0.5px solid var(--border);}
+@media(max-width:560px){.x-no-list{grid-template-columns:minmax(0,1fr);}}
+.x-no-list li{padding:20px 4px 20px 0;border-bottom:0.5px solid var(--border);}
+.x-no-list li:nth-child(odd){padding-right:24px;}
+.x-no{display:inline-block;font-family:var(--ff-display);font-weight:400;font-size:clamp(20px,2vw,24px);letter-spacing:-0.01em;color:var(--text-2);}
+.x-no s{position:relative;text-decoration:none;}
+.x-no s::after{content:'';position:absolute;left:-2px;right:-2px;top:55%;height:2px;border-radius:2px;background:var(--red);transform-origin:left;transform:scaleX(var(--v,1));}
+.x-no-list p{margin-top:8px;font-size:15px;line-height:1.6;color:var(--text-2);}
+
+/* Decision record */
+.x-rec{display:grid;grid-template-columns:minmax(0,0.85fr) minmax(0,1.15fr);gap:clamp(28px,5vw,72px);align-items:start;}
+@media(max-width:980px){.x-rec{grid-template-columns:minmax(0,1fr);}}
+.x-rec-cta{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-top:28px;}
+.x-rec-cta span{font-size:13px;color:var(--text-3);}
+.x-doc{position:relative;border-radius:14px;padding:clamp(22px,3vw,36px);background:#F7F5FC;color:#1C1534;box-shadow:0 40px 90px -30px rgba(0,0,0,0.9),0 0 0 1px rgba(255,255,255,0.08);transform:rotate(-0.6deg);font-size:13.5px;line-height:1.55;}
+@media(max-width:980px){.x-doc{transform:none;}}
+.x-doc::before{content:'';position:absolute;inset:0;border-radius:inherit;background:linear-gradient(180deg,rgba(124,58,237,0.07),transparent 140px);pointer-events:none;}
+.x-doc-h{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-bottom:16px;border-bottom:1.5px solid #1C1534;}
+.x-doc-k{font-family:var(--ff-data);font-size:11px;letter-spacing:0.04em;color:#6A5AA8;}
+.x-doc-h h3{margin-top:4px;font-family:var(--ff-display);font-weight:500;font-size:clamp(20px,2.2vw,26px);letter-spacing:-0.015em;color:#140E2A;}
+.x-doc-m{display:flex;flex-direction:column;align-items:flex-end;gap:2px;font-family:var(--ff-data);font-size:11px;color:#5B4F8A;}
+.x-doc-sec{padding:14px 0;border-bottom:1px solid #E2DDF0;}
+.x-doc-sec h4{margin:0 0 8px;font-family:var(--ff-data);font-size:10.5px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:#6A5AA8;}
+.x-doc-sec p{color:#2B2347;}
+.x-doc-t{width:100%;border-collapse:collapse;font-size:12.5px;}
+.x-doc-t td,.x-doc-t th{padding:6px 8px 6px 0;text-align:left;border-bottom:1px solid #EEEAF6;color:#2B2347;vertical-align:top;}
+.x-doc-t th{font-size:11px;font-weight:600;color:#6A5AA8;}
+.x-doc-t td:nth-child(2),.x-doc-t td:nth-child(3){font-family:var(--ff-data);font-size:11.5px;color:#4A3F78;}
+.x-doc-alt td:nth-child(n+2),.x-doc-alt th:nth-child(n+2){text-align:right;font-family:var(--ff-data);}
+.x-doc-alt td.bad{color:#C2410C;font-weight:600;}
+.x-doc-alt tr.rec td{background:#EAF7F3;color:#0F3D33;font-weight:600;}
+.x-doc-alt tr.rec em{display:inline-block;margin-left:6px;font-style:normal;font-size:10px;font-weight:600;color:#fff;background:#0F766E;border-radius:4px;padding:1px 6px;vertical-align:1px;}
+.x-doc-note{margin-top:8px;font-size:12px;color:#5B4F8A !important;}
+.x-doc-rules{display:flex;flex-wrap:wrap;gap:6px;}
+.x-doc-rules span{font-size:12px;font-weight:500;color:#0F5B4E;background:#E3F5EF;border-radius:6px;padding:3px 8px;}
+.x-doc-appr{display:flex;flex-direction:column;gap:6px;}
+.x-doc-appr li{display:grid;grid-template-columns:minmax(0,auto) minmax(0,1fr) auto;gap:10px;align-items:baseline;font-size:13px;}
+.x-doc-appr b{color:#140E2A;}
+.x-doc-appr span{color:#5B4F8A;font-size:12.5px;}
+.x-doc-appr time{font-family:var(--ff-data);font-size:11.5px;color:#4A3F78;}
+@media(max-width:480px){.x-doc-appr li{grid-template-columns:minmax(0,1fr) auto;}.x-doc-appr span{grid-column:1/-1;grid-row:2;}}
+.x-doc-f{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-top:16px;}
+.x-doc-f code{font-family:var(--ff-data);font-size:11.5px;color:#4A3F78;}
+.x-stamp{display:inline-flex;flex-direction:column;align-items:center;padding:6px 14px;border:2px solid #0F766E;border-radius:8px;color:#0F766E;font-family:var(--ff-data);font-weight:700;font-size:14px;letter-spacing:0.12em;text-transform:uppercase;transform:rotate(-6deg) scale(var(--s,1));opacity:var(--o,1);}
+.x-stamp small{font-size:9.5px;letter-spacing:0.04em;font-weight:500;}
+
+/* Checklist */
+.x-need{margin-top:clamp(40px,5vw,64px);display:grid;grid-template-columns:minmax(0,0.85fr) minmax(0,1.15fr);gap:clamp(24px,4vw,56px);padding:clamp(22px,3vw,32px);border-radius:18px;background:var(--dark-1);box-shadow:inset 0 0 0 0.5px var(--border-hi);}
+@media(max-width:860px){.x-need{display:flex;flex-direction:column;gap:0;}.x-need-copy{display:contents;}.x-need h3{order:1;}.x-need-copy > p:first-of-type{order:2;margin-bottom:18px;}.x-need-list{order:3;}.x-need-bar{order:4;}.x-need-msg{order:5;}.x-need .x-btn{order:6;align-self:flex-start;}}
+@media(max-width:480px){.x-doc-m{align-items:flex-start;}}
+.x-need h3{font-family:var(--ff-display);font-weight:400;font-size:clamp(24px,2.6vw,30px);letter-spacing:-0.015em;}
+.x-need-copy > p{margin-top:10px;font-size:15px;line-height:1.6;color:var(--text-2);}
+.x-need-bar{margin-top:22px;height:6px;border-radius:6px;background:rgba(255,255,255,0.07);overflow:hidden;}
+.x-need-bar i{display:block;height:100%;width:0;border-radius:6px;background:linear-gradient(90deg,var(--teal),var(--teal-bright));transition:width .45s cubic-bezier(.2,.8,.2,1);}
+.x-need-msg{margin-top:10px !important;font-size:14px !important;color:var(--text-1) !important;min-height:1.6em;}
+.x-need .x-btn{margin-top:18px;}
+.x-need-list{display:flex;flex-direction:column;gap:8px;}
+.x-need-list button{all:unset;box-sizing:border-box;width:100%;cursor:pointer;display:grid;grid-template-columns:26px minmax(0,1fr);gap:12px;align-items:center;padding:14px 16px;border-radius:12px;background:rgba(255,255,255,0.025);box-shadow:inset 0 0 0 0.5px var(--border);transition:background .25s,box-shadow .25s;}
+.x-need-list button:hover{background:rgba(255,255,255,0.045);}
+.x-need-list button:focus-visible{outline:2px solid var(--teal-bright);outline-offset:2px;}
+.x-need-list button i{width:24px;height:24px;border-radius:7px;box-shadow:inset 0 0 0 1px var(--border-hi);display:grid;place-items:center;transition:background .25s,box-shadow .25s,transform .25s;}
+.x-need-list button i::after{content:'';width:9px;height:5px;margin-top:-2px;border-left:2px solid #062A22;border-bottom:2px solid #062A22;transform:rotate(-45deg) scale(0);transition:transform .25s cubic-bezier(.2,1.4,.4,1);}
+.x-need-list button[aria-checked="true"]{background:rgba(20,184,166,0.08);box-shadow:inset 0 0 0 1px rgba(94,234,212,0.5);}
+.x-need-list button[aria-checked="true"] i{background:var(--teal-bright);box-shadow:none;transform:scale(1.05);}
+.x-need-list button[aria-checked="true"] i::after{transform:rotate(-45deg) scale(1);}
+.x-need-list b{display:block;font-size:15px;font-weight:600;color:var(--text-1);}
+.x-need-list span span,.x-need-list button > span{font-size:13px;color:var(--text-3);}
+
+/* Role switcher */
+.x-roles{display:flex;align-items:center;flex-wrap:wrap;gap:8px 10px;margin:-24px 0 clamp(28px,4vw,44px);}
+.x-roles > span{font-size:14px;color:var(--text-3);margin-right:4px;}
+.x-role{all:unset;cursor:pointer;height:38px;padding:0 16px;border-radius:999px;display:inline-flex;align-items:center;font-size:14px;color:var(--text-2);box-shadow:inset 0 0 0 0.5px var(--border-hi);transition:all .2s;}
+.x-role:hover{color:var(--text-1);background:rgba(255,255,255,0.04);}
+.x-role[aria-pressed="true"]{color:#fff;background:rgba(124,58,237,0.32);box-shadow:inset 0 0 0 1px var(--purple-bright);}
+.x-role:focus-visible{outline:2px solid var(--teal-bright);outline-offset:2px;}
+.x-role-line{flex-basis:100%;margin-top:6px;font-family:var(--ff-display);font-weight:300;font-size:clamp(18px,1.8vw,22px);color:var(--text-1);min-height:1.4em;}
+
+
 /* Footer */
 .x-foot{border-top:0.5px solid var(--border);padding:36px 0 44px;}
 .x-foot .x-wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:13px;color:var(--text-3);}
@@ -904,6 +1058,8 @@ html.x-lock,html.x-lock body{overflow:hidden;}
     <span class="x-tag"><span class="x-tag-l">Product preview</span><span class="x-tag-s">Preview</span></span>
     <nav class="x-nav-links" aria-label="Page">
       <a href="#replan">See a re-plan</a>
+      <a href="#tryit">Try it</a>
+      <a href="#record">The record</a>
       <a href="#how">How it works</a>
       <a href="#faq">FAQ</a>
       <a class="x-btn x-btn-p" href="#contact">Talk to us</a>
@@ -1178,6 +1334,57 @@ html.x-lock,html.x-lock body{overflow:hidden;}
 </section>
 </div>
 
+
+<!-- ═══ NOW YOU TRY ═══ -->
+<section class="x-sec" id="tryit" aria-labelledby="x-try-h">
+  <div class="x-wrap">
+    <div class="x-head">
+      <h2 class="x-h2" id="x-try-h">Now you move the date. <b>Watch the plan answer.</b></h2>
+      <p class="x-lede">Drag the slip. DecisionOS re-plans only the households it touches. When the rules can't all be met, it tells you instead of guessing.</p>
+    </div>
+
+    <div class="x-try" id="xTry">
+      <div class="x-try-top">
+        <div class="x-try-ctl">
+          <label class="x-try-l" for="xTryR">Building C start slips by <b id="xTryW">2 weeks</b></label>
+          <input type="range" id="xTryR" min="0" max="6" step="1" value="2" aria-describedby="xTryMsg">
+          <div class="x-try-ticks" aria-hidden="true"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6 wks</span></div>
+        </div>
+        <div class="x-try-pill" id="xTryPill"><i></i><span>Re-planned</span></div>
+      </div>
+
+      <div class="x-try-grid">
+        <div class="x-try-tl" aria-hidden="true">
+          <div class="x-tt-row"><span class="x-tt-l">Building C construction</span><div class="x-tt-track"><div class="x-tt-bar" id="xTtBar"><span id="xTtDates">Mar 9 – Aug 24</span></div><div class="x-tt-ret" id="xTtRet"><em>return</em></div></div></div>
+          <div class="x-tt-row" data-lease="0"><span class="x-tt-l">Hollis St. lease · 9</span><div class="x-tt-track"><div class="x-tt-lease" style="width:74%"><span>ends Aug 31</span></div></div></div>
+          <div class="x-tt-row" data-lease="1"><span class="x-tt-l">Canal Row lease · 6</span><div class="x-tt-track"><div class="x-tt-lease" style="width:80%"><span>ends Sep 14</span></div></div></div>
+          <div class="x-tt-row" data-lease="2"><span class="x-tt-l">Dunmore lease · 5</span><div class="x-tt-track"><div class="x-tt-lease" style="width:86%"><span>ends Sep 28</span></div></div></div>
+          <div class="x-tt-axis"><span>Mar</span><span>Apr</span><span>May</span><span>Jun</span><span>Jul</span><span>Aug</span><span>Sep</span><span>Oct</span></div>
+        </div>
+
+        <div class="x-try-dots" id="xTryDots" aria-hidden="true">
+          <div class="x-dg" data-g="0"><span>Hollis St.</span><div></div></div>
+          <div class="x-dg" data-g="1"><span>Canal Row</span><div></div></div>
+          <div class="x-dg" data-g="2"><span>Dunmore Apts.</span><div></div></div>
+          <div class="x-dg" data-g="3"><span>Ward Ave.</span><div></div></div>
+          <div class="x-dlegend"><span><i class="d"></i>unaffected</span><span><i class="h"></i>affected</span><span><i class="p"></i>re-placed</span><span><i class="f"></i>needs your decision</span></div>
+        </div>
+      </div>
+
+      <div class="x-try-out">
+        <div class="x-to"><b id="xToA">9</b><span>affected</span></div>
+        <div class="x-to"><b id="xToP">9</b><span>re-placed</span></div>
+        <div class="x-to"><b id="xToF" class="f">0</b><span>need your decision</span></div>
+        <div class="x-to"><b id="xToV" class="ok">0</b><span>rule violations</span></div>
+        <div class="x-to"><b id="xToC">$14,200</b><span>added moving cost</span></div>
+        <div class="x-to wide"><b id="xToR" class="s">Director of Development</b><span>approves</span></div>
+      </div>
+      <div class="x-try-msg" id="xTryMsg" aria-live="polite"></div>
+      <div class="x-try-foot"><span>Same inputs, same plan: <code id="xTryHash">plan c7e1·0a4d</code></span><span>Illustrative data</span></div>
+    </div>
+  </div>
+</section>
+
 <!-- ═══ HOW IT WORKS ═══ -->
 <section class="x-sec" id="how" aria-labelledby="x-how-h">
   <div class="x-wrap">
@@ -1230,6 +1437,14 @@ html.x-lock,html.x-lock body{overflow:hidden;}
     <div class="x-head">
       <h2 class="x-h2" id="x-dec-h">Built for the decisions housing teams <b>make every week.</b></h2>
       <p class="x-lede">Each one runs on your data and your rules, and each one shows its work.</p>
+    </div>
+    <div class="x-roles" id="xRoles" role="group" aria-label="Pick your role">
+      <span>I work in</span>
+      <button class="x-role" type="button" data-role="relocation" aria-pressed="false">Relocation</button>
+      <button class="x-role" type="button" data-role="development" aria-pressed="false">Development</button>
+      <button class="x-role" type="button" data-role="asset" aria-pressed="false">Asset management</button>
+      <button class="x-role" type="button" data-role="acq" aria-pressed="false">Acquisitions</button>
+      <p class="x-role-line" id="xRoleLine" aria-live="polite"></p>
     </div>
     <div class="x-dec">
       <div class="x-dlist" role="tablist" aria-label="Decisions DecisionOS handles">
@@ -1410,6 +1625,92 @@ html.x-lock,html.x-lock body{overflow:hidden;}
   </div>
 </section>
 
+
+<!-- ═══ WON'T DO ═══ -->
+<section class="x-sec x-sec-tight" id="limits" aria-labelledby="x-no-h">
+  <div class="x-wrap">
+    <div class="x-nos" id="xNos">
+      <h2 class="x-h2 x-nos-h" id="x-no-h">What DecisionOS <b>won't do.</b></h2>
+      <ul class="x-no-list">
+        <li><span class="x-no"><s>Act on its own</s></span><p>Nothing changes until a person approves it.</p></li>
+        <li><span class="x-no"><s>Fill gaps by guessing</s></span><p>Missing data is flagged for your team to fix.</p></li>
+        <li><span class="x-no"><s>Replace your systems</s></span><p>Yardi, Procore and Resonance stay your record.</p></li>
+        <li><span class="x-no"><s>Hide its rules</s></span><p>Every rule is written down where your team can read it.</p></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ DECISION RECORD ═══ -->
+<section class="x-sec" id="record" aria-labelledby="x-rec-h">
+  <div class="x-wrap x-rec">
+    <div class="x-rec-copy">
+      <h2 class="x-h2" id="x-rec-h">The record you <b>take to the board.</b></h2>
+      <p class="x-lede" style="margin-top:20px">Every decision leaves a record: what went in, which rules applied, what else was considered, and who approved it. Six months later, the answer to "why?" is one page.</p>
+      <ol class="x-next">
+        <li><i>1</i><span><b>Inputs</b>, with the source and version of each file.</span></li>
+        <li><i>2</i><span><b>Rules</b> applied, and whether each one held.</span></li>
+        <li><i>3</i><span><b>Alternatives</b> considered, and why the recommendation won.</span></li>
+        <li><i>4</i><span><b>Approvals</b>, with names, limits and times.</span></li>
+      </ol>
+      <div class="x-rec-cta">
+        <button class="x-btn x-btn-p" type="button" id="xRecPdf"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>Save the sample as PDF</button>
+        <span>Illustrative sample</span>
+      </div>
+    </div>
+
+    <article class="x-doc" id="xDoc" aria-label="Sample decision record">
+      <header class="x-doc-h" data-r>
+        <div><span class="x-doc-k">Decision record · DR-0415</span><h3>Alder Court · Building C re-plan</h3></div>
+        <div class="x-doc-m"><span>Plan v15</span><span>Mar 9 → Mar 23 slip</span></div>
+      </header>
+
+      <div class="x-doc-sec" data-r>
+        <h4>Summary</h4>
+        <p>Building C's start moved two weeks. 9 Hollis St. households would stay past the lease end on Aug 31. DecisionOS re-planned those 9 and left the other 37 unchanged.</p>
+      </div>
+
+      <div class="x-doc-sec" data-r>
+        <h4>Inputs</h4>
+        <table class="x-doc-t"><tbody>
+          <tr><td>Construction schedule</td><td>Procore · v15</td><td>Mar 9, 09:14</td></tr>
+          <tr><td>Rent roll</td><td>Yardi · Mar export</td><td>Mar 1, 06:00</td></tr>
+          <tr><td>Households and units</td><td>Resonance · live</td><td>Mar 9, 09:14</td></tr>
+          <tr><td>Relocation budget</td><td>Excel · FY27 v3</td><td>Feb 20</td></tr>
+        </tbody></table>
+      </div>
+
+      <div class="x-doc-sec" data-r>
+        <h4>Rules applied</h4>
+        <div class="x-doc-rules"><span>✓ Bedroom size</span><span>✓ Accessible unit</span><span>✓ Notice period</span><span>✓ School district</span><span>✓ Lease dates</span></div>
+      </div>
+
+      <div class="x-doc-sec" data-r>
+        <h4>Alternatives considered</h4>
+        <table class="x-doc-t x-doc-alt"><thead><tr><th>Option</th><th>Moves</th><th>Rule breaks</th><th>Cost</th></tr></thead><tbody>
+          <tr><td>Keep plan v14</td><td>0</td><td class="bad">9</td><td>$0</td></tr>
+          <tr><td>Extend Hollis St. lease 2 weeks</td><td>0</td><td>0</td><td>$18,900*</td></tr>
+          <tr class="rec"><td>Re-plan the 9 affected households <em>Recommended</em></td><td>9</td><td>0</td><td>$14,200</td></tr>
+        </tbody></table>
+        <p class="x-doc-note">*Needs the landlord's sign-off, which is not confirmed. The re-plan costs less and depends on no one outside your team.</p>
+      </div>
+
+      <div class="x-doc-sec" data-r>
+        <h4>Approvals</h4>
+        <ul class="x-doc-appr">
+          <li><b>Relocation manager</b><span>reviewed · limit $10,000 · sent up</span><time>11:44</time></li>
+          <li><b>Director of Development</b><span>approved · limit $50,000</span><time>11:58</time></li>
+        </ul>
+      </div>
+
+      <footer class="x-doc-f" data-r>
+        <code>inputs 8d03·5be2 → plan c7e1·0a4d</code>
+        <span class="x-stamp" id="xStamp">Approved<small>Mar 9 · 11:58</small></span>
+      </footer>
+    </article>
+  </div>
+</section>
+
 <!-- ═══ HOW TO START ═══ -->
 <section class="x-sec" id="start" aria-labelledby="x-start-h">
   <div class="x-wrap">
@@ -1424,6 +1725,21 @@ html.x-lock,html.x-lock body{overflow:hidden;}
         <div class="x-ph"><div class="when">About three months</div><h3>Implement</h3><p>We set up the guardrails, approval rules and integrations your team needs.</p></div>
         <div class="x-ph"><div class="when">Ongoing</div><h3>Run</h3><p>DecisionOS becomes part of how your team plans, re-plans and reports.</p></div>
       </div>
+    </div>
+    <div class="x-need" id="xNeed">
+      <div class="x-need-copy">
+        <h3>What we need to start</h3>
+        <p>Most teams already have these. Partial data is fine for a first look. Tick what you have.</p>
+        <div class="x-need-bar" aria-hidden="true"><i id="xNeedFill"></i></div>
+        <p class="x-need-msg" id="xNeedMsg" aria-live="polite">Tick what you have.</p>
+        <button class="x-btn x-btn-p" type="button" id="xNeedGo">Send this with my request <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8m-4-4 4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      </div>
+      <ul class="x-need-list">
+        <li><button type="button" role="checkbox" aria-checked="false" data-need="Rent roll or household list"><i></i><span><b>Rent roll or household list</b>From Yardi, Resonance or a spreadsheet</span></button></li>
+        <li><button type="button" role="checkbox" aria-checked="false" data-need="Unit inventory, including temporary units"><i></i><span><b>Unit inventory</b>Including temporary units and their leases</span></button></li>
+        <li><button type="button" role="checkbox" aria-checked="false" data-need="Construction schedule"><i></i><span><b>Construction schedule</b>From Procore or a spreadsheet</span></button></li>
+        <li><button type="button" role="checkbox" aria-checked="false" data-need="The rules we already use"><i></i><span><b>The rules you already use</b>Bedroom sizing, accessibility, notice periods</span></button></li>
+      </ul>
     </div>
     <div class="x-band">
       <p>DecisionOS is built by <b>Resonance</b>, the platform relocation and development teams use to run RAD, PACT and rehab programs.</p>
@@ -2056,6 +2372,125 @@ if(document.fonts&&document.fonts.ready)document.fonts.ready.then(relayout);
     if(!REDUCED&&'IntersectionObserver' in window){var io3=new IntersectionObserver(function(e){if(e[0].isIntersecting){io3.disconnect();requestAnimationFrame(playFit);}},{threshold:0.35});io3.observe(fit);}
     document.getElementById('xFitAgain').addEventListener('click',function(){renderFit(0);requestAnimationFrame(playFit);});
   }
+
+  /* ═══ Pass 3 ═══ */
+  var track=function(name,label){try{if(window.gtag)gtag('event',name,{event_category:'decisionos',event_label:label||''});}catch(e){}};
+
+  // Reading progress + current section in the nav
+  (function(){
+    var nav=document.querySelector('.x-nav');if(!nav)return;
+    var bar=document.createElement('i');bar.className='x-prog';bar.setAttribute('aria-hidden','true');nav.appendChild(bar);
+    var links=[].slice.call(document.querySelectorAll('.x-nav-links a[href^="#"]:not(.x-btn)'));
+    var targets=links.map(function(a){return document.querySelector(a.getAttribute('href'));});
+    var tick=false;
+    function upd(){tick=false;var h=document.documentElement,max=h.scrollHeight-innerHeight;bar.style.setProperty('--p',max>0?(scrollY/max).toFixed(4):0);
+      var cur=-1,best=-1e9;targets.forEach(function(t,i){if(!t)return;var tp=t.getBoundingClientRect().top;if(tp<innerHeight*0.4&&tp>best){best=tp;cur=i;}});var lastT=document.getElementById('start');if(cur>-1&&lastT&&lastT.getBoundingClientRect().top<innerHeight*0.4&&best<lastT.getBoundingClientRect().top)cur=-1;
+      links.forEach(function(a,i){a.classList.toggle('cur',i===cur);});}
+    addEventListener('scroll',function(){if(!tick){tick=true;requestAnimationFrame(upd);}},{passive:true});upd();
+  })();
+
+  // Now you try: move the slip, the plan answers
+  (function(){
+    var root=document.getElementById('xTry');if(!root)return;
+    var R=document.getElementById('xTryR'),W=document.getElementById('xTryW'),pill=document.getElementById('xTryPill');
+    var bar=document.getElementById('xTtBar'),dates=document.getElementById('xTtDates'),ret=document.getElementById('xTtRet');
+    var rows=[].slice.call(root.querySelectorAll('[data-lease]')),msg=document.getElementById('xTryMsg'),hash=document.getElementById('xTryHash');
+    var oA=document.getElementById('xToA'),oP=document.getElementById('xToP'),oF=document.getElementById('xToF'),oC=document.getElementById('xToC'),oR=document.getElementById('xToR');
+    var GROUPS=[9,6,5,26],LEASE=['Aug 31','Sep 14','Sep 28'];
+    var dots=[];root.querySelectorAll('.x-dg').forEach(function(g,gi){var host=g.querySelector('div');for(var i=0;i<GROUPS[gi];i++){var d=document.createElement('i');d.className='x-hd';host.appendChild(d);dots.push({el:d,g:gi});}});
+    var DAY=100/245,M=['Mar','Apr','May','Jun','Jul','Aug','Sep','Oct'],ML=[31,30,31,30,31,31,30,31];
+    function fmtD(n){var m=0;while(n>=ML[m]&&m<7){n-=ML[m];m++;}return M[m]+' '+(n+1);}
+    var HASH=['a90e·3c16','a90e·3c16','c7e1·0a4d','5b2f·91d0','e04c·7a13','9f61·2c47','33d8·b6e2'];
+    var VACANT=10,PER=1578;
+    function model(w){var retDay=176+7*w;var hit=[retDay>183,retDay>197,retDay>211];var aff=(hit[0]?9:0)+(hit[1]?6:0)+(hit[2]?5:0);var placed=Math.min(aff,VACANT);var flag=aff-placed;var cost=Math.round(placed*PER/100)*100;
+      return {w:w,retDay:retDay,hit:hit,aff:aff,placed:placed,flag:flag,cost:cost,approver:cost===0?'No change needed':(cost<10000?'Relocation manager':'Director of Development')};}
+    var cur={aff:0,placed:0,flag:0,cost:0},timers=[],raf=null;
+    function tween(to){if(raf)cancelAnimationFrame(raf);var from={aff:cur.aff,placed:cur.placed,flag:cur.flag,cost:cur.cost},t0=null;
+      (function f(now){if(t0===null)t0=now;var t=Math.min(1,(now-t0)/600),e=1-Math.pow(1-t,3);
+        ['aff','placed','flag','cost'].forEach(function(k){cur[k]=from[k]+(to[k]-from[k])*e;});
+        oA.textContent=Math.round(cur.aff);oP.textContent=Math.round(cur.placed);oF.textContent=Math.round(cur.flag);oF.classList.toggle('on',to.flag>0);
+        oC.textContent='$'+(Math.round(cur.cost/100)*100).toLocaleString('en-US');
+        if(t<1)raf=requestAnimationFrame(f);else raf=null;})(performance.now());}
+    function render(w,instant){
+      var m=model(w);timers.forEach(clearTimeout);timers=[];
+      W.textContent=w===0?'0 weeks':(w+(w===1?' week':' weeks'));
+      R.style.setProperty('--fill',(w/6*100)+'%');R.setAttribute('aria-valuetext',W.textContent);
+      bar.style.left=((8+7*w)*DAY)+'%';ret.style.left=(m.retDay*DAY)+'%';dates.textContent=fmtD(8+7*w)+' – '+fmtD(m.retDay);
+      rows.forEach(function(r,i){r.classList.toggle('hit',m.hit[i]);});
+      // which households are affected, in group order
+      var affected=dots.filter(function(d){return d.g<3&&m.hit[d.g];});
+      dots.forEach(function(d){d.el.className='x-hd';});
+      pill.style.setProperty('--c','#A78BFA');pill.classList.add('busy');pill.lastChild.textContent='Re-planning';
+      var finish=function(){
+        affected.forEach(function(d,i){d.el.className='x-hd '+(i<m.placed?'placed':'flag');});
+        pill.classList.remove('busy');
+        if(m.aff===0){pill.style.setProperty('--c','#34D399');pill.lastChild.textContent='No change';}
+        else if(m.flag>0){pill.style.setProperty('--c','#F87171');pill.lastChild.textContent='Needs your decision';}
+        else{pill.style.setProperty('--c','#F59E0B');pill.lastChild.textContent='Needs approval';}
+        oR.textContent=m.approver;
+        var s;
+        if(m.aff===0)s=w===0?'On schedule. Plan v14 stands. Nobody moves.':'Building C returns on Aug 31, the day the Hollis St. lease ends. <em>Nobody moves.</em>';
+        else if(m.flag===0)s='The return now passes the Hollis St. lease end. <em>9 households re-placed, 37 untouched,</em> 0 rule violations.';
+        else s='The return passes '+(m.hit[2]?'three':'two')+' lease ends. <em>'+m.placed+' households re-placed</em> into the '+VACANT+' units that fit. <span class="r">'+m.flag+' can\'t be placed without breaking a rule, so DecisionOS flags them for your decision.</span>';
+        msg.innerHTML=s;
+        hash.textContent='plan '+HASH[w];hash.classList.add('chg');setTimeout(function(){hash.classList.remove('chg');},300);
+      };
+      if(instant||REDUCED){affected.forEach(function(d){d.el.className='x-hd hit';});finish();tween(m);return;}
+      affected.forEach(function(d,i){timers.push(setTimeout(function(){d.el.className='x-hd hit';},i*22));});
+      timers.push(setTimeout(finish,affected.length*22+380));
+      tween(m);
+    }
+    var last=-1;
+    R.addEventListener('input',function(){var w=+R.value;if(w!==last){last=w;render(w);track('try_slip',w+' weeks');}});
+    last=+R.value;render(last,true);
+    // gentle demo when first seen: 0 → 2 → 4 → 2 (only if untouched)
+    var touched=false;R.addEventListener('pointerdown',function(){touched=true;});R.addEventListener('keydown',function(){touched=true;});
+    if(!REDUCED&&'IntersectionObserver' in window){var io=new IntersectionObserver(function(e){if(e[0].isIntersecting){io.disconnect();
+      [[0,0],[2,1100],[4,2600],[2,4300]].forEach(function(st){setTimeout(function(){if(touched)return;R.value=st[0];last=st[0];render(st[0]);},st[1]);});}},{threshold:0.5});io.observe(root);}
+  })();
+
+  // Won't do: strike each line through
+  (function(){var box=document.getElementById('xNos');if(!box)return;var ss=[].slice.call(box.querySelectorAll('.x-no s')),ps=[].slice.call(box.querySelectorAll('.x-no-list p'));
+    once(box,2200,function(t){ss.forEach(function(s,i){s.style.setProperty('--v',S(t,0.1+i*0.18,0.3+i*0.18).toFixed(3));});ps.forEach(function(p,i){av(p,S(t,0.2+i*0.18,0.4+i*0.18));});});})();
+
+  // Decision record: sections write in, then the stamp lands
+  (function(){var doc=document.getElementById('xDoc');if(!doc)return;var secs=[].slice.call(doc.querySelectorAll('[data-r]')),st=document.getElementById('xStamp');
+    once(doc,3200,function(t){secs.forEach(function(s,i){av(s,S(t,i*0.11,i*0.11+0.14));});var k=S(t,0.86,0.95);st.style.setProperty('--o',k.toFixed(3));st.style.setProperty('--s',(1.6-0.6*k).toFixed(3));});
+    document.getElementById('xRecPdf').addEventListener('click',function(){
+      track('record_pdf');
+      var css=[].slice.call(document.styleSheets).map(function(sh){try{return [].slice.call(sh.cssRules).map(function(r){return r.cssText;}).filter(function(c){return c.indexOf('.x-doc')>-1||c.indexOf('.x-stamp')>-1;}).join('\n');}catch(e){return '';}}).join('\n');
+      var w=window.open('','_blank');if(!w){window.print();return;}
+      var clone=doc.cloneNode(true);clone.removeAttribute('id');[].slice.call(clone.querySelectorAll('[style]')).forEach(function(e){e.removeAttribute('style');});
+      w.document.write('<!doctype html><html><head><meta charset="utf-8"><title>Sample decision record · DecisionOS</title><link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet"><style>:root{--ff-display:Fraunces,Georgia,serif;--ff-body:"Instrument Sans",system-ui,sans-serif;--ff-data:"JetBrains Mono",ui-monospace,monospace;}body{margin:0;padding:32px;background:#fff;font-family:var(--ff-body);}h3,h4,p,ul{margin:0;padding:0}ul{list-style:none}'+css+'.x-doc{transform:none!important;box-shadow:none!important;max-width:760px;margin:0 auto}.x-stamp{opacity:1!important}.x-doc-foot-note{margin-top:18px;font-size:11px;color:#6A5AA8;text-align:center}</style></head><body>'+clone.outerHTML+'<p class="x-doc-foot-note">Illustrative sample. DecisionOS by Resonance · resonancehq.io/decisionos</p><script>document.fonts.ready.then(function(){setTimeout(function(){window.print();},300);});<\/script></body></html>');
+      w.document.close();
+    });})();
+
+  // What we need to start: checklist → contact form
+  (function(){var box=document.getElementById('xNeed');if(!box)return;var bs=[].slice.call(box.querySelectorAll('[role=checkbox]')),fill=document.getElementById('xNeedFill'),msg=document.getElementById('xNeedMsg');
+    var M=['Tick what you have.','That\'s a start. We can work with partial data.','Good. That covers most of a first plan.','Enough for a pilot.','Everything we need for a pilot.'];
+    function upd(){var n=bs.filter(function(b){return b.getAttribute('aria-checked')==='true';}).length;fill.style.width=(n/4*100)+'%';msg.textContent=M[n];}
+    bs.forEach(function(b){b.addEventListener('click',function(){b.setAttribute('aria-checked',b.getAttribute('aria-checked')==='true'?'false':'true');upd();track('need_check',b.dataset.need);});});
+    document.getElementById('xNeedGo').addEventListener('click',function(){
+      var have=bs.filter(function(b){return b.getAttribute('aria-checked')==='true';}).map(function(b){return b.dataset.need;});
+      var ta=document.getElementById('d-msg');if(ta&&have.length){var line='We have: '+have.join('; ')+'.';if(ta.value.indexOf('We have:')===-1)ta.value=(ta.value?ta.value+'\n':'')+line;}
+      track('need_send',have.length+'');document.getElementById('contact').scrollIntoView({behavior:REDUCED?'auto':'smooth'});setTimeout(function(){var n=document.getElementById('d-name');if(n)n.focus({preventScroll:true});},REDUCED?0:700);
+    });})();
+
+  // Role switcher on the decisions section
+  (function(){var wrap=document.getElementById('xRoles');if(!wrap)return;var rs=[].slice.call(wrap.querySelectorAll('.x-role')),line=document.getElementById('xRoleLine');
+    var MAP={relocation:[0,'Move plans that hold up when the schedule slips.','Relocation manager','Relocation planning'],development:[3,'See what a slipped date or a higher quote does before you commit.','Development director','What-if scenarios'],asset:[1,'Know which units to fund first when the budget is cut.','Asset manager','Rehab prioritization'],acq:[2,'A ranked shortlist your investment committee can check.','Other','Acquisition fit']};
+    rs.forEach(function(b){b.addEventListener('click',function(){var m=MAP[b.dataset.role];rs.forEach(function(x){x.setAttribute('aria-pressed',x===b);});line.textContent=m[1];
+      var tab=document.getElementById('xt'+m[0]);if(tab)tab.click();
+      var sel=document.getElementById('d-role');if(sel)sel.value=m[2];
+      var chip=document.querySelector('input[name="decision"][value="'+m[3]+'"]');if(chip)chip.checked=true;
+      track('role_pick',b.dataset.role);});});})();
+
+  // Analytics on existing interactions
+  (function(){var on=function(id,ev,name,lab){var e=document.getElementById(id);if(e)e.addEventListener(ev,function(){track(name,typeof lab==='function'?lab():lab);});};
+    on('xFullCta','click','sim_fullscreen','cta');on('bFull','click','sim_fullscreen','button');on('xFitAgain','click','fit_ask_again');
+    document.querySelectorAll('.x-dtab').forEach(function(t){t.addEventListener('click',function(){track('decision_tab',t.querySelector('.n').textContent.trim());});});
+    var f=document.getElementById('dosForm');if(f){var started=false;f.addEventListener('focusin',function(){if(!started){started=true;track('form_start');}});}
+  })();
 
   /* Decision tabs */
   var tabs=[].slice.call(document.querySelectorAll('.x-dtab')),panes=[].slice.call(document.querySelectorAll('.x-scr'));
