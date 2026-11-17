@@ -1,55 +1,51 @@
 /* Homepage intro: the corridor site's opening (intro/index.html), played full screen over the page once per visit.
-   The lockup lands on the nav logo, the camera pushes down the red thread, then the overlay dissolves into the hero. */
+   One hand-off, one clock: as the logo lifts off to the nav, the page background takes over, the headline rises from
+   the bottom, the rest of the hero copy follows once it has passed, and the console glides up from below.
+   Only opacity and transform animate (no filters), so it all stays on the compositor. */
 (function () {
-  var h = document.documentElement, done = false, f = null;
-  // the homepage headline rises over the corridor as the logo lifts off, so the page is already arriving
-  var tDone = false;
-  function title() {
-    if (tDone || done) return; tDone = true;
-    // the page's own background takes over quickly while the headline rises; the space falls away
-    var xl0 = document.querySelector('.xl'); if (xl0) xl0.style.setProperty('opacity', '0', 'important');   // the console waits for its own entrance
-    h.classList.remove('x-intro'); if (f) { f.style.transition = 'opacity .85s cubic-bezier(.4,0,.2,1)'; f.style.opacity = '0'; }
-    var h1 = document.querySelector('.hero h1'); if (!h1 || !h1.animate) return;
-    var b = h1.getBoundingClientRect(); if (!b.width) return;
-    var w = document.createElement('div'); w.className = 'hero'; w.setAttribute('aria-hidden', 'true');
-    w.style.cssText = 'position:fixed;inset:0;margin:0;padding:0;min-height:0;height:auto;background:none;z-index:10001;pointer-events:none;';
-    var c = h1.cloneNode(true); c.removeAttribute('id');
-    var cs = getComputedStyle(h1);
-    c.style.cssText = 'position:absolute;margin:0;left:' + b.left + 'px;top:' + b.top + 'px;width:' + b.width + 'px;font-size:' + cs.fontSize + ';line-height:' + cs.lineHeight + ';text-align:' + cs.textAlign + ';animation:none;';
-    w.appendChild(c); document.body.appendChild(w); h1.style.visibility = 'hidden';
-    var lines = c.children.length ? [].slice.call(c.children) : [c];
-    var rise = Math.max(160, innerHeight - b.top);   // from the bottom of the screen
-    c.animate([{ opacity: 0, transform: 'translateY(' + rise + 'px)', filter: 'blur(6px)' }, { offset: .35, opacity: 1, filter: 'blur(0)' }, { opacity: 1, transform: 'none', filter: 'none' }], { duration: 1400, easing: 'cubic-bezier(.16,1,.3,1)', fill: 'both' });
-    var end = function () { h1.style.visibility = ''; if (w.parentNode) w.remove(); };
-    setTimeout(end, 2900);
-    window.__xTitleEnd = end;
+  var h = document.documentElement, done = false, handed = false, f = null, cleanups = [];
+  var EASE = 'cubic-bezier(.22,1,.36,1)', INOUT = 'cubic-bezier(.45,0,.25,1)';
+  function hideReal(el) { el.style.setProperty('opacity', '0', 'important'); cleanups.push(function () { el.style.removeProperty('opacity'); }); }
+  function flyCopy(el, z) {
+    var b = el.getBoundingClientRect(); if (!b.width) return null;
+    var w = document.createElement('div'); w.className = el.parentNode.className; w.setAttribute('aria-hidden', 'true');
+    w.style.cssText = 'position:fixed;inset:0;margin:0;padding:0;min-height:0;height:auto;background:none;border:0;z-index:' + z + ';pointer-events:none;overflow:visible;';
+    var c = el.cloneNode(true); c.removeAttribute('id'); c.querySelectorAll('[id]').forEach(function (n) { n.removeAttribute('id'); });
+    var cs = getComputedStyle(el);
+    c.style.cssText = 'position:absolute;margin:0;left:' + b.left + 'px;top:' + b.top + 'px;width:' + b.width + 'px;font-size:' + cs.fontSize + ';line-height:' + cs.lineHeight + ';text-align:' + cs.textAlign + ';animation:none;will-change:transform,opacity;';
+    w.appendChild(c); document.body.appendChild(w); hideReal(el);
+    cleanups.push(function () { if (w.parentNode) w.remove(); });
+    return { c: c, b: b };
   }
-  function finish(fast, rect) {
-    if (done) return; done = true; window.__xIntroOn = false;
-    if (fast && window.__xTitleEnd) window.__xTitleEnd();
-    if (fast) { var xs = document.querySelector('.xl'); if (xs) xs.style.removeProperty('opacity'); }
+  function handoff() {
+    if (handed || done) return; handed = true;
     h.classList.remove('x-intro');
+    // 1. the space gives way to the page's own background
+    if (f) { f.style.transition = 'opacity 1.1s ' + INOUT; f.style.opacity = '0'; }
+    var hero = document.querySelector('.hero'), h1 = hero && hero.querySelector('h1'), xl = hero && hero.querySelector('.xl');
+    var last = 0;
+    // 2. the headline rises from the bottom of the screen
+    if (h1 && h1.animate) { var t = flyCopy(h1, 10001); if (t) { var rise = Math.max(180, innerHeight - t.b.top);
+      t.c.animate([{ opacity: 0, transform: 'translate3d(0,' + rise + 'px,0)' }, { offset: .3, opacity: 1 }, { opacity: 1, transform: 'none' }], { duration: 1500, easing: EASE, fill: 'both' }); last = 1500; } }
+    // 3. the rest of the hero copy follows once the headline has passed it
+    if (hero && hero.animate) [].forEach.call(hero.children, function (n) { if (n === h1 || n === xl || !n.animate) return;
+      n.animate([{ opacity: 0, transform: 'translate3d(0,10px,0)' }, { opacity: 1, transform: 'none' }], { duration: 800, delay: 650, easing: EASE, fill: 'backwards' }); });
+    // 4. the console glides up from below the buttons
+    if (xl && xl.animate) { var k = flyCopy(xl, 10000); if (k) { var b = k.b, s0 = Math.min(.5, (innerWidth * .46) / b.width), dy = innerHeight * .92 - (b.top + b.height / 2);
+      k.c.style.transformOrigin = '50% 50%';
+      k.c.animate([{ opacity: 0, transform: 'translate3d(' + (innerWidth / 2 - (b.left + b.width / 2)) + 'px,' + dy + 'px,0) scale(' + s0 + ')' }, { offset: .25, opacity: 1 }, { opacity: 1, transform: 'none' }], { duration: 1900, delay: 300, easing: EASE, fill: 'both' });
+      last = Math.max(last, 2200); } }
+    // 5. the real elements take over in the same frame the copies land
+    setTimeout(function () { cleanups.forEach(function (fn) { fn(); }); cleanups = []; }, last + 30);
+  }
+  function finish(fast) {
+    if (done) return;
+    if (fast) { cleanups.forEach(function (fn) { fn(); }); cleanups = []; }
+    else if (!handed) handoff();
+    done = true; window.__xIntroOn = false; h.classList.remove('x-intro');
     if (!f) return;
-    // the new console arrives from deep in the corridor: small, far and faintly tilted, it glides to its place
-    // while the corridor dissolves around it. A copy flies; the real console is shown in the same frame it lands.
-    var xl = !fast && document.querySelector('.xl'), slow = !fast && !!xl;
-    if (xl && xl.animate) { var b = xl.getBoundingClientRect();
-      if (b.width > 40) {
-        var c = xl.cloneNode(true); c.querySelectorAll('[id]').forEach(function (n) { n.removeAttribute('id'); });
-        c.style.cssText = 'position:fixed;margin:0;left:' + b.left + 'px;top:' + b.top + 'px;width:' + b.width + 'px;z-index:10000;pointer-events:none;animation:none;';
-        document.body.appendChild(c); xl.style.setProperty('opacity', '0', 'important');
-        var s0 = Math.min(.36, (innerWidth * .34) / b.width), dx = innerWidth / 2 - (b.left + b.width / 2), dy = innerHeight * .8 - (b.top + b.height / 2);
-        var an = c.animate([
-          { transform: 'translate(' + dx + 'px,' + dy + 'px) perspective(1600px) rotateX(10deg) scale(' + s0 + ')', opacity: 0, filter: 'blur(3px) brightness(.7)' },
-          { offset: .28, transform: 'translate(' + dx * .9 + 'px,' + dy * .9 + 'px) perspective(1600px) rotateX(8deg) scale(' + (s0 * 1.08) + ')', opacity: 1, filter: 'blur(0) brightness(.85)' },
-          { transform: 'none', opacity: 1, filter: 'none' }
-        ], { duration: 2300, easing: 'cubic-bezier(.45,0,.15,1)', fill: 'forwards' });
-        an.onfinish = function () { xl.style.removeProperty('opacity'); c.remove(); };
-        setTimeout(function () { xl.style.removeProperty('opacity'); if (c.parentNode) c.remove(); }, 3000);
-      } }
-    f.style.transition = 'opacity ' + (fast ? .35 : 1.8) + 's cubic-bezier(.4,0,.2,1)' + (fast ? '' : ' .6s');
-    f.style.opacity = '0';
-    setTimeout(function () { if (f && f.parentNode) f.parentNode.removeChild(f); }, fast ? 400 : 2300);
+    if (fast) { f.style.transition = 'opacity .35s ' + INOUT; f.style.opacity = '0'; }
+    setTimeout(function () { if (f && f.parentNode) f.parentNode.removeChild(f); }, fast ? 400 : 1300);
     try { window.dispatchEvent(new Event('x-intro-done')); } catch (e) {}
   }
   function main() {
@@ -57,13 +53,13 @@
     f = document.createElement('iframe');
     f.src = '/intro/';
     f.title = 'Intro'; f.setAttribute('aria-hidden', 'true'); f.tabIndex = -1;
-    f.style.cssText = 'position:fixed;inset:0;width:100%;height:100%;border:0;z-index:9999;background:#09080F;opacity:1;';
+    f.style.cssText = 'position:fixed;inset:0;width:100%;height:100%;border:0;z-index:9999;background:#09080F;opacity:1;will-change:opacity;';
     document.body.appendChild(f);
     var ready = false;
     window.addEventListener('message', function (e) {
       if (e.origin !== location.origin || !e.data || e.data.src !== 'xintro') return;
       if (e.data.t === 'ready') ready = true;
-      if (e.data.t === 'title') title();
+      if (e.data.t === 'title') handoff();
       if (e.data.t === 'done') finish(false);
       if (e.data.t === 'skip') finish(true);
     });
