@@ -18,7 +18,7 @@ html{scrollbar-width:none;} html::-webkit-scrollbar{display:none;}
 #lock{position:fixed;inset:0;z-index:5;pointer-events:none;text-align:left;}
 #lock .hlin{position:absolute;left:0;top:0;display:flex;align-items:center;gap:var(--gap,20px);opacity:0;transform-origin:50% 50%;}
 #lock .hlin svg{width:var(--sw,76px);height:var(--sh,90px);flex:none;}
-#lock .hlin .hlword{font-family:'Fraunces',Georgia,serif;font-weight:400;font-size:var(--fs,56px);letter-spacing:-.01em;color:#F1EEFF;line-height:1;}
+#lock .hlin .hlword{font-family:'Hanken Grotesk',system-ui,sans-serif;font-weight:700;font-size:var(--fs,56px);letter-spacing:-.025em;color:#F1EEFF;line-height:1;}
 html.go #lock .hlin{animation:lockLand 3.6s cubic-bezier(.65,0,.2,1) .1s both;}
 @keyframes lockLand{0%{opacity:1;transform:scale(.89);}66%{opacity:1;transform:scale(1);}100%{opacity:1;transform:translate(var(--tx),var(--ty)) scale(var(--k));}}
 </style>
