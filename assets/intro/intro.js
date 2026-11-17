@@ -6,6 +6,9 @@
   var tDone = false;
   function title() {
     if (tDone || done) return; tDone = true;
+    // the page's own background takes over quickly while the headline rises; the space falls away
+    var xl0 = document.querySelector('.xl'); if (xl0) xl0.style.setProperty('opacity', '0', 'important');   // the console waits for its own entrance
+    h.classList.remove('x-intro'); if (f) { f.style.transition = 'opacity .85s cubic-bezier(.4,0,.2,1)'; f.style.opacity = '0'; }
     var h1 = document.querySelector('.hero h1'); if (!h1 || !h1.animate) return;
     var b = h1.getBoundingClientRect(); if (!b.width) return;
     var w = document.createElement('div'); w.className = 'hero'; w.setAttribute('aria-hidden', 'true');
@@ -24,6 +27,7 @@
   function finish(fast, rect) {
     if (done) return; done = true; window.__xIntroOn = false;
     if (fast && window.__xTitleEnd) window.__xTitleEnd();
+    if (fast) { var xs = document.querySelector('.xl'); if (xs) xs.style.removeProperty('opacity'); }
     h.classList.remove('x-intro');
     if (!f) return;
     // the new console arrives from deep in the corridor: small, far and faintly tilted, it glides to its place
@@ -33,15 +37,15 @@
       if (b.width > 40) {
         var c = xl.cloneNode(true); c.querySelectorAll('[id]').forEach(function (n) { n.removeAttribute('id'); });
         c.style.cssText = 'position:fixed;margin:0;left:' + b.left + 'px;top:' + b.top + 'px;width:' + b.width + 'px;z-index:10000;pointer-events:none;animation:none;';
-        document.body.appendChild(c); xl.style.visibility = 'hidden';
-        var s0 = Math.min(.36, (innerWidth * .34) / b.width), dx = innerWidth / 2 - (b.left + b.width / 2), dy = innerHeight * .46 - (b.top + b.height / 2);
+        document.body.appendChild(c); xl.style.setProperty('opacity', '0', 'important');
+        var s0 = Math.min(.36, (innerWidth * .34) / b.width), dx = innerWidth / 2 - (b.left + b.width / 2), dy = innerHeight * .8 - (b.top + b.height / 2);
         var an = c.animate([
           { transform: 'translate(' + dx + 'px,' + dy + 'px) perspective(1600px) rotateX(10deg) scale(' + s0 + ')', opacity: 0, filter: 'blur(3px) brightness(.7)' },
           { offset: .28, transform: 'translate(' + dx * .9 + 'px,' + dy * .9 + 'px) perspective(1600px) rotateX(8deg) scale(' + (s0 * 1.08) + ')', opacity: 1, filter: 'blur(0) brightness(.85)' },
           { transform: 'none', opacity: 1, filter: 'none' }
         ], { duration: 2300, easing: 'cubic-bezier(.45,0,.15,1)', fill: 'forwards' });
-        an.onfinish = function () { xl.style.visibility = ''; c.remove(); };
-        setTimeout(function () { xl.style.visibility = ''; if (c.parentNode) c.remove(); }, 3000);
+        an.onfinish = function () { xl.style.removeProperty('opacity'); c.remove(); };
+        setTimeout(function () { xl.style.removeProperty('opacity'); if (c.parentNode) c.remove(); }, 3000);
       } }
     f.style.transition = 'opacity ' + (fast ? .35 : 1.8) + 's cubic-bezier(.4,0,.2,1)' + (fast ? '' : ' .6s');
     f.style.opacity = '0';
