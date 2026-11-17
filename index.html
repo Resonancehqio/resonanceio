@@ -5345,6 +5345,45 @@ html:not([data-theme="light"]){--text-2:#D3CCEC;--text-3:#A39BC9;}
 .uc-outcome::after{content:'';position:absolute;left:0;right:0;bottom:-4px;height:1.5px;background:var(--teal);transform-origin:left;transform:scaleX(0);transition:transform .8s cubic-bezier(.16,1,.3,1);transition-delay:calc(var(--d,0ms) + 450ms);}
 .uc-card.x-in .uc-outcome::after{transform:scaleX(1);}
 
+/* ═══ Pass 2: pop ═══ */
+/* Hero product reveal (3D tilt flattens on scroll) */
+.x-js .platform-preview{perspective:1800px;}
+.x-js .platform-preview-inner{transform-origin:50% 0%;transform:rotateX(var(--rx,0deg)) scale(var(--sc,1)) translateY(var(--ty,0px));will-change:transform;}
+.x-js .platform-preview::after{content:'';position:absolute;left:8%;right:8%;bottom:-40px;height:120px;z-index:-1;border-radius:50%;background:radial-gradient(closest-side,rgba(124,58,237,0.55),transparent);filter:blur(24px);opacity:var(--gl,0.4);pointer-events:none;}
+
+/* Problem: three cards become full-width ledger rows */
+@media(min-width:861px){
+  html body .problem-three{grid-template-columns:minmax(0,1fr);gap:0;background:none;border-radius:0;overflow:visible;border-top:0.5px solid var(--border);}
+  html body .problem-three .problem-card{display:grid;grid-template-columns:minmax(0,0.95fr) minmax(0,1.05fr);column-gap:64px;row-gap:14px;align-items:start;padding:40px 0 40px 32px;background:transparent !important;border:0;border-bottom:0.5px solid var(--border);border-radius:0;box-shadow:none;}
+  html body .problem-three .p-title{grid-row:1 / span 2;font-size:clamp(22px,2.4vw,30px);line-height:1.18;margin:0;text-wrap:balance;}
+  html body .problem-three .p-desc{grid-column:2;font-size:15.5px;margin:0;}
+  html body .problem-three .p-tag{grid-column:2;justify-self:start;}
+}
+.problem-three .x-pbar{top:0;bottom:0;left:0;width:3px;height:auto;transform-origin:top;transform:scaleY(0);background:linear-gradient(180deg,#F87171,#F59E0B);}
+.problem-three .problem-card.x-in .x-pbar{transform:scaleY(1);}
+.problem-three .problem-card{transition:background .3s;}
+@media(min-width:861px){html body .problem-three .problem-card:hover{background:rgba(248,113,113,0.035) !important;}}
+
+/* How it works: scroll spine */
+.how-steps{position:relative;}
+.x-spine{position:absolute;left:-40px;top:0;bottom:0;width:2px;border-radius:2px;background:rgba(120,100,220,0.18);pointer-events:none;}
+.x-spine i{position:absolute;left:0;top:0;width:100%;height:calc(var(--p,0)*100%);border-radius:2px;background:linear-gradient(180deg,var(--teal-bright),var(--purple-bright));box-shadow:0 0 10px rgba(94,234,212,0.5);}
+.x-spine b{position:absolute;left:50%;width:12px;height:12px;margin:-6px 0 0 -6px;border-radius:50%;background:var(--dark);box-shadow:inset 0 0 0 2px rgba(120,100,220,0.4);transition:box-shadow .35s,background .35s,transform .35s;}
+.x-spine b.on{background:var(--teal-bright);box-shadow:0 0 0 4px rgba(94,234,212,0.18),0 0 14px rgba(94,234,212,0.7);transform:scale(1.1);}
+@media(max-width:1180px){.x-spine{display:none;}}
+
+/* Feature carousel autoplay progress */
+.fcat-tab{position:relative;overflow:hidden;}
+.fcat-tab .x-tp{position:absolute;left:0;bottom:0;height:2px;width:100%;transform-origin:left;transform:scaleX(var(--p,0));background:var(--teal-bright);pointer-events:none;}
+
+/* Pointer sheen on product surfaces */
+.x-sheen{position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:4;opacity:0;transition:opacity .35s;background:radial-gradient(420px circle at var(--mx,50%) var(--my,50%),rgba(255,255,255,0.075),transparent 45%);}
+html[data-theme="light"] .x-sheen{background:radial-gradient(420px circle at var(--mx,50%) var(--my,50%),rgba(124,58,237,0.07),transparent 45%);}
+.x-shine:hover > .x-sheen{opacity:1;}
+.uc-card{position:relative;}
+
+/* Reading progress */
+.x-prog{position:absolute;left:0;bottom:-0.5px;height:2px;width:100%;transform-origin:left;transform:scaleX(var(--p,0));background:linear-gradient(90deg,var(--teal-bright),var(--purple-bright));pointer-events:none;z-index:2;}
 @media (prefers-reduced-motion: reduce){.x-scanline,.x-autoplay-hint{display:none;}}
 </style>
 <script id="x-enh-js">
@@ -5459,6 +5498,45 @@ html:not([data-theme="light"]){--text-2:#D3CCEC;--text-3:#A39BC9;}
     var grid=document.querySelector('.ba-grid');if(grid){pos.forEach(function(e,i){e.classList.add('x-pre-r');e.style.setProperty('--d',(900+i*120)+'ms');});
       new IntersectionObserver(function(en,ob){if(en[0].isIntersecting){ob.disconnect();pos.forEach(function(e){e.classList.add('x-in');});var vs=document.querySelector('.vs-badge');if(vs)setTimeout(function(){vs.classList.add('x-in');},700);}},{threshold:0.25}).observe(grid);}
   })();
+
+  /* ═══ Pass 2: pop ═══ */
+  // Hero product reveal: one scroll progress value tilts the dashboard flat
+  (function(){var pv=document.querySelector('.platform-preview'),inner=pv&&pv.querySelector('.platform-preview-inner');if(!inner)return;
+    var tick=false;function upd(){tick=false;var r=pv.getBoundingClientRect(),vh=innerHeight;var p=Math.min(1,Math.max(0,1-(r.top-vh*0.12)/(vh*0.62)));var e=p*p*(3-2*p);var mob=innerWidth<720;
+      inner.style.setProperty('--rx',((mob?10:20)*(1-e)).toFixed(2)+'deg');inner.style.setProperty('--sc',(0.9+0.1*e).toFixed(3));inner.style.setProperty('--ty',(18*(1-e)).toFixed(1)+'px');pv.style.setProperty('--gl',(0.25+0.55*e).toFixed(3));}
+    addEventListener('scroll',function(){if(!tick){tick=true;requestAnimationFrame(upd);}},{passive:true});addEventListener('resize',upd);upd();})();
+
+  // How it works: a spine fills as you scroll through the steps
+  (function(){var hs=document.querySelector('.how-steps');if(!hs)return;var steps=$$('.step',hs);var sp=document.createElement('div');sp.className='x-spine';sp.setAttribute('aria-hidden','true');sp.innerHTML='<i></i>';hs.appendChild(sp);
+    var dots=steps.map(function(){var b=document.createElement('b');sp.appendChild(b);return b;});
+    function place(){var top=hs.getBoundingClientRect().top;steps.forEach(function(s,i){var r=s.getBoundingClientRect();dots[i].style.top=(r.top-top+r.height/2)+'px';});}
+    var tick=false;function upd(){tick=false;var r=hs.getBoundingClientRect(),mid=innerHeight*0.55;var p=Math.min(1,Math.max(0,(mid-r.top)/r.height));sp.style.setProperty('--p',p.toFixed(4));
+      var y=mid-r.top;dots.forEach(function(d){d.classList.toggle('on',parseFloat(d.style.top)<=y);});}
+    place();addEventListener('scroll',function(){if(!tick){tick=true;requestAnimationFrame(upd);}},{passive:true});addEventListener('resize',function(){place();upd();});upd();})();
+
+  // Feature carousel: plays through the seven features until the visitor clicks
+  (function(){var wrap=document.getElementById('fcat-wrap');if(!wrap||typeof window.fcatSwitch!=='function')return;var tabs=$$('.fcat-tab',wrap);if(!tabs.length)return;
+    tabs.forEach(function(t){var i=document.createElement('i');i.className='x-tp';t.appendChild(i);});
+    var DW=5600,idx=0,timer=null,raf=null,start=0,stopped=false,vis=false;
+    function cur(){var a=0;tabs.forEach(function(t,i){if(t.classList.contains('active'))a=i;});return a;}
+    function prog(now){if(stopped||!vis)return;var p=Math.min(1,(now-start)/DW);tabs[idx].style.setProperty('--p',p.toFixed(3));raf=requestAnimationFrame(prog);}
+    function next(){if(stopped||!vis)return;tabs[idx].style.removeProperty('--p');idx=(idx+1)%tabs.length;window.fcatSwitch(idx);start=performance.now();timer=setTimeout(next,DW);}
+    function stop(){stopped=true;clearTimeout(timer);cancelAnimationFrame(raf);tabs.forEach(function(t){t.style.removeProperty('--p');});}
+    wrap.addEventListener('pointerdown',stop,{passive:true});wrap.addEventListener('keydown',stop);
+    new IntersectionObserver(function(en){vis=en[0].isIntersecting;clearTimeout(timer);cancelAnimationFrame(raf);if(vis&&!stopped){idx=cur();start=performance.now();raf=requestAnimationFrame(prog);timer=setTimeout(next,DW);}},{threshold:0.45}).observe(wrap);})();
+
+  // Pointer sheen on product surfaces (fine pointers only)
+  (function(){if(!matchMedia('(hover:hover) and (pointer:fine)').matches)return;
+    $$('.platform-preview-inner,.fcat-screen,.mini-card,.match-card,.scenario-card,.ai-card,.uc-card').forEach(function(el){
+      if(getComputedStyle(el).position==='static')el.style.position='relative';
+      var s=document.createElement('span');s.className='x-sheen';s.setAttribute('aria-hidden','true');el.appendChild(s);el.classList.add('x-shine');
+      el.addEventListener('pointermove',function(e){var r=el.getBoundingClientRect();el.style.setProperty('--mx',(e.clientX-r.left)+'px');el.style.setProperty('--my',(e.clientY-r.top)+'px');});
+    });})();
+
+  // Reading progress under the nav
+  (function(){var nav=document.querySelector('body > nav')||document.querySelector('nav');if(!nav)return;if(getComputedStyle(nav).position==='static')return;var b=document.createElement('i');b.className='x-prog';b.setAttribute('aria-hidden','true');nav.appendChild(b);
+    var tick=false;function upd(){tick=false;var h=document.documentElement,m=h.scrollHeight-innerHeight;b.style.setProperty('--p',m>0?(scrollY/m).toFixed(4):0);}
+    addEventListener('scroll',function(){if(!tick){tick=true;requestAnimationFrame(upd);}},{passive:true});upd();})();
 
   /* ── AI approach, managed services, use cases, FAQ ── */
   (function(){
