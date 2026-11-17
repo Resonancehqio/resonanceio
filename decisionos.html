@@ -291,6 +291,8 @@
 
 #replan .transport{top:64px;}
 #replan{scroll-margin-top:64px;}
+#replan{overflow:visible;}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;}
 /* ═══ Page ═══ */
 :root{
   --purple:#5B21B6;--purple-mid:#7C3AED;--purple-bright:#A78BFA;
@@ -729,7 +731,7 @@ section[id],div[id="replan"]{scroll-margin-top:68px;}
               <div class="x-proc" data-k="ai"><b>AI</b><span>reads and cleans your data</span><div class="x-bar"><i></i></div></div>
               <div class="x-proc eng" data-k="eng"><b>Planning engine</b><span>applies your rules</span><div class="x-bar"><i></i></div></div>
             </div>
-            <div class="x-plan" data-k="plan">Plan ready · 212 households <span>0 rule violations</span></div>
+            <div class="x-plan" data-k="plan">Plan ready · 46 households <span>0 rule violations</span></div>
           </div>
           <div class="x-pipe" aria-hidden="true"><i data-k="w0"></i><i data-k="w1"></i><i data-k="w2"></i><i data-k="w3"></i></div>
           <div class="x-tier">
@@ -951,7 +953,7 @@ section[id],div[id="replan"]{scroll-margin-top:68px;}
         <div class="x-lane-row">
           <div class="x-lane-l">Your team<small>approval limits</small></div>
           <div class="x-cell x-empty"></div><div class="x-cell x-empty"></div><div class="x-cell x-empty"></div>
-          <div class="x-cell"><div class="x-node" data-lane="Your team" style="--c:#F59E0B" data-step="3"><h3>Approve</h3><p>Your team reviews and approves the plan. Anything above a person's approval limit goes to the next approver. DecisionOS logs every step.</p><code>$18,400 &gt; $10,000 → <b>Director of Development</b></code></div></div>
+          <div class="x-cell"><div class="x-node" data-lane="Your team" style="--c:#F59E0B" data-step="3"><h3>Approve</h3><p>Your team reviews and approves the plan. Anything above a person's approval limit goes to the next approver. DecisionOS logs every step.</p><code>$14,200 &gt; $10,000 → <b>Director of Development</b></code></div></div>
         </div>
       </div>
       <div class="x-lane-desc" aria-hidden="true">
@@ -983,7 +985,7 @@ section[id],div[id="replan"]{scroll-margin-top:68px;}
 
       <div class="x-screens">
         <div class="x-scr on" role="tabpanel" id="xs0" aria-labelledby="xt0">
-          <div class="x-scr-top"><div><strong>Phase 2 move plan</strong> <span>Alder Court</span></div><span class="x-pill g"><i></i>212 of 212 placed</span></div>
+          <div class="x-scr-top"><div><strong>Phase 2 move plan</strong> <span>example program</span></div><span class="x-pill g"><i></i>212 of 212 placed</span></div>
           <div class="x-scr-body">
             <p class="x-scr-sub">Each household's match, and the rules it satisfies</p>
             <table class="x-tbl">
@@ -1030,19 +1032,19 @@ section[id],div[id="replan"]{scroll-margin-top:68px;}
                 <tr><td><b>Linden Place</b><small>140 units</small></td><td class="r">+2%</td><td class="r hide-s">5.1</td><td class="r"><span class="x-score r">3</span></td></tr>
               </tbody>
             </table>
-            <div class="x-why warn"><b>Flag on Elm Terrace:</b> 2 open code violations in the city record. Click through to the source record.</div>
+            <div class="x-why warn"><b>Flag on Elm Terrace:</b> 2 open code violations. Source: city code-enforcement record.</div>
           </div>
         </div>
 
         <div class="x-scr" role="tabpanel" id="xs3" aria-labelledby="xt3">
-          <div class="x-scr-top"><div><strong>Scenario compare</strong> <span>Phase 2, same data</span></div><span class="x-pill p"><i></i>3 runs</span></div>
+          <div class="x-scr-top"><div><strong>Scenario compare</strong> <span>Alder Court, same data</span></div><span class="x-pill p"><i></i>3 runs</span></div>
           <div class="x-scr-body">
             <div class="x-sc">
-              <div><div class="x-sch">Current plan</div><dl><div><dt>Re-assigned</dt><dd>0</dd></div><div><dt>Temp units</dt><dd>38</dd></div><div><dt>Move budget</dt><dd>$412K</dd></div></dl></div>
-              <div class="on"><div class="x-sch">Bldg C slips 2 weeks</div><dl><div><dt>Re-assigned</dt><dd class="up">17</dd></div><div><dt>Temp units</dt><dd class="up">41</dd></div><div><dt>Move budget</dt><dd class="up">$430K</dd></div></dl></div>
-              <div><div class="x-sch">Mover quote +12%</div><dl><div><dt>Re-assigned</dt><dd class="same">0</dd></div><div><dt>Temp units</dt><dd class="same">38</dd></div><div><dt>Move budget</dt><dd class="up">$461K</dd></div></dl></div>
+              <div><div class="x-sch">Current plan</div><dl><div><dt>Re-assigned</dt><dd>0</dd></div><div><dt>Temp units</dt><dd>46</dd></div><div><dt>Move budget</dt><dd>$412K</dd></div></dl></div>
+              <div class="on"><div class="x-sch">Bldg C slips 2 weeks</div><dl><div><dt>Re-assigned</dt><dd class="up">9</dd></div><div><dt>Temp units</dt><dd class="same">46</dd></div><div><dt>Move budget</dt><dd class="up">$426K</dd></div></dl></div>
+              <div><div class="x-sch">Mover quote +12%</div><dl><div><dt>Re-assigned</dt><dd class="same">0</dd></div><div><dt>Temp units</dt><dd class="same">46</dd></div><div><dt>Move budget</dt><dd class="up">$461K</dd></div></dl></div>
             </div>
-            <div class="x-why"><b>Why the slip changes the plan:</b> 17 households would outstay their temporary leases. Building B needs 3 more units to keep accessible placements.</div>
+            <div class="x-why"><b>Why the slip changes the plan:</b> 9 Hollis St. households would stay past the lease end on Aug 31. DecisionOS moves only those 9. The other 37 keep their units.</div>
           </div>
         </div>
       </div>
@@ -1062,8 +1064,8 @@ section[id],div[id="replan"]{scroll-margin-top:68px;}
         <h3>Repeatable.</h3>
         <p>Planning engines compute the plan. Run it again with the same inputs and you get the same answer.</p>
         <div class="x-ev" aria-label="Example: two runs with the same inputs produce the same plan">
-          <div class="row"><span class="k">run 1 · 09:15</span><span>inputs 8d03 → plan <span class="t">c7e1</span></span></div>
-          <div class="row"><span class="k">run 2 · 16:40</span><span>inputs 8d03 → plan <span class="t">c7e1</span></span></div>
+          <div class="row"><span class="k">run 1 · 09:15</span><span>inputs 8d03·5be2 → plan <span class="t">c7e1·0a4d</span></span></div>
+          <div class="row"><span class="k">run 2 · 16:40</span><span>inputs 8d03·5be2 → plan <span class="t">c7e1·0a4d</span></span></div>
           <div class="hr"></div>
           <div class="row"><span class="k">result</span><span class="g">identical</span></div>
         </div>
@@ -1072,18 +1074,18 @@ section[id],div[id="replan"]{scroll-margin-top:68px;}
         <h3>Explained.</h3>
         <p>Every recommendation shows the constraints it followed and the numbers it used.</p>
         <div class="x-ev" aria-label="Example: the rules behind one placement">
-          <div class="row"><span>#1147 → A-102</span><span class="g">5 of 5 rules</span></div>
+          <div class="row"><span>C-02 · Hollis 102 → Ward 106</span><span class="g">5 of 5 rules</span></div>
           <div class="hr"></div>
-          <div class="row"><span class="k">accessible unit</span><span class="g">✓ required, A-102 is</span></div>
-          <div class="row"><span class="k">bedrooms</span><span class="g">✓ 3 needed, 3 in unit</span></div>
-          <div class="row"><span class="k">notice period</span><span class="g">✓ ends Mar 2, move Mar 23</span></div>
+          <div class="row"><span class="k">accessible unit</span><span class="g">✓ step-free, roll-in shower</span></div>
+          <div class="row"><span class="k">bedroom size</span><span class="g">✓ fits household</span></div>
+          <div class="row"><span class="k">lease dates</span><span class="g">✓ out before Aug 31</span></div>
         </div>
       </div>
       <div class="x-proof">
         <h3>Human-approved.</h3>
         <p>Nothing runs on its own. Your people approve, and DecisionOS enforces approval limits.</p>
         <div class="x-ev" aria-label="Example: an approval routed above a manager's limit">
-          <div class="row"><span class="k">added cost</span><span class="a">$18,400</span></div>
+          <div class="row"><span class="k">added cost</span><span class="a">$14,200</span></div>
           <div class="row"><span class="k">manager limit</span><span>$10,000</span></div>
           <div class="hr"></div>
           <div class="x-chain"><span>Relocation manager</span><i>→</i><span class="on">✓ Director of Development</span></div>
@@ -1192,7 +1194,7 @@ section[id],div[id="replan"]{scroll-margin-top:68px;}
         <div class="x-hp" aria-hidden="true"><label for="d-website">Website</label><input id="d-website" name="_gotcha" tabindex="-1" autocomplete="off"></div>
         <button class="x-btn x-btn-p x-submit" type="submit">Talk to us</button>
         <p class="x-err" id="dosErr" role="alert"></p>
-        <p class="x-fnote">We use your details only to reply to you.</p>
+        <p class="x-fnote">Prefer email? <a href="mailto:sean@resonancehq.io" style="color:var(--text-2)">sean@resonancehq.io</a></p>
       </form>
       <div class="x-done" id="dosDone">
         <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
